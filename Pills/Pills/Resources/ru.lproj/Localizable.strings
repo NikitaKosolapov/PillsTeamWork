@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  Pills
+
+  Created by aprirez on 7/17/21.
+  
+*/
+
+// MARK: - Add a new pill
+"tablets" = "Таблетки";
+"capsules" = "Капсулы";
+"drops" = "Капли";
+"procedure" = "Процедура";
+"salve" = "Мазь";
+"spoon" = "Ложка";
+"syringe" = "Шприц";
+"suppository" = "Свечи";
+"suspension" = "Раствор";
+
+"addNewPill" = "Добавить лекарство";
+"name" = "Наименование";
+"singleDose" = "Однократно";
+"instruction" = "Инструкция";
+"comments" = "Комментарии";
+"time" = "Время";
+"add" = "Добавить";
+
+"beforeMeals" = "До еды";
+"whileEating" = "Во время еды";
+"afterMeals" = "После еды";
+"noMatter" = "Не важно";
+
+// MARK: - Journal Event Status
+"accepted" = "Принято";
+"missed" = "Пропущено";
+
+// MARK: - AidKit Event Type
+"active" = "Активные";
+"completed" = "Завершенные";
+
+// MARK: - Settings
+"language" = "Язык";
+"aboutApp" = "О программе";
+"writeSupport" = "Написать в поддержку";
+"notification" = "Нотификации";
+"appearance" = "Внешний вид";
+"privacy" = "Приватность";
+"termsOfUsage" = "Правила использования";
+"privacyPolicy" = "Политика конфиденциальности";
+"rate" = "Оценить";
+
+// MARK: - TabBar
+"aidkit" = "Аптечка";
+"journal" = "Журнал";
+"settings" = "Настройки";

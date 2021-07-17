@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  Pills
+
+  Created by aprirez on 7/17/21.
+  
+*/
+
+// MARK: - Add a new pill
+"tablets" = "Tablets";
+"capsules" = "Capsules";
+"drops" = "Drops";
+"procedure" = "Procedure";
+"salve" = "Salve";
+"spoon" = "Spoon";
+"syringe" = "Syringe";
+"suppository" = "Suppository";
+"suspension" = "Suspension";
+
+"addNewPill" = "Add a new pill";
+"name" = "Pill's name";
+"singleDose" = "Single dose";
+"instruction" = "Instruction";
+"comments" = "Сomments";
+"time" = "Time";
+"add" = "Add";
+
+"beforeMeals" = "Before meal";
+"whileEating" = "While eating";
+"afterMeals" = "After meal";
+"noMatter" = "No matter";
+
+// MARK: - Journal Event Status
+"accepted" = "Accepted";
+"missed" = "Missed";
+
+// MARK: - AidKit Event Type
+"active" = "Active";
+"completed" = "Completed";
+
+// MARK: - Settings
+"language" = "Language";
+"aboutApp" = "About App";
+"writeSupport" = "Write to support";
+"notification" = "Notification";
+"appearance" = "Appearance";
+"privacy" = "Privacy";
+"termsOfUsage" = "Terms of usage";
+"privacyPolicy" = "Privacy Policy";
+"rate" = "Rate Application";
+
+// MARK: - TabBar
+"aidkit" = "AidKit";
+"journal" = "Journal";
+"settings" = "Settings";
