@@ -11,9 +11,13 @@ This README would normally document whatever steps are necessary to get your app
 ### How do I get set up? ###
 
 * Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
+
+ 1. Before opening project please do:
+ $ pod install
+ ... from the Pills folder.
+ 
+ 2. Please do open project in XCode only via workspace file.
+
 * How to run tests
 * Deployment instructions
 
