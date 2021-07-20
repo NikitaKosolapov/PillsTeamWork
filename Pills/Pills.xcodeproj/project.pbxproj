@@ -27,6 +27,8 @@
 		FE79E44226A31E9200DACD24 /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E44126A31E9200DACD24 /* Hex.swift */; };
 		FE79E44A26A3200D00DACD24 /* AppColorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E44926A3200D00DACD24 /* AppColorsTest.swift */; };
 		FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE79E44E26A35F3900DACD24 /* Colors.xcassets */; };
+		FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E47C26A59DD600DACD24 /* RealmMedKitEntry.swift */; };
+		FE79E48626A6C0BB00DACD24 /* RealmModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E48526A6C0BB00DACD24 /* RealmModelsTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		FE79E44126A31E9200DACD24 /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
 		FE79E44926A3200D00DACD24 /* AppColorsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorsTest.swift; sourceTree = "<group>"; };
 		FE79E44E26A35F3900DACD24 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		FE79E47C26A59DD600DACD24 /* RealmMedKitEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMedKitEntry.swift; sourceTree = "<group>"; };
+		FE79E48526A6C0BB00DACD24 /* RealmModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModelsTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 				FE79E40A26A30EDA00DACD24 /* AppImagesTest.swift */,
 				FE79E43626A319BC00DACD24 /* LocalizationTest.swift */,
 				FE79E44926A3200D00DACD24 /* AppColorsTest.swift */,
+				FE79E48526A6C0BB00DACD24 /* RealmModelsTest.swift */,
 			);
 			path = PillsTests;
 			sourceTree = "<group>";
@@ -201,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				FE79E3ED269CC93E00DACD24 /* Models */,
-				FE79E3EE269CC95000DACD24 /* Services */,
 				FE79E3F3269CCA0D00DACD24 /* Factories */,
 				FE79E3F2269CC99D00DACD24 /* Extensions */,
 				FE79E3F1269CC98E00DACD24 /* Helpers */,
@@ -235,6 +239,8 @@
 		FE79E3ED269CC93E00DACD24 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FE79E47C26A59DD600DACD24 /* RealmMedKitEntry.swift */,
+				FE79E3EE269CC95000DACD24 /* Services */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -601,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE79E3B5269CC09A00DACD24 /* ViewController.swift in Sources */,
+				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
@@ -617,6 +624,7 @@
 			files = (
 				FE79E43726A319BC00DACD24 /* LocalizationTest.swift in Sources */,
 				FE79E44A26A3200D00DACD24 /* AppColorsTest.swift in Sources */,
+				FE79E48626A6C0BB00DACD24 /* RealmModelsTest.swift in Sources */,
 				FE79E3C8269CC09D00DACD24 /* PillsTests.swift in Sources */,
 				FE79E40B26A30EDA00DACD24 /* AppImagesTest.swift in Sources */,
 			);
