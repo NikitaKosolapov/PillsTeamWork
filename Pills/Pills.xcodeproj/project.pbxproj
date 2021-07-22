@@ -10,6 +10,7 @@
 		0F7AB71FD2BACFD7E9D7B77A /* Pods_Pills.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE54AEB4CE9F116588E02F9E /* Pods_Pills.framework */; };
 		7DEA8F49593064C649BF7198 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE5C1E54995E98123A9683 /* Pods_PillsTests.framework */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
+		A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */; };
 		FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */; };
 		FE79E3B3269CC09A00DACD24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B2269CC09A00DACD24 /* SceneDelegate.swift */; };
 		FE79E3B5269CC09A00DACD24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B4269CC09A00DACD24 /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 		052F3BC6A38F46F1E9DF7445 /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		355BC49F9AE1E3D40807B03C /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE54AEB4CE9F116588E02F9E /* Pods_Pills.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F49A64954FE4370756C2B7 /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A3FBD9ED26A926BB00B8BE0E /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		FE79E3A4269CC09A00DACD24 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 		FE79E3EB269CC8A100DACD24 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A3FBD9ED26A926BB00B8BE0E /* Calendar */,
 				FE79E3FB269CCCE100DACD24 /* Intro */,
 				FE79E3F4269CCABF00DACD24 /* Profile */,
 				FE79E3F5269CCAD000DACD24 /* TabBar */,
@@ -606,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */,
 				FE79E3B5269CC09A00DACD24 /* ViewController.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
