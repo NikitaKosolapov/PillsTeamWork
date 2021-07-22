@@ -12,8 +12,6 @@
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
 		A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */; };
 		FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */; };
-		FE79E3B3269CC09A00DACD24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B2269CC09A00DACD24 /* SceneDelegate.swift */; };
-		FE79E3B5269CC09A00DACD24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B4269CC09A00DACD24 /* ViewController.swift */; };
 		FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE79E3B9269CC09D00DACD24 /* Assets.xcassets */; };
 		FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE79E3BB269CC09D00DACD24 /* LaunchScreen.storyboard */; };
 		FE79E3C8269CC09D00DACD24 /* PillsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3C7269CC09D00DACD24 /* PillsTests.swift */; };
@@ -30,6 +28,10 @@
 		FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE79E44E26A35F3900DACD24 /* Colors.xcassets */; };
 		FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E47C26A59DD600DACD24 /* RealmMedKitEntry.swift */; };
 		FE79E48626A6C0BB00DACD24 /* RealmModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E48526A6C0BB00DACD24 /* RealmModelsTest.swift */; };
+		FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957AD26A96FCE0093BA8D /* BaseRouter.swift */; };
+		FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */; };
+		FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */; };
+		FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +64,6 @@
 		EC403CE45E397D07371D2BD1 /* Pods-Pills.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.release.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.release.xcconfig"; sourceTree = "<group>"; };
 		FE79E3AD269CC09A00DACD24 /* Pills.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pills.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE79E3B2269CC09A00DACD24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FE79E3B4269CC09A00DACD24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FE79E3B9269CC09D00DACD24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE79E3BC269CC09D00DACD24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE79E3BE269CC09D00DACD24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +86,10 @@
 		FE79E44E26A35F3900DACD24 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		FE79E47C26A59DD600DACD24 /* RealmMedKitEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMedKitEntry.swift; sourceTree = "<group>"; };
 		FE79E48526A6C0BB00DACD24 /* RealmModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModelsTest.swift; sourceTree = "<group>"; };
+		FEB957AD26A96FCE0093BA8D /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentRouter.swift; sourceTree = "<group>"; };
+		FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentViewController.swift; sourceTree = "<group>"; };
+		FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,7 @@
 		FE79E3AF269CC09A00DACD24 /* Pills */ = {
 			isa = PBXGroup;
 			children = (
+				FEB957AC26A96FB80093BA8D /* Core */,
 				FE79E3E9269CC83100DACD24 /* Application */,
 				FE79E3EA269CC88200DACD24 /* Common */,
 				FE79E3EB269CC8A100DACD24 /* Modules */,
@@ -207,7 +212,6 @@
 			children = (
 				FE79E3BE269CC09D00DACD24 /* Info.plist */,
 				FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */,
-				FE79E3B2269CC09A00DACD24 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -313,6 +317,7 @@
 		FE79E3F5269CCAD000DACD24 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -320,7 +325,8 @@
 		FE79E3FB269CCCE100DACD24 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				FE79E3B4269CC09A00DACD24 /* ViewController.swift */,
+				FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */,
+				FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -339,6 +345,14 @@
 				FE79E44126A31E9200DACD24 /* Hex.swift */,
 			);
 			path = UIColor;
+			sourceTree = "<group>";
+		};
+		FEB957AC26A96FB80093BA8D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FEB957AD26A96FCE0093BA8D /* BaseRouter.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,12 +632,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */,
-				FE79E3B5269CC09A00DACD24 /* ViewController.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
-				FE79E3B3269CC09A00DACD24 /* SceneDelegate.swift in Sources */,
+				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
+				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
+				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
+				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
 				FE79E43C26A31C4900DACD24 /* AppColors.swift in Sources */,
 				FE79E43226A3186900DACD24 /* Text.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
