@@ -48,6 +48,8 @@
 "termsOfUsage" = "Terms of usage";
 "privacyPolicy" = "Privacy Policy";
 "rate" = "Rate Application";
+"mainSection" = "Main";
+"infoSection" = "Info";
 
 // MARK: - TabBar
 "aidkit" = "AidKit";

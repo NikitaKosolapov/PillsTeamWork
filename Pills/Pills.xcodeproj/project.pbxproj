@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F7AB71FD2BACFD7E9D7B77A /* Pods_Pills.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE54AEB4CE9F116588E02F9E /* Pods_Pills.framework */; };
 		7DEA8F49593064C649BF7198 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE5C1E54995E98123A9683 /* Pods_PillsTests.framework */; };
+		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
 		A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */; };
 		FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		052F3BC6A38F46F1E9DF7445 /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		355BC49F9AE1E3D40807B03C /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,14 @@
 				DF95C2900F21926A706B7030 /* Pods-PillsTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		849AE5C126A9CF2D00262D12 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				849AE5C226A9CF5400262D12 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A3FBD9ED26A926BB00B8BE0E /* Calendar */ = {
@@ -236,6 +246,7 @@
 				FE79E3FB269CCCE100DACD24 /* Intro */,
 				FE79E3F4269CCABF00DACD24 /* Profile */,
 				FE79E3F5269CCAD000DACD24 /* TabBar */,
+				849AE5C126A9CF2D00262D12 /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -641,6 +652,7 @@
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
 				FE79E43C26A31C4900DACD24 /* AppColors.swift in Sources */,
+				849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */,
 				FE79E43226A3186900DACD24 /* Text.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 			);
@@ -827,6 +839,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58ZQ5G77TJ;
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -846,6 +859,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58ZQ5G77TJ;
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

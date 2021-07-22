@@ -60,6 +60,7 @@ extension AppDelegate {
             window?.rootViewController = tabBarMaker.createTabBarController()
         }
 
+        window?.overrideUserInterfaceStyle = .light
         window?.makeKeyAndVisible()
     }
 }

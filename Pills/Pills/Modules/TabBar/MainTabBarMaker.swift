@@ -20,9 +20,10 @@ class MainTabBarMaker {
         let medicationNavig = UINavigationController(rootViewController: medicationVC)
         medicationVC.tabBarItem = tabItemBuilder(title: "medications", icon: UIImage(named: "test"))
         
-        let settingsVC = DevelopmentViewController()
+        let settingsVC = SettingsViewController()
         let settingsNavig = UINavigationController(rootViewController: settingsVC)
-        settingsVC.tabBarItem = tabItemBuilder(title: "settings", icon: UIImage(named: "test"))
+        let settingIcon = "slider.horizontal.3"
+        settingsVC.tabBarItem = tabItemBuilder(title: "settings".localized(), icon: UIImage(systemName: settingIcon))
         
         let tabBarVC = UITabBarController()
         tabBarVC.viewControllers = [mainNavig, medicationNavig, settingsNavig]
