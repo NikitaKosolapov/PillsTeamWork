@@ -27,30 +27,37 @@ enum Usage: String {
     case noMatter
 }
 
+// swiftlint:disable variable_name
+enum Unit: String {
+    case pill
+    case piece
+    case mg
+    case ml
+    case g
+}
+
 class RealmTimePoint: Object {
-    @objc dynamic var time: Date // time and date when to use a pill
-    @objc dynamic var status: Bool // false - wasn't used yet, true - was used
+    @objc dynamic var time = Date()  // time and date when to use a pill
+    @objc dynamic var isUsed = false // false - wasn't used yet, true - was used
+
+    required override init() {}
     
-    init(time: Date, status: Bool) {
+    init(time: Date, isUsed: Bool) {
         self.time = time
-        self.status = status
-    }
-    
-    required override init() {
-        self.time = Date()
-        self.status = false
+        self.isUsed = isUsed
     }
 }
 
 class RealmMedKitEntry: Object {
-    @objc dynamic var entryID: String = UUID.init().uuidString
-    @objc dynamic var name: String
-    @objc dynamic var singleDose: Double
-    @objc dynamic var comments: String
-    @objc dynamic var startDate: Date
-    @objc dynamic var endDate: Date
-    @objc dynamic var pillTypeHolder: String
-    @objc dynamic var usageHolder: String
+    @objc dynamic var entryID = UUID.init().uuidString
+    @objc dynamic var name = "(not named)"
+    @objc dynamic var singleDose: Double = 0
+    @objc dynamic var comments = "(no comments)"
+    @objc dynamic var startDate = Date()
+    @objc dynamic var endDate = Date()
+    @objc dynamic var pillTypeHolder = PillType.tablets.rawValue
+    @objc dynamic var usageHolder = Usage.noMatter.rawValue
+    @objc dynamic var unitHolder = Unit.pill.rawValue
 
     var pillType: PillType {
       get { return PillType(rawValue: pillTypeHolder)! }
@@ -62,25 +69,23 @@ class RealmMedKitEntry: Object {
       set { usageHolder = newValue.rawValue }
     }
     
+    var unit: Unit {
+      get { return Unit(rawValue: unitHolder)! }
+      set { unitHolder = newValue.rawValue }
+    }
+
     var schedule = List<RealmTimePoint>()
     
     override class func primaryKey() -> String? {
         return "entryID"
     }
-    
-    required override init() {
-        self.name = "(not named)"
-        self.singleDose = 0
-        self.comments = "(no comments)"
-        self.startDate = Date()
-        self.endDate = Date()
-        self.pillTypeHolder = PillType.tablets.rawValue
-        self.usageHolder = Usage.noMatter.rawValue
-    }
+
+    required override init() {}
 
     init(name: String,
          pillType: PillType,
          singleDose: Double,
+         unit: Unit,
          usage: Usage,
          comments: String,
          startDate: Date,
@@ -94,6 +99,7 @@ class RealmMedKitEntry: Object {
         self.endDate = Date()
         self.pillTypeHolder = pillType.rawValue
         self.usageHolder = usage.rawValue
+        self.unitHolder = unit.rawValue
 
         super.init()
         self.schedule.append(objectsIn: schedule)
