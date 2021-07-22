@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol SeparatorFactoryAbstract: class {
+protocol SeparatorFactoryAbstract: AnyObject {
     func makeTranslucent() -> UIView
     func makeTranslucent(height: CGFloat) -> UIView
     func makeTranslucent(width: CGFloat) -> UIView

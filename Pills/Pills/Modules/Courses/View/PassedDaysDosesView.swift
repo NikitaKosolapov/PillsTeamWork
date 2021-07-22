@@ -8,57 +8,67 @@
 import UIKit
 
 class PassedDaysDosesView: UIView {
-// MARK: - Subviews
-    let passedDaysLabel = UILabel()
-    let daysLabel = UILabel()
-    let passedDosesLabel = UILabel()
-    let dosesLabel = UILabel()
+    // MARK: - Subviews
+    let passedDaysLabel: UILabel = {
+        let passedDaysLabel = UILabel()
+        passedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
+        passedDaysLabel.numberOfLines = 1
+        passedDaysLabel.font = UIFont.systemFont(ofSize: 12)
+        return passedDaysLabel
+    }()
+    
+    let daysLabel: UILabel = {
+        let daysLabel = UILabel()
+        daysLabel.translatesAutoresizingMaskIntoConstraints = false
+        daysLabel.numberOfLines = 1
+        daysLabel.font = UIFont.systemFont(ofSize: 11)
+        return daysLabel
+    }()
+    
+    let passedDosesLabel: UILabel = {
+        let passedDosesLabel = UILabel()
+        passedDosesLabel.translatesAutoresizingMaskIntoConstraints = false
+        passedDosesLabel.numberOfLines = 1
+        passedDosesLabel.font = UIFont.systemFont(ofSize: 12)
+        return passedDosesLabel
+    }()
+    
+    let dosesLabel: UILabel = {
+        let dosesLabel = UILabel()
+        dosesLabel.translatesAutoresizingMaskIntoConstraints = false
+        dosesLabel.numberOfLines = 1
+        dosesLabel.font = UIFont.systemFont(ofSize: 11)
+        return dosesLabel
+    }()
 // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 // MARK: - ConfigureUI
     private func configureUI() {
         configureView()
-        configureDaysLabel()
-        configurePassedDaysLabel()
-        configureDosesLabel()
-        configurePassedDosesLabel()
+        addSubViews()
         setupConstraints()
     }
+    
     private func configureView() {
-        backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 251/255, alpha: 1)
-        backgroundColor = UIColor.lightGray
+        backgroundColor = AppColors.green
         layer.cornerRadius = 10.0
     }
-    private func configurePassedDaysLabel() {
-        passedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
-        passedDaysLabel.numberOfLines = 1
-        passedDaysLabel.font = UIFont.systemFont(ofSize: 12)
+    
+    private func addSubViews() {
         addSubview(passedDaysLabel)
-    }
-    private func configureDaysLabel() {
-        daysLabel.translatesAutoresizingMaskIntoConstraints = false
-        daysLabel.numberOfLines = 1
-        daysLabel.font = UIFont.systemFont(ofSize: 11)
         addSubview(daysLabel)
-    }
-    private func configurePassedDosesLabel() {
-        passedDosesLabel.translatesAutoresizingMaskIntoConstraints = false
-        passedDosesLabel.numberOfLines = 1
-        passedDosesLabel.font = UIFont.systemFont(ofSize: 12)
         addSubview(passedDosesLabel)
-    }
-    private func configureDosesLabel() {
-        dosesLabel.translatesAutoresizingMaskIntoConstraints = false
-        dosesLabel.numberOfLines = 1
-        dosesLabel.font = UIFont.systemFont(ofSize: 11)
         addSubview(dosesLabel)
     }
+    
     private func setupConstraints() {
         let safeArea = safeAreaLayoutGuide
         let insetOfLabel = CGFloat(5.0)

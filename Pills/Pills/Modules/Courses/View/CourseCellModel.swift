@@ -15,6 +15,7 @@ struct CourseCellModel {
     var passedDosesLabel: String
     var typeOfDose: String
 }
+
 final class CourseCellModelFactory {
     static func cellModel (from model: Course) -> CourseCellModel {
         let dateFormatter = DateFormatter()

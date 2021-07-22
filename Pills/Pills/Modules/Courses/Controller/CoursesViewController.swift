@@ -17,40 +17,58 @@ class CoursesViewController: UIViewController {
     var coursesCurrent: [Course]?
     var coursesPassed: [Course]?
     var courses: [Course]?
+    
     // MARK: - Private properties
     internal var coursesView: CoursesView {
         return view as! CoursesView
     }
-    private var segmentedControl = UISegmentedControl(items: ["Current", "Passed"])
+    
+    private lazy var segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
+        segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
+        segmentedControl.setWidth(AppLayout.AidKit.paddingSegmentControl*UIScreen.main.bounds.width, forSegmentAt: 0)
+        segmentedControl.setWidth(AppLayout.AidKit.paddingSegmentControl*UIScreen.main.bounds.width, forSegmentAt: 1)
+        navigationItem.titleView = segmentedControl
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
     private var typeCourses: TypeCourses = .current
     private struct Constant {
         static let reuseIdentifier = "reuseId"
     }
+    
     // MARK: - Initialisation
     init() {
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     // MARK: - Life cycles
     override func loadView() {
         view = CoursesView()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         changeSource()
     }
+    
     // MARK: - ConfigureUI
     private func configure () {
         configureMocData()
-        configSegmentedControl()
+        configNavigationBar()
         configureCollectionView()
     }
+    
     private func configureMocData () {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
@@ -101,18 +119,17 @@ class CoursesViewController: UIViewController {
         let coursesPassed = [firstPassedCourse, secondPassedCourse]
         self.coursesPassed = coursesPassed
     }
-    private func configSegmentedControl () {
-        segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
-        segmentedControl.setWidth(6*UIScreen.main.bounds.width/13, forSegmentAt: 0)
-        segmentedControl.setWidth(6*UIScreen.main.bounds.width/13, forSegmentAt: 1)
+    
+    private func configNavigationBar() {
         navigationItem.titleView = segmentedControl
-        segmentedControl.selectedSegmentIndex = 0
     }
+    
     private func configureCollectionView () {
         coursesView.collectionView.register(CourseCell.self, forCellWithReuseIdentifier: Constant.reuseIdentifier)
         coursesView.collectionView.delegate = self
         coursesView.collectionView.dataSource = self
     }
+    
     // MARK: - Private functions
     @objc private func changeTypeCourses() {
         switch segmentedControl.selectedSegmentIndex {
@@ -125,6 +142,7 @@ class CoursesViewController: UIViewController {
         }
         self.changeSource()
     }
+    
     private func changeSource() {
         switch typeCourses {
         case .current:
@@ -140,11 +158,13 @@ extension CoursesViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = courses?.count else {
             return 0 }
         return count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let dequeueCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.reuseIdentifier, for: indexPath)
         guard let cell = dequeueCell as? CourseCell,
@@ -156,6 +176,7 @@ extension CoursesViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
 // MARK: - UITableViewDelegate
 extension CoursesViewController: UICollectionViewDelegate {
 }

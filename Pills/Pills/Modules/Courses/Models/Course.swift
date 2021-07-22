@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class Course {
-// MARK: Init
+    // MARK: Init
     init(imagePill: UIImage, namePill: String, dateStartOfCourse: Date, dateEndOfCourse: Date, countOfCourseDoses: Float, countOfDosesPassed: Float, typeOfDose: String) {
         self.imagePill = imagePill
         self.namePill = namePill
@@ -19,7 +19,8 @@ class Course {
         self.countOfDosesPassed = countOfDosesPassed
         self.typeOfDose = typeOfDose
     }
-// MARK: Properties
+    
+    // MARK: Properties
     var imagePill: UIImage
     var namePill: String
     var dateStartOfCourse: Date
