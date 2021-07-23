@@ -16,7 +16,19 @@ import UIKit
 //   let image: UIImage = AppImages.Pills.tablets
 //   let image = AppImages.Pills.tablets
 
-enum AppImages {
+class AppImages {
+
+    static let pillsImages: [PillType: UIImage?] = [
+        .tablets: UIImage(named: "tablets"),
+        .capsules: UIImage(named: "capsules"),
+        .drops: UIImage(named: "drops"),
+        .procedure: UIImage(named: "procedure"),
+        .salve: UIImage(named: "salve"),
+        .spoon: UIImage(named: "spoon"),
+        .syringe: UIImage(named: "syringe"),
+        .suppository: UIImage(named: "suppository"),
+        .suspension: UIImage(named: "suspension")
+    ]
 
     enum Pills {
         static let tablets = UIImage(named: "tablets")

@@ -10,20 +10,56 @@ import FSCalendar
 
 class CalendarViewController: UIViewController {
     
-    fileprivate weak var calendar: FSCalendar!
-    
+    private var calendar: FSCalendar = {
+        let calendar = FSCalendar()
+        calendar.translatesAutoresizingMaskIntoConstraints = false
+        calendar.scope = .week
+        calendar.allowsMultipleSelection = true
+        return calendar
+    }()
+
+    private var journalTableView: JournalTableView = {
+        let view = JournalTableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
-        let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
-        calendar.scope = .week
 
+        addSubviews()
+
+        journalTableView.configure()
+    }
+
+    func addSubviews() {
         view.addSubview(calendar)
-        self.calendar = calendar
-        calendar.scope = .week
-        calendar.allowsMultipleSelection = true
-//        calendar.firstWeekday = 2
+        view.addSubview(journalTableView)
     }
     
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        NSLayoutConstraint.activate([
+            calendar.topAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            calendar.leadingAnchor
+                .constraint(equalTo: view.leadingAnchor, constant: 10),
+            calendar.trailingAnchor
+                .constraint(equalTo: view.trailingAnchor, constant: -10),
+            calendar.bottomAnchor
+                .constraint(equalTo: view.bottomAnchor, constant: -10),
+
+            journalTableView.topAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
+            journalTableView.leadingAnchor
+                .constraint(equalTo: view.leadingAnchor, constant: 10),
+            journalTableView.trailingAnchor
+                .constraint(equalTo: view.trailingAnchor, constant: -10),
+            journalTableView.bottomAnchor
+                .constraint(equalTo: view.bottomAnchor, constant: -10)
+        ])
+    }
+
 }
+    
