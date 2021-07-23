@@ -41,10 +41,10 @@ class CourseCell: UICollectionViewCell {
         pillImage.image = model.imagePill
         pillNameLabel.text = model.namePill
         durationOfCourseLabel.text = model.durationOfCourse
-        passedDaysDoseView.daysLabel.text = "Day"
-        passedDaysDoseView.dosesLabel.text = model.typeOfDose
-        passedDaysDoseView.passedDaysLabel.text = model.passedDaysLabel
-        passedDaysDoseView.passedDosesLabel.text = model.passedDosesLabel
+        passedDaysDoseView.config(countPassedDays: model.passedDaysLabel,
+                                  nameDays: "Day",
+                                  countPassedDoses: model.passedDosesLabel,
+                                  typeDoses: model.typeOfDose)
     }
     
     // MARK: - Init
@@ -62,10 +62,10 @@ class CourseCell: UICollectionViewCell {
         pillImage.image = nil
         pillNameLabel.text = nil
         durationOfCourseLabel.text = nil
-        passedDaysDoseView.daysLabel.text = nil
-        passedDaysDoseView.dosesLabel.text = nil
-        passedDaysDoseView.passedDaysLabel.text = nil
-        passedDaysDoseView.passedDosesLabel.text = nil
+        passedDaysDoseView.config(countPassedDays: nil,
+                                  nameDays: nil,
+                                  countPassedDoses: nil,
+                                  typeDoses: nil)
     }
     
     private func configureUI () {

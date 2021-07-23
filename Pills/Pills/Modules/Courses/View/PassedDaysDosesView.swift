@@ -8,8 +8,11 @@
 import UIKit
 
 class PassedDaysDosesView: UIView {
+    // MARK: - Properties
+    let insetOfLabel = CGFloat(5.0) //
+    
     // MARK: - Subviews
-    let passedDaysLabel: UILabel = {
+    private lazy var countPassedDaysLabel: UILabel = {
         let passedDaysLabel = UILabel()
         passedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
         passedDaysLabel.numberOfLines = 1
@@ -17,7 +20,7 @@ class PassedDaysDosesView: UIView {
         return passedDaysLabel
     }()
     
-    let daysLabel: UILabel = {
+    private lazy var nameDaysLabel: UILabel = {
         let daysLabel = UILabel()
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
         daysLabel.numberOfLines = 1
@@ -25,7 +28,7 @@ class PassedDaysDosesView: UIView {
         return daysLabel
     }()
     
-    let passedDosesLabel: UILabel = {
+    private lazy var countPassedDosesLabel: UILabel = {
         let passedDosesLabel = UILabel()
         passedDosesLabel.translatesAutoresizingMaskIntoConstraints = false
         passedDosesLabel.numberOfLines = 1
@@ -33,13 +36,14 @@ class PassedDaysDosesView: UIView {
         return passedDosesLabel
     }()
     
-    let dosesLabel: UILabel = {
+    private lazy var typeDosesLabel: UILabel = {
         let dosesLabel = UILabel()
         dosesLabel.translatesAutoresizingMaskIntoConstraints = false
         dosesLabel.numberOfLines = 1
         dosesLabel.font = UIFont.systemFont(ofSize: 11)
         return dosesLabel
     }()
+    
 // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,11 +54,21 @@ class PassedDaysDosesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+// MARK: - Public functions
+    public func config (countPassedDays: String?, nameDays: String?, countPassedDoses: String?, typeDoses: String?) {
+        countPassedDaysLabel.text = countPassedDays
+        nameDaysLabel.text = nameDays
+        countPassedDosesLabel.text = countPassedDoses
+        typeDosesLabel.text = typeDoses
+    }
+    
 // MARK: - ConfigureUI
     private func configureUI() {
         configureView()
-        addSubViews()
-        setupConstraints()
+        configPassedDaysLabel()
+        configDaysLabel()
+        configPassedDosesLabel()
+        configDosesLabel()
     }
     
     private func configureView() {
@@ -62,27 +76,41 @@ class PassedDaysDosesView: UIView {
         layer.cornerRadius = 10.0
     }
     
-    private func addSubViews() {
-        addSubview(passedDaysLabel)
-        addSubview(daysLabel)
-        addSubview(passedDosesLabel)
-        addSubview(dosesLabel)
+    private func configPassedDaysLabel() {
+        let safeArea = safeAreaLayoutGuide
+        addSubview(countPassedDaysLabel)
+        NSLayoutConstraint.activate([
+            countPassedDaysLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: insetOfLabel),
+            countPassedDaysLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: insetOfLabel)
+        ])
     }
     
-    private func setupConstraints() {
+    private func configDaysLabel() {
         let safeArea = safeAreaLayoutGuide
-        let insetOfLabel = CGFloat(5.0)
+        addSubview(nameDaysLabel)
         NSLayoutConstraint.activate([
-            passedDaysLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: insetOfLabel),
-            passedDaysLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: insetOfLabel),
-            daysLabel.topAnchor.constraint(equalTo: passedDaysLabel.bottomAnchor, constant: insetOfLabel),
-            daysLabel.leadingAnchor.constraint(equalTo: passedDaysLabel.leadingAnchor),
-            daysLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -1*insetOfLabel),
-            passedDosesLabel.topAnchor.constraint(equalTo: passedDaysLabel.topAnchor),
-            passedDosesLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1*insetOfLabel),
-            dosesLabel.topAnchor.constraint(equalTo: passedDosesLabel.bottomAnchor, constant: insetOfLabel),
-            dosesLabel.trailingAnchor.constraint(equalTo: passedDosesLabel.trailingAnchor),
-            dosesLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -1*insetOfLabel)
+            nameDaysLabel.topAnchor.constraint(equalTo: countPassedDaysLabel.bottomAnchor, constant: insetOfLabel),
+            nameDaysLabel.leadingAnchor.constraint(equalTo: countPassedDaysLabel.leadingAnchor),
+            nameDaysLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -1*insetOfLabel)
+        ])
+    }
+    
+    private func configPassedDosesLabel() {
+        let safeArea = safeAreaLayoutGuide
+        addSubview(countPassedDosesLabel)
+        NSLayoutConstraint.activate([
+            countPassedDosesLabel.topAnchor.constraint(equalTo: countPassedDaysLabel.topAnchor),
+            countPassedDosesLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1*insetOfLabel)
+        ])
+    }
+    
+    private func configDosesLabel() {
+        let safeArea = safeAreaLayoutGuide
+        addSubview(typeDosesLabel)
+        NSLayoutConstraint.activate([
+            typeDosesLabel.topAnchor.constraint(equalTo: countPassedDosesLabel.bottomAnchor, constant: insetOfLabel),
+            typeDosesLabel.trailingAnchor.constraint(equalTo: countPassedDosesLabel.trailingAnchor),
+            typeDosesLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -1*insetOfLabel)
         ])
     }
 }
