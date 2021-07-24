@@ -43,6 +43,15 @@ enum Text {
         static let noMatter = "noMatter".localized()
     }
 
+    // swiftlint:disable variable_name
+    enum Unit {
+        static let pill = "pill".localized()
+        static let piece = "piece".localized()
+        static let mg = "mg".localized()
+        static let ml = "ml".localized()
+        static let g = "g".localized()
+    }
+
     // MARK: - Journal Event Status
     enum Journal {
         static let accepted = "accepted".localized()

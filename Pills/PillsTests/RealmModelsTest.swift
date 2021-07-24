@@ -11,7 +11,7 @@ import XCTest
 
 extension RealmTimePoint {
     func debugDump() {
-        debugPrint("status: \(self.status)")
+        debugPrint("isUsed: \(self.isUsed)")
         debugPrint("time: \(self.time.timeIntervalSince1970)")
     }
 }
@@ -26,6 +26,7 @@ extension RealmMedKitEntry {
         debugPrint("  endDate = \(self.endDate)")
         debugPrint("  pillType = \(self.pillType)")
         debugPrint("  usage = \(self.usage)")
+        debugPrint("  unit = \(self.unit)")
 
         for time in self.schedule {
             time.debugDump()
@@ -55,13 +56,14 @@ class RealmModelsTest: XCTestCase {
         let currentTime = Date()
 
         let dates = List<RealmTimePoint>()
-        dates.append(RealmTimePoint(time: currentTime, status: false))
-        dates.append(RealmTimePoint(time: currentTime, status: true))
+        dates.append(RealmTimePoint(time: currentTime, isUsed: false))
+        dates.append(RealmTimePoint(time: currentTime, isUsed: true))
         
         let entry = RealmMedKitEntry(
             name: "Aspirine",
             pillType: .capsules,
             singleDose: 2,
+            unit: .mg,
             usage: .afterMeals,
             comments: "bla-bla",
             startDate: currentTime,
@@ -93,6 +95,7 @@ class RealmModelsTest: XCTestCase {
         XCTAssertTrue(loaded.name == entry.name)
         XCTAssertTrue(loaded.pillType == entry.pillType)
         XCTAssertTrue(loaded.singleDose == entry.singleDose)
+        XCTAssertTrue(loaded.unit == entry.unit)
         XCTAssertTrue(loaded.usage == entry.usage)
         XCTAssertTrue(loaded.comments == entry.comments)
         XCTAssertTrue(loaded.startDate == entry.startDate)
@@ -109,7 +112,7 @@ class RealmModelsTest: XCTestCase {
             }
             
             XCTAssertTrue(loadedScheduleEntry.time == savedScheduleEntry.time)
-            XCTAssertTrue(loadedScheduleEntry.status == savedScheduleEntry.status)
+            XCTAssertTrue(loadedScheduleEntry.isUsed == savedScheduleEntry.isUsed)
 
             loaded.schedule.removeFirst()
             entry.schedule.removeFirst()

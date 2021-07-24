@@ -30,6 +30,12 @@
 "afterMeals" = "После еды";
 "noMatter" = "Не важно";
 
+"pill" = "таблетка";
+"piece" = "штука";
+"mg" = "мг";
+"ml" = "мл";
+"g" = "г";
+
 // MARK: - Journal Event Status
 "accepted" = "Принято";
 "missed" = "Пропущено";

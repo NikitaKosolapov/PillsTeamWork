@@ -30,6 +30,12 @@
 "afterMeals" = "After meal";
 "noMatter" = "No matter";
 
+"pill" = "Pill";
+"piece" = "Piece";
+"mg" = "mg";
+"ml" = "ml";
+"g" = "g";
+
 // MARK: - Journal Event Status
 "accepted" = "Accepted";
 "missed" = "Missed";
