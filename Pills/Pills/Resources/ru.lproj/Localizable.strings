@@ -54,6 +54,8 @@
 "termsOfUsage" = "Правила использования";
 "privacyPolicy" = "Политика конфиденциальности";
 "rate" = "Оценить";
+"mainSection" = "Основные";
+"infoSection" = "Информация";
 
 // MARK: - TabBar
 "aidkit" = "Аптечка";

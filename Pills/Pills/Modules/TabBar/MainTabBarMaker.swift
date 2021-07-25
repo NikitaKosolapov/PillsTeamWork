@@ -20,9 +20,9 @@ class MainTabBarMaker {
         let medicationNavig = UINavigationController(rootViewController: medicationVC)
         medicationVC.tabBarItem = tabItemBuilder(title: "medications", icon: UIImage(named: "test"))
         
-        let settingsVC = DevelopmentViewController()
+        let settingsVC = SettingsViewController()
         let settingsNavig = UINavigationController(rootViewController: settingsVC)
-        settingsVC.tabBarItem = tabItemBuilder(title: "settings", icon: UIImage(named: "test"))
+        settingsVC.tabBarItem = tabItemBuilder(title: Text.Tabs.settings, icon: UIImage(named: "test"))
         
         let tabBarVC = UITabBarController()
         tabBarVC.viewControllers = [mainNavig, medicationNavig, settingsNavig]
