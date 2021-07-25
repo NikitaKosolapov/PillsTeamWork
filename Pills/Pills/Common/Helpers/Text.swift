@@ -66,6 +66,8 @@ enum Text {
         static let termsOfUsage = "termsOfUsage".localized()
         static let privacyPolicy = "privacyPolicy".localized()
         static let rate = "rate".localized()
+        static let mainSection = "mainSection".localized()
+        static let infoSection = "infoSection".localized()
     }
 
     // MARK: - TabBar
