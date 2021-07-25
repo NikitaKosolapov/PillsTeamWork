@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0F7AB71FD2BACFD7E9D7B77A /* Pods_Pills.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE54AEB4CE9F116588E02F9E /* Pods_Pills.framework */; };
+		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
+		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
+		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
 		7DEA8F49593064C649BF7198 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE5C1E54995E98123A9683 /* Pods_PillsTests.framework */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
@@ -63,6 +66,9 @@
 /* Begin PBXFileReference section */
 		052F3BC6A38F46F1E9DF7445 /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		355BC49F9AE1E3D40807B03C /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentBuilder.swift; sourceTree = "<group>"; };
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +359,7 @@
 				FE79E43126A3186900DACD24 /* Text.swift */,
 				FE79E43B26A31C4900DACD24 /* AppColors.swift */,
 				A870B00426A9D58E00624579 /* AppLayout.swift */,
+				5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -393,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */,
+				5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */,
 				FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */,
 			);
 			path = Intro;
@@ -418,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				FEB957AD26A96FCE0093BA8D /* BaseRouter.swift */,
+				555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -700,12 +709,15 @@
 			files = (
 				A870AFF626A9A31E00624579 /* CourseCellModel.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */,
+				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
+				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
 				A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */,
+				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
 				A870AFF726A9A31E00624579 /* PassedDaysDosesView.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,

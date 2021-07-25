@@ -24,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     func configure() {
-        configureNavigation()
-        configureViewControllers()
+        configureNavigationAppearance()
+        instantiateInitialViewController()
         configureIQKeyboardManager()
     }
 
-    func configureNavigation() {
+    func configureNavigationAppearance() {
         UIBarButtonItem.appearance().setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: UIColor.clear],
             for: .normal)
@@ -47,20 +47,9 @@ extension AppDelegate {
              NSAttributedString.Key.foregroundColor : UIColor.black]
     }
 
-    func configureViewControllers() {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        // TODO: do setup of credentials storage here when ready
-        let isOnboardingShowed = true // TODO: put in user defaults storage service when ready
-        if isOnboardingShowed == false {
-            // TODO: put your onboarding viewController when ready
-            let viewController = DevelopmentViewController()
-            window?.rootViewController = viewController
-        } else {
-            let tabBarMaker = MainTabBarMaker()
-            window?.rootViewController = tabBarMaker.createTabBarController()
-        }
-
-        window?.makeKeyAndVisible()
+    func instantiateInitialViewController() {
+        let appCoordinator = AppCoordinator(appDelegate: self)
+        appCoordinator.instantiateInitialViewController()
     }
 }
 

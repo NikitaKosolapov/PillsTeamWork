@@ -8,7 +8,7 @@
 import XCTest
 @testable import Pills
 
-class LocalizationTest: XCTestCase {
+class LocalizationTest: XCTestCase { //TODO: let's introduce R.library allowing us not to implement such tests
 
     override func setUpWithError() throws {}
     override func tearDownWithError() throws {}
