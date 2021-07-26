@@ -9,7 +9,7 @@ import UIKit
 
 class DevelopmentViewController: UIViewController {
     
-    private var router: DevelopmentRouter!
+    var router: DevelopmentRouter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,6 @@ extension DevelopmentViewController {
     static var bgColors: [UIColor] = [.red, .green, .blue, .black]
 
     func configure() {
-        router = DevelopmentRouter(viewController: self)
         
         // TODO: remove me when all controllers got ready
         view.backgroundColor = DevelopmentViewController.bgColors.first ?? .yellow
