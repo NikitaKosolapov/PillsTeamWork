@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F7AB71FD2BACFD7E9D7B77A /* Pods_Pills.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE54AEB4CE9F116588E02F9E /* Pods_Pills.framework */; };
 		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
-		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
 		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
+		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
 		7DEA8F49593064C649BF7198 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE5C1E54995E98123A9683 /* Pods_PillsTests.framework */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
@@ -48,6 +48,7 @@
 		FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */; };
 		FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957FE26AAE1B20093BA8D /* JournalMock.swift */; };
 		FEB9580626AAF0D30093BA8D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9580526AAF0D30093BA8D /* Date.swift */; };
+		FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9586D26AF1FB00093BA8D /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,8 +72,8 @@
 		052F3BC6A38F46F1E9DF7445 /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		355BC49F9AE1E3D40807B03C /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentBuilder.swift; sourceTree = "<group>"; };
+		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
 		FEB957FE26AAE1B20093BA8D /* JournalMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
 		FEB9580526AAF0D30093BA8D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		FEB9586D26AF1FB00093BA8D /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +347,7 @@
 		FE79E3EE269CC95000DACD24 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FEB9586D26AF1FB00093BA8D /* RealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -742,6 +745,7 @@
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,
 				FE79E43C26A31C4900DACD24 /* AppColors.swift in Sources */,
+				FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */,
 				849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */,
 				FE79E43226A3186900DACD24 /* Text.swift in Sources */,
 				A870B00526A9D58E00624579 /* AppLayout.swift in Sources */,

@@ -118,5 +118,86 @@ class RealmModelsTest: XCTestCase {
             entry.schedule.removeFirst()
         }
     }
+    
+    // swiftlint:disable function_body_length
+    func testRealmService() throws {
+
+        let currentTime = Date()
+
+        let dates = List<RealmTimePoint>()
+        dates.append(RealmTimePoint(time: currentTime, isUsed: false))
+        dates.append(RealmTimePoint(time: currentTime, isUsed: true))
+        
+        let entry = RealmMedKitEntry(
+            name: "Aspirine",
+            pillType: .capsules,
+            singleDose: 2,
+            unit: .mg,
+            usage: .afterMeals,
+            comments: "bla-bla",
+            startDate: currentTime,
+            endDate: currentTime,
+            schedule: dates
+        )
+
+        entry.debugDump()
+        
+        try? RealmService.shared.realm?.write {
+            RealmService.shared.realm?.deleteAll()
+            try? RealmService.shared.realm?.commitWrite()
+        }
+
+        debugPrint("REALM: Saving...")
+        RealmService.shared.create(entry)
+
+        RealmService.shared.update {
+            entry.comments = "updated"
+        }
+        
+        debugPrint("REALM: Loading...")
+        let loadedSet = RealmService.shared.get(RealmMedKitEntry.self)
+
+        guard let loaded = loadedSet.first
+        else {
+            debugPrint("REALM: No object found!")
+            XCTAssertNotNil(loadedSet)
+            return
+        }
+
+        loaded.debugDump()
+
+        XCTAssertTrue(loaded.entryID == entry.entryID)
+        XCTAssertTrue(loaded.name == entry.name)
+        XCTAssertTrue(loaded.pillType == entry.pillType)
+        XCTAssertTrue(loaded.singleDose == entry.singleDose)
+        XCTAssertTrue(loaded.unit == entry.unit)
+        XCTAssertTrue(loaded.usage == entry.usage)
+        XCTAssertTrue(loaded.comments == entry.comments)
+        XCTAssertTrue(loaded.startDate == entry.startDate)
+        XCTAssertTrue(loaded.endDate == entry.endDate)
+
+        XCTAssertTrue(loaded.schedule.count == entry.schedule.count)
+
+        while loaded.schedule.isEmpty {
+            guard let loadedScheduleEntry = loaded.schedule.first,
+                  let savedScheduleEntry = entry.schedule.first
+            else {
+                XCTAssertTrue(false)
+                break
+            }
+            
+            XCTAssertTrue(loadedScheduleEntry.time == savedScheduleEntry.time)
+            XCTAssertTrue(loadedScheduleEntry.isUsed == savedScheduleEntry.isUsed)
+
+            loaded.schedule.removeFirst()
+            entry.schedule.removeFirst()
+        }
+        
+        RealmService.shared.delete(entry)
+        
+        let loadedSet2 = RealmService.shared.get(RealmMedKitEntry.self)
+        
+        XCTAssertTrue(loadedSet2.isEmpty)
+    }
 
 }
