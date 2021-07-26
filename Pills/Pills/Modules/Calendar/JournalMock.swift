@@ -32,7 +32,7 @@ final class JournalMock {
             schedule.append(
                 RealmTimePoint(
                     time: scheduleTime,
-                    status: scheduleTime < now ? true : false
+                    isUsed: scheduleTime < now ? true : false
                 )
             )
             // move to 8 hours forward
@@ -43,6 +43,7 @@ final class JournalMock {
             name: "Aspirin",
             pillType: .tablets,
             singleDose: 0.5,
+            unit: .pill,
             usage: .whileEating,
             comments: "",
             startDate: startDate,
@@ -54,6 +55,7 @@ final class JournalMock {
             name: "Haloperidol",
             pillType: .capsules,
             singleDose: 1,
+            unit: .pill,
             usage: .afterMeals,
             comments: "",
             startDate: startDate,
