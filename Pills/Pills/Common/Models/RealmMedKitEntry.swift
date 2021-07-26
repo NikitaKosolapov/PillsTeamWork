@@ -95,8 +95,8 @@ class RealmMedKitEntry: Object {
         self.name = name
         self.singleDose = singleDose
         self.comments = comments
-        self.startDate = Date()
-        self.endDate = Date()
+        self.startDate = startDate
+        self.endDate = endDate
         self.pillTypeHolder = pillType.rawValue
         self.usageHolder = usage.rawValue
         self.unitHolder = unit.rawValue

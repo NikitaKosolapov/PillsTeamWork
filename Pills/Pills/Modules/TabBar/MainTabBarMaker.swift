@@ -11,14 +11,14 @@ class MainTabBarMaker {
     
     func createTabBarController() -> UITabBarController {
         
-        let mainVC = DevelopmentBuilder.build()
+        let mainVC = CoursesViewController()
         let mainNavig = UINavigationController(rootViewController: mainVC)
         // TODO: get text and images from constants when ready
         mainVC.tabBarItem = tabItemBuilder(title: "main", icon: UIImage(named: "test"))
         
-        let medicationVC = CoursesViewController() // TODO: pls do builder as it is done for the Development VC
+        let medicationVC = CalendarViewController()
         let medicationNavig = UINavigationController(rootViewController: medicationVC)
-        medicationVC.tabBarItem = tabItemBuilder(title: "medications", icon: UIImage(named: "test"))
+        medicationVC.tabBarItem = tabItemBuilder(title: "Journal", icon: UIImage(named: "journal"))
         
         let settingsVC = DevelopmentBuilder.build()
         let settingsNavig = UINavigationController(rootViewController: settingsVC)

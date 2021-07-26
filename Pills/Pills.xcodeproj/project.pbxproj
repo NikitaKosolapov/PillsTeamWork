@@ -44,6 +44,10 @@
 		FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */; };
 		FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */; };
 		FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */; };
+		FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957E026AAC1A40093BA8D /* JournalTableView.swift */; };
+		FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */; };
+		FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957FE26AAE1B20093BA8D /* JournalMock.swift */; };
+		FEB9580626AAF0D30093BA8D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9580526AAF0D30093BA8D /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,10 @@
 		FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentRouter.swift; sourceTree = "<group>"; };
 		FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentViewController.swift; sourceTree = "<group>"; };
 		FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarMaker.swift; sourceTree = "<group>"; };
+		FEB957E026AAC1A40093BA8D /* JournalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableView.swift; sourceTree = "<group>"; };
+		FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
+		FEB957FE26AAE1B20093BA8D /* JournalMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
+		FEB9580526AAF0D30093BA8D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,9 @@
 			isa = PBXGroup;
 			children = (
 				A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */,
+				FEB957E026AAC1A40093BA8D /* JournalTableView.swift */,
+				FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */,
+				FEB957FE26AAE1B20093BA8D /* JournalMock.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -367,6 +378,7 @@
 		FE79E3F2269CC99D00DACD24 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
 			);
@@ -711,7 +723,10 @@
 				A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
+				FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */,
+				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
+				FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
@@ -722,6 +737,7 @@
 				A870AFF726A9A31E00624579 /* PassedDaysDosesView.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
+				FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,
