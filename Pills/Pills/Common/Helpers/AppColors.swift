@@ -24,5 +24,6 @@ enum AppColors {
     static let red = UIColor(named: "red") ?? badColor
     static let green = UIColor(named: "green") ?? badColor
     static let blue = UIColor(named: "blue") ?? badColor
+    static let customBlue = UIColor(hex: 0x007AFF)
 
 }

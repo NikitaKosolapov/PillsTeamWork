@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 enum AppLayout {
+    static let widthAddButton = UIScreen.main.bounds.width - CGFloat(14) - CGFloat(14)
+    static let heightAddButton = CGFloat(52)
+    
     enum AidKit {
         static let paddingSegmentControl = CGFloat(6)/CGFloat(13)
     }
