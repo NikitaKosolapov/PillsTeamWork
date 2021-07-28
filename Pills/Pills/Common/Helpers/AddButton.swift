@@ -22,7 +22,7 @@ class AddButton: UIButton {
     // MARK: - Private functions
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = AppColors.customBlue
+        backgroundColor = AppColors.blue
         layer.cornerRadius = 10
         setTitle(Text.add, for: .normal)
         setTitleColor(AppColors.white, for: .normal)
