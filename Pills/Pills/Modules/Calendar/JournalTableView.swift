@@ -31,10 +31,12 @@ class JournalTableView: UITableView {
     }
 
     func configure(_ forDate: Date = Date()) {
+        self.tableFooterView = UIView()
+        self.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.dataSource = self
         self.delegate = self
         register(JournalTableViewCell.self, forCellReuseIdentifier: "JournalCell")
-        rowHeight = 60
+        rowHeight = JournalTableViewCell.CellTheme.cellHeight
         prepareDataForDay(forDate)
     }
 

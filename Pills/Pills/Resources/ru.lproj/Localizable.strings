@@ -12,9 +12,8 @@
 "drops" = "Капли";
 "procedure" = "Процедура";
 "salve" = "Мазь";
-"spoon" = "Ложка";
+"liquid" = "Жидкость";
 "syringe" = "Шприц";
-"suppository" = "Свечи";
 "suspension" = "Раствор";
 
 "addNewPill" = "Добавить лекарство";
