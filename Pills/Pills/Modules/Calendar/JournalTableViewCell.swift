@@ -162,7 +162,7 @@ final class JournalTableViewCell: UITableViewCell {
             self.pillNameLabel.text = item.name
             let type = item.pillType.rawValue.localized()
             let dose = numFormatter.string(from: item.singleDose as NSNumber) ?? "#error"
-            let unit = item.unit.rawValue.localized()
+            let unit = item.unitString.localized()
             let usage = item.usage.rawValue.localized()
             self.instructionLabel.text =
                 "\(type), \(dose) \(unit), \(usage)"

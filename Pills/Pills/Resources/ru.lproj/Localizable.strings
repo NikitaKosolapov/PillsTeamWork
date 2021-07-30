@@ -19,6 +19,7 @@
 "addNewPill" = "Добавить лекарство";
 "name" = "Наименование";
 "singleDose" = "Однократно";
+"concentration" = "Концентрация";
 "instruction" = "Инструкция";
 "comments" = "Комментарии";
 "time" = "Время";
@@ -34,6 +35,29 @@
 "mg" = "мг";
 "ml" = "мл";
 "g" = "г";
+"IU" = "IU";
+"mсg" = "мкг";
+"mEq" = "mEq";
+"percent" = "%";
+"mgToG" = "мг/г";
+"mgToCm2" = "мг/см²";
+"mgToMl" = "мг/мл";
+"capsule" = "capsule";
+"capsule" = "капсула";
+"drop" = "капля";
+"times" = "раз";
+"inhalation" = "ингаляция";
+"taking" = "прием";
+"suppository" = "суппозиторий";
+"enema" = "клизма";
+"bowl" = "чашка";
+"flask" = "флакон";
+"teaspoon" = "чайная ложка";
+"tablespoon" = "столовая ложка";
+"ampoule" = "ампула";
+"syringe" = "шприц";
+"cm3" = "cм³";
+"injection" = "впрыск";
 
 // MARK: - Journal Event Status
 "accepted" = "Принято";
