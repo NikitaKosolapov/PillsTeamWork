@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var calendarHeighConstraint: NSLayoutConstraint!
     
@@ -19,25 +19,30 @@ class CalendarViewController: UIViewController {
         calendar.allowsMultipleSelection = true
         return calendar
     }()
-    
-    let showHideButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+
     private var journalTableView: JournalTableView = {
         let view = JournalTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
+    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
+        [unowned self] in
+        let panGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture(_:)))
+        panGesture.delegate = self
+
+        return panGesture
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendar.scrollDirection = .vertical
         view.backgroundColor = .white
-        
+        self.view.addGestureRecognizer(self.scopeGesture)
+        self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
+        self.calendar.scope = .week
         addSubviews()
-        swipeAction()
+        calendar.allowsMultipleSelection = true
+       
         updateViewConstraints()
         journalTableView.configure()
         
@@ -45,41 +50,17 @@ class CalendarViewController: UIViewController {
         calendar.dataSource = self
     }
     
-    @objc func showHideButtonTapped() {
-        if calendar.scope == .week {
-            calendar.setScope(.month, animated: true)
-            self.calendar.currentPage = Date() 
-        } else {
-            calendar.setScope(.week, animated: true)
-        }
-    }
-    func swipeAction() {
-        
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeUp.direction = .up
-        calendar.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeDown.direction = .down
-        calendar.addGestureRecognizer(swipeDown)
-        
-    }
-    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
-        
-        switch gesture.direction {
-        case .up:
-            showHideButtonTapped()
-        case .down:
-            showHideButtonTapped()
-        default:
-            break
-        }
-    }
-    
     func addSubviews() {
         view.addSubview(calendar)
         view.addSubview(journalTableView)
         
+    }
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        calendarHeighConstraint.constant = bounds.height
+        view.layoutIfNeeded()
+    }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        print(date)
     }
     
 }
@@ -106,15 +87,5 @@ extension CalendarViewController : FSCalendarDataSource, FSCalendarDelegate {
             journalTableView.bottomAnchor
                 .constraint(equalTo: view.bottomAnchor, constant: -10)
         ])
-    }
-}
-
-extension CalendarViewController {
-    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        calendarHeighConstraint.constant = bounds.height
-        view.layoutIfNeeded()
-    }
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(date)
     }
 }
