@@ -50,6 +50,8 @@
 		FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957FE26AAE1B20093BA8D /* JournalMock.swift */; };
 		FEB9580626AAF0D30093BA8D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9580526AAF0D30093BA8D /* Date.swift */; };
 		FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9586D26AF1FB00093BA8D /* RealmService.swift */; };
+		FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */; };
+		FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		FEB957FE26AAE1B20093BA8D /* JournalMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
 		FEB9580526AAF0D30093BA8D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FEB9586D26AF1FB00093BA8D /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +333,7 @@
 		FE79E3EC269CC8D500DACD24 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FECB19D526B1D5BA00136DF0 /* Fonts */,
 				FE79E3B9269CC09D00DACD24 /* Assets.xcassets */,
 				FE79E3BB269CC09D00DACD24 /* LaunchScreen.storyboard */,
 				FE79E41D26A3165600DACD24 /* Localizable.strings */,
@@ -449,6 +454,15 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		FECB19D526B1D5BA00136DF0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */,
+				FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -560,9 +574,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */,
 				FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */,
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
+				FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */,
 				FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

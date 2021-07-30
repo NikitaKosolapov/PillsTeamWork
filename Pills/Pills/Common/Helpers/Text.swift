@@ -30,9 +30,8 @@ enum Text {
         static let drops = "drops".localized()
         static let procedure = "procedure".localized()
         static let salve = "salve".localized()
-        static let spoon = "spoon".localized()
+        static let liquid = "liquid".localized()
         static let syringe = "syringe".localized()
-        static let suppository = "suppository".localized()
         static let suspension = "suspension".localized()
     }
 

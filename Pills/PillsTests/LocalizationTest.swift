@@ -21,9 +21,8 @@ class LocalizationTest: XCTestCase { // TODO: let's introduce R.library allowing
         XCTAssertFalse(Text.Pills.drops.isEmpty)
         XCTAssertFalse(Text.Pills.procedure.isEmpty)
         XCTAssertFalse(Text.Pills.salve.isEmpty)
-        XCTAssertFalse(Text.Pills.spoon.isEmpty)
+        XCTAssertFalse(Text.Pills.liquid.isEmpty)
         XCTAssertFalse(Text.Pills.syringe.isEmpty)
-        XCTAssertFalse(Text.Pills.suppository.isEmpty)
         XCTAssertFalse(Text.Pills.suspension.isEmpty)
 
         XCTAssertFalse(Text.Tabs.aidkit.isEmpty)
@@ -66,9 +65,8 @@ class LocalizationTest: XCTestCase { // TODO: let's introduce R.library allowing
         XCTAssertFalse("drops".localized(locale) == error)
         XCTAssertFalse("procedure".localized(locale) == error)
         XCTAssertFalse("salve".localized(locale) == error)
-        XCTAssertFalse("spoon".localized(locale) == error)
+        XCTAssertFalse("liquid".localized(locale) == error)
         XCTAssertFalse("syringe".localized(locale) == error)
-        XCTAssertFalse("suppository".localized(locale) == error)
         XCTAssertFalse("suspension".localized(locale) == error)
 
         XCTAssertFalse("aidkit".localized(locale) == error)

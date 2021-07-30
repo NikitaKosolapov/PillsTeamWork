@@ -14,10 +14,9 @@ enum PillType: String {
     case drops
     case procedure
     case salve
-    case spoon
+    case liquid
     case syringe
-    case suppository
-    case suspension
+    case spray
 }
 
 enum Usage: String {

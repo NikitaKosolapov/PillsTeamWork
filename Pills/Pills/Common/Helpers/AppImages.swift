@@ -24,10 +24,9 @@ class AppImages {
         .drops: UIImage(named: "drops"),
         .procedure: UIImage(named: "procedure"),
         .salve: UIImage(named: "salve"),
-        .spoon: UIImage(named: "spoon"),
+        .liquid: UIImage(named: "liquid"),
         .syringe: UIImage(named: "syringe"),
-        .suppository: UIImage(named: "suppository"),
-        .suspension: UIImage(named: "suspension")
+        .spray: UIImage(named: "suspension")
     ]
 
     enum Pills {
@@ -36,9 +35,8 @@ class AppImages {
         static let drops = UIImage(named: "drops")
         static let procedure = UIImage(named: "procedure")
         static let salve = UIImage(named: "salve")
-        static let spoon = UIImage(named: "spoon")
+        static let liquid = UIImage(named: "liquid")
         static let syringe = UIImage(named: "syringe")
-        static let suppository = UIImage(named: "suppository")
         static let suspension = UIImage(named: "suspension")
     }
 
