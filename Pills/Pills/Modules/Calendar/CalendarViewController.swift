@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var calendarHeighConstraint: NSLayoutConstraint!
     
@@ -26,32 +26,38 @@ class CalendarViewController: UIViewController {
         return button
     }()
     
+    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
+        let panGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)))
+        panGesture.delegate = self
+        return panGesture
+    }()
+    
     private var journalTableView: JournalTableView = {
         let view = JournalTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     private var emptyTableStub: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     private var manImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.cellBackgroundColor
         return view
     }()
-
+    
     private var manImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "man")
         return view
     }()
-
+    
     private var manImageHintHeader: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +67,7 @@ class CalendarViewController: UIViewController {
         view.textAlignment = .center
         return view
     }()
-
+    
     private var manImageHintText: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +77,7 @@ class CalendarViewController: UIViewController {
         view.textAlignment = .center
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -79,15 +85,33 @@ class CalendarViewController: UIViewController {
         addSubviews()
         swipeAction()
         updateViewConstraints()
-
+        self.view.addGestureRecognizer(self.scopeGesture)
+        self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         journalTableView.configure()
         
         calendar.delegate = self
         calendar.dataSource = self
-
+        
         // TODO: make visible when table has no data
         // - when mock data will be replaced with real one
         emptyTableStub.isHidden = true
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let shouldBegin = self.journalTableView.contentOffset.y <= -self.journalTableView.contentInset.top
+        if shouldBegin {
+            self.calendar.currentPage = Date()
+            let velocity = self.scopeGesture.velocity(in: self.view)
+            switch self.calendar.scope {
+            case .month:
+                return velocity.y < 0
+            case .week:
+                return velocity.y > 0
+            @unknown default:
+                fatalError()
+            }
+        }
+        return shouldBegin
     }
     
     @objc func showHideButtonTapped() {
@@ -166,7 +190,7 @@ extension CalendarViewController : FSCalendarDataSource, FSCalendarDelegate {
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
             journalTableView.bottomAnchor
                 .constraint(equalTo: view.bottomAnchor, constant: -10),
-
+            
             emptyTableStub.topAnchor
                 .constraint(equalTo: calendar.bottomAnchor, constant: 0),
             emptyTableStub.leadingAnchor
