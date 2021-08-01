@@ -7,7 +7,32 @@
 
 import UIKit
 
-class JournalTableViewCell: UITableViewCell {
+final class JournalTableViewCell: UITableViewCell {
+
+    class CellTheme {
+        static let pillNameFont = AppLayout.Fonts.normalSemibold
+
+        static let timeFont = AppLayout.Fonts.normalRegular
+        static let timeLabelSize = CGSize(width: 54, height: 18)
+
+        static let instructionFont = AppLayout.Fonts.smallRegular
+        static let instructionTextColor = AppColors.semiTransparentBlack
+
+        static let cellCornerRadius: CGFloat = 10
+        static let cellBackgroundColor = AppColors.cellBackgroundColor
+        static let cellVerticalSpacing: CGFloat = 8
+        static let cellPaddingTop: CGFloat = 18
+        static let cellPaddingBottom: CGFloat = 18
+        static let cellHorizontalSpacing: CGFloat = 8
+
+        static let pillImageSize = CGSize(width: 28, height: 28)
+        static let pillImageContainerSize = CGSize(width: 36, height: 36)
+        static let pillImageContainerRadius: CGFloat = 18
+
+        static let defaultStackViewSpacing: CGFloat = 10
+
+        static let cellHeight: CGFloat = 80
+    }
 
     private var entryID: Int = 0
     private let dateFormatter: DateFormatter = {
@@ -24,6 +49,22 @@ class JournalTableViewCell: UITableViewCell {
         return numFormatter
     }()
 
+    private var majorView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = CellTheme.cellBackgroundColor
+        view.layer.cornerRadius = CellTheme.cellCornerRadius
+        return view
+    }()
+
+    private var pillTypeImageContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = CellTheme.pillImageContainerRadius
+        return view
+    }()
+
     private var pillTypeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -35,26 +76,16 @@ class JournalTableViewCell: UITableViewCell {
     private let pillNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = CellTheme.pillNameFont
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let pillTypeLabel: UILabel = {
+    private let instructionLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private let singleDoseLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = CellTheme.instructionTextColor
+        label.font = CellTheme.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -64,11 +95,50 @@ class JournalTableViewCell: UITableViewCell {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 36)
+        label.font = CellTheme.timeFont
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .right
-        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.cornerRadius = 4
         return label
+    }()
+
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                self.pillTypeImageContainer,
+                self.stackViewVertical
+            ])
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = CellTheme.defaultStackViewSpacing
+        stackView.alignment = .leading
+        return stackView
+    }()
+
+    private lazy var stackViewNameAndTime: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                self.pillNameLabel,
+                self.timeLabel
+            ])
+        stackView.distribution = .equalSpacing
+        stackView.axis = .horizontal
+        stackView.spacing = CellTheme.defaultStackViewSpacing
+        return stackView
+    }()
+
+    private lazy var stackViewVertical: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                self.stackViewNameAndTime,
+                self.instructionLabel
+            ])
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        return stackView
     }()
 
     private var journalTime: Date? {
@@ -80,87 +150,87 @@ class JournalTableViewCell: UITableViewCell {
 
     private var journalEntry: RealmMedKitEntry? {
         willSet(item) {
-            guard let item = item else {
+            guard let item = item,
+                  let image = AppImages.pillsImages[item.pillType]
+            else {
                 self.pillNameLabel.text = "#error"
-                self.pillTypeLabel.text = "#error"
-                self.singleDoseLabel.text = ""
+                self.instructionLabel.text = ""
                 return
             }
-            self.pillTypeImage.image = AppImages.pillsImages[item.pillType] ?? UIImage()
+
+            self.pillTypeImage.image = image
             self.pillNameLabel.text = item.name
-            self.pillTypeLabel.text = "\(item.pillType.rawValue.localized()):"
-            self.singleDoseLabel.text = numFormatter.string(from: item.singleDose as NSNumber)
+            let type = item.pillType.rawValue.localized()
+            let dose = numFormatter.string(from: item.singleDose as NSNumber) ?? "#error"
+            let unit = item.unit.rawValue.localized()
+            let usage = item.usage.rawValue.localized()
+            self.instructionLabel.text =
+                "\(type), \(dose) \(unit), \(usage)"
         }
     }
-
+    
     func configure(model: JournalTableView.Event) {
         self.journalTime = model.time
         self.journalEntry = model.pill
     }
 
-    private func addSubviews() {
-        addSubview(pillTypeImage)
-        addSubview(pillNameLabel)
-        addSubview(pillTypeLabel)
-        addSubview(singleDoseLabel)
-        addSubview(timeLabel)
-    }
-
-    // swiftlint:disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
 
         NSLayoutConstraint.activate([
+            majorView.topAnchor
+                .constraint(equalTo: contentView.topAnchor),
+            majorView.leadingAnchor
+                .constraint(equalTo: contentView.leadingAnchor),
+            majorView.widthAnchor
+                .constraint(equalToConstant: contentView.frame.width),
+            majorView.heightAnchor
+                .constraint(equalToConstant: contentView.frame.height - CellTheme.cellVerticalSpacing),
+
+            stackView.topAnchor
+                .constraint(equalTo: majorView.topAnchor, constant: CellTheme.cellPaddingTop),
+            stackView.leadingAnchor
+                .constraint(equalTo: majorView.leadingAnchor, constant: CellTheme.cellHorizontalSpacing),
+            stackView.trailingAnchor
+                .constraint(equalTo: majorView.trailingAnchor, constant: -CellTheme.cellHorizontalSpacing),
+            stackView.bottomAnchor
+                .constraint(equalTo: majorView.bottomAnchor, constant: -CellTheme.cellPaddingBottom),
+
+            pillTypeImageContainer.widthAnchor
+                .constraint(equalToConstant: CellTheme.pillImageContainerSize.width),
+            pillTypeImageContainer.heightAnchor
+                .constraint(equalToConstant: CellTheme.pillImageContainerSize.height),
+
             pillTypeImage.topAnchor
-                .constraint(equalTo: contentView.topAnchor, constant: 10),
+                .constraint(
+                    equalTo: pillTypeImageContainer.topAnchor,
+                    constant: (CellTheme.pillImageContainerSize.height - CellTheme.pillImageSize.height) / 2
+                ),
             pillTypeImage.leadingAnchor
-                .constraint(equalTo: contentView.leadingAnchor, constant: 10),
+                .constraint(
+                    equalTo: pillTypeImageContainer.leadingAnchor,
+                    constant: (CellTheme.pillImageContainerSize.width - CellTheme.pillImageSize.width) / 2
+                ),
             pillTypeImage.widthAnchor
-                .constraint(equalToConstant: 50),
+                .constraint(equalToConstant: CellTheme.pillImageSize.width),
             pillTypeImage.heightAnchor
-                .constraint(equalToConstant: 50),
+                .constraint(equalToConstant: CellTheme.pillImageSize.height),
 
-            pillNameLabel.topAnchor
-                .constraint(equalTo: contentView.topAnchor, constant: 10),
-            pillNameLabel.leadingAnchor
-                .constraint(equalTo: pillTypeImage.trailingAnchor, constant: 10),
-            pillNameLabel.widthAnchor
-                .constraint(equalToConstant: bounds.width / 2),
-            pillNameLabel.heightAnchor
-                .constraint(equalToConstant: 20),
-
-            pillTypeLabel.topAnchor
-                .constraint(equalTo: pillNameLabel.bottomAnchor, constant: 10),
-            pillTypeLabel.leadingAnchor
-                .constraint(equalTo: pillTypeImage.trailingAnchor, constant: 10),
-            pillTypeLabel.widthAnchor
-                .constraint(equalToConstant: 90),
-            pillTypeLabel.heightAnchor
-                .constraint(equalToConstant: 20),
-
-            singleDoseLabel.topAnchor
-                .constraint(equalTo: pillNameLabel.bottomAnchor, constant: 10),
-            singleDoseLabel.leadingAnchor
-                .constraint(equalTo: pillTypeLabel.trailingAnchor, constant: 0),
-            singleDoseLabel.widthAnchor
-                .constraint(equalToConstant: 60),
-            singleDoseLabel.heightAnchor
-                .constraint(equalToConstant: 20),
-
-            timeLabel.topAnchor
-                .constraint(equalTo: contentView.topAnchor, constant: 10),
-            timeLabel.leadingAnchor
-                .constraint(equalTo: pillNameLabel.trailingAnchor, constant: 10),
-            timeLabel.trailingAnchor
-                .constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            timeLabel.bottomAnchor
-                .constraint(equalTo: contentView.bottomAnchor)
+            timeLabel.widthAnchor
+                .constraint(equalToConstant: CellTheme.timeLabelSize.width),
+            timeLabel.heightAnchor
+                .constraint(equalToConstant: CellTheme.timeLabelSize.height)
         ])
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubviews()
+
+        pillTypeImageContainer.addSubview(pillTypeImage)
+        majorView.addSubview(stackView)
+        addSubview(majorView)
+
+        setNeedsUpdateConstraints()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

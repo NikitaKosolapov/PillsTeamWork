@@ -23,6 +23,7 @@
 		A870AFF626A9A31E00624579 /* CourseCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF026A9A31E00624579 /* CourseCellModel.swift */; };
 		A870AFF726A9A31E00624579 /* PassedDaysDosesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF126A9A31E00624579 /* PassedDaysDosesView.swift */; };
 		A870B00526A9D58E00624579 /* AppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870B00426A9D58E00624579 /* AppLayout.swift */; };
+		A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C4DC26B079AF00BACC90 /* AddButton.swift */; };
 		FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */; };
 		FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE79E3B9269CC09D00DACD24 /* Assets.xcassets */; };
 		FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE79E3BB269CC09D00DACD24 /* LaunchScreen.storyboard */; };
@@ -49,6 +50,8 @@
 		FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957FE26AAE1B20093BA8D /* JournalMock.swift */; };
 		FEB9580626AAF0D30093BA8D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9580526AAF0D30093BA8D /* Date.swift */; };
 		FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9586D26AF1FB00093BA8D /* RealmService.swift */; };
+		FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */; };
+		FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,7 @@
 		A870AFF026A9A31E00624579 /* CourseCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellModel.swift; sourceTree = "<group>"; };
 		A870AFF126A9A31E00624579 /* PassedDaysDosesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassedDaysDosesView.swift; sourceTree = "<group>"; };
 		A870B00426A9D58E00624579 /* AppLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayout.swift; sourceTree = "<group>"; };
+		A884C4DC26B079AF00BACC90 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE54AEB4CE9F116588E02F9E /* Pods_Pills.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F49A64954FE4370756C2B7 /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 		FEB957FE26AAE1B20093BA8D /* JournalMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
 		FEB9580526AAF0D30093BA8D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FEB9586D26AF1FB00093BA8D /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +333,7 @@
 		FE79E3EC269CC8D500DACD24 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FECB19D526B1D5BA00136DF0 /* Fonts */,
 				FE79E3B9269CC09D00DACD24 /* Assets.xcassets */,
 				FE79E3BB269CC09D00DACD24 /* LaunchScreen.storyboard */,
 				FE79E41D26A3165600DACD24 /* Localizable.strings */,
@@ -374,6 +381,7 @@
 				FE79E43B26A31C4900DACD24 /* AppColors.swift */,
 				A870B00426A9D58E00624579 /* AppLayout.swift */,
 				5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */,
+				A884C4DC26B079AF00BACC90 /* AddButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -444,6 +452,15 @@
 				555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		FECB19D526B1D5BA00136DF0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */,
+				FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,9 +574,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */,
 				FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */,
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
+				FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */,
 				FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,6 +744,7 @@
 				A870AFF626A9A31E00624579 /* CourseCellModel.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
+				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */,
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,

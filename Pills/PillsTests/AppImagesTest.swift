@@ -19,9 +19,8 @@ class AppImagesTest: XCTestCase {
         XCTAssertTrue(AppImages.Pills.drops != nil)
         XCTAssertTrue(AppImages.Pills.procedure != nil)
         XCTAssertTrue(AppImages.Pills.salve != nil)
-        XCTAssertTrue(AppImages.Pills.spoon != nil)
+        XCTAssertTrue(AppImages.Pills.liquid != nil)
         XCTAssertTrue(AppImages.Pills.syringe != nil)
-        XCTAssertTrue(AppImages.Pills.suppository != nil)
         XCTAssertTrue(AppImages.Pills.suspension != nil)
     }
 

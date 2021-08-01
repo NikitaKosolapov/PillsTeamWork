@@ -12,9 +12,8 @@
 "drops" = "Капли";
 "procedure" = "Процедура";
 "salve" = "Мазь";
-"spoon" = "Ложка";
+"liquid" = "Жидкость";
 "syringe" = "Шприц";
-"suppository" = "Свечи";
 "suspension" = "Раствор";
 
 "addNewPill" = "Добавить лекарство";
@@ -25,7 +24,7 @@
 "time" = "Время";
 "add" = "Добавить";
 
-"beforeMeals" = "До еды";
+"beforeMeals" = "Перед едой";
 "whileEating" = "Во время еды";
 "afterMeals" = "После еды";
 "noMatter" = "Не важно";

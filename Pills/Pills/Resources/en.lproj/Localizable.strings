@@ -12,9 +12,8 @@
 "drops" = "Drops";
 "procedure" = "Procedure";
 "salve" = "Salve";
-"spoon" = "Spoon";
+"liquid" = "Liquid";
 "syringe" = "Syringe";
-"suppository" = "Suppository";
 "suspension" = "Suspension";
 
 "addNewPill" = "Add a new pill";
