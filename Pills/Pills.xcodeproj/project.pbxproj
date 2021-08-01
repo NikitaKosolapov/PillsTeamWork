@@ -15,13 +15,15 @@
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
 		A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */; };
+		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
+		A802CBCF26B68A9E004E7365 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* MainView.swift */; };
+		A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBD326B68AAE004E7365 /* ProgressView.swift */; };
 		A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */; };
 		A870AFF226A9A31E00624579 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEA26A9A31E00624579 /* Course.swift */; };
 		A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEC26A9A31E00624579 /* CoursesViewController.swift */; };
 		A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEE26A9A31E00624579 /* CoursesView.swift */; };
 		A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEF26A9A31E00624579 /* CourseCell.swift */; };
 		A870AFF626A9A31E00624579 /* CourseCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF026A9A31E00624579 /* CourseCellModel.swift */; };
-		A870AFF726A9A31E00624579 /* PassedDaysDosesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF126A9A31E00624579 /* PassedDaysDosesView.swift */; };
 		A870B00526A9D58E00624579 /* AppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870B00426A9D58E00624579 /* AppLayout.swift */; };
 		A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C4DC26B079AF00BACC90 /* AddButton.swift */; };
 		FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */; };
@@ -80,13 +82,15 @@
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
+		A802CBCE26B68A9E004E7365 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A802CBD326B68AAE004E7365 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorFactory.swift; sourceTree = "<group>"; };
 		A870AFEA26A9A31E00624579 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		A870AFEC26A9A31E00624579 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		A870AFEE26A9A31E00624579 /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		A870AFEF26A9A31E00624579 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		A870AFF026A9A31E00624579 /* CourseCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellModel.swift; sourceTree = "<group>"; };
-		A870AFF126A9A31E00624579 /* PassedDaysDosesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassedDaysDosesView.swift; sourceTree = "<group>"; };
 		A870B00426A9D58E00624579 /* AppLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayout.swift; sourceTree = "<group>"; };
 		A884C4DC26B079AF00BACC90 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,9 +236,11 @@
 			isa = PBXGroup;
 			children = (
 				A870AFEE26A9A31E00624579 /* CoursesView.swift */,
+				A802CBC626B68A55004E7365 /* StubCourseView.swift */,
 				A870AFEF26A9A31E00624579 /* CourseCell.swift */,
+				A802CBCE26B68A9E004E7365 /* MainView.swift */,
+				A802CBD326B68AAE004E7365 /* ProgressView.swift */,
 				A870AFF026A9A31E00624579 /* CourseCellModel.swift */,
-				A870AFF126A9A31E00624579 /* PassedDaysDosesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -743,12 +749,14 @@
 			files = (
 				A870AFF626A9A31E00624579 /* CourseCellModel.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* CalendarViewController.swift in Sources */,
+				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */,
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
+				A802CBCF26B68A9E004E7365 /* MainView.swift in Sources */,
 				FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
@@ -757,7 +765,6 @@
 				A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */,
 				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
-				A870AFF726A9A31E00624579 /* PassedDaysDosesView.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
 				FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */,
@@ -771,6 +778,7 @@
 				A870B00526A9D58E00624579 /* AppLayout.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
+				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

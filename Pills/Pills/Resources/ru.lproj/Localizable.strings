@@ -42,6 +42,9 @@
 // MARK: - AidKit Event Type
 "active" = "Активные";
 "completed" = "Завершенные";
+"stubTextAidKit" = "Тут будут хранится твои курсы";
+"from" = "из";
+"days" = "дней";
 
 // MARK: - Settings
 "language" = "Язык";

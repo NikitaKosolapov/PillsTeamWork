@@ -10,14 +10,11 @@ import UIKit
 
 class Course {
     // MARK: Init
-    init(imagePill: UIImage, namePill: String, dateStartOfCourse: Date, dateEndOfCourse: Date, countOfCourseDoses: Float, countOfDosesPassed: Float, typeOfDose: String) {
+    init(imagePill: UIImage, namePill: String, dateStartOfCourse: Date, dateEndOfCourse: Date) {
         self.imagePill = imagePill
         self.namePill = namePill
         self.dateStartOfCourse = dateStartOfCourse
         self.dateEndOfCourse = dateEndOfCourse
-        self.countOfCourseDoses = countOfCourseDoses
-        self.countOfDosesPassed = countOfDosesPassed
-        self.typeOfDose = typeOfDose
     }
     
     // MARK: Properties
@@ -25,7 +22,4 @@ class Course {
     var namePill: String
     var dateStartOfCourse: Date
     var dateEndOfCourse: Date
-    var countOfCourseDoses: Float
-    var countOfDosesPassed: Float
-    var typeOfDose: String
 }

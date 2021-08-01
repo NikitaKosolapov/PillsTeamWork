@@ -7,13 +7,13 @@
 
 import Foundation
 import UIKit
+
 struct CourseCellModel {
     var imagePill: UIImage
     var namePill: String
-    var durationOfCourse: String
-    var passedDaysLabel: String
-    var passedDosesLabel: String
-    var typeOfDose: String
+    var durationOfCourseString: String
+    var countPassedDaysString: String
+    var widthProgress: CGFloat
 }
 
 final class CourseCellModelFactory {
@@ -23,13 +23,13 @@ final class CourseCellModelFactory {
         let dateStartOfCourse = dateFormatter.string(from: model.dateStartOfCourse)
         let dateEndOfCourse = dateFormatter.string(from: model.dateEndOfCourse)
         let countOfCourseDays = Int(model.dateEndOfCourse.timeIntervalSince(model.dateStartOfCourse)/60/60/24)
-        let countOfDaysPassed = Int(model.dateEndOfCourse.timeIntervalSinceNow/60/60/24)
+        let countOfDaysPassed = countOfCourseDays - Int(model.dateEndOfCourse.timeIntervalSinceNow/60/60/24)
+        let widthProgress = CGFloat(countOfDaysPassed)/CGFloat(countOfCourseDays)*AppLayout.AidKit.widthProgressiveView
         return CourseCellModel(
             imagePill: model.imagePill,
             namePill: model.namePill,
-            durationOfCourse: dateStartOfCourse + " - " + dateEndOfCourse,
-            passedDaysLabel: String(countOfDaysPassed) + "/" + String(countOfCourseDays),
-            passedDosesLabel: String(Int(model.countOfDosesPassed)) + "/" + String(Int(model.countOfCourseDoses)),
-            typeOfDose: model.typeOfDose)
-    }
+            durationOfCourseString: dateStartOfCourse + " - " + dateEndOfCourse,
+            countPassedDaysString:  String(countOfDaysPassed) + " " + Text.AidKit.from + " " + String(countOfCourseDays) + " " + Text.AidKit.days,
+            widthProgress: widthProgress)
+        }
 }

@@ -42,6 +42,9 @@
 // MARK: - AidKit Event Type
 "active" = "Active";
 "completed" = "Completed";
+"stubTextAidKit" = "Your courses stays here";
+"from" = "from";
+"days" = "days";
 
 // MARK: - Settings
 "language" = "Language";

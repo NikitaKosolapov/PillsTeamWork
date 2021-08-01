@@ -9,22 +9,34 @@ import UIKit
 
 class CoursesView: UIView {
     // MARK: - Subviews
-    let collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewLayout())
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        //collectionViewLayout.estimatedItemSize = CGSize(width: 3*UIScreen.main.bounds.width/7, height: 500)
-        collectionViewLayout.itemSize = CGSize(width: 4*UIScreen.main.bounds.width/9, height: 210)
-        collectionViewLayout.scrollDirection = .vertical
-        collectionView.collectionViewLayout = collectionViewLayout
-        collectionView.contentInset = UIEdgeInsets(top: 15.0, left: 10.0, bottom: 15.0, right: 10.0)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = AppColors.blue
-    
-        collectionView.isHidden = false
-        return collectionView
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.contentInset = AppLayout.AidKit.tableContentInset
+        tableView.backgroundColor = AppColors.AidKit.background
+        tableView.isHidden = false
+        return tableView
     }()
     
-// MARK: - Init
+    let stubView: StubCourseView = {
+        let view = StubCourseView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = false
+        return view
+    }()
+    
+    let addButton: AddButton = {
+        let button = AddButton()
+        button.setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
+        button.backgroundColor = AppColors.AidKit.addButton
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
@@ -34,24 +46,43 @@ class CoursesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-// MARK: - ConfigureUI
+    // MARK: - ConfigureUI
     private func configureUI() {
-        backgroundColor = AppColors.blue
-        configureCollectionView()
-        setupConstraints()
+        backgroundColor = AppColors.AidKit.background
+        configureTableView()
+        configureStubView()
+        configureAddButton()
     }
     
-    private func configureCollectionView() {
-        addSubview(collectionView)
-    }
-    
-    private func setupConstraints() {
+    private func configureTableView() {
+        addSubview(tableView)
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppLayout.AidKit.leadingTableView),
+            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: AppLayout.AidKit.trailingTableView),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: -AppLayout.heightAddButton - AppLayout.AidKit.indentFromBottomAddButton)
+        ])
+    }
+    
+    private func configureStubView() {
+        addSubview(stubView)
+        let safeArea = safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            stubView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            stubView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppLayout.AidKit.leadingStubView),
+            stubView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: AppLayout.AidKit.trailingStubView),
+            stubView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: -AppLayout.heightAddButton - AppLayout.AidKit.indentFromBottomAddButton)
+        ])
+    }
+    
+    private func configureAddButton() {
+        addSubview(addButton)
+        let safeArea = safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            addButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppLayout.AidKit.leadingAddButtonView),
+            addButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: AppLayout.AidKit.trailingAddButtonView),
+            addButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -AppLayout.AidKit.indentFromBottomAddButton)
         ])
     }
 }
