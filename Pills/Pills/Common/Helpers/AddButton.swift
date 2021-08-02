@@ -8,11 +8,9 @@
 import UIKit
 
 class AddButton: UIButton {
-    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        setupConstraint()
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +26,7 @@ class AddButton: UIButton {
         setTitleColor(AppColors.white, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
+
     private func setupConstraint() {
         NSLayoutConstraint.activate(
             [widthAnchor.constraint(equalToConstant: AppLayout.widthAddButton),
