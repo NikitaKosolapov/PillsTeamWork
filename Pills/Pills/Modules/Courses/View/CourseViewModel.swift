@@ -20,8 +20,8 @@ final class CourseViewModelFactory {
     static func cellModel (from model: Course) -> CourseViewModel {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
-        let dateStartOfCourse = dateFormatter.string(from: model.dateStartOfCourse)
-        let dateEndOfCourse = dateFormatter.string(from: model.dateEndOfCourse)
+        let dateStartOfCourse = dateFormatter.string(from: model.dateStartOfCourse).lowercased()
+        let dateEndOfCourse = dateFormatter.string(from: model.dateEndOfCourse).lowercased()
         let countOfCourseDays = Int(model.dateEndOfCourse.timeIntervalSince(model.dateStartOfCourse)/60/60/24)
         let countOfDaysPassed = countOfCourseDays - Int(model.dateEndOfCourse.timeIntervalSinceNow/60/60/24)
         let widthProgress = CGFloat(countOfDaysPassed)/CGFloat(countOfCourseDays)*AppLayout.AidKit.widthProgressiveView

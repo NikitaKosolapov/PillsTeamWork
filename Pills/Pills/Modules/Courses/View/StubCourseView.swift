@@ -22,7 +22,7 @@ class StubCourseView: UIView {
         label.text = Text.AidKit.stubText
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
         label.textColor = AppColors.AidKit.stubText
         return label
     }()
