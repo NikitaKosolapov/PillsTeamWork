@@ -91,6 +91,16 @@ final class JournalTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    private let usageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = CellTheme.instructionTextColor
+        label.font = CellTheme.instructionFont
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
+        label.numberOfLines = 0
+        return label
+    }()
 
     private let timeLabel: UILabel = {
         let label = UILabel()
@@ -123,9 +133,23 @@ final class JournalTableViewCell: UITableViewCell {
                 self.pillNameLabel,
                 self.timeLabel
             ])
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fill
         stackView.axis = .horizontal
         stackView.spacing = CellTheme.defaultStackViewSpacing
+        return stackView
+    }()
+    
+    private lazy var stackViewInstructionAndUsage: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                self.instructionLabel,
+                self.usageLabel
+            ])
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = CellTheme.defaultStackViewSpacing
+        stackView.alignment = .leading
         return stackView
     }()
 
@@ -133,7 +157,7 @@ final class JournalTableViewCell: UITableViewCell {
         let stackView = UIStackView(
             arrangedSubviews: [
                 self.stackViewNameAndTime,
-                self.instructionLabel
+                self.stackViewInstructionAndUsage
             ])
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
@@ -162,10 +186,14 @@ final class JournalTableViewCell: UITableViewCell {
             self.pillNameLabel.text = item.name
             let type = item.pillType.rawValue.localized()
             let dose = numFormatter.string(from: item.singleDose as NSNumber) ?? "#error"
-            let unit = item.unitString.localized()
+            let concentration = numFormatter.string(from: item.concentration as NSNumber) ?? "#error"
+            let concentrationUnit = item.concentrationUnit.rawValue.localized()
             let usage = item.usage.rawValue.localized()
+            let prepositionOf = Text.of
             self.instructionLabel.text =
-                "\(type), \(dose) \(unit), \(usage)"
+                "\(dose) \(type) \(prepositionOf) \(concentration) \(concentrationUnit)"
+            self.usageLabel.text =
+                "\(usage)"
         }
     }
     

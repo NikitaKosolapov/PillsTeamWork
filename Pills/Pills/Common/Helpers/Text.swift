@@ -16,6 +16,7 @@ import Foundation
 enum Text {
 
     // MARK: - Add a new pill
+    // swiftlint:disable variable_name
     static let addNewPill = "addNewPill".localized()
     static let name = "name".localized()
     static let singleDose = "singleDose".localized()
@@ -24,6 +25,9 @@ enum Text {
     static let comments = "comments".localized()
     static let time = "time".localized()
     static let add = "add".localized()
+    static let of = "of".localized()
+    static let takePillsInTime = "takePillsInTime".localized()
+    static let justAddAnOrder = "justAddAnOrder".localized()
 
     enum Pills {
         static let tablets = "tablets".localized()
@@ -43,7 +47,6 @@ enum Text {
         static let noMatter = "noMatter".localized()
     }
 
-    // swiftlint:disable variable_name
     enum Unit {
         static let pill = "pill".localized()
         static let piece = "piece".localized()

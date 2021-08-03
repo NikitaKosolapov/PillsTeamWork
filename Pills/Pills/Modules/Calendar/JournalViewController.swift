@@ -1,5 +1,5 @@
 //
-//  CalendarViewController.swift
+//  JournalViewController.swift
 //  Pills
 //
 //  Created by Rayen on 22.07.2021.
@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class CalendarViewController: UIViewController {
+class JournalViewController: UIViewController {
     
     var calendarHeighConstraint: NSLayoutConstraint!
     
@@ -55,8 +55,7 @@ class CalendarViewController: UIViewController {
     private var manImageHintHeader: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        // TODO: localize me!!!
-        view.text = "Take pills in time!"
+        view.text = Text.takePillsInTime
         view.font = AppLayout.Fonts.bigSemibold
         view.textAlignment = .center
         return view
@@ -65,13 +64,45 @@ class CalendarViewController: UIViewController {
     private var manImageHintText: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        // TODO: localize me!!!
-        view.text = "Just add an order"
+        view.text = Text.justAddAnOrder
         view.font = AppLayout.Fonts.normalRegular
         view.textAlignment = .center
         return view
     }()
+    
+    @objc func onDebugSwitchView(sender: UIButton!) {
+        emptyTableStub.isHidden = !emptyTableStub.isHidden
+        journalTableView.isHidden = !journalTableView.isHidden
+    }
 
+    private lazy var addButton: AddButton = {
+        let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(onDebugSwitchView), for: .touchUpInside)
+        NSLayoutConstraint.activate(
+            [button.heightAnchor.constraint(equalToConstant: AppLayout.heightAddButton)])
+        return button
+    }()
+    
+    private lazy var stackViewTableViewAndButton: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                journalTableView,
+                emptyTableStub,
+                addButton
+            ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -98,8 +129,8 @@ class CalendarViewController: UIViewController {
             calendar.setScope(.week, animated: true)
         }
     }
+
     func swipeAction() {
-        
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeUp.direction = .up
         calendar.addGestureRecognizer(swipeUp)
@@ -109,8 +140,8 @@ class CalendarViewController: UIViewController {
         calendar.addGestureRecognizer(swipeDown)
         
     }
+
     @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
-        
         switch gesture.direction {
         case .up:
             showHideButtonTapped()
@@ -123,8 +154,7 @@ class CalendarViewController: UIViewController {
     
     func addSubviews() {
         view.addSubview(calendar)
-        view.addSubview(journalTableView)
-        view.addSubview(emptyTableStub)
+        view.addSubview(stackViewTableViewAndButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manImageHintHeader)
         emptyTableStub.addSubview(manImageHintText)
@@ -137,7 +167,7 @@ class CalendarViewController: UIViewController {
 }
 
 // swiftlint:disable function_body_length
-extension CalendarViewController : FSCalendarDataSource, FSCalendarDelegate {
+extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         calendarHeighConstraint = NSLayoutConstraint(
@@ -149,32 +179,25 @@ extension CalendarViewController : FSCalendarDataSource, FSCalendarDelegate {
             multiplier: 1,
             constant: 300
         )
-        calendar.addConstraint(calendarHeighConstraint)
+
         NSLayoutConstraint.activate([
+            calendarHeighConstraint,
+
             calendar.topAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             calendar.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             calendar.trailingAnchor
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
-            
-            journalTableView.topAnchor
-                .constraint(equalTo: calendar.bottomAnchor, constant: 0),
-            journalTableView.leadingAnchor
-                .constraint(equalTo: view.leadingAnchor, constant: 10),
-            journalTableView.trailingAnchor
-                .constraint(equalTo: view.trailingAnchor, constant: -10),
-            journalTableView.bottomAnchor
-                .constraint(equalTo: view.bottomAnchor, constant: -10),
 
-            emptyTableStub.topAnchor
+            stackViewTableViewAndButton.topAnchor
                 .constraint(equalTo: calendar.bottomAnchor, constant: 0),
-            emptyTableStub.leadingAnchor
+            stackViewTableViewAndButton.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
-            emptyTableStub.trailingAnchor
+            stackViewTableViewAndButton.trailingAnchor
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
-            emptyTableStub.bottomAnchor
-                .constraint(equalTo: view.bottomAnchor, constant: -10),
+            stackViewTableViewAndButton.bottomAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
             manImageContainer.topAnchor
                 .constraint(equalTo: emptyTableStub.topAnchor, constant: 30),
@@ -207,7 +230,7 @@ extension CalendarViewController : FSCalendarDataSource, FSCalendarDelegate {
     }
 }
 
-extension CalendarViewController {
+extension JournalViewController {
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeighConstraint.constant = bounds.height
         view.layoutIfNeeded()

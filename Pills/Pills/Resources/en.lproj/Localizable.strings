@@ -7,14 +7,14 @@
 */
 
 // MARK: - Add a new pill
-"tablets" = "Tablets";
-"capsules" = "Capsules";
-"drops" = "Drops";
-"procedure" = "Procedure";
-"salve" = "Salve";
-"liquid" = "Liquid";
-"syringe" = "Syringe";
-"suspension" = "Suspension";
+"tablets" = "tablets";
+"capsules" = "capsules";
+"drops" = "drops";
+"procedure" = "procedure";
+"salve" = "salve";
+"liquid" = "liquid";
+"syringe" = "syringe";
+"suspension" = "suspension";
 
 "addNewPill" = "Add a new pill";
 "name" = "Pill's name";
@@ -24,6 +24,9 @@
 "comments" = "Сomments";
 "time" = "Time";
 "add" = "Add";
+"of" = "of";
+"takePillsInTime" = "Take pills in time";
+"justAddAnOrder" = "Just add an order";
 
 "beforeMeals" = "Before meal";
 "whileEating" = "While eating";
@@ -54,7 +57,6 @@
 "teaspoon" = "teaspoon";
 "tablespoon" = "tablespoon";
 "ampoule" = "ampoule";
-"syringe" = "syringe";
 "cm3" = "cm³";
 "injection" = "injection";
 

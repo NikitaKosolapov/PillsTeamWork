@@ -7,14 +7,14 @@
 */
 
 // MARK: - Add a new pill
-"tablets" = "Таблетки";
-"capsules" = "Капсулы";
-"drops" = "Капли";
-"procedure" = "Процедура";
-"salve" = "Мазь";
-"liquid" = "Жидкость";
-"syringe" = "Шприц";
-"suspension" = "Раствор";
+"tablets" = "таблетки";
+"capsules" = "капсулы";
+"drops" = "капли";
+"procedure" = "процедура";
+"salve" = "мазь";
+"liquid" = "жидкость";
+"syringe" = "шприц";
+"suspension" = "раствор";
 
 "addNewPill" = "Добавить лекарство";
 "name" = "Наименование";
@@ -24,6 +24,9 @@
 "comments" = "Комментарии";
 "time" = "Время";
 "add" = "Добавить";
+"of" = "по";
+"takePillsInTime" = "Принимайте лекарство вовремя";
+"justAddAnOrder" = "Нужно просто добавить";
 
 "beforeMeals" = "Перед едой";
 "whileEating" = "Во время еды";
@@ -55,7 +58,6 @@
 "teaspoon" = "чайная ложка";
 "tablespoon" = "столовая ложка";
 "ampoule" = "ампула";
-"syringe" = "шприц";
 "cm3" = "cм³";
 "injection" = "впрыск";
 
