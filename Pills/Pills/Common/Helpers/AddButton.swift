@@ -29,8 +29,6 @@ class AddButton: UIButton {
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
     private func setupConstraint() {
-        NSLayoutConstraint.activate(
-            [widthAnchor.constraint(equalToConstant: AppLayout.widthAddButton),
-             heightAnchor.constraint(equalToConstant: AppLayout.heightAddButton)])
+        
     }
 }

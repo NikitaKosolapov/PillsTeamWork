@@ -7,11 +7,33 @@
 
 import UIKit
 
+enum TypeOfCourse {
+    case current
+    case passed
+}
+
 class CoursesViewController: UIViewController {
     // MARK: - Public properties
-    var coursesCurrent: [Course]?
-    var coursesPassed: [Course]?
-    var courses: [Course]?
+    var typeOfCourse: TypeOfCourse = .current
+    var coursesCurrent: [Course]? = [] {
+        didSet {
+            if typeOfCourse == .current {
+                setSourceOfCourses()
+            }
+        }
+    }
+    var coursesPassed: [Course]? = [] {
+        didSet {
+            if typeOfCourse == .passed {
+                setSourceOfCourses()
+            }
+        }
+    }
+    var courses: [Course]? = [] {
+        didSet {
+            coursesView.tableView.reloadData()
+        }
+    }
     var switcher = false
     
     // MARK: - Private properties
@@ -19,26 +41,8 @@ class CoursesViewController: UIViewController {
         return view as! CoursesView
     }
     
-    private lazy var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
-        segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
-        segmentedControl.setWidth(AppLayout.AidKit.widthSegment, forSegmentAt: 0)
-        segmentedControl.setWidth(AppLayout.AidKit.widthSegment, forSegmentAt: 1)
-        segmentedControl.selectedSegmentTintColor = AppColors.AidKit.segmentActive
-        segmentedControl.backgroundColor = AppColors.AidKit.segmentNoActive
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextActive], for: .selected)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextNoActive], for: .normal)
-        segmentedControl.layer.cornerRadius = 10
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.layer.shadowOffset = CGSize(width: 0, height: 0)
-        segmentedControl.layer.shadowColor = UIColor.red.cgColor
-        segmentedControl.layer.shadowOpacity = 1
-        segmentedControl.layer.shadowRadius = 50
-        return segmentedControl
-    }()
-    
     private struct Constant {
-        static let reuseIdentifier = "reuseId"
+        static let reuseCourseTableCellIdentifier = "reuseCourseTableCellId"
     }
     
     // MARK: - Initialisation
@@ -69,53 +73,27 @@ class CoursesViewController: UIViewController {
     private func configure () {
         configureMocData()
         configNavigationBar()
+        configureSegmentedControl()
         configureTableView()
         configureAddButton()
     }
     
     private func configureMocData () {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let startDate = dateFormatter.date(from: "01.01.2021")!
-        let endDate = dateFormatter.date(from: "01.09.2022")!
-        let firstCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Valium",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate)
-        let secondCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Gydroxizin",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate)
-        let thirdCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Sulpirid",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate)
-        let coursesCurrent = [firstCurrentCourse, secondCurrentCourse, thirdCurrentCourse]
-        self.coursesCurrent = coursesCurrent
-        let firstPassedCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Sulpirid",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate)
-        let secondPassedCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Donormil",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate)
-        let coursesPassed = [firstPassedCourse, secondPassedCourse]
-        self.coursesPassed = coursesPassed
+        self.coursesCurrent = CourseMock.shared.coursesCurrent
+        self.coursesPassed = CourseMock.shared.coursesPassed
     }
     
     private func configNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.backgroundColor = AppColors.AidKit.background
-        navigationItem.titleView = segmentedControl
+    }
+    
+    private func configureSegmentedControl () {
+        coursesView.segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
     }
     
     private func configureTableView () {
-        coursesView.tableView.register(CourseCell.self, forCellReuseIdentifier: Constant.reuseIdentifier)
+        coursesView.tableView.register(CourseCell.self, forCellReuseIdentifier: Constant.reuseCourseTableCellIdentifier)
         coursesView.tableView.delegate = self
         coursesView.tableView.dataSource = self
     }
@@ -125,38 +103,49 @@ class CoursesViewController: UIViewController {
     }
     
     // MARK: - Private functions
-    @objc private func changeTypeCourses() {
-        switch segmentedControl.selectedSegmentIndex {
+    private func setTypeOfCourse() {
+        switch coursesView.segmentedControl.selectedSegmentIndex {
         case 0:
-            courses = coursesCurrent
+            typeOfCourse = .current
         case 1:
-            courses = coursesPassed
+            typeOfCourse = .passed
         default:
             break
         }
-        coursesView.tableView.reloadData()
     }
     
-    private func hideTableView() {
+    private func setSourceOfCourses() {
+        switch typeOfCourse {
+        case .current:
+            courses = coursesCurrent
+        case .passed:
+            courses = coursesPassed
+        }
+    }
+    
+    private func showStubView() {
         coursesView.tableView.isHidden = true
         coursesView.stubView.isHidden = false
     }
     
-    private func hideStubView() {
+    private func showTableView() {
         coursesView.tableView.isHidden = false
         coursesView.stubView.isHidden = true
     }
     
     // MARK: Actions
+    @objc private func changeTypeCourses() {
+        setTypeOfCourse()
+        setSourceOfCourses()
+    }
+    
     @objc private func addButtonTouchUpInside() {
         switcher.toggle()
         if switcher {
             coursesCurrent = []
             coursesPassed = []
-            changeTypeCourses()
         } else {
             configureMocData()
-            changeTypeCourses()
         }
     }
 }
@@ -170,19 +159,20 @@ extension CoursesViewController: UITableViewDataSource {
         guard let count = courses?.count,
               let empty = courses?.isEmpty,
               empty == false else {
-            hideTableView()
+            showStubView()
             return 0 }
-        hideStubView()
+        showTableView()
         return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dequeueCell =  tableView.dequeueReusableCell(withIdentifier: Constant.reuseIdentifier, for: indexPath)
+        let dequeueCell =  tableView.dequeueReusableCell(withIdentifier: Constant.reuseCourseTableCellIdentifier,
+                                                         for: indexPath)
         guard let cell = dequeueCell as? CourseCell,
               let course = courses?[indexPath.row] else {
             return dequeueCell
         }
-        let courseModel = CourseCellModelFactory.cellModel(from: course)
+        let courseModel = CourseViewModelFactory.cellModel(from: course)
         cell.configure(with: courseModel)
         return cell
     }

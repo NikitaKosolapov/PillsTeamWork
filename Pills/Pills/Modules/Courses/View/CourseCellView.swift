@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  CourseCellView.swift
 //  Pills
 //
 //  Created by Alexandr Evtodiy on 31.07.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainView: UIView {
+class CourseCellView: UIView {
     // MARK: - Properties
     private var separatorFactoryAbstract = SeparatorFactory()
     
@@ -23,16 +23,16 @@ class MainView: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 17)
         label.textColor = AppColors.AidKit.cellTextName
         return label
     }()
     
     private lazy var durationOfCourseLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont(name: "SFCompactDisplay-Regular", size: 13)
         label.textColor = AppColors.AidKit.cellTextDuration
         return label
     }()
@@ -41,7 +41,7 @@ class MainView: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont(name: "SFCompactDisplay-Regular", size: 10)
         label.textColor = AppColors.AidKit.cellTextDays
         return label
     }()
@@ -85,7 +85,7 @@ class MainView: UIView {
     }
     
     // MARK: - Public functions
-    func configure(with model: CourseCellModel) {
+    func configure(with model: CourseViewModel) {
         pillImage.image = model.imagePill
         pillNameLabel.text = model.namePill
         durationOfCourseLabel.text = model.durationOfCourseString
@@ -109,18 +109,22 @@ class MainView: UIView {
     }
 
     private func configureStackView () {
+        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 14, bottom: -20, right: -14)
         stackView.layoutMargins = UIEdgeInsets.zero
         stackView.addArrangedSubview(pillImage)
         stackView.addArrangedSubview(verticalStackView)
         addSubview(stackView)
-        let marginGuide = layoutMarginsGuide
+        let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             pillImage.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthPillsImageView),
             pillImage.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightPillsImageView),
-            stackView.topAnchor.constraint(equalTo: marginGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor)
+            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppLayout.AidKit.topCourseCellView),
+            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                               constant: AppLayout.AidKit.leadingCourseCellView),
+            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
+                                                constant: AppLayout.AidKit.trailingCourseCellView),
+            stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
+                                              constant: AppLayout.AidKit.bottomCourseCellView)
         ])
     }
     

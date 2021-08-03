@@ -9,8 +9,8 @@ import UIKit
 
 class CourseCell: UITableViewCell {
     // MARK: - Subview
-    private lazy var mainView: MainView = {
-        let view = MainView()
+    private lazy var courseCellView: CourseCellView = {
+        let view = CourseCellView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -22,8 +22,8 @@ class CourseCell: UITableViewCell {
     }()
     
     // MARK: - Public Methods
-    func configure(with model: CourseCellModel) {
-        mainView.configure(with: model)
+    func configure(with model: CourseViewModel) {
+        courseCellView.configure(with: model)
         progressView.configure(with: model)
     }
     
@@ -39,8 +39,8 @@ class CourseCell: UITableViewCell {
     
     // MARK: - ConfigureUI
     override func prepareForReuse() {
-        mainView.resetView()
-        progressView.resetView()
+        super.prepareForReuse()
+        courseCellView.resetView()
     }
     
     private func configureUI () {
@@ -52,31 +52,29 @@ class CourseCell: UITableViewCell {
     
     private func configureContentView () {
         contentView.backgroundColor = AppColors.AidKit.background
-        contentView.layoutMargins = UIEdgeInsets.zero
     }
     
     private func configureProgressView () {
         let safeArea = contentView.safeAreaLayoutGuide
-        let marginGuide = contentView.layoutMarginsGuide
         contentView.addSubview(progressView)
         NSLayoutConstraint.activate(
-            [progressView.topAnchor.constraint(equalTo: marginGuide.topAnchor),
+            [progressView.topAnchor.constraint(equalTo: safeArea.topAnchor,
+                                               constant: AppLayout.AidKit.widthIndentBetweenCells),
              progressView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
              progressView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-             progressView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor)
+             progressView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
             ])
-        
     }
     
     private func configureMainView () {
         let safeArea = contentView.safeAreaLayoutGuide
-        let marginGuide = contentView.layoutMarginsGuide
-        contentView.addSubview(mainView)
+        contentView.addSubview(courseCellView)
         NSLayoutConstraint.activate(
-            [mainView.topAnchor.constraint(equalTo: marginGuide.topAnchor),
-             mainView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-             mainView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-             mainView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant: -10)
+            [courseCellView.topAnchor.constraint(equalTo: progressView.safeAreaLayoutGuide.topAnchor),
+             courseCellView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+             courseCellView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+             courseCellView.bottomAnchor.constraint(equalTo: progressView.safeAreaLayoutGuide.bottomAnchor,
+                                              constant: -AppLayout.AidKit.heightVisiblePartOfProgressView)
             ])
     }
 }

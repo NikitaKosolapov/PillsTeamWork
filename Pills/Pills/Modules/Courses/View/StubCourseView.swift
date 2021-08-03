@@ -22,7 +22,7 @@ class StubCourseView: UIView {
         label.text = Text.AidKit.stubText
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
         label.textColor = AppColors.AidKit.stubText
         return label
     }()
@@ -45,13 +45,16 @@ class StubCourseView: UIView {
     }
     
     private func configureImageView() {
-        let marginGuide = layoutMarginsGuide
+        let safeArea = safeAreaLayoutGuide
         addSubview(imageView)
         NSLayoutConstraint.activate(
-            [imageView.topAnchor.constraint(equalTo: marginGuide.topAnchor,constant: AppLayout.AidKit.heightStubTranslucentView),
-             imageView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor, constant: AppLayout.AidKit.leadingStubImage),
+            [imageView.topAnchor.constraint(equalTo: safeArea.topAnchor,
+                                            constant: AppLayout.AidKit.indentImageFromTop),
+             imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                                constant: AppLayout.AidKit.leadingStubImage),
              imageView.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthStubImage),
-             imageView.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightStubImage)])
+             imageView.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightStubImage)
+            ])
     }
     
     private func configureLabel() {
@@ -60,7 +63,7 @@ class StubCourseView: UIView {
         NSLayoutConstraint.activate(
             [label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15.0),
              label.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor),
-             label.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthStubLabel)])
+             label.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor)])
     }
     
 }

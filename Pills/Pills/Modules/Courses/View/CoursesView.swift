@@ -8,14 +8,32 @@
 import UIKit
 
 class CoursesView: UIView {
+    // MARK: Properties
+    private var separatorFactory = SeparatorFactory()
+    
     // MARK: - Subviews
+    let segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
+        segmentedControl.selectedSegmentTintColor = AppColors.AidKit.segmentActive
+        segmentedControl.backgroundColor = AppColors.AidKit.segmentNoActive
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextActive],
+            for: .selected)
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextNoActive],
+            for: .normal)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .green
         tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.contentInset = AppLayout.AidKit.tableContentInset
+        tableView.contentInset = UIEdgeInsets.zero
         tableView.backgroundColor = AppColors.AidKit.background
         tableView.isHidden = false
         return tableView
@@ -24,16 +42,26 @@ class CoursesView: UIView {
     let stubView: StubCourseView = {
         let view = StubCourseView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = false
+        view.isHidden = true
         return view
     }()
     
     let addButton: AddButton = {
         let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
         button.backgroundColor = AppColors.AidKit.addButton
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .fill
+        view.spacing = 0
+        return view
     }()
 
     // MARK: - Init
@@ -49,40 +77,38 @@ class CoursesView: UIView {
     // MARK: - ConfigureUI
     private func configureUI() {
         backgroundColor = AppColors.AidKit.background
-        configureTableView()
-        configureStubView()
+        configureSegmentedControl()
         configureAddButton()
+        configureStackView()
     }
     
-    private func configureTableView() {
-        addSubview(tableView)
-        let safeArea = safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppLayout.AidKit.leadingTableView),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: AppLayout.AidKit.trailingTableView),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: -AppLayout.heightAddButton - AppLayout.AidKit.indentFromBottomAddButton)
-        ])
-    }
-    
-    private func configureStubView() {
-        addSubview(stubView)
-        let safeArea = safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            stubView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            stubView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppLayout.AidKit.leadingStubView),
-            stubView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: AppLayout.AidKit.trailingStubView),
-            stubView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: -AppLayout.heightAddButton - AppLayout.AidKit.indentFromBottomAddButton)
-        ])
+    private func configureSegmentedControl() {
+        NSLayoutConstraint.activate(
+            [segmentedControl.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightSegmentControl),
+             segmentedControl.widthAnchor.constraint(equalToConstant: 500.0)])
     }
     
     private func configureAddButton() {
-        addSubview(addButton)
+        NSLayoutConstraint.activate(
+            [addButton.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightAddButton)])
+    }
+
+    private func configureStackView() {
+        stackView.addArrangedSubview(separatorFactory.makeTranslucent(height: 19.0))
+        stackView.addArrangedSubview(segmentedControl)
+        stackView.addArrangedSubview(stubView)
+        stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubview(addButton)
+        addSubview(stackView)
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            addButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppLayout.AidKit.leadingAddButtonView),
-            addButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: AppLayout.AidKit.trailingAddButtonView),
-            addButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -AppLayout.AidKit.indentFromBottomAddButton)
+            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                               constant: AppLayout.AidKit.leadingStackView),
+            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
+                                                constant: AppLayout.AidKit.trailingStackView),
+            stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
+                                              constant: -AppLayout.AidKit.indentFromBottomAddButton)
         ])
     }
 }
