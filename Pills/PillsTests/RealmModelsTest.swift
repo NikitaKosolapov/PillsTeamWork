@@ -26,7 +26,7 @@ extension RealmMedKitEntry {
         debugPrint("  endDate = \(self.endDate)")
         debugPrint("  pillType = \(self.pillType)")
         debugPrint("  usage = \(self.usage)")
-        debugPrint("  unit = \(self.unit)")
+        debugPrint("  unit = \(self.unitString)")
 
         for time in self.schedule {
             time.debugDump()
@@ -58,12 +58,18 @@ class RealmModelsTest: XCTestCase {
         let dates = List<RealmTimePoint>()
         dates.append(RealmTimePoint(time: currentTime, isUsed: false))
         dates.append(RealmTimePoint(time: currentTime, isUsed: true))
-        
+
+        let pillType = PillType.syringe
+        let unit = pillType.pillUnits().last!
+
+        let units = pillType.pillUnits().map { $0.localized("ru") }
+        debugPrint(units)
+
         let entry = RealmMedKitEntry(
-            name: "Aspirine",
-            pillType: .capsules,
+            name: "Vitamine B12",
+            pillType: pillType,
             singleDose: 2,
-            unit: .mg,
+            unitString: unit,
             usage: .afterMeals,
             comments: "bla-bla",
             startDate: currentTime,
@@ -79,7 +85,7 @@ class RealmModelsTest: XCTestCase {
             realm.add(entry)
             try? realm.commitWrite()
         }
-        
+
         debugPrint("REALM: Loading...")
         let loadedOpt = realm.objects(RealmMedKitEntry.self).first
         guard let loaded = loadedOpt
@@ -95,7 +101,7 @@ class RealmModelsTest: XCTestCase {
         XCTAssertTrue(loaded.name == entry.name)
         XCTAssertTrue(loaded.pillType == entry.pillType)
         XCTAssertTrue(loaded.singleDose == entry.singleDose)
-        XCTAssertTrue(loaded.unit == entry.unit)
+        XCTAssertTrue(loaded.unitString == entry.unitString)
         XCTAssertTrue(loaded.usage == entry.usage)
         XCTAssertTrue(loaded.comments == entry.comments)
         XCTAssertTrue(loaded.startDate == entry.startDate)
@@ -127,12 +133,12 @@ class RealmModelsTest: XCTestCase {
         let dates = List<RealmTimePoint>()
         dates.append(RealmTimePoint(time: currentTime, isUsed: false))
         dates.append(RealmTimePoint(time: currentTime, isUsed: true))
-        
+
         let entry = RealmMedKitEntry(
             name: "Aspirine",
             pillType: .capsules,
             singleDose: 2,
-            unit: .mg,
+            unitString: PillType.capsules.pillUnits().first!,
             usage: .afterMeals,
             comments: "bla-bla",
             startDate: currentTime,
@@ -141,7 +147,7 @@ class RealmModelsTest: XCTestCase {
         )
 
         entry.debugDump()
-        
+
         try? RealmService.shared.realm?.write {
             RealmService.shared.realm?.deleteAll()
             try? RealmService.shared.realm?.commitWrite()
@@ -153,7 +159,7 @@ class RealmModelsTest: XCTestCase {
         RealmService.shared.update {
             entry.comments = "updated"
         }
-        
+
         debugPrint("REALM: Loading...")
         let loadedSet = RealmService.shared.get(RealmMedKitEntry.self)
 
@@ -170,7 +176,7 @@ class RealmModelsTest: XCTestCase {
         XCTAssertTrue(loaded.name == entry.name)
         XCTAssertTrue(loaded.pillType == entry.pillType)
         XCTAssertTrue(loaded.singleDose == entry.singleDose)
-        XCTAssertTrue(loaded.unit == entry.unit)
+        XCTAssertTrue(loaded.unitString == entry.unitString)
         XCTAssertTrue(loaded.usage == entry.usage)
         XCTAssertTrue(loaded.comments == entry.comments)
         XCTAssertTrue(loaded.startDate == entry.startDate)
@@ -192,11 +198,11 @@ class RealmModelsTest: XCTestCase {
             loaded.schedule.removeFirst()
             entry.schedule.removeFirst()
         }
-        
+
         RealmService.shared.delete(entry)
-        
+
         let loadedSet2 = RealmService.shared.get(RealmMedKitEntry.self)
-        
+
         XCTAssertTrue(loadedSet2.isEmpty)
     }
 

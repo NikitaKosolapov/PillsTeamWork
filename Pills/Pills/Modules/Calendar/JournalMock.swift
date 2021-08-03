@@ -39,11 +39,18 @@ final class JournalMock {
             scheduleTime.addTimeInterval(3600 * 8)
         }
 
+        // external
+        var pillType = PillType.tablets
+        let unitIndex = Int.random(in: 0..<pillType.pillUnits().count)
+
+        // usage
         entryExample1 = RealmMedKitEntry(
             name: "Aspirin",
             pillType: .tablets,
             singleDose: 0.5,
-            unit: .pill,
+            concentration: 500,
+            concentrationUnit: .g,
+            unitString: pillType.pillUnits()[unitIndex],
             usage: .whileEating,
             comments: "",
             startDate: startDate,
@@ -51,11 +58,14 @@ final class JournalMock {
             schedule: schedule
         )
 
+        pillType = PillType.syringe
         entryExample2 = RealmMedKitEntry(
             name: "Haloperidol",
-            pillType: .capsules,
+            pillType: pillType,
             singleDose: 1,
-            unit: .pill,
+            concentration: 100,
+            concentrationUnit: .mg,
+            unitString: pillType.pillUnits().last ?? "#error",
             usage: .afterMeals,
             comments: "",
             startDate: startDate,
