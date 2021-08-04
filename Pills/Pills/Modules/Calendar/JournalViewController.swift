@@ -106,8 +106,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -260,6 +260,7 @@ extension JournalViewController {
         calendarHeighConstraint.constant = bounds.height
         view.layoutIfNeeded()
     }
+
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
     }
