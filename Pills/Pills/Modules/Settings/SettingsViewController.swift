@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 final class SettingsViewController: UITableViewController {
     
@@ -24,8 +25,9 @@ final class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
         title = Text.Tabs.settings
+        
+        tableView.bounces = false
         
         // Main section
         languageCell.textLabel?.text = Text.Settings.language
@@ -96,9 +98,71 @@ final class SettingsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath {
+        case [0, 0]:
+            debugPrint("Language tapped")
+        case [0, 1]:
+            debugPrint("Notification tapped")
+        case [0, 2]:
+            debugPrint("Email tapped")
+            sendEmail()
+        case [1, 0]:
+            debugPrint("TermUse tapped")
+        case [1, 1]:
+            debugPrint("Policy tapped")
+        case [1, 2]:
+            debugPrint("About tapped")
+        default:
+            debugPrint("Error tapped")
+        }
+    }
+    
     @objc func switchChanged(_ sender : UISwitch!) {
-        // print("Switch changed \(sender.tag)")
-        // print("The switch is \(sender.isOn ? "ON" : "OFF")")
+
+    }
+    
+}
+
+// MARK: - Send mail
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([AppConstant.Emails.feedback])
+            mail.setSubject(Text.Feedback.subject)
+            mail.setMessageBody(createMessage(), isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+            print("Could not send email!")
+        }
+    }
+    
+    internal func mailComposeController(_ controller: MFMailComposeViewController,
+                                        didFinishWith result: MFMailComposeResult,
+                                        error: Error?) {
+        print(error?.localizedDescription ?? "No error")
+        controller.dismiss(animated: true)
+    }
+    
+    func createMessage() -> String {
+        let systemVersion = UIDevice.current.systemVersion
+        let deviceModel = UIDevice.modelName
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        
+        var messageText = "<p>\(Text.Feedback.hello)</p>"
+        messageText += "<br>"
+        messageText += "<p>\(Text.Feedback.iOSVersion) \(systemVersion)</p>"
+        messageText += "<p>\(Text.Feedback.deviceModel) \(deviceModel)</p>"
+        messageText += "<p>\(Text.Feedback.appVersion) \(appVersion ?? "0.0")</p>"
+        
+        return messageText
     }
     
 }

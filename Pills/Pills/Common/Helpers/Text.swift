@@ -120,4 +120,13 @@ enum Text {
         static let journal = "journal".localized()
         static let settings = "settings".localized()
     }
+    
+    // MARK: - Feedback email text
+    enum Feedback {
+        static let subject = "subject".localized()
+        static let hello = "hello".localized()
+        static let iOSVersion = "iOSVersion".localized()
+        static let deviceModel = "deviceModel".localized()
+        static let appVersion = "appVersion".localized()
+    }
 }
