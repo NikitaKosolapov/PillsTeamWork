@@ -8,6 +8,18 @@
 import Foundation
 import RealmSwift
 
+// USAGE:
+//   let pillType = PillType.capsules // or any user-selected type
+//
+//   // getting localized list of units:
+//   let units = pillType.pillUnits().map { $0.localized() }
+//
+// We will not ever need to convert unit type from DB to any enum type because
+// will use it only for displaying. To display localized unit type do:
+//
+//   // var entry: RealmMedKitEntry ...
+//   entry.unitString.localized()
+
 enum PillType: String {
     case tablets
     case capsules
@@ -17,6 +29,21 @@ enum PillType: String {
     case liquid
     case syringe
     case spray
+    
+    fileprivate static let types = [
+        PillType.tablets: ["pill", "piece", "mg", "g"],
+        PillType.capsules: ["capsule", "piece", "mg", "g"],
+        PillType.drops: ["drop", "times", "piece"],
+        PillType.procedure: ["times", "inhalation", "taking", "suppository", "enema"],
+        PillType.salve: ["taking", "times", "piece"],
+        PillType.liquid: ["bowl", "flask", "teaspoon", "tablespoon", "ml"],
+        PillType.syringe: ["piece", "ampoule", "syringe", "ml", "mg", "g", "cm3"],
+        PillType.spray: ["times", "injection"]
+    ]
+
+    func pillUnits() -> [String] {
+        return PillType.types[self]!
+    }
 }
 
 enum Usage: String {
@@ -27,12 +54,18 @@ enum Usage: String {
 }
 
 // swiftlint:disable variable_name
-enum Unit: String {
-    case pill
-    case piece
-    case mg
-    case ml
+enum ConcentrationUnit: String {
     case g
+    case mg
+    case IU
+    case mсg
+    case mEq
+    case ml
+    case percent
+    case mgToG
+    case mgToCm2
+    case mgToMl
+    
 }
 
 class RealmTimePoint: Object {
@@ -51,26 +84,28 @@ class RealmMedKitEntry: Object {
     @objc dynamic var entryID = UUID.init().uuidString
     @objc dynamic var name = "(not named)"
     @objc dynamic var singleDose: Double = 0
+    @objc dynamic var concentration: Double = 0
     @objc dynamic var comments = "(no comments)"
     @objc dynamic var startDate = Date()
     @objc dynamic var endDate = Date()
     @objc dynamic var pillTypeHolder = PillType.tablets.rawValue
+    @objc dynamic var concentrationUnitHolder = ConcentrationUnit.g.rawValue
     @objc dynamic var usageHolder = Usage.noMatter.rawValue
-    @objc dynamic var unitHolder = Unit.pill.rawValue
+    @objc dynamic var unitString = ""
 
     var pillType: PillType {
       get { return PillType(rawValue: pillTypeHolder)! }
       set { pillTypeHolder = newValue.rawValue }
     }
+    
+    var concentrationUnit: ConcentrationUnit {
+      get { return ConcentrationUnit(rawValue: concentrationUnitHolder)! }
+      set { concentrationUnitHolder = newValue.rawValue }
+    }
 
     var usage: Usage {
       get { return Usage(rawValue: usageHolder)! }
       set { usageHolder = newValue.rawValue }
-    }
-    
-    var unit: Unit {
-      get { return Unit(rawValue: unitHolder)! }
-      set { unitHolder = newValue.rawValue }
     }
 
     var schedule = List<RealmTimePoint>()
@@ -84,7 +119,9 @@ class RealmMedKitEntry: Object {
     init(name: String,
          pillType: PillType,
          singleDose: Double,
-         unit: Unit,
+         concentration: Double,
+         concentrationUnit: ConcentrationUnit,
+         unitString: String,
          usage: Usage,
          comments: String,
          startDate: Date,
@@ -93,12 +130,14 @@ class RealmMedKitEntry: Object {
     ) {
         self.name = name
         self.singleDose = singleDose
+        self.concentration = concentration
+        self.concentrationUnitHolder = concentrationUnit.rawValue
         self.comments = comments
         self.startDate = startDate
         self.endDate = endDate
         self.pillTypeHolder = pillType.rawValue
         self.usageHolder = usage.rawValue
-        self.unitHolder = unit.rawValue
+        self.unitString = unitString
 
         super.init()
         self.schedule.append(objectsIn: schedule)

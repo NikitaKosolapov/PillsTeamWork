@@ -7,22 +7,26 @@
 */
 
 // MARK: - Add a new pill
-"tablets" = "Таблетки";
-"capsules" = "Капсулы";
-"drops" = "Капли";
-"procedure" = "Процедура";
-"salve" = "Мазь";
-"liquid" = "Жидкость";
-"syringe" = "Шприц";
-"suspension" = "Раствор";
+"tablets" = "таблетки";
+"capsules" = "капсулы";
+"drops" = "капли";
+"procedure" = "процедура";
+"salve" = "мазь";
+"liquid" = "жидкость";
+"syringe" = "шприц";
+"suspension" = "раствор";
 
 "addNewPill" = "Добавить лекарство";
 "name" = "Наименование";
 "singleDose" = "Однократно";
+"concentration" = "Концентрация";
 "instruction" = "Инструкция";
 "comments" = "Комментарии";
 "time" = "Время";
 "add" = "Добавить";
+"of" = "по";
+"takePillsInTime" = "Принимайте лекарство вовремя";
+"justAddAnOrder" = "Нужно просто добавить";
 
 "beforeMeals" = "Перед едой";
 "whileEating" = "Во время еды";
@@ -34,6 +38,28 @@
 "mg" = "мг";
 "ml" = "мл";
 "g" = "г";
+"IU" = "IU";
+"mсg" = "мкг";
+"mEq" = "mEq";
+"percent" = "%";
+"mgToG" = "мг/г";
+"mgToCm2" = "мг/см²";
+"mgToMl" = "мг/мл";
+"capsule" = "capsule";
+"capsule" = "капсула";
+"drop" = "капля";
+"times" = "раз";
+"inhalation" = "ингаляция";
+"taking" = "прием";
+"suppository" = "суппозиторий";
+"enema" = "клизма";
+"bowl" = "чашка";
+"flask" = "флакон";
+"teaspoon" = "чайная ложка";
+"tablespoon" = "столовая ложка";
+"ampoule" = "ампула";
+"cm3" = "cм³";
+"injection" = "впрыск";
 
 // MARK: - Journal Event Status
 "accepted" = "Принято";

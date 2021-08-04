@@ -16,7 +16,7 @@ class MainTabBarMaker {
         // TODO: get text and images from constants when ready
         mainVC.tabBarItem = tabItemBuilder(title: "Courses", icon: UIImage(named: "courses"))
         
-        let medicationVC = CalendarViewController()
+        let medicationVC = JournalViewController()
         let medicationNavig = UINavigationController(rootViewController: medicationVC)
         medicationVC.tabBarItem = tabItemBuilder(title: "Journal", icon: UIImage(named: "journal"))
         
