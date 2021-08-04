@@ -16,13 +16,18 @@ import Foundation
 enum Text {
 
     // MARK: - Add a new pill
+    // swiftlint:disable variable_name
     static let addNewPill = "addNewPill".localized()
     static let name = "name".localized()
     static let singleDose = "singleDose".localized()
+    static let concentration = "concentration".localized()
     static let instruction = "instruction".localized()
     static let comments = "comments".localized()
     static let time = "time".localized()
     static let add = "add".localized()
+    static let of = "of".localized()
+    static let takePillsInTime = "takePillsInTime".localized()
+    static let justAddAnOrder = "justAddAnOrder".localized()
 
     enum Pills {
         static let tablets = "tablets".localized()
@@ -42,13 +47,41 @@ enum Text {
         static let noMatter = "noMatter".localized()
     }
 
-    // swiftlint:disable variable_name
     enum Unit {
         static let pill = "pill".localized()
         static let piece = "piece".localized()
         static let mg = "mg".localized()
         static let ml = "ml".localized()
         static let g = "g".localized()
+        static let capsule = "capsule".localized()
+        static let drop = "drop".localized()
+        static let times = "times".localized()
+        static let inhalation = "inhalation".localized()
+        static let taking = "taking".localized()
+        static let suppository = "suppository".localized()
+        static let enema = "enema".localized()
+        static let bowl = "bowl".localized()
+        static let flask = "flask".localized()
+        static let teaspoon = "teaspoon".localized()
+        static let tablespoon = "tablespoon".localized()
+        static let ampoule = "ampoule".localized()
+        static let syringe = "syringe".localized()
+        static let cm3 = "cm3".localized()
+        static let injection = "injection".localized()
+    }
+    
+    enum ConcentrationUnit {
+        static let g = "g".localized()
+        static let mg = "mg".localized()
+        static let IU = "IU".localized()
+        static let mсg = "mсg".localized()
+        static let mEq = "mEq".localized()
+        static let ml = "ml".localized()
+        static let percent = "percent".localized()
+        static let mgToG = "mgToG".localized()
+        static let mgToCm2 = "mgToCm2".localized()
+        static let mgToMl = "mgToMl".localized()
+        
     }
 
     // MARK: - Journal Event Status

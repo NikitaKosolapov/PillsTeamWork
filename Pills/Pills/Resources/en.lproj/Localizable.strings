@@ -7,33 +7,58 @@
 */
 
 // MARK: - Add a new pill
-"tablets" = "Tablets";
-"capsules" = "Capsules";
-"drops" = "Drops";
-"procedure" = "Procedure";
-"salve" = "Salve";
-"liquid" = "Liquid";
-"syringe" = "Syringe";
-"suspension" = "Suspension";
+"tablets" = "tablets";
+"capsules" = "capsules";
+"drops" = "drops";
+"procedure" = "procedure";
+"salve" = "salve";
+"liquid" = "liquid";
+"syringe" = "syringe";
+"suspension" = "suspension";
 
 "addNewPill" = "Add a new pill";
 "name" = "Pill's name";
 "singleDose" = "Single dose";
+"concentration" = "Concentration";
 "instruction" = "Instruction";
 "comments" = "Сomments";
 "time" = "Time";
 "add" = "Add";
+"of" = "of";
+"takePillsInTime" = "Take pills in time";
+"justAddAnOrder" = "Just add an order";
 
 "beforeMeals" = "Before meal";
 "whileEating" = "While eating";
 "afterMeals" = "After meal";
 "noMatter" = "No matter";
 
-"pill" = "Pill";
-"piece" = "Piece";
+"pill" = "pill";
+"piece" = "piece";
 "mg" = "mg";
 "ml" = "ml";
 "g" = "g";
+"IU" = "IU";
+"mсg" = "mсg";
+"mEq" = "mEq";
+"percent" = "%";
+"mgToG" = "mg/g";
+"mgToCm2" = "mg/cm²";
+"mgToMl" = "mg/ml";
+"capsule" = "capsule";
+"drop" = "drop";
+"times" = "times";
+"inhalation" = "inhalation";
+"taking" = "taking";
+"suppository" = "suppository";
+"enema" = "enema";
+"bowl" = "bowl";
+"flask" = "flask";
+"teaspoon" = "teaspoon";
+"tablespoon" = "tablespoon";
+"ampoule" = "ampoule";
+"cm3" = "cm³";
+"injection" = "injection";
 
 // MARK: - Journal Event Status
 "accepted" = "Accepted";
