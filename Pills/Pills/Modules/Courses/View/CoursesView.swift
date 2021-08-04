@@ -8,23 +8,63 @@
 import UIKit
 
 class CoursesView: UIView {
-    // MARK: - Subviews
-    let collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewLayout())
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        //collectionViewLayout.estimatedItemSize = CGSize(width: 3*UIScreen.main.bounds.width/7, height: 500)
-        collectionViewLayout.itemSize = CGSize(width: 4*UIScreen.main.bounds.width/9, height: 210)
-        collectionViewLayout.scrollDirection = .vertical
-        collectionView.collectionViewLayout = collectionViewLayout
-        collectionView.contentInset = UIEdgeInsets(top: 15.0, left: 10.0, bottom: 15.0, right: 10.0)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = AppColors.blue
+    // MARK: Properties
+    private var separatorFactory = SeparatorFactory()
     
-        collectionView.isHidden = false
-        return collectionView
+    // MARK: - Subviews
+    let segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
+        segmentedControl.selectedSegmentTintColor = AppColors.AidKit.segmentActive
+        segmentedControl.backgroundColor = AppColors.AidKit.segmentNoActive
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextActive],
+            for: .selected)
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextNoActive],
+            for: .normal)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
     }()
     
-// MARK: - Init
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .green
+        tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets.zero
+        tableView.backgroundColor = AppColors.AidKit.background
+        tableView.isHidden = false
+        return tableView
+    }()
+    
+    let stubView: StubCourseView = {
+        let view = StubCourseView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
+    let addButton: AddButton = {
+        let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
+        button.backgroundColor = AppColors.AidKit.addButton
+        return button
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .fill
+        view.spacing = 0
+        return view
+    }()
+
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
@@ -34,24 +74,40 @@ class CoursesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-// MARK: - ConfigureUI
+    // MARK: - ConfigureUI
     private func configureUI() {
-        backgroundColor = AppColors.blue
-        configureCollectionView()
-        setupConstraints()
+        backgroundColor = AppColors.AidKit.background
+        configureSegmentedControl()
+        configureAddButton()
+        configureStackView()
     }
     
-    private func configureCollectionView() {
-        addSubview(collectionView)
+    private func configureSegmentedControl() {
+        NSLayoutConstraint.activate(
+            [segmentedControl.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightSegmentControl)])
     }
     
-    private func setupConstraints() {
+    private func configureAddButton() {
+        NSLayoutConstraint.activate(
+            [addButton.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightAddButton)])
+    }
+
+    private func configureStackView() {
+        stackView.addArrangedSubview(separatorFactory.makeTranslucent(height: 19.0))
+        stackView.addArrangedSubview(segmentedControl)
+        stackView.addArrangedSubview(stubView)
+        stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubview(addButton)
+        addSubview(stackView)
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                               constant: AppLayout.AidKit.leadingStackView),
+            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
+                                                constant: AppLayout.AidKit.trailingStackView),
+            stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
+                                              constant: -AppLayout.AidKit.indentFromBottomAddButton)
         ])
     }
 }

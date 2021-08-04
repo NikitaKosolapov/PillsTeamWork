@@ -94,6 +94,9 @@ enum Text {
     enum AidKit {
         static let active = "active".localized()
         static let completed = "completed".localized()
+        static let stubText = "stubTextAidKit".localized()
+        static let from = "from".localized()
+        static let days = "days".localized()
     }
 
     // MARK: - Settings

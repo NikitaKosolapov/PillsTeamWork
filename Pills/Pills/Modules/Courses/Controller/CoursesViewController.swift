@@ -7,35 +7,42 @@
 
 import UIKit
 
-enum TypeCourses {
+enum TypeOfCourse {
     case current
     case passed
 }
 
 class CoursesViewController: UIViewController {
     // MARK: - Public properties
-    var coursesCurrent: [Course]?
-    var coursesPassed: [Course]?
-    var courses: [Course]?
+    var typeOfCourse: TypeOfCourse = .current
+    var coursesCurrent: [Course]? = [] {
+        didSet {
+            if typeOfCourse == .current {
+                setSourceOfCourses()
+            }
+        }
+    }
+    var coursesPassed: [Course]? = [] {
+        didSet {
+            if typeOfCourse == .passed {
+                setSourceOfCourses()
+            }
+        }
+    }
+    var courses: [Course]? = [] {
+        didSet {
+            coursesView.tableView.reloadData()
+        }
+    }
+    var switcher = false
     
     // MARK: - Private properties
     internal var coursesView: CoursesView {
         return view as! CoursesView
     }
     
-    private lazy var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
-        segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
-        segmentedControl.setWidth(AppLayout.AidKit.paddingSegmentControl*UIScreen.main.bounds.width, forSegmentAt: 0)
-        segmentedControl.setWidth(AppLayout.AidKit.paddingSegmentControl*UIScreen.main.bounds.width, forSegmentAt: 1)
-        navigationItem.titleView = segmentedControl
-        segmentedControl.selectedSegmentIndex = 0
-        return segmentedControl
-    }()
-    
-    private var typeCourses: TypeCourses = .current
     private struct Constant {
-        static let reuseIdentifier = "reuseId"
+        static let reuseCourseTableCellIdentifier = "reuseCourseTableCellId"
     }
     
     // MARK: - Initialisation
@@ -59,124 +66,118 @@ class CoursesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        changeSource()
+        changeTypeCourses()
     }
     
     // MARK: - ConfigureUI
     private func configure () {
         configureMocData()
         configNavigationBar()
-        configureCollectionView()
+        configureSegmentedControl()
+        configureTableView()
+        configureAddButton()
     }
     
     private func configureMocData () {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let startDate = dateFormatter.date(from: "01.02.2021")!
-        let endDate = dateFormatter.date(from: "02.03.2022")!
-        let firstCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Valium",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate,
-            countOfCourseDoses: 360,
-            countOfDosesPassed: 30,
-            typeOfDose: "mg")
-        let secondCurrentCourse = Course(
-            imagePill: AppImages.Pills.capsules ?? UIImage(),
-            namePill: "Gydroxizin",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate,
-            countOfCourseDoses: 90,
-            countOfDosesPassed: 60,
-            typeOfDose: "Piece")
-        let thirdCurrentCourse = Course(
-            imagePill: AppImages.Pills.suspension ?? UIImage(),
-            namePill: "Sulpirid",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate,
-            countOfCourseDoses: 89,
-            countOfDosesPassed: 45,
-            typeOfDose: "mg")
-        let coursesCurrent = [firstCurrentCourse, secondCurrentCourse, thirdCurrentCourse]
-        self.coursesCurrent = coursesCurrent
-        let firstPassedCourse = Course(
-            imagePill: AppImages.Pills.capsules ?? UIImage(),
-            namePill: "Sulpirid",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate,
-            countOfCourseDoses: 89,
-            countOfDosesPassed: 45,
-            typeOfDose: "mg")
-        let secondPassedCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
-            namePill: "Donormil",
-            dateStartOfCourse: startDate,
-            dateEndOfCourse: endDate,
-            countOfCourseDoses: 360,
-            countOfDosesPassed: 30,
-            typeOfDose: "mg")
-        let coursesPassed = [firstPassedCourse, secondPassedCourse]
-        self.coursesPassed = coursesPassed
+        self.coursesCurrent = CourseMock.shared.coursesCurrent
+        self.coursesPassed = CourseMock.shared.coursesPassed
     }
     
     private func configNavigationBar() {
-        navigationItem.titleView = segmentedControl
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.backgroundColor = AppColors.AidKit.background
     }
     
-    private func configureCollectionView () {
-        coursesView.collectionView.register(CourseCell.self, forCellWithReuseIdentifier: Constant.reuseIdentifier)
-        coursesView.collectionView.delegate = self
-        coursesView.collectionView.dataSource = self
+    private func configureSegmentedControl () {
+        coursesView.segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
+    }
+    
+    private func configureTableView () {
+        coursesView.tableView.register(CourseCell.self, forCellReuseIdentifier: Constant.reuseCourseTableCellIdentifier)
+        coursesView.tableView.delegate = self
+        coursesView.tableView.dataSource = self
+    }
+    
+    private func configureAddButton () {
+        coursesView.addButton.addTarget(self, action: #selector(addButtonTouchUpInside), for: .touchUpInside)
     }
     
     // MARK: - Private functions
-    @objc private func changeTypeCourses() {
-        switch segmentedControl.selectedSegmentIndex {
+    private func setTypeOfCourse() {
+        switch coursesView.segmentedControl.selectedSegmentIndex {
         case 0:
-            typeCourses = .current
+            typeOfCourse = .current
         case 1:
-            typeCourses = .passed
+            typeOfCourse = .passed
         default:
             break
         }
-        self.changeSource()
     }
     
-    private func changeSource() {
-        switch typeCourses {
+    private func setSourceOfCourses() {
+        switch typeOfCourse {
         case .current:
             courses = coursesCurrent
         case .passed:
             courses = coursesPassed
         }
-        coursesView.collectionView.reloadData()
+    }
+    
+    private func showStubView() {
+        coursesView.tableView.isHidden = true
+        coursesView.stubView.isHidden = false
+    }
+    
+    private func showTableView() {
+        coursesView.tableView.isHidden = false
+        coursesView.stubView.isHidden = true
+    }
+    
+    // MARK: Actions
+    @objc private func changeTypeCourses() {
+        setTypeOfCourse()
+        setSourceOfCourses()
+    }
+    
+    @objc private func addButtonTouchUpInside() {
+        switcher.toggle()
+        if switcher {
+            coursesCurrent = []
+            coursesPassed = []
+        } else {
+            configureMocData()
+        }
     }
 }
 // MARK: - UICollectionViewDataSource
-extension CoursesViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension CoursesViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = courses?.count else {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let count = courses?.count,
+              let empty = courses?.isEmpty,
+              empty == false else {
+            showStubView()
             return 0 }
+        showTableView()
         return count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let dequeueCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.reuseIdentifier, for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dequeueCell =  tableView.dequeueReusableCell(withIdentifier: Constant.reuseCourseTableCellIdentifier,
+                                                         for: indexPath)
         guard let cell = dequeueCell as? CourseCell,
               let course = courses?[indexPath.row] else {
             return dequeueCell
         }
-        let courseModel = CourseCellModelFactory.cellModel(from: course)
+        let courseModel = CourseViewModelFactory.cellModel(from: course)
         cell.configure(with: courseModel)
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
-extension CoursesViewController: UICollectionViewDelegate {
+extension CoursesViewController: UITableViewDelegate {
 }
