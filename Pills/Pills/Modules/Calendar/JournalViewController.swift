@@ -8,12 +8,8 @@
 import UIKit
 import FSCalendar
 
-<<<<<<< HEAD:Pills/Pills/Modules/Calendar/CalendarViewController.swift
-class CalendarViewController: UIViewController, UIGestureRecognizerDelegate {
-=======
-class JournalViewController: UIViewController {
->>>>>>> ac80c3cd9792d9ab10143830a54346901b45a93f:Pills/Pills/Modules/Calendar/JournalViewController.swift
-    
+class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
+
     var calendarHeighConstraint: NSLayoutConstraint!
     
     private var calendar: FSCalendar = {
@@ -80,8 +76,6 @@ class JournalViewController: UIViewController {
         return view
     }()
     
-<<<<<<< HEAD:Pills/Pills/Modules/Calendar/CalendarViewController.swift
-=======
     @objc func onDebugSwitchView(sender: UIButton!) {
         emptyTableStub.isHidden = !emptyTableStub.isHidden
         journalTableView.isHidden = !journalTableView.isHidden
@@ -115,16 +109,16 @@ class JournalViewController: UIViewController {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
  
->>>>>>> ac80c3cd9792d9ab10143830a54346901b45a93f:Pills/Pills/Modules/Calendar/JournalViewController.swift
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         addSubviews()
         swipeAction()
-        updateViewConstraints()
+
         self.view.addGestureRecognizer(self.scopeGesture)
         self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
+
         journalTableView.configure()
         
         calendar.delegate = self
@@ -220,22 +214,8 @@ extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             calendar.trailingAnchor
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
-<<<<<<< HEAD:Pills/Pills/Modules/Calendar/CalendarViewController.swift
-            
-            journalTableView.topAnchor
-                .constraint(equalTo: calendar.bottomAnchor, constant: 0),
-            journalTableView.leadingAnchor
-                .constraint(equalTo: view.leadingAnchor, constant: 10),
-            journalTableView.trailingAnchor
-                .constraint(equalTo: view.trailingAnchor, constant: -10),
-            journalTableView.bottomAnchor
-                .constraint(equalTo: view.bottomAnchor, constant: -10),
-            
-            emptyTableStub.topAnchor
-=======
 
             stackViewTableViewAndButton.topAnchor
->>>>>>> ac80c3cd9792d9ab10143830a54346901b45a93f:Pills/Pills/Modules/Calendar/JournalViewController.swift
                 .constraint(equalTo: calendar.bottomAnchor, constant: 0),
             stackViewTableViewAndButton.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
