@@ -84,8 +84,7 @@ class CoursesView: UIView {
     
     private func configureSegmentedControl() {
         NSLayoutConstraint.activate(
-            [segmentedControl.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightSegmentControl),
-             segmentedControl.widthAnchor.constraint(equalToConstant: 500.0)])
+            [segmentedControl.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightSegmentControl)])
     }
     
     private func configureAddButton() {

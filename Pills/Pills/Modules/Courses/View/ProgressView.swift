@@ -33,7 +33,6 @@ class ProgressView: UIView {
     func configure(with model: CourseViewModel) {
         NSLayoutConstraint.activate(
             [progressView.widthAnchor.constraint(equalToConstant: model.widthProgress)])
-        layoutSubviews()
     }
     
     func resetView() {

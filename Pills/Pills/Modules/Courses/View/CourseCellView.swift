@@ -109,8 +109,6 @@ class CourseCellView: UIView {
     }
 
     private func configureStackView () {
-        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 14, bottom: -20, right: -14)
-        stackView.layoutMargins = UIEdgeInsets.zero
         stackView.addArrangedSubview(pillImage)
         stackView.addArrangedSubview(verticalStackView)
         addSubview(stackView)
