@@ -10,6 +10,7 @@ import UIKit
 class ProgressView: UIView {
     // MARK: - Properties
     private var progress: CGFloat = UIScreen.main.bounds.width/2
+    private var progressViewWidthConstraint: NSLayoutConstraint?
     
     // MARK: - Subviews
     private lazy var progressView: UIView = {
@@ -31,8 +32,15 @@ class ProgressView: UIView {
     
     // MARK: - Public functions
     func configure(with model: CourseViewModel) {
-        NSLayoutConstraint.activate(
-            [progressView.widthAnchor.constraint(equalToConstant: model.widthProgress)])
+        if let progressViewWidthConstraint = self.progressViewWidthConstraint {
+            NSLayoutConstraint.deactivate([progressViewWidthConstraint])
+        }
+
+        self.progressViewWidthConstraint = progressView.widthAnchor.constraint(equalToConstant: model.widthProgress)
+
+        if let progressViewWidthConstraint = self.progressViewWidthConstraint {
+            NSLayoutConstraint.activate([progressViewWidthConstraint])
+        }
     }
     
     func resetView() {
