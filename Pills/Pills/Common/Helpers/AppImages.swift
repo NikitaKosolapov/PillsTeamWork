@@ -45,4 +45,8 @@ class AppImages {
         static let journal = UIImage(named: "journal")
         static let settings = UIImage(named: "settings")
     }
+    
+    enum AidKit {
+        static let stubImage = UIImage(named: "stubCourse")
+    }
 }

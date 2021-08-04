@@ -20,16 +20,14 @@ class AddButton: UIButton {
     // MARK: - Private functions
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = AppColors.blue
+        backgroundColor = AppColors.AidKit.addButton
         layer.cornerRadius = 10
         setTitle(Text.add, for: .normal)
-        setTitleColor(AppColors.white, for: .normal)
+        setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
 
     private func setupConstraint() {
-        NSLayoutConstraint.activate(
-            [widthAnchor.constraint(equalToConstant: AppLayout.widthAddButton),
-             heightAnchor.constraint(equalToConstant: AppLayout.heightAddButton)])
+        
     }
 }
