@@ -12,6 +12,10 @@ enum AppLayout {
     static let widthScreen: CGFloat = UIScreen.main.bounds.width
     static let heightScreen: CGFloat = UIScreen.main.bounds.height
     
+    enum Journal {
+        static let heightAddButton: CGFloat = 52.0
+    }
+    
     enum AidKit {
         // MARK: - UIStackView
         static let widthStackView: CGFloat = widthScreen - (16.0*2)

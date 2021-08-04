@@ -80,7 +80,7 @@ class JournalViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(onDebugSwitchView), for: .touchUpInside)
         NSLayoutConstraint.activate(
-            [button.heightAnchor.constraint(equalToConstant: AppLayout.heightAddButton)])
+            [button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)])
         return button
     }()
     
