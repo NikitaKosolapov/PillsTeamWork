@@ -89,3 +89,10 @@
 "aidkit" = "Аптечка";
 "journal" = "Журнал";
 "settings" = "Настройки";
+
+// MARK: - Feedback email text
+"subject" = "Отзыв от пользователя приложения Таблетки";
+"hello" = "Привет, разработчики";
+"iOSVersion" = "iOS версия:";
+"deviceModel" = "Модель устройства:";
+"appVersion" = "Версия приложения";

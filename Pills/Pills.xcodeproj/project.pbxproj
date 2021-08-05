@@ -12,13 +12,15 @@
 		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
 		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
 		7DEA8F49593064C649BF7198 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE5C1E54995E98123A9683 /* Pods_PillsTests.framework */; };
+		8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F026BB346C008F64AA /* UIDevice.swift */; };
+		8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F526BB3510008F64AA /* AppConstants.swift */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
+		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
 		A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBD326B68AAE004E7365 /* ProgressView.swift */; };
 		A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869AC9726B9C95A002019B0 /* CourseMock.swift */; };
-		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */; };
 		A870AFF226A9A31E00624579 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEA26A9A31E00624579 /* Course.swift */; };
 		A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEC26A9A31E00624579 /* CoursesViewController.swift */; };
@@ -80,13 +82,15 @@
 		5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentBuilder.swift; sourceTree = "<group>"; };
 		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		8423A9F026BB346C008F64AA /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		8423A9F526BB3510008F64AA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
 		A802CBD326B68AAE004E7365 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		A869AC9726B9C95A002019B0 /* CourseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMock.swift; sourceTree = "<group>"; };
-		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorFactory.swift; sourceTree = "<group>"; };
 		A870AFEA26A9A31E00624579 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		A870AFEC26A9A31E00624579 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 				A870B00426A9D58E00624579 /* AppLayout.swift */,
 				5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */,
 				A884C4DC26B079AF00BACC90 /* AddButton.swift */,
+				8423A9F526BB3510008F64AA /* AppConstants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
+				8423A9F026BB346C008F64AA /* UIDevice.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -751,8 +757,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */,
+				8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */,
+				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,

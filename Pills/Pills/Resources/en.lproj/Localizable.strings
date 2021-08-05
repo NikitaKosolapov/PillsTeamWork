@@ -88,3 +88,10 @@
 "aidkit" = "AidKit";
 "journal" = "Journal";
 "settings" = "Settings";
+
+// MARK: - Feedback email text
+"subject" = "Feedback from Pills application user";
+"hello" = "Hello, developers";
+"iOSVersion" = "iOS version:";
+"deviceModel" = "Device Model:";
+"appVersion" = "App version";
