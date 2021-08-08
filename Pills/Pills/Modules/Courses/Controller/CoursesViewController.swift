@@ -12,7 +12,8 @@ enum TypeOfCourse {
     case passed
 }
 
-class CoursesViewController: UIViewController {
+class CoursesViewController: BaseViewController<CoursesView> {
+    
     // MARK: - Public properties
     var typeOfCourse: TypeOfCourse = .current
     var coursesCurrent: [Course]? = [] {
@@ -31,15 +32,12 @@ class CoursesViewController: UIViewController {
     }
     var courses: [Course]? = [] {
         didSet {
-            coursesView.tableView.reloadData()
+            rootView.tableView.reloadData()
         }
     }
     var switcher = false
     
     // MARK: - Private properties
-    internal var coursesView: CoursesView {
-        return view as! CoursesView
-    }
     
     private struct Constant {
         static let reuseCourseTableCellIdentifier = "reuseCourseTableCellId"
@@ -55,9 +53,6 @@ class CoursesViewController: UIViewController {
     }
     
     // MARK: - Life cycles
-    override func loadView() {
-        view = CoursesView()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,22 +84,22 @@ class CoursesViewController: UIViewController {
     }
     
     private func configureSegmentedControl () {
-        coursesView.segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
+        rootView.segmentedControl.addTarget(self, action: #selector(changeTypeCourses), for: .valueChanged)
     }
     
     private func configureTableView () {
-        coursesView.tableView.register(CourseCell.self, forCellReuseIdentifier: Constant.reuseCourseTableCellIdentifier)
-        coursesView.tableView.delegate = self
-        coursesView.tableView.dataSource = self
+        rootView.tableView.register(CourseCell.self, forCellReuseIdentifier: Constant.reuseCourseTableCellIdentifier)
+        rootView.tableView.delegate = self
+        rootView.tableView.dataSource = self
     }
     
     private func configureAddButton () {
-        coursesView.addButton.addTarget(self, action: #selector(addButtonTouchUpInside), for: .touchUpInside)
+        rootView.addButton.addTarget(self, action: #selector(addButtonTouchUpInside), for: .touchUpInside)
     }
     
     // MARK: - Private functions
     private func setTypeOfCourse() {
-        switch coursesView.segmentedControl.selectedSegmentIndex {
+        switch rootView.segmentedControl.selectedSegmentIndex {
         case 0:
             typeOfCourse = .current
         case 1:
@@ -124,13 +119,13 @@ class CoursesViewController: UIViewController {
     }
     
     private func showStubView() {
-        coursesView.tableView.isHidden = true
-        coursesView.stubView.isHidden = false
+        rootView.tableView.isHidden = true
+        rootView.stubView.isHidden = false
     }
     
     private func showTableView() {
-        coursesView.tableView.isHidden = false
-        coursesView.stubView.isHidden = true
+        rootView.tableView.isHidden = false
+        rootView.stubView.isHidden = true
     }
     
     // MARK: Actions
