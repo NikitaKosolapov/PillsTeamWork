@@ -9,14 +9,13 @@ import UIKit
 import FSCalendar
 
 class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     var calendarHeighConstraint: NSLayoutConstraint!
     
     private var calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.scope = .week
-        calendar.allowsMultipleSelection = true
         return calendar
     }()
     
@@ -24,6 +23,12 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    fileprivate lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
     }()
     
     fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
@@ -80,7 +85,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         emptyTableStub.isHidden = !emptyTableStub.isHidden
         journalTableView.isHidden = !journalTableView.isHidden
     }
-
+    
     private lazy var addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -104,21 +109,21 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         return stackView
     }()
     
+    private lazy var testDatesWithEvent = ["2021-08-03", "2021-08-06", "2021-08-12", "2021-08-25"]
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         addSubviews()
-        swipeAction()
-
+        
         self.view.addGestureRecognizer(self.scopeGesture)
         self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-
+        calendarDefaultUI()
         journalTableView.configure()
         
         calendar.delegate = self
@@ -132,7 +137,6 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let shouldBegin = self.journalTableView.contentOffset.y <= -self.journalTableView.contentInset.top
         if shouldBegin {
-            self.calendar.currentPage = Date()
             let velocity = self.scopeGesture.velocity(in: self.view)
             switch self.calendar.scope {
             case .month:
@@ -146,35 +150,54 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         return shouldBegin
     }
     
-    @objc func showHideButtonTapped() {
-        if calendar.scope == .week {
-            calendar.setScope(.month, animated: true)
-            self.calendar.currentPage = Date() 
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateString = dateFormatter.string(from: date)
+        if self.testDatesWithEvent.contains(dateString) {
+            return 1
+        }
+        return 0
+    }
+    
+    private func firstDayWeek() {
+        if calendar.locale.identifier == "ru" {
+            calendar.firstWeekday = 2
         } else {
-            calendar.setScope(.week, animated: true)
+            calendar.firstWeekday = 1
         }
     }
-
-    func swipeAction() {
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeUp.direction = .up
-        calendar.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeDown.direction = .down
-        calendar.addGestureRecognizer(swipeDown)
-        
+    private func calendarDefaultUI() {
+        calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
+        calendar.appearance.weekdayTextColor = AppColors.black
+        calendar.appearance.selectionColor = AppColors.white
+        calendar.appearance.todayColor = AppColors.blue
+        calendar.appearance.titleTodayColor =  AppColors.white
+        calendar.appearance.titleSelectionColor = AppColors.blue
+        calendar.appearance.eventDefaultColor = AppColors.black.withAlphaComponent(0.3)
+        calendar.appearance.titleWeekendColor = AppColors.black.withAlphaComponent(0.3)
+        calendar.appearance.titleFont = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        calendar.appearance.weekdayFont = UIFont(name: "SFCompactDisplay-Regular", size: 10)
+        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.appearance.headerTitleColor = AppColors.black
+        calendar.placeholderType = .none
+        calendar.headerHeight = 0
+        firstDayWeek()
+        calendar.clipsToBounds = true
     }
-
-    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
-        switch gesture.direction {
-        case .up:
-            showHideButtonTapped()
-        case .down:
-            showHideButtonTapped()
-        default:
-            break
-        }
+    private func selectDay() {
+        calendar.appearance.titleTodayColor = AppColors.blue
+        calendar.appearance.todayColor = AppColors.white
+        calendar.appearance.selectionColor = AppColors.blue
+        calendar.appearance.titleSelectionColor = AppColors.white
+    }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        calendarHeighConstraint.constant = bounds.height
+        view.layoutIfNeeded()
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendar.setScope(.week, animated: true)
+        selectDay()
     }
     
     func addSubviews() {
@@ -204,17 +227,17 @@ extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
             multiplier: 1,
             constant: 300
         )
-
+        
         NSLayoutConstraint.activate([
             calendarHeighConstraint,
-
+            
             calendar.topAnchor
-                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             calendar.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             calendar.trailingAnchor
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
-
+            
             stackViewTableViewAndButton.topAnchor
                 .constraint(equalTo: calendar.bottomAnchor, constant: 0),
             stackViewTableViewAndButton.leadingAnchor
@@ -252,16 +275,5 @@ extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
             manImageHintText.trailingAnchor
                 .constraint(equalTo: emptyTableStub.trailingAnchor, constant: -16)
         ])
-    }
-}
-
-extension JournalViewController {
-    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        calendarHeighConstraint.constant = bounds.height
-        view.layoutIfNeeded()
-    }
-
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(date)
     }
 }
