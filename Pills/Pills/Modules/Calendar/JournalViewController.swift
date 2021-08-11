@@ -178,7 +178,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func addSubviews() {
-        view.addSubview(calendar)
+        view.addSubview(calendar) // TODO: to put all views on one MainView (rootView) - like it is done for CoursesViewController and CoursesView.
         view.addSubview(stackViewTableViewAndButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manImageHintHeader)
