@@ -20,6 +20,20 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         return calendar
     }()
     
+    private var rounderСornersView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.white
+        return view
+    }()
+    
+    private lazy var minusView: UIView =  {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.AidKit.shadowOfCell
+        return view
+    }()
+    
     let showHideButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +129,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         
         addSubviews()
         swipeAction()
+        shadowRounder()
 
         self.view.addGestureRecognizer(self.scopeGesture)
         self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
@@ -154,6 +169,13 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
             calendar.setScope(.week, animated: true)
         }
     }
+    
+    func shadowRounder() {
+        rounderСornersView.layer.shadowColor = AppColors.AidKit.shadowOfCell.cgColor
+        rounderСornersView.layer.shadowOpacity = 1
+        rounderСornersView.layer.shadowOffset = .zero
+        rounderСornersView.layer.shadowRadius = 3
+    }
 
     func swipeAction() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
@@ -179,6 +201,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func addSubviews() {
         view.addSubview(calendar)
+        view.addSubview(rounderСornersView)
+        view.addSubview(minusView)
         view.addSubview(stackViewTableViewAndButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manImageHintHeader)
@@ -188,6 +212,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLayoutSubviews() {
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
+        rounderСornersView.layer.cornerRadius = 14
+        minusView.layer.cornerRadius = minusView.frame.height / 2
     }
 }
 
@@ -209,14 +235,30 @@ extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
             calendarHeighConstraint,
 
             calendar.topAnchor
-                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             calendar.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             calendar.trailingAnchor
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
-
-            stackViewTableViewAndButton.topAnchor
+            
+            rounderСornersView.topAnchor
                 .constraint(equalTo: calendar.bottomAnchor, constant: 0),
+            rounderСornersView.leadingAnchor
+                .constraint(equalTo: view.leadingAnchor, constant: 0),
+            rounderСornersView.trailingAnchor
+                .constraint(equalTo: view.trailingAnchor, constant: 0),
+            rounderСornersView.bottomAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            
+            minusView.topAnchor
+                .constraint(equalTo: rounderСornersView.topAnchor, constant: 6),
+            minusView.centerXAnchor
+                .constraint(equalTo: rounderСornersView.centerXAnchor),
+            minusView.widthAnchor.constraint(equalToConstant: 35),
+            minusView.heightAnchor.constraint(equalToConstant: 5),
+            
+            stackViewTableViewAndButton.topAnchor
+                .constraint(equalTo: calendar.bottomAnchor, constant: 20),
             stackViewTableViewAndButton.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             stackViewTableViewAndButton.trailingAnchor
@@ -263,5 +305,14 @@ extension JournalViewController {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
+    }
+}
+extension UIView {
+    
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        
+        clipsToBounds = true
+        layer.cornerRadius = radius
+        layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
     }
 }
