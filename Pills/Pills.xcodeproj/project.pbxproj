@@ -16,6 +16,7 @@
 		8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F526BB3510008F64AA /* AppConstants.swift */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		9D0B3BFD14374EFE5CF63B7D /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79141A8E691CC6D4CE4577 /* Pods_Pills_PillsUITests.framework */; };
+		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
 		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
@@ -86,6 +87,7 @@
 		8423A9F526BB3510008F64AA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		92C6E56A39E7701444601A28 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		FE79E3F2269CC99D00DACD24 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A305168C26C3AED000EAD8F3 /* UIView.swift */,
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
@@ -772,6 +775,7 @@
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
+				A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */,
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
 				A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */,

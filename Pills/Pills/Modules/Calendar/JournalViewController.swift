@@ -22,8 +22,6 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private var rounderСornersView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.white
         return view
     }()
     
@@ -164,7 +162,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc func showHideButtonTapped() {
         if calendar.scope == .week {
             calendar.setScope(.month, animated: true)
-            self.calendar.currentPage = Date() 
+            self.calendar.currentPage = Date()
         } else {
             calendar.setScope(.week, animated: true)
         }
@@ -175,6 +173,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         rounderСornersView.layer.shadowOpacity = 1
         rounderСornersView.layer.shadowOffset = .zero
         rounderСornersView.layer.shadowRadius = 3
+        rounderСornersView.backgroundColor = AppColors.white
+        rounderСornersView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func swipeAction() {
@@ -211,6 +211,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewDidLayoutSubviews() {
+        minusView.translatesAutoresizingMaskIntoConstraints = false
+        minusView.backgroundColor = AppColors.AidKit.shadowOfCell
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
         rounderСornersView.layer.cornerRadius = 14
         minusView.layer.cornerRadius = minusView.frame.height / 2
@@ -305,14 +307,5 @@ extension JournalViewController {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
-    }
-}
-extension UIView {
-    
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        
-        clipsToBounds = true
-        layer.cornerRadius = radius
-        layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
     }
 }
