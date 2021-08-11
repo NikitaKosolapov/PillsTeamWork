@@ -17,28 +17,7 @@ import UIKit
 //   let image = AppImages.Pills.tablets
 
 class AppImages {
-
-    static let pillsImages: [PillType: UIImage?] = [
-        .tablets: UIImage(named: "tablets"),
-        .capsules: UIImage(named: "capsules"),
-        .drops: UIImage(named: "drops"),
-        .procedure: UIImage(named: "procedure"),
-        .salve: UIImage(named: "salve"),
-        .liquid: UIImage(named: "liquid"),
-        .syringe: UIImage(named: "syringe"),
-        .spray: UIImage(named: "suspension")
-    ]
-
-    enum Pills {
-        static let tablets = UIImage(named: "tablets")
-        static let capsules = UIImage(named: "capsules")
-        static let drops = UIImage(named: "drops")
-        static let procedure = UIImage(named: "procedure")
-        static let salve = UIImage(named: "salve")
-        static let liquid = UIImage(named: "liquid")
-        static let syringe = UIImage(named: "syringe")
-        static let suspension = UIImage(named: "suspension")
-    }
+    private static let badImage = UIImage()
 
     enum Tabs {
         static let aidkit = UIImage(named: "aidkit")
@@ -54,5 +33,11 @@ class AppImages {
         static let badSmile = UIImage(named: "badSmile")
         static let normSmile = UIImage(named: "normSmile")
         static let okSmile = UIImage(named: "okSmile")
+    }
+
+    enum Tools {
+        static let downArrow = UIImage(named: "downArrow")
+        static let rightArrow = UIImage(named: "rightArrow")
+        static let calendar = UIImage(named: "calendar")
     }
 }

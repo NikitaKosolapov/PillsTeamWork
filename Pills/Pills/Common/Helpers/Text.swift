@@ -13,13 +13,24 @@ import Foundation
 //   let text: String = Text.Pills.tablets
 //   let text = Text.Pills.tablets
 
+import UIKit
+
 enum Text {
 
     // MARK: - Add a new pill
     // swiftlint:disable variable_name
     static let addNewPill = "addNewPill".localized()
     static let name = "name".localized()
+    static let namePlaceholder = "namePlaceholder".localized()
+    static let dose = "dose".localized()
+    static let dosePlaceholder = "dosePlaceholder".localized()
+    static let pillType = "pillType".localized()
     static let singleDose = "singleDose".localized()
+    static let takingFrequency = "takingFrequency".localized()
+    static let startFrom = "startFrom".localized()
+    static let takeAtTime = "takeAtTime".localized()
+    static let takePeriod = "takePeriod".localized()
+    static let takePeriodPlaceholder = "takePeriodPlaceholder".localized()
     static let concentration = "concentration".localized()
     static let instruction = "instruction".localized()
     static let comments = "comments".localized()
@@ -28,16 +39,29 @@ enum Text {
     static let of = "of".localized()
     static let takePillsInTime = "takePillsInTime".localized()
     static let justAddAnOrder = "justAddAnOrder".localized()
+    static let periodExpired = "periodExpired".localized()
+    static let till = "till".localized()
+    static let save = "save".localized()
 
-    enum Pills {
-        static let tablets = "tablets".localized()
-        static let capsules = "capsules".localized()
-        static let drops = "drops".localized()
-        static let procedure = "procedure".localized()
-        static let salve = "salve".localized()
-        static let liquid = "liquid".localized()
-        static let syringe = "syringe".localized()
-        static let suspension = "suspension".localized()
+    enum DatePickerButtons {
+        static let done = "done".localized()
+        static let now = "now".localized()
+        static let cancel = "cancel".localized()
+        static let today = "today".localized()
+    }
+
+    enum Pills: String, CaseIterable {
+        case tablets
+        case capsules
+        case procedure
+        case salve
+        case liquid
+        case syringe
+        case suspension
+        
+        static func all() -> [String] {
+            Text.Pills.allCases.map {$0.rawValue.localized()}
+        }
     }
 
     enum Usage {
@@ -47,43 +71,61 @@ enum Text {
         static let noMatter = "noMatter".localized()
     }
 
-    enum Unit {
-        static let pill = "pill".localized()
-        static let piece = "piece".localized()
-        static let mg = "mg".localized()
-        static let ml = "ml".localized()
-        static let g = "g".localized()
-        static let capsule = "capsule".localized()
-        static let drop = "drop".localized()
-        static let times = "times".localized()
-        static let inhalation = "inhalation".localized()
-        static let taking = "taking".localized()
-        static let suppository = "suppository".localized()
-        static let enema = "enema".localized()
-        static let bowl = "bowl".localized()
-        static let flask = "flask".localized()
-        static let teaspoon = "teaspoon".localized()
-        static let tablespoon = "tablespoon".localized()
-        static let ampoule = "ampoule".localized()
-        static let syringe = "syringe".localized()
-        static let cm3 = "cm3".localized()
-        static let injection = "injection".localized()
+    enum Unit: String, CaseIterable {
+        case pill
+        case piece
+        case mg
+        case ml
+        case g
+        case capsule
+        case drop
+        case times
+        case inhalation
+        case taking
+        case suppository
+        case enema
+        case bowl
+        case flask
+        case teaspoon
+        case tablespoon
+        case ampoule
+        case syringe
+        case cm3
+        case injection
+
+        static func all() -> [String] {
+            Text.Unit.allCases.map {$0.rawValue.localized()}
+        }
     }
     
-    enum ConcentrationUnit {
-        static let g = "g".localized()
-        static let mg = "mg".localized()
-        static let IU = "IU".localized()
-        static let mсg = "mсg".localized()
-        static let mEq = "mEq".localized()
-        static let ml = "ml".localized()
-        static let percent = "percent".localized()
-        static let mgToG = "mgToG".localized()
-        static let mgToCm2 = "mgToCm2".localized()
-        static let mgToMl = "mgToMl".localized()
-        
+    enum ConcentrationUnit: String, CaseIterable {
+        case g
+        case mg
+        case IU
+        case mсg
+        case mEq
+        case ml
+        case percent
+        case mgToG
+        case mgToCm2
+        case mgToMl
+
+        static func all() -> [String] {
+            Text.ConcentrationUnit.allCases.map {$0.rawValue.localized()}
+        }
     }
 
+    enum Period: String, CaseIterable {
+        case week
+        case month
+        case halfYear
+        case year
+
+        static func all() -> [String] {
+            Text.Period.allCases.map { $0.rawValue.localized() }
+        }
+    }
+    
     // MARK: - Journal Event Status
     enum Journal {
         static let accepted = "accepted".localized()

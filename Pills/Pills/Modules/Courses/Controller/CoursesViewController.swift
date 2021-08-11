@@ -128,8 +128,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
         rateViewController.modalPresentationStyle = .overCurrentContext
         present(rateViewController, animated: true, completion: nil)
         
-        //TODO: - You should present a addPillsController
-        
+        // TODO: - You should present a addPillsController
         //        switcher.toggle()
         //        if switcher {
         //            coursesCurrent = []

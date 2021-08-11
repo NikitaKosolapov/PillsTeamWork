@@ -17,7 +17,16 @@
 "suspension" = "раствор";
 
 "addNewPill" = "Добавить лекарство";
-"name" = "Наименование";
+"name" = "Наименование лекарства";
+"namePlaceholder" = "Введите наименование...";
+"dose" = "Дозировка";
+"dosePlaceholder" = "Введите дозировку...";
+"pillType" = "Вид";
+"takingFrequency" = "Частота приёма...";
+"startFrom" = "Начало приёма";
+"takeAtTime" = "Время приёма";
+"takePeriod" = "Период приёма";
+"takePeriodPlaceholder" = "Количество дней...";
 "singleDose" = "Однократно";
 "concentration" = "Концентрация";
 "instruction" = "Инструкция";
@@ -27,6 +36,19 @@
 "of" = "по";
 "takePillsInTime" = "Принимайте лекарство вовремя";
 "justAddAnOrder" = "Нужно просто добавить";
+"periodExpired" = "Период истёк...";
+"save" = "Сохранить";
+
+"week" = "1 неделю";
+"month" = "1 месяц";
+"halfYear" = "полгода";
+"year" = "год";
+
+"done" = "Выбрать";
+"now" = "Сейчас";
+"today" = "Сегодня";
+"cancel" = "Отмена";
+"till" = "до";
 
 "beforeMeals" = "Перед едой";
 "whileEating" = "Во время еды";

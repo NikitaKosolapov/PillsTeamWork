@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         configure()
+        DropDown.startListeningToKeyboard()
         return true
     }
     
@@ -25,28 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     func configure() {
-        configureNavigationAppearance()
         instantiateInitialViewController()
-        configureIQKeyboardManager()
         configureNotificationService()
-    }
-    
-    func configureNavigationAppearance() {
-        UIBarButtonItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.clear],
-            for: .normal)
-        UIBarButtonItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.clear],
-            for: .selected)
-        UIBarButtonItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.clear],
-            for: .highlighted)
-        UINavigationBar.appearance().tintColor = .black
-        UINavigationBar.appearance().backgroundColor = .white
-        
-        let tabBarFont = UIFont.systemFont(ofSize: 10) // TODO: get from constants when done
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : tabBarFont,
-                                                            NSAttributedString.Key.foregroundColor : UIColor.black]
     }
     
     func instantiateInitialViewController() {
@@ -54,13 +36,6 @@ extension AppDelegate {
         appCoordinator.instantiateInitialViewController()
     }
 }
-
-private extension AppDelegate {
-    func configureIQKeyboardManager() {
-        // TODO: do setup of IQKeyboardManager here when pods installed
-    }
-}
-
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func configureNotificationService() {

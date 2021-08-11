@@ -41,7 +41,7 @@ final class JournalMock {
 
         // external
         var pillType = PillType.tablets
-        let unitIndex = Int.random(in: 0..<pillType.pillUnits().count)
+        let unitIndex = Int.random(in: 0..<Text.Unit.allCases.count)
 
         // usage
         entryExample1 = RealmMedKitEntry(
@@ -50,7 +50,7 @@ final class JournalMock {
             singleDose: 0.5,
             concentration: 500,
             concentrationUnit: .g,
-            unitString: pillType.pillUnits()[unitIndex],
+            unitString: Text.Unit.all()[unitIndex],
             usage: .whileEating,
             comments: "",
             startDate: startDate,
@@ -65,7 +65,7 @@ final class JournalMock {
             singleDose: 1,
             concentration: 100,
             concentrationUnit: .mg,
-            unitString: pillType.pillUnits().last ?? "#error",
+            unitString: Text.Unit.all().last ?? "#error",
             usage: .afterMeals,
             comments: "",
             startDate: startDate,
