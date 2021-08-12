@@ -27,8 +27,6 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private lazy var minusView: UIView =  {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.AidKit.shadowOfCell
         return view
     }()
     
@@ -175,6 +173,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         rounderСornersView.layer.shadowRadius = 3
         rounderСornersView.backgroundColor = AppColors.white
         rounderСornersView.translatesAutoresizingMaskIntoConstraints = false
+        minusView.translatesAutoresizingMaskIntoConstraints = false
+        minusView.backgroundColor = AppColors.AidKit.shadowOfCell
     }
 
     func swipeAction() {
@@ -214,8 +214,6 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        minusView.translatesAutoresizingMaskIntoConstraints = false
-        minusView.backgroundColor = AppColors.AidKit.shadowOfCell
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
         rounderСornersView.layer.cornerRadius = 14
         minusView.layer.cornerRadius = minusView.frame.height / 2
