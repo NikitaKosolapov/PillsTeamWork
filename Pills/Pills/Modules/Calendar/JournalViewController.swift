@@ -203,6 +203,9 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(calendar)
         view.addSubview(rounderСornersView)
         view.addSubview(minusView)
+        view.addSubview(calendar)
+        // TODO: make visible when table has no data
+              // - when mock data will be replaced with real one
         view.addSubview(stackViewTableViewAndButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manImageHintHeader)
