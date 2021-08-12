@@ -85,6 +85,14 @@
 "mainSection" = "Основные";
 "infoSection" = "Информация";
 
+// MARK: - Rating
+"rateApp" = "Оцени приложение";
+"badRate" = "Плохо";
+"normRate" = "Нормально";
+"bestRate" = "Отлично";
+"provideFeedback" = "Оставить отзыв";
+"noThanks" = "Нет, спасибо";
+
 // MARK: - TabBar
 "aidkit" = "Аптечка";
 "journal" = "Журнал";

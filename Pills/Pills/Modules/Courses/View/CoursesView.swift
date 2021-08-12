@@ -93,11 +93,11 @@ class CoursesView: UIView {
     }
 
     private func configureStackView() {
-        stackView.addArrangedSubview(separatorFactory.makeTranslucent(height: 19.0))
-        stackView.addArrangedSubview(segmentedControl)
-        stackView.addArrangedSubview(stubView)
-        stackView.addArrangedSubview(tableView)
-        stackView.addArrangedSubview(addButton)
+        stackView.addArrangedSubviews(views: makeTranslucent(height: 19.0),
+                                      segmentedControl,
+                                      stubView,
+                                      tableView,
+                                      addButton)
         addSubview(stackView)
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([

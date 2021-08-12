@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum TypeOfCourse {
-    case current
-    case passed
-}
-
 class CoursesViewController: BaseViewController<CoursesView> {
     
     // MARK: - Public properties
@@ -36,13 +31,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
         }
     }
     var switcher = false
-    
-    // MARK: - Private properties
-    
-    private struct Constant {
-        static let reuseCourseTableCellIdentifier = "reuseCourseTableCellId"
-    }
-    
+
     // MARK: - Initialisation
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -88,7 +77,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     private func configureTableView () {
-        rootView.tableView.register(CourseCell.self, forCellReuseIdentifier: Constant.reuseCourseTableCellIdentifier)
+        rootView.tableView.register(CourseCell.self)
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
     }
@@ -135,13 +124,17 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     @objc private func addButtonTouchUpInside() {
-        switcher.toggle()
-        if switcher {
-            coursesCurrent = []
-            coursesPassed = []
-        } else {
-            configureMocData()
-        }
+        let rateViewController = RateViewController()
+        rateViewController.modalPresentationStyle = .overCurrentContext
+        present(rateViewController, animated: true, completion: nil)
+        
+//        switcher.toggle()
+//        if switcher {
+//            coursesCurrent = []
+//            coursesPassed = []
+//        } else {
+//            configureMocData()
+//        }
     }
 }
 // MARK: - UICollectionViewDataSource
@@ -161,15 +154,13 @@ extension CoursesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dequeueCell =  tableView.dequeueReusableCell(withIdentifier: Constant.reuseCourseTableCellIdentifier,
-                                                         for: indexPath)
-        guard let cell = dequeueCell as? CourseCell,
-              let course = courses?[indexPath.row] else {
+        let dequeueCell = tableView.dequeueReusableCell(ofType: CourseCell.self, for: indexPath)
+        guard let course = courses?[indexPath.row] else {
             return dequeueCell
         }
         let courseModel = CourseViewModelFactory.cellModel(from: course)
-        cell.configure(with: courseModel)
-        return cell
+        dequeueCell.configure(with: courseModel)
+        return dequeueCell
     }
 }
 

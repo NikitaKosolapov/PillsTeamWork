@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+enum TypeOfCourse {
+    case current
+    case passed
+}
+
 class Course {
     // MARK: Init
     init(imagePill: UIImage, namePill: String, dateStartOfCourse: Date, dateEndOfCourse: Date) {

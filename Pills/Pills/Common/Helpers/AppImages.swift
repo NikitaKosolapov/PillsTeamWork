@@ -49,4 +49,10 @@ class AppImages {
     enum AidKit {
         static let stubImage = UIImage(named: "stubCourse")
     }
+    
+    enum Rate {
+        static let badSmile = UIImage(named: "badSmile")
+        static let normSmile = UIImage(named: "normSmile")
+        static let okSmile = UIImage(named: "okSmile")
+    }
 }

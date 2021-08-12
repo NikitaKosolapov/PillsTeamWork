@@ -38,11 +38,6 @@ class CourseCell: UITableViewCell {
     }
     
     // MARK: - ConfigureUI
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        courseCellView.resetView()
-    }
-    
     private func configureUI () {
         backgroundColor = AppColors.AidKit.background
         configureContentView()

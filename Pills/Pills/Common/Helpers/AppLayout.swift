@@ -9,8 +9,17 @@ import Foundation
 import UIKit
 
 enum AppLayout {
-    static let widthScreen: CGFloat = UIScreen.main.bounds.width
-    static let heightScreen: CGFloat = UIScreen.main.bounds.height
+    static var widthScreen: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    static var halfWidthScreen: CGFloat {
+        return widthScreen/2
+    }
+    
+    static var heightScreen: CGFloat {
+        return UIScreen.main.bounds.height
+    }
     
     enum Journal {
         static let heightAddButton: CGFloat = 52.0
@@ -18,9 +27,15 @@ enum AppLayout {
     
     enum AidKit {
         // MARK: - UIStackView
-        static let widthStackView: CGFloat = widthScreen - (16.0*2)
-        static let leadingStackView: CGFloat = (AppLayout.widthScreen - AppLayout.AidKit.widthStackView)/2.0
-        static let trailingStackView: CGFloat = -(AppLayout.widthScreen - AppLayout.AidKit.widthStackView)/2.0
+        static var widthStackView: CGFloat {
+            return AppLayout.widthScreen - (16.0*2)
+        }
+        static var leadingStackView: CGFloat {
+            return (AppLayout.widthScreen - AppLayout.AidKit.widthStackView)/2.0
+        }
+        static var trailingStackView: CGFloat {
+            return -(AppLayout.widthScreen - AppLayout.AidKit.widthStackView)/2.0
+        }
         
         // MARK: - UISegmentControl
         static let heightSegmentControl: CGFloat = 37.0
@@ -36,19 +51,45 @@ enum AppLayout {
         // MARK: - UITableView
         static let tableEstimatedRowHeight: CGFloat = 10
         static let tableContentInset = UIEdgeInsets(top: 10.0, left: 0, bottom: 10, right: 0)
-        static let widthProgressiveView: CGFloat = widthStackView
+        static var widthProgressiveView: CGFloat {
+            return widthStackView
+        }
         static let widthIndentBetweenCells: CGFloat = 20.0
         static let heightVisiblePartOfProgressView: CGFloat = 6.0
         
         // MARK: - UIStubView
-        static let indentImageFromTop: CGFloat = heightScreen/10.0
-        static let widthStubImage: CGFloat = widthStackView/2
-        static let heightStubImage: CGFloat = widthStackView/2
-        static let leadingStubImage: CGFloat = (widthStackView - widthStubImage)/2.0
+        static var indentImageFromTop: CGFloat {
+            return AppLayout.heightScreen/10.0
+        }
+        static var widthStubImage: CGFloat {
+            return widthStackView/2
+        }
+        static var heightStubImage: CGFloat {
+            return widthStackView/2
+        }
+        static var leadingStubImage: CGFloat {
+            return (widthStackView - widthStubImage)/2.0
+        }
         
         // MARK: - UIAddButton
         static let heightAddButton: CGFloat = 52.0
         static let indentFromBottomAddButton: CGFloat = 14
+    }
+    
+    enum Rate {
+        static let widthRateView: CGFloat = 248
+        static let heightRateView: CGFloat = 176
+        static let leadingRateView: CGFloat = (AppLayout.widthScreen - widthRateView)/2
+        static let topRateView: CGFloat = (0.8 * AppLayout.heightScreen - heightRateView)/2
+        static let topStackView: CGFloat = 21
+        static let leadingStackView: CGFloat = 15
+        static let trailingStackView: CGFloat = -leadingStackView
+        static let bottomStackView: CGFloat = -topStackView
+        static let widthSmileImageView: CGFloat = 38
+        static let heightSmileImageView: CGFloat = 38
+        static let widthRateButton: CGFloat = 88
+        static let heightRateButton: CGFloat = 24
+        
     }
 
     enum Fonts {
@@ -59,5 +100,6 @@ enum AppLayout {
         static let normalSemibold = UIFont(name: "SFCompactDisplay-Semibold", size: 17)
 
         static let smallRegular = UIFont(name: "SFCompactDisplay-Regular", size: 13)
+        static let verySmallRegular = UIFont(name: "SFCompactDisplay-Regular", size: 10)
     }
 }

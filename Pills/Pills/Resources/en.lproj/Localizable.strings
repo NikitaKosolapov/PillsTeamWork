@@ -84,6 +84,14 @@
 "mainSection" = "Main";
 "infoSection" = "Info";
 
+// MARK: - Rating
+"rateApp" = "Rate the Application";
+"badRate" = "Bad";
+"normRate" = "Normal";
+"bestRate" = "Awesome";
+"provideFeedback" = "Provide feedback";
+"noThanks" = "No, thanks";
+
 // MARK: - TabBar
 "aidkit" = "AidKit";
 "journal" = "Journal";
