@@ -1,5 +1,5 @@
 //
-//  SatackView.swift
+//  StackView.swift
 //  Pills
 //
 //  Created by Alexandr Evtodiy on 09.08.2021.

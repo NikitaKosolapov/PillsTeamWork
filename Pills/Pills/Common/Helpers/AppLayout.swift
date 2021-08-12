@@ -27,14 +27,15 @@ enum AppLayout {
     
     enum AidKit {
         // MARK: - UIStackView
+        static var indentStackView: CGFloat = 16.0
         static var widthStackView: CGFloat {
-            return AppLayout.widthScreen - (16.0*2)
+            return AppLayout.widthScreen - (indentStackView*2)
         }
         static var leadingStackView: CGFloat {
-            return (AppLayout.widthScreen - AppLayout.AidKit.widthStackView)/2.0
+            return indentStackView
         }
         static var trailingStackView: CGFloat {
-            return -(AppLayout.widthScreen - AppLayout.AidKit.widthStackView)/2.0
+            return -indentStackView
         }
         
         // MARK: - UISegmentControl

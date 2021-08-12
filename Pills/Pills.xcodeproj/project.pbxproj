@@ -28,7 +28,7 @@
 		A86DB94726C54C3600AE866A /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB94626C54C3600AE866A /* TableView.swift */; };
 		A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB94B26C54C3D00AE866A /* CollectionView.swift */; };
 		A86DB95126C54C4B00AE866A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95026C54C4B00AE866A /* View.swift */; };
-		A86DB95626C54C5300AE866A /* SatackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95526C54C5300AE866A /* SatackView.swift */; };
+		A86DB95626C54C5300AE866A /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95526C54C5300AE866A /* StackView.swift */; };
 		A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95A26C54D6200AE866A /* AutoReusable.swift */; };
 		A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */; };
 		A870AFF226A9A31E00624579 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEA26A9A31E00624579 /* Course.swift */; };
@@ -111,7 +111,7 @@
 		A86DB94626C54C3600AE866A /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		A86DB94B26C54C3D00AE866A /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		A86DB95026C54C4B00AE866A /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		A86DB95526C54C5300AE866A /* SatackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatackView.swift; sourceTree = "<group>"; };
+		A86DB95526C54C5300AE866A /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		A86DB95A26C54D6200AE866A /* AutoReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoReusable.swift; sourceTree = "<group>"; };
 		A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorFactory.swift; sourceTree = "<group>"; };
 		A870AFEA26A9A31E00624579 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -456,7 +456,7 @@
 				A86DB94626C54C3600AE866A /* TableView.swift */,
 				A86DB94B26C54C3D00AE866A /* CollectionView.swift */,
 				A86DB95026C54C4B00AE866A /* View.swift */,
-				A86DB95526C54C5300AE866A /* SatackView.swift */,
+				A86DB95526C54C5300AE866A /* StackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -812,7 +812,7 @@
 				8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */,
-				A86DB95626C54C5300AE866A /* SatackView.swift in Sources */,
+				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
