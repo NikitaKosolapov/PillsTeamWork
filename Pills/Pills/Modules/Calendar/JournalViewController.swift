@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 
 class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
-    
+
     var calendarHeighConstraint: NSLayoutConstraint!
     
     private var calendar: FSCalendar = {
@@ -19,16 +19,35 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         return calendar
     }()
     
-    let showHideButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
+    }()
+    
+    private var rounderСornersView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.shadowColor = AppColors.AidKit.shadowOfCell.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 3
+        view.backgroundColor = AppColors.white
+        view.layer.cornerRadius = 14
+        return view
+    }()
+    
+    private lazy var minusView: UIView =  {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.AidKit.shadowOfCell
+        return view
+    }()
+    
+    let showHideButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
@@ -110,7 +129,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private lazy var testDatesWithEvent = ["2021-08-03", "2021-08-06", "2021-08-12", "2021-08-25"]
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -119,11 +138,15 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        addSubviews()
         
+        addSubviews()
+        swipeAction()
+        firstDayWeek()
+        shadowRounder()
+        calendarDefaultUI()
         self.view.addGestureRecognizer(self.scopeGesture)
         self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-        calendarDefaultUI()
+        
         journalTableView.configure()
         
         calendar.delegate = self
@@ -140,8 +163,10 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
             let velocity = self.scopeGesture.velocity(in: self.view)
             switch self.calendar.scope {
             case .month:
+                calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
                 return velocity.y < 0
             case .week:
+                calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
                 return velocity.y > 0
             @unknown default:
                 fatalError()
@@ -158,36 +183,69 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         return 0
     }
     
+    @objc func showHideButtonTapped() {
+        if calendar.scope == .week {
+            calendar.setScope(.month, animated: true)
+            self.calendar.currentPage = Date()
+        } else {
+            calendar.setScope(.week, animated: true)
+        }
+    }
+    
     private func firstDayWeek() {
         if calendar.locale.identifier == "ru" {
             calendar.firstWeekday = 2
         } else {
             calendar.firstWeekday = 1
         }
+        
     }
+    
     private func calendarDefaultUI() {
         calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
-        calendar.appearance.weekdayTextColor = AppColors.black
-        calendar.appearance.selectionColor = AppColors.white
-        calendar.appearance.todayColor = AppColors.blue
-        calendar.appearance.titleTodayColor =  AppColors.white
-        calendar.appearance.titleSelectionColor = AppColors.blue
-        calendar.appearance.eventDefaultColor = AppColors.black.withAlphaComponent(0.3)
-        calendar.appearance.titleWeekendColor = AppColors.black.withAlphaComponent(0.3)
-        calendar.appearance.titleFont = UIFont(name: "SFCompactDisplay-Regular", size: 17)
-        calendar.appearance.weekdayFont = UIFont(name: "SFCompactDisplay-Regular", size: 10)
+        calendar.appearance.weekdayTextColor = UIColor.weekdayTextColor()
+        calendar.appearance.selectionColor = UIColor.selectionDefaultColor()
+        calendar.appearance.todayColor = UIColor.todayDeafaultColor()
+        calendar.appearance.titleTodayColor = UIColor.titleDefaultTodayColor()
+        calendar.appearance.titleSelectionColor = UIColor.titleSelectionDefaultColor()
+        calendar.appearance.eventDefaultColor = UIColor.eventDefaultColor()
+        calendar.appearance.titleWeekendColor = UIColor.titleWeekendColor()
+        calendar.appearance.titleFont = UIFont.SFPro17()
+        calendar.appearance.weekdayFont = UIFont.SFPro10()
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.appearance.headerTitleColor = AppColors.black
+        calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
         calendar.placeholderType = .none
-        calendar.headerHeight = 0
-        firstDayWeek()
         calendar.clipsToBounds = true
     }
     private func selectDay() {
-        calendar.appearance.titleTodayColor = AppColors.blue
-        calendar.appearance.todayColor = AppColors.white
-        calendar.appearance.selectionColor = AppColors.blue
-        calendar.appearance.titleSelectionColor = AppColors.white
+        calendar.appearance.titleTodayColor = UIColor.titleTodayColor()
+        calendar.appearance.todayColor = UIColor.todayColor()
+        calendar.appearance.selectionColor = UIColor.selectionColor()
+        calendar.appearance.titleSelectionColor = UIColor.titleSelectionColor()
+    }
+    func shadowRounder() {
+    }
+    
+    func swipeAction() {
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeUp.direction = .up
+        calendar.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeDown.direction = .down
+        calendar.addGestureRecognizer(swipeDown)
+        
+    }
+    
+    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .up:
+            showHideButtonTapped()
+        case .down:
+            showHideButtonTapped()
+        default:
+            break
+        }
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
@@ -202,6 +260,11 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func addSubviews() {
         view.addSubview(calendar)
+        view.addSubview(rounderСornersView)
+        view.addSubview(minusView)
+        view.addSubview(calendar)
+        // TODO: make visible when table has no data
+        // - when mock data will be replaced with real one
         view.addSubview(stackViewTableViewAndButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manImageHintHeader)
@@ -232,14 +295,30 @@ extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
             calendarHeighConstraint,
             
             calendar.topAnchor
-                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             calendar.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             calendar.trailingAnchor
                 .constraint(equalTo: view.trailingAnchor, constant: -10),
             
-            stackViewTableViewAndButton.topAnchor
+            rounderСornersView.topAnchor
                 .constraint(equalTo: calendar.bottomAnchor, constant: 0),
+            rounderСornersView.leadingAnchor
+                .constraint(equalTo: view.leadingAnchor, constant: 0),
+            rounderСornersView.trailingAnchor
+                .constraint(equalTo: view.trailingAnchor, constant: 0),
+            rounderСornersView.bottomAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            
+            minusView.topAnchor
+                .constraint(equalTo: rounderСornersView.topAnchor, constant: 6),
+            minusView.centerXAnchor
+                .constraint(equalTo: rounderСornersView.centerXAnchor),
+            minusView.widthAnchor.constraint(equalToConstant: 35),
+            minusView.heightAnchor.constraint(equalToConstant: 5),
+            
+            stackViewTableViewAndButton.topAnchor
+                .constraint(equalTo: calendar.bottomAnchor, constant: 20),
             stackViewTableViewAndButton.leadingAnchor
                 .constraint(equalTo: view.leadingAnchor, constant: 10),
             stackViewTableViewAndButton.trailingAnchor
