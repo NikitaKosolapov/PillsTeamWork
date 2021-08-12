@@ -68,26 +68,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         notificationService.notificationCenter.delegate = self
     }
 }
-
-extension AppDelegate { // added just for demo purposes to show that local notifications work fine
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        if let view: UIView = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.subviews.last?.viewWithTag(101) {
-            view.removeFromSuperview()
-        }
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        let view = UIView(frame: self.window!.bounds)
-        view.tag = 101
-        view.backgroundColor = UIColor.white
-        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.subviews.last?.addSubview(view)
-        
-        createNotification()
-    }
-    
-    func createNotification() {
-        notificationService.send(title: "Pills Reminder", subtitle: "Waiting for your comeback", content: "Time to take your pills")
-        
-    }
-}
