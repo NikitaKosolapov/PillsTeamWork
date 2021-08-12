@@ -22,11 +22,20 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private var rounderСornersView: UIView = {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.shadowColor = AppColors.AidKit.shadowOfCell.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 3
+        view.backgroundColor = AppColors.white
+        view.layer.cornerRadius = 14
         return view
     }()
     
     private lazy var minusView: UIView =  {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.AidKit.shadowOfCell
         return view
     }()
     
@@ -90,7 +99,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         emptyTableStub.isHidden = !emptyTableStub.isHidden
         journalTableView.isHidden = !journalTableView.isHidden
     }
-
+    
     private lazy var addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +127,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -126,10 +135,10 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         addSubviews()
         swipeAction()
         shadowRounder()
-
+        
         self.view.addGestureRecognizer(self.scopeGesture)
         self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-
+        
         journalTableView.configure()
         
         calendar.delegate = self
@@ -167,16 +176,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func shadowRounder() {
-        rounderСornersView.layer.shadowColor = AppColors.AidKit.shadowOfCell.cgColor
-        rounderСornersView.layer.shadowOpacity = 1
-        rounderСornersView.layer.shadowOffset = .zero
-        rounderСornersView.layer.shadowRadius = 3
-        rounderСornersView.backgroundColor = AppColors.white
-        rounderСornersView.translatesAutoresizingMaskIntoConstraints = false
-        minusView.translatesAutoresizingMaskIntoConstraints = false
-        minusView.backgroundColor = AppColors.AidKit.shadowOfCell
     }
-
+    
     func swipeAction() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeUp.direction = .up
@@ -187,7 +188,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         calendar.addGestureRecognizer(swipeDown)
         
     }
-
+    
     @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
         case .up:
@@ -205,7 +206,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(minusView)
         view.addSubview(calendar)
         // TODO: make visible when table has no data
-              // - when mock data will be replaced with real one
+        // - when mock data will be replaced with real one
         view.addSubview(stackViewTableViewAndButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manImageHintHeader)
@@ -215,8 +216,6 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLayoutSubviews() {
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
-        rounderСornersView.layer.cornerRadius = 14
-        minusView.layer.cornerRadius = minusView.frame.height / 2
     }
 }
 
@@ -233,10 +232,10 @@ extension JournalViewController : FSCalendarDataSource, FSCalendarDelegate {
             multiplier: 1,
             constant: 300
         )
-
+        
         NSLayoutConstraint.activate([
             calendarHeighConstraint,
-
+            
             calendar.topAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             calendar.leadingAnchor
@@ -305,7 +304,7 @@ extension JournalViewController {
         calendarHeighConstraint.constant = bounds.height
         view.layoutIfNeeded()
     }
-
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
     }
