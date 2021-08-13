@@ -128,13 +128,15 @@ class CoursesViewController: BaseViewController<CoursesView> {
         rateViewController.modalPresentationStyle = .overCurrentContext
         present(rateViewController, animated: true, completion: nil)
         
-//        switcher.toggle()
-//        if switcher {
-//            coursesCurrent = []
-//            coursesPassed = []
-//        } else {
-//            configureMocData()
-//        }
+        //TODO: - You should present a addPillsController
+        
+        //        switcher.toggle()
+        //        if switcher {
+        //            coursesCurrent = []
+        //            coursesPassed = []
+        //        } else {
+        //            configureMocData()
+        //        }
     }
 }
 // MARK: - UICollectionViewDataSource

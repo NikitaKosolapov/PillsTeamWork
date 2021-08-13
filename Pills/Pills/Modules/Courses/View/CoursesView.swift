@@ -93,15 +93,14 @@ class CoursesView: UIView {
     }
 
     private func configureStackView() {
-        stackView.addArrangedSubviews(views: makeTranslucent(height: 19.0),
-                                      segmentedControl,
+        stackView.addArrangedSubviews(views: segmentedControl,
                                       stubView,
                                       tableView,
                                       addButton)
         addSubview(stackView)
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 19.0),
             stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
                                                constant: AppLayout.AidKit.leadingStackView),
             stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,

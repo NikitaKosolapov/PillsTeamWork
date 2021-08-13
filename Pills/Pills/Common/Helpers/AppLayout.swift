@@ -78,12 +78,13 @@ enum AppLayout {
     }
     
     enum Rate {
-        static let widthRateView: CGFloat = 248
-        static let heightRateView: CGFloat = 176
+        static let indentRateView: CGFloat = 36
+        static let widthRateView: CGFloat = widthScreen - indentRateView*2
+        static let heightRateView: CGFloat = 176.0
         static let leadingRateView: CGFloat = (AppLayout.widthScreen - widthRateView)/2
         static let topRateView: CGFloat = (0.8 * AppLayout.heightScreen - heightRateView)/2
         static let topStackView: CGFloat = 21
-        static let leadingStackView: CGFloat = 15
+        static let leadingStackView: CGFloat = 22
         static let trailingStackView: CGFloat = -leadingStackView
         static let bottomStackView: CGFloat = -topStackView
         static let widthSmileImageView: CGFloat = 38
