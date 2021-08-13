@@ -12,16 +12,12 @@
 		50F88A159308EE4331D2367B /* Pods_Pills.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DD909DEE1DCF24892E4229 /* Pods_Pills.framework */; };
 		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
 		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
-		553A358D26C02BC9006FFA6F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A358C26C02BC9006FFA6F /* NotificationService.swift */; };
-		553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A359426C02D59006FFA6F /* NotificationModel.swift */; };
 		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
 		556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A4FF126C0134F00249B49 /* BaseViewController.swift */; };
 		8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F026BB346C008F64AA /* UIDevice.swift */; };
 		8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F526BB3510008F64AA /* AppConstants.swift */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
-		A34B3A6C26C5610900BCCC42 /* CalendarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B3A6A26C5610900BCCC42 /* CalendarFont.swift */; };
-		A34B3A6D26C5610900BCCC42 /* CalendarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B3A6B26C5610900BCCC42 /* CalendarColor.swift */; };
 		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
@@ -98,8 +94,6 @@
 		4F35B20F67AB2182167F6CAA /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentBuilder.swift; sourceTree = "<group>"; };
-		553A358C26C02BC9006FFA6F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		553A359426C02D59006FFA6F /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		556A4FF126C0134F00249B49 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5E9DA3CF85C98D4181839194 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,8 +102,6 @@
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8854F59E3DAF27C378F1435B /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		A34B3A6A26C5610900BCCC42 /* CalendarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFont.swift; sourceTree = "<group>"; };
-		A34B3A6B26C5610900BCCC42 /* CalendarColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarColor.swift; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
@@ -373,7 +365,6 @@
 		FE79E3EA269CC88200DACD24 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FE79E3EE269CC95000DACD24 /* Services */,
 				FE79E3ED269CC93E00DACD24 /* Models */,
 				FE79E3F3269CCA0D00DACD24 /* Factories */,
 				FE79E3F2269CC99D00DACD24 /* Extensions */,
@@ -414,7 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				FE79E47C26A59DD600DACD24 /* RealmMedKitEntry.swift */,
-				553A359426C02D59006FFA6F /* NotificationModel.swift */,
+				FE79E3EE269CC95000DACD24 /* Services */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,7 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				FEB9586D26AF1FB00093BA8D /* RealmService.swift */,
-				553A358C26C02BC9006FFA6F /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -460,8 +450,6 @@
 		FE79E3F2269CC99D00DACD24 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A34B3A6B26C5610900BCCC42 /* CalendarColor.swift */,
-				A34B3A6A26C5610900BCCC42 /* CalendarFont.swift */,
 				A305168C26C3AED000EAD8F3 /* UIView.swift */,
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
@@ -827,7 +815,6 @@
 				8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */,
-				553A358D26C02BC9006FFA6F /* NotificationService.swift in Sources */,
 				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
@@ -842,10 +829,8 @@
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
 				FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
-				A34B3A6D26C5610900BCCC42 /* CalendarColor.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
-				553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */,
 				A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */,
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
@@ -856,7 +841,6 @@
 				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
-				A34B3A6C26C5610900BCCC42 /* CalendarFont.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
 				FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,

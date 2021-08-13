@@ -26,15 +26,7 @@
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
 		A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBD326B68AAE004E7365 /* ProgressView.swift */; };
-		A81ECCF826C6D61E0039DE67 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81ECCF726C6D61E0039DE67 /* Button.swift */; };
-		A8329E6926C69A8600AD6A11 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8329E6826C69A8600AD6A11 /* Label.swift */; };
 		A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869AC9726B9C95A002019B0 /* CourseMock.swift */; };
-		A86DB94126C54BD000AE866A /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB93E26C54BD000AE866A /* RateViewController.swift */; };
-		A86DB94226C54BD000AE866A /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB94026C54BD000AE866A /* RateView.swift */; };
-		A86DB94726C54C3600AE866A /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB94626C54C3600AE866A /* TableView.swift */; };
-		A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB94B26C54C3D00AE866A /* CollectionView.swift */; };
-		A86DB95626C54C5300AE866A /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95526C54C5300AE866A /* StackView.swift */; };
-		A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95A26C54D6200AE866A /* AutoReusable.swift */; };
 		A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */; };
 		A870AFF226A9A31E00624579 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEA26A9A31E00624579 /* Course.swift */; };
 		A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEC26A9A31E00624579 /* CoursesViewController.swift */; };
@@ -114,15 +106,7 @@
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
 		A802CBD326B68AAE004E7365 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
-		A81ECCF726C6D61E0039DE67 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		A8329E6826C69A8600AD6A11 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		A869AC9726B9C95A002019B0 /* CourseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMock.swift; sourceTree = "<group>"; };
-		A86DB93E26C54BD000AE866A /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
-		A86DB94026C54BD000AE866A /* RateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
-		A86DB94626C54C3600AE866A /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		A86DB94B26C54C3D00AE866A /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
-		A86DB95526C54C5300AE866A /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
-		A86DB95A26C54D6200AE866A /* AutoReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoReusable.swift; sourceTree = "<group>"; };
 		A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorFactory.swift; sourceTree = "<group>"; };
 		A870AFEA26A9A31E00624579 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		A870AFEC26A9A31E00624579 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
@@ -238,31 +222,6 @@
 				FEB957FE26AAE1B20093BA8D /* JournalMock.swift */,
 			);
 			path = Calendar;
-			sourceTree = "<group>";
-		};
-		A86DB93C26C54BD000AE866A /* Rate */ = {
-			isa = PBXGroup;
-			children = (
-				A86DB93D26C54BD000AE866A /* Controller */,
-				A86DB93F26C54BD000AE866A /* View */,
-			);
-			path = Rate;
-			sourceTree = "<group>";
-		};
-		A86DB93D26C54BD000AE866A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A86DB93E26C54BD000AE866A /* RateViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		A86DB93F26C54BD000AE866A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A86DB94026C54BD000AE866A /* RateView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		A870AFE826A9A31E00624579 /* Courses */ = {
@@ -387,7 +346,6 @@
 		FE79E3EB269CC8A100DACD24 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				A86DB93C26C54BD000AE866A /* Rate */,
 				A870AFE826A9A31E00624579 /* Courses */,
 				A3FBD9ED26A926BB00B8BE0E /* Calendar */,
 				FE79E3FB269CCCE100DACD24 /* Intro */,
@@ -431,7 +389,6 @@
 		FE79E3EF269CC96A00DACD24 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				A86DB95A26C54D6200AE866A /* AutoReusable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -467,11 +424,6 @@
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
 				8423A9F026BB346C008F64AA /* UIDevice.swift */,
-				A86DB94626C54C3600AE866A /* TableView.swift */,
-				A86DB94B26C54C3D00AE866A /* CollectionView.swift */,
-				A86DB95526C54C5300AE866A /* StackView.swift */,
-				A8329E6826C69A8600AD6A11 /* Label.swift */,
-				A81ECCF726C6D61E0039DE67 /* Button.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -823,14 +775,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */,
-				A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */,
 				8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */,
 				553A358D26C02BC9006FFA6F /* NotificationService.swift in Sources */,
-				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
-				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
@@ -838,7 +787,6 @@
 				FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */,
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
-				A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */,
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
 				FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
@@ -849,10 +797,7 @@
 				A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */,
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
-				A86DB94726C54C3600AE866A /* TableView.swift in Sources */,
-				A81ECCF826C6D61E0039DE67 /* Button.swift in Sources */,
 				A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */,
-				A8329E6926C69A8600AD6A11 /* Label.swift in Sources */,
 				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
@@ -867,7 +812,6 @@
 				849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */,
 				FE79E43226A3186900DACD24 /* Text.swift in Sources */,
 				A870B00526A9D58E00624579 /* AppLayout.swift in Sources */,
-				A86DB94126C54BD000AE866A /* RateViewController.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
 				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,

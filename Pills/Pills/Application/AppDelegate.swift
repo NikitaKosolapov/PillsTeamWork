@@ -10,7 +10,8 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
+    let notificationService = NotificationService()
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions:
@@ -19,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configure()
         return true
     }
-
+    
 }
 
 extension AppDelegate {
@@ -27,8 +28,9 @@ extension AppDelegate {
         configureNavigationAppearance()
         instantiateInitialViewController()
         configureIQKeyboardManager()
+        configureNotificationService()
     }
-
+    
     func configureNavigationAppearance() {
         UIBarButtonItem.appearance().setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: UIColor.clear],
@@ -41,12 +43,12 @@ extension AppDelegate {
             for: .highlighted)
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().backgroundColor = .white
-
+        
         let tabBarFont = UIFont.systemFont(ofSize: 10) // TODO: get from constants when done
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : tabBarFont,
-             NSAttributedString.Key.foregroundColor : UIColor.black]
+                                                            NSAttributedString.Key.foregroundColor : UIColor.black]
     }
-
+    
     func instantiateInitialViewController() {
         let appCoordinator = AppCoordinator(appDelegate: self)
         appCoordinator.instantiateInitialViewController()
@@ -56,5 +58,13 @@ extension AppDelegate {
 private extension AppDelegate {
     func configureIQKeyboardManager() {
         // TODO: do setup of IQKeyboardManager here when pods installed
+    }
+}
+
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func configureNotificationService() {
+        notificationService.registerForNotifications()
+        notificationService.notificationCenter.delegate = self
     }
 }
