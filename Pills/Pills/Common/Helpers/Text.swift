@@ -114,6 +114,16 @@ enum Text {
         static let infoSection = "infoSection".localized()
     }
 
+    // MARK: - Rating
+    enum Rating {
+        static let rateApp = "rateApp".localized()
+        static let badRate = "badRate".localized()
+        static let normRate = "normRate".localized()
+        static let bestRate = "bestRate".localized()
+        static let provideFeedback = "provideFeedback".localized()
+        static let noThanks = "noThanks".localized()
+    }
+    
     // MARK: - TabBar
     enum Tabs {
         static let aidkit = "aidkit".localized()

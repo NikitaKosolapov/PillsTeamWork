@@ -8,9 +8,6 @@
 import UIKit
 
 class CourseCellView: UIView {
-    // MARK: - Properties
-    private var separatorFactoryAbstract = SeparatorFactory()
-    
     // MARK: - SubView
     private lazy var pillImage: UIImageView = {
         let imageView = UIImageView()
@@ -23,7 +20,7 @@ class CourseCellView: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 17)
+        label.font = AppLayout.Fonts.normalSemibold
         label.textColor = AppColors.AidKit.cellTextName
         return label
     }()
@@ -32,7 +29,7 @@ class CourseCellView: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .left
-        label.font = UIFont(name: "SFCompactDisplay-Regular", size: 13)
+        label.font = AppLayout.Fonts.smallRegular
         label.textColor = AppColors.AidKit.cellTextDuration
         return label
     }()
@@ -41,7 +38,7 @@ class CourseCellView: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .right
-        label.font = UIFont(name: "SFCompactDisplay-Regular", size: 10)
+        label.font = AppLayout.Fonts.verySmallRegular
         label.textColor = AppColors.AidKit.cellTextDays
         return label
     }()
@@ -109,8 +106,7 @@ class CourseCellView: UIView {
     }
 
     private func configureStackView () {
-        stackView.addArrangedSubview(pillImage)
-        stackView.addArrangedSubview(verticalStackView)
+        stackView.addArrangedSubviews(views: pillImage,verticalStackView)
         addSubview(stackView)
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -127,12 +123,10 @@ class CourseCellView: UIView {
     }
     
     private func configureVerticalStackView () {
-        verticalStackView.addArrangedSubview(pillNameLabel)
-        verticalStackView.addArrangedSubview(durationAndDaysStackView)
+        verticalStackView.addArrangedSubviews(views: pillNameLabel, durationAndDaysStackView)
     }
     
     private func configureDurationAndDaysStackView () {
-        durationAndDaysStackView.addArrangedSubview(durationOfCourseLabel)
-        durationAndDaysStackView.addArrangedSubview(countPassedDaysLabel)
+        durationAndDaysStackView.addArrangedSubviews(views: durationOfCourseLabel, countPassedDaysLabel)
     }
 }

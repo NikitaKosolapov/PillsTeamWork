@@ -45,4 +45,11 @@ enum AppColors {
         static let segmentTextNoActive = UIColor(named: "segmentTextNoActive") ?? badColor
         static let stubText = UIColor(named: "stubText") ?? badColor
     }
+    
+    enum Rate {
+        static let backgroundTransparentRateView = UIColor(named: "backgroundTransparentRateView") ?? badColor
+        static let backgroundRateView = UIColor(named: "backgroundRateView") ?? badColor
+        static let noThanksButton = UIColor(named: "noThanksButton") ?? badColor
+        static let provideFeedbackButton = UIColor(named: "provideFeedbackButton") ?? badColor
+    }
 }

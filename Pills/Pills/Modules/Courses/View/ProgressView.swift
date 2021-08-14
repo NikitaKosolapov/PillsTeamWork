@@ -9,7 +9,7 @@ import UIKit
 
 class ProgressView: UIView {
     // MARK: - Properties
-    private var progress: CGFloat = UIScreen.main.bounds.width/2
+    private var progress: CGFloat = AppLayout.halfWidthScreen
     private var progressViewWidthConstraint: NSLayoutConstraint?
     
     // MARK: - Subviews
