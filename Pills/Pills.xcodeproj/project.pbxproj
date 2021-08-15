@@ -22,6 +22,7 @@
 		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
 		A34B3A6C26C5610900BCCC42 /* CalendarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B3A6A26C5610900BCCC42 /* CalendarFont.swift */; };
 		A34B3A6D26C5610900BCCC42 /* CalendarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B3A6B26C5610900BCCC42 /* CalendarColor.swift */; };
+		A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20026C83C6400AA1942 /* CalendarCell.swift */; };
 		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
@@ -110,6 +111,7 @@
 		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A34B3A6A26C5610900BCCC42 /* CalendarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFont.swift; sourceTree = "<group>"; };
 		A34B3A6B26C5610900BCCC42 /* CalendarColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarColor.swift; sourceTree = "<group>"; };
+		A35BE20026C83C6400AA1942 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */,
+				A35BE20026C83C6400AA1942 /* CalendarCell.swift */,
 				FEB957E026AAC1A40093BA8D /* JournalTableView.swift */,
 				FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */,
 				FEB957FE26AAE1B20093BA8D /* JournalMock.swift */,
@@ -851,6 +854,7 @@
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
 				A86DB94726C54C3600AE866A /* TableView.swift in Sources */,
 				A81ECCF826C6D61E0039DE67 /* Button.swift in Sources */,
+				A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */,
 				A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */,
 				A8329E6926C69A8600AD6A11 /* Label.swift in Sources */,
 				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
