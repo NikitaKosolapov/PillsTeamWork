@@ -215,9 +215,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         calendar.appearance.titleFont = UIFont.SFPro17()
         calendar.appearance.weekdayFont = UIFont.SFPro10()
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        if calendar.scope == .month {
-            calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
-        }
+        calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
     }
     private func selectDay() {
         calendar.appearance.titleTodayColor = UIColor.titleTodayColor()
