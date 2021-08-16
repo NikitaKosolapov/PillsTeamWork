@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 
 class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     var calendarHeighConstraint: NSLayoutConstraint!
     
     private var calendar: FSCalendar = {
@@ -133,7 +133,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private lazy var testDatesWithEvent = ["2021-08-03", "2021-08-06", "2021-08-12", "2021-08-25"]
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -169,19 +169,15 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
             let velocity = scopeGesture.velocity(in: view)
             switch calendar.scope {
             case .month:
-                if velocity.y < 0 {
-                    calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
-                }
+                
                 return velocity.y < 0
             case .week:
-                if velocity.y > 0 {
-                    calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
-                }
+                
                 return velocity.y > 0
             @unknown default:
                 fatalError()
             }
-         
+            
         }
         return shouldBegin
     }
@@ -230,6 +226,17 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         view.layoutIfNeeded()
     }
     
+    func handlePan() {
+        if scopeGesture.state == .changed {
+            let velocity = scopeGesture.velocity(in: view)
+            if  velocity.y < 0 {
+                calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
+            } else if velocity.y > 0 {
+                calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
+            }
+        }
+    }
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendar.setScope(.week, animated: true)
         selectDay()
@@ -251,6 +258,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLayoutSubviews() {
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
+        handlePan()
     }
 }
 
