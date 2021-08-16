@@ -169,10 +169,8 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
             let velocity = scopeGesture.velocity(in: view)
             switch calendar.scope {
             case .month:
-                
                 return velocity.y < 0
             case .week:
-                
                 return velocity.y > 0
             @unknown default:
                 fatalError()
@@ -196,7 +194,6 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             calendar.firstWeekday = 1
         }
-        
     }
     
     private func calendarDefaultUI() {
@@ -233,6 +230,13 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
                 calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
             } else if velocity.y > 0 {
                 calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
+            }
+            if scopeGesture.state == .cancelled || scopeGesture.state == .failed {
+                if calendar.scope == .month {
+                    calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
+                } else if calendar.scope == .week {
+                    calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
+                }
             }
         }
     }
