@@ -232,13 +232,12 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
     }
 
     func configure(tableDataSource: UITableViewDataSource) {
-        configureSwipeAction()
-
         addGestureRecognizer(scopeGesture)
         journalTableView.panGestureRecognizer.require(toFail: scopeGesture)
         
         calendar.delegate = self
         calendar.dataSource = self
+        calendar.register(CalendarCell.self, forCellReuseIdentifier: "cell")
         
         configureCalendarDefaultUI()
         configureFirstDayOfWeek()
@@ -253,27 +252,6 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
         emptyTableStub.isHidden = true
     }
 
-    private func configureSwipeAction() {
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeUp.direction = .up
-        calendar.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeDown.direction = .down
-        calendar.addGestureRecognizer(swipeDown)
-    }
-    
-    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
-        switch gesture.direction {
-        case .up:
-            showHideButtonTapped()
-        case .down:
-            showHideButtonTapped()
-        default:
-            break
-        }
-    }
-    
     // swiftlint:disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
@@ -423,5 +401,10 @@ extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendar.setScope(.week, animated: true)
         selectDay()
+    }
+    
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
+        return cell
     }
 }
