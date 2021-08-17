@@ -50,6 +50,8 @@ class JournalViewController: BaseViewController<JournalView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
     }
  
     override func viewDidLoad() {

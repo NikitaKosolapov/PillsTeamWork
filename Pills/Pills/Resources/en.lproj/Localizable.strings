@@ -28,7 +28,7 @@
 "takePeriod" = "Take in...";
 "takePeriodPlaceholder" = "Amount of days...";
 "singleDose" = "Single dose";
-"concentration" = "Concentration";
+"unit" = "Unit";
 "instruction" = "Instruction";
 "comments" = "Сomments";
 "time" = "Time";

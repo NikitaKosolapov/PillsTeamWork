@@ -41,7 +41,6 @@ fileprivate final class FieldHeaderFabric {
 
 // swiftlint:disable type_body_length
 class AddNewCourseView: UIView {
-    // --------------------------------------------------------
     // MARK: - Pill Name Input
     private lazy var pillNameLabel =
         FieldHeaderFabric.generate(header: Text.name)
@@ -52,7 +51,6 @@ class AddNewCourseView: UIView {
             .build()
     private lazy var stackPillName = VStackViewFabric.generate([pillNameLabel, pillNameInput])
 
-    // --------------------------------------------------------
     // MARK: - Dose Input
     private lazy var doseLabel = FieldHeaderFabric.generate(header: Text.dose)
     private lazy var doseInput =
@@ -63,36 +61,38 @@ class AddNewCourseView: UIView {
             .build()
     private lazy var stackDose = VStackViewFabric.generate([doseLabel, doseInput])
 
-    // --------------------------------------------------------
     // MARK: - Dose Unit
-    private lazy var doseUnitLabel = FieldHeaderFabric.generate(header: Text.concentration)
-    private lazy var doseUnitInput: UITextField =
+    private lazy var doseUnitLabel = FieldHeaderFabric.generate(header: Text.unit)
+    private lazy var doseUnitInput =
         CustomTextFieldBuilder()
-            .withPlaceholder(Text.concentration)
+            .withPlaceholder(Text.unit)
             .dropDown(width: AppLayout.AddCourse.doseTypeDropDownWidth)
             .withImage()
-            .withItems(Text.ConcentrationUnit.all().map { (nil, $0) })
             .build()
     private lazy var stackDoseType = VStackViewFabric.generate([doseUnitLabel, doseUnitInput])
 
-    // --------------------------------------------------------
     // MARK: - Type Input
     private lazy var typeLabel = FieldHeaderFabric.generate(header: Text.pillType)
-    private lazy var typeInput: UITextField =
+    private lazy var typeInput =
         CustomTextFieldBuilder()
             .withPlaceholder(Text.pillType)
             .dropDown()
             .withImage()
+            .withDropDownProcessor({ [weak self] (items, index) in
+                guard let self = self else {return true}
+                self.doseUnitInput.items =
+                    PillType.allCases[index].units().map { (nil, $0 )}
+                return true // continue default processing
+            })
             .withItems(PillType.allCases.map {($0.image(), "")})
             .build()
     private lazy var stackType = VStackViewFabric.generate([typeLabel, typeInput])
 
     private lazy var stackDoseAndType =
-        HStackViewFabric.generate([stackDose, stackDoseType, stackType], .fillEqually)
+        HStackViewFabric.generate([stackDose, stackType, stackDoseType], .fillEqually)
 
-    // --------------------------------------------------------
     // MARK: - Frequency Input
-    private lazy var frequencyInput: UITextField = {
+    private lazy var frequencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withImage(AppImages.Tools.rightArrow)
             .build()
@@ -100,7 +100,6 @@ class AddNewCourseView: UIView {
         return textField
     }()
 
-    // --------------------------------------------------------
     // MARK: - Start Date Input
     private lazy var startLabel = FieldHeaderFabric.generate(header: Text.startFrom)
     private lazy var startInput =
@@ -116,7 +115,6 @@ class AddNewCourseView: UIView {
             .build()
     private lazy var stackStart = VStackViewFabric.generate([startLabel, startInput])
 
-    // --------------------------------------------------------
     // MARK: - Start Time Input
     private lazy var timeLabel = FieldHeaderFabric.generate(header: Text.takeAtTime)
     private lazy var timeInput =
@@ -131,7 +129,6 @@ class AddNewCourseView: UIView {
 
     private lazy var stackStartAndWhen = HStackViewFabric.generate([stackStart, stackTime], .fillEqually)
 
-    // --------------------------------------------------------
     // MARK: - Period Input
     // simple input
     private lazy var takePeriodLabel = FieldHeaderFabric.generate(header: Text.takePeriod)
@@ -151,8 +148,8 @@ class AddNewCourseView: UIView {
         = CustomTextFieldBuilder()
             .dropDown(width: AppLayout.AddCourse.periodDropDownWidth)
             .withImage()
-            .withItems(Text.Period.all().map { (nil, $0) })
             .withDropDownProcessor(self.processTakePeriodDropDownSelect)
+            .withItems(Text.Period.all().map { (nil, $0) })
             .build()
     private lazy var stackTakePeriodDropDown =
         VStackViewFabric.generate([takePeriodDropDownLabel, takePeriodDropDownInput])
@@ -183,7 +180,6 @@ class AddNewCourseView: UIView {
         return stack
     }()
 
-    // --------------------------------------------------------
     // MARK: - Note Input
     private lazy var noteLabel =
         FieldHeaderFabric.generate(header: Text.comments)
@@ -203,7 +199,6 @@ class AddNewCourseView: UIView {
         return scrollView
     }()
     
-    // --------------------------------------------------------
     // MARK: - Continue Button
     private lazy var doneButton: AddButton = {
         let button = AddButton()
@@ -218,7 +213,6 @@ class AddNewCourseView: UIView {
         // dummy
     }
 
-    // --------------------------------------------------------
     // MARK: - Major Stack View
     private lazy var formStackView: UIStackView = {
         let stack = VStackViewFabric.generate([
@@ -242,7 +236,6 @@ class AddNewCourseView: UIView {
         return stackView
     }()
 
-    // --------------------------------------------------------
     // MARK: - Constraints
     // swiftlint:disable function_body_length
     override func updateConstraints() {
@@ -313,7 +306,6 @@ class AddNewCourseView: UIView {
         layoutIfNeeded()
     }
     
-    // --------------------------------------------------------
     // MARK: - Class Methods
     func setup() {
         addSubviews()
@@ -340,7 +332,7 @@ class AddNewCourseView: UIView {
         return Date()
     }
     
-    func processTakePeriodDropDownSelect(items: [(UIImage?, String)], index: Int) {
+    func processTakePeriodDropDownSelect(items: [DropDownItem], index: Int) -> Bool {
         var date: Date?
 
         let period = Text.Period.allCases[index]
@@ -355,7 +347,8 @@ class AddNewCourseView: UIView {
             date = Calendar.current.date(byAdding: .year, value: 1, to: getStartDate())
         }
 
-        setTakePeriodText(fromDate: Date(), tillDate: date ?? getStartDate())
+        setTakePeriodText(fromDate: getStartDate(), tillDate: date ?? getStartDate())
+        return false // don't do default processing
     }
     
     func setTakePeriodText(fromDate: Date, tillDate: Date) {
@@ -375,7 +368,7 @@ class AddNewCourseView: UIView {
                 to: dateEnd).day
         else {return}
 
-        let dateString = CustomTextField.dateFormatter.string(from: fromDate)
+        let dateString = CustomTextField.dateFormatter.string(from: dateEnd)
         self.takePeriodInput.text =
             "\(days) \(days.days()), \(Text.till) \(dateString)"
         self.takePeriodDatePickerInput.date = dateEnd

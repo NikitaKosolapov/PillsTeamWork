@@ -31,7 +31,7 @@ enum Text {
     static let takeAtTime = "takeAtTime".localized()
     static let takePeriod = "takePeriod".localized()
     static let takePeriodPlaceholder = "takePeriodPlaceholder".localized()
-    static let concentration = "concentration".localized()
+    static let unit = "unit".localized()
     static let instruction = "instruction".localized()
     static let comments = "comments".localized()
     static let time = "time".localized()

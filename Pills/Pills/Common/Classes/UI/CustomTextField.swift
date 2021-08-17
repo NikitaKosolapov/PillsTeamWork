@@ -8,6 +8,9 @@
 import UIKit
 import DropDown
 
+/// Type for the DropDown item
+public typealias DropDownItem = (UIImage?, String)
+
 class CustomTextFieldBuilder {
     
     enum InputType {
@@ -15,12 +18,8 @@ class CustomTextFieldBuilder {
         case any
     }
 
-    private let builtObject: CustomTextField
+    private let builtObject = CustomTextField()
     
-    init() {
-        builtObject = CustomTextField()
-    }
-
     func dropDown(width: CGFloat? = nil) -> CustomTextFieldBuilder {
         builtObject.setDropDownMode(width: width)
         return self
@@ -33,7 +32,7 @@ class CustomTextFieldBuilder {
     }
     
     func withType(_ type: InputType) -> CustomTextFieldBuilder {
-        builtObject.isNumeric = type == InputType.numeric ? true : false
+        builtObject.isNumeric = (type == InputType.numeric)
         return self
     }
 
@@ -48,7 +47,7 @@ class CustomTextFieldBuilder {
     }
 
     func withDropDownProcessor(
-        _ processor: @escaping (_ items: [(UIImage?, String)], _ index: Int) -> Void
+        _ processor: @escaping (_ items: [DropDownItem], _ index: Int) -> Bool
     ) -> CustomTextFieldBuilder {
         builtObject.dropDownProcessor = processor
         return self
@@ -62,7 +61,7 @@ class CustomTextFieldBuilder {
     }
     
     // input - ordered list of tuples
-    func withItems(_ items: [(UIImage?, String)]) -> CustomTextFieldBuilder {
+    func withItems(_ items: [DropDownItem]) -> CustomTextFieldBuilder {
         builtObject.items = items
         return self
     }
@@ -100,9 +99,14 @@ class CustomTextField: UITextField {
 
     private var isDropDownMode: Bool = false
     private var dropDown: DropDown?
-    fileprivate var items: [(UIImage?, String)] = [] {
+    
+    public var items: [DropDownItem] = [] {
         didSet {
             dropDown?.dataSource = items.map { $1 }
+            if !items.isEmpty {
+                dropDown?.selectRow(0)
+                dropDownSelectItem(index: 0, itemText: items[0].1)
+            }
         }
     }
     
@@ -111,7 +115,7 @@ class CustomTextField: UITextField {
     fileprivate var maxLength: Int = -1
     
     fileprivate var dropDownProcessor:
-        ((_ items: [(UIImage?, String)], _ index: Int) -> Void)?
+        ((_ items: [DropDownItem], _ index: Int) -> Bool)?
     fileprivate var endEditProcessor: (() -> Void)?
 
     static let dateFormatter: DateFormatter = {
@@ -187,6 +191,20 @@ class CustomTextField: UITextField {
         fatalError("init(coder: NSCode) is not implemented!")
     }
     
+    private func dropDownSelectItem(index: Int, itemText: String) {
+        if let processor = self.dropDownProcessor {
+            if !processor(self.items, index) {return}
+        }
+        let item = self.items[index]
+        if let image = item.0 {
+            self.customOptionImage = UIImageView(image: image)
+            self.text = ""
+        } else {
+            self.text = itemText
+            self.customOptionImage = nil
+        }
+    }
+    
     fileprivate func setDropDownMode(width: CGFloat? = nil) {
         isDropDownMode = true
         dropDown = DropDown()
@@ -197,18 +215,7 @@ class CustomTextField: UITextField {
         }
         dropDown?.selectionAction = { [weak self] (index: Int, itemText: String) in
             guard let self = self else {return}
-            if let processor = self.dropDownProcessor {
-                processor(self.items, index)
-                return
-            }
-            let item = self.items[index]
-            if let image = item.0 {
-                self.customOptionImage = UIImageView(image: image)
-                self.text = ""
-            } else {
-                self.text = itemText
-                self.customOptionImage = nil
-            }
+            self.dropDownSelectItem(index: index, itemText: itemText)
         }
     }
     
@@ -372,8 +379,8 @@ class CustomTextField: UITextField {
 extension CustomTextField: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if datePicker != nil { return true }
-        if dropDown != nil {
-            dropDown?.show()
+        if let dropDown = dropDown {
+            dropDown.show()
             return false
         }
         if clearOnFocus {

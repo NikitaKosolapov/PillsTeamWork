@@ -146,12 +146,7 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
 
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 
-        // TODO: Fix the criteria it always TRUE !!!
-        //       Table scroll is broken!
         let shouldBegin = journalTableView.contentOffset.y <= -journalTableView.contentInset.top
-        debugPrint(journalTableView.contentOffset.y)
-        debugPrint(journalTableView.contentInset.top)
-        debugPrint(shouldBegin)
 
         if shouldBegin {
             calendar.currentPage = Date()

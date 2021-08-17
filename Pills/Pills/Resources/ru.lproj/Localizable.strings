@@ -28,7 +28,7 @@
 "takePeriod" = "Период приёма";
 "takePeriodPlaceholder" = "Количество дней...";
 "singleDose" = "Однократно";
-"concentration" = "Концентрация";
+"unit" = "Ед. изм.";
 "instruction" = "Инструкция";
 "comments" = "Комментарии";
 "time" = "Время";
