@@ -54,7 +54,8 @@ class CourseCell: UITableViewCell {
         contentView.addSubview(progressView)
         NSLayoutConstraint.activate(
             [progressView.topAnchor.constraint(equalTo: safeArea.topAnchor,
-                                               constant: AppLayout.AidKit.widthIndentBetweenCells),
+                                               constant: AppLayout.AidKit.widthIndentBetweenCells +
+                                                AppLayout.AidKit.heightVisiblePartOfProgressView),
              progressView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
              progressView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
              progressView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
@@ -65,7 +66,8 @@ class CourseCell: UITableViewCell {
         let safeArea = contentView.safeAreaLayoutGuide
         contentView.addSubview(courseCellView)
         NSLayoutConstraint.activate(
-            [courseCellView.topAnchor.constraint(equalTo: progressView.safeAreaLayoutGuide.topAnchor),
+            [courseCellView.topAnchor.constraint(equalTo: safeArea.topAnchor,
+                                                 constant: AppLayout.AidKit.widthIndentBetweenCells),
              courseCellView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
              courseCellView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
              courseCellView.bottomAnchor.constraint(equalTo: progressView.safeAreaLayoutGuide.bottomAnchor,
