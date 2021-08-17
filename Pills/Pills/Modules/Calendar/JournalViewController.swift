@@ -198,24 +198,24 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private func calendarDefaultUI() {
         calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
-        calendar.appearance.weekdayTextColor = UIColor.weekdayTextColor()
-        calendar.appearance.selectionColor = UIColor.selectionDefaultColor()
-        calendar.appearance.todayColor = UIColor.todayDeafaultColor()
-        calendar.appearance.titleTodayColor = UIColor.titleDefaultTodayColor()
-        calendar.appearance.titleSelectionColor = UIColor.titleSelectionDefaultColor()
-        calendar.appearance.eventDefaultColor = UIColor.eventDefaultColor()
-        calendar.appearance.titleWeekendColor = UIColor.titleWeekendColor()
+        calendar.appearance.weekdayTextColor = AppColors.CalendarColor.weekdayTextColor
+        calendar.appearance.selectionColor = AppColors.CalendarColor.selectionDefaultColor
+        calendar.appearance.todayColor = AppColors.CalendarColor.todayDeafaultColor
+        calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleDefaultTodayColor
+        calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionDefaultColor
+        calendar.appearance.eventDefaultColor = AppColors.CalendarColor.eventDefaultColor
+        calendar.appearance.titleWeekendColor = AppColors.CalendarColor.titleWeekendColor
         calendar.appearance.titleFont = UIFont.SFPro17()
         calendar.appearance.weekdayFont = UIFont.SFPro10()
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
+        calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
     }
     private func selectDay() {
-        calendar.appearance.titleTodayColor = UIColor.titleTodayColor()
-        calendar.appearance.todayColor = UIColor.todayColor()
-        calendar.appearance.selectionColor = UIColor.selectionColor()
-        calendar.appearance.titleSelectionColor = UIColor.titleSelectionColor()
-        calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
+        calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleTodayColor
+        calendar.appearance.todayColor = AppColors.CalendarColor.todayColor
+        calendar.appearance.selectionColor = AppColors.CalendarColor.selectionColor
+        calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionColor
+        calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
@@ -227,15 +227,15 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         if scopeGesture.state == .changed {
             let velocity = scopeGesture.velocity(in: view)
             if  velocity.y < 0 {
-                calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
+                calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
             } else if velocity.y > 0 {
-                calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
+                calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleDefaultColor
             }
             if scopeGesture.state == .cancelled || scopeGesture.state == .failed {
                 if calendar.scope == .month {
-                    calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
+                    calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
                 } else if calendar.scope == .week {
-                    calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
+                    calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleDefaultColor
                 }
             }
         }

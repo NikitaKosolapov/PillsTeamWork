@@ -52,4 +52,20 @@ enum AppColors {
         static let noThanksButton = UIColor(named: "noThanksButton") ?? badColor
         static let provideFeedbackButton = UIColor(named: "provideFeedbackButton") ?? badColor
     }
+    
+    enum CalendarColor {
+        static let weekdayTextColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+        static let selectionDefaultColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+        static let selectionColor = UIColor.init(red: 0, green: 0.478, blue: 1, alpha: 1)
+        static let todayColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+        static let todayDeafaultColor = UIColor.init(red: 0, green: 0.478, blue: 1, alpha: 1)
+        static let titleDefaultTodayColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+        static let titleTodayColor = UIColor.init(red: 0, green: 0.478, blue: 1, alpha: 1)
+        static let titleSelectionDefaultColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+        static let titleSelectionColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+        static let eventDefaultColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.3)
+        static let titleWeekendColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.3)
+        static let headerTitleDefaultColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+        static let headerTitleColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1) 
+    }
 }

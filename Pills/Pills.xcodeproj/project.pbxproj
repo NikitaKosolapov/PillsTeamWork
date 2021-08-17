@@ -22,7 +22,6 @@
 		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
 		A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20026C83C6400AA1942 /* CalendarCell.swift */; };
 		A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20326C94C1700AA1942 /* CalendarFont.swift */; };
-		A35BE20626C94C1700AA1942 /* CalendarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20426C94C1700AA1942 /* CalendarColor.swift */; };
 		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
@@ -111,7 +110,6 @@
 		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A35BE20026C83C6400AA1942 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		A35BE20326C94C1700AA1942 /* CalendarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFont.swift; sourceTree = "<group>"; };
-		A35BE20426C94C1700AA1942 /* CalendarColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarColor.swift; sourceTree = "<group>"; };
 		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				A35BE20326C94C1700AA1942 /* CalendarFont.swift */,
-				A35BE20426C94C1700AA1942 /* CalendarColor.swift */,
 			);
 			path = UIKitCalendar;
 			sourceTree = "<group>";
@@ -848,7 +845,6 @@
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */,
-				A35BE20626C94C1700AA1942 /* CalendarColor.swift in Sources */,
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */,
