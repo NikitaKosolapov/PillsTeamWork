@@ -9,13 +9,16 @@ import UIKit
 import FSCalendar
 
 class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     var calendarHeighConstraint: NSLayoutConstraint!
     
     private var calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.scope = .week
+        calendar.placeholderType = .none
+        calendar.clipsToBounds = true
+        calendar.appearance.headerDateFormat = "LLLL yyyy"
         return calendar
     }()
     
@@ -41,6 +44,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.AidKit.shadowOfCell
+        view.layer.cornerRadius = 2.5
         return view
     }()
     
@@ -129,7 +133,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private lazy var testDatesWithEvent = ["2021-08-03", "2021-08-06", "2021-08-12", "2021-08-25"]
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -140,15 +144,12 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         view.backgroundColor = .white
         
         addSubviews()
-        swipeAction()
         firstDayWeek()
-        shadowRounder()
         calendarDefaultUI()
-        self.view.addGestureRecognizer(self.scopeGesture)
-        self.journalTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-        
+        view.addGestureRecognizer(scopeGesture)
+        journalTableView.panGestureRecognizer.require(toFail: scopeGesture)
+        calendar.register(CalendarCell.self, forCellReuseIdentifier: "cell")
         journalTableView.configure()
-        
         calendar.delegate = self
         calendar.dataSource = self
         
@@ -157,20 +158,24 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         emptyTableStub.isHidden = true
     }
     
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
+        return cell
+    }
+    
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let shouldBegin = self.journalTableView.contentOffset.y <= -self.journalTableView.contentInset.top
+        let shouldBegin = journalTableView.contentOffset.y <= -journalTableView.contentInset.top
         if shouldBegin {
-            let velocity = self.scopeGesture.velocity(in: self.view)
-            switch self.calendar.scope {
+            let velocity = scopeGesture.velocity(in: view)
+            switch calendar.scope {
             case .month:
-                calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
                 return velocity.y < 0
             case .week:
-                calendar.appearance.headerTitleColor = UIColor.headerTitleDefaultColor()
                 return velocity.y > 0
             @unknown default:
                 fatalError()
             }
+            
         }
         return shouldBegin
     }
@@ -183,74 +188,57 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
         return 0
     }
     
-    @objc func showHideButtonTapped() {
-        if calendar.scope == .week {
-            calendar.setScope(.month, animated: true)
-            self.calendar.currentPage = Date()
-        } else {
-            calendar.setScope(.week, animated: true)
-        }
-    }
-    
     private func firstDayWeek() {
-        if calendar.locale.identifier == "ru" {
+        if calendar.locale.identifier == "ru_US" {
             calendar.firstWeekday = 2
         } else {
             calendar.firstWeekday = 1
         }
-        
     }
     
     private func calendarDefaultUI() {
         calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
-        calendar.appearance.weekdayTextColor = UIColor.weekdayTextColor()
-        calendar.appearance.selectionColor = UIColor.selectionDefaultColor()
-        calendar.appearance.todayColor = UIColor.todayDeafaultColor()
-        calendar.appearance.titleTodayColor = UIColor.titleDefaultTodayColor()
-        calendar.appearance.titleSelectionColor = UIColor.titleSelectionDefaultColor()
-        calendar.appearance.eventDefaultColor = UIColor.eventDefaultColor()
-        calendar.appearance.titleWeekendColor = UIColor.titleWeekendColor()
+        calendar.appearance.weekdayTextColor = AppColors.CalendarColor.weekdayTextColor
+        calendar.appearance.selectionColor = AppColors.CalendarColor.selectionDefaultColor
+        calendar.appearance.todayColor = AppColors.CalendarColor.todayDeafaultColor
+        calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleDefaultTodayColor
+        calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionDefaultColor
+        calendar.appearance.eventDefaultColor = AppColors.CalendarColor.eventDefaultColor
+        calendar.appearance.titleWeekendColor = AppColors.CalendarColor.titleWeekendColor
         calendar.appearance.titleFont = UIFont.SFPro17()
         calendar.appearance.weekdayFont = UIFont.SFPro10()
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.appearance.headerTitleColor = UIColor.headerTitleColor()
-        calendar.placeholderType = .none
-        calendar.clipsToBounds = true
+        calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
     }
     private func selectDay() {
-        calendar.appearance.titleTodayColor = UIColor.titleTodayColor()
-        calendar.appearance.todayColor = UIColor.todayColor()
-        calendar.appearance.selectionColor = UIColor.selectionColor()
-        calendar.appearance.titleSelectionColor = UIColor.titleSelectionColor()
-    }
-    func shadowRounder() {
-    }
-    
-    func swipeAction() {
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeUp.direction = .up
-        calendar.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeDown.direction = .down
-        calendar.addGestureRecognizer(swipeDown)
-        
-    }
-    
-    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
-        switch gesture.direction {
-        case .up:
-            showHideButtonTapped()
-        case .down:
-            showHideButtonTapped()
-        default:
-            break
-        }
+        calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleTodayColor
+        calendar.appearance.todayColor = AppColors.CalendarColor.todayColor
+        calendar.appearance.selectionColor = AppColors.CalendarColor.selectionColor
+        calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionColor
+        calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeighConstraint.constant = bounds.height
         view.layoutIfNeeded()
+    }
+    
+    func handlePan() {
+        if scopeGesture.state == .changed {
+            let velocity = scopeGesture.velocity(in: view)
+            if  velocity.y < 0 {
+                calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
+            } else if velocity.y > 0 {
+                calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleDefaultColor
+            }
+            if scopeGesture.state == .cancelled || scopeGesture.state == .failed {
+                if calendar.scope == .month {
+                    calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
+                } else if calendar.scope == .week {
+                    calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleDefaultColor
+                }
+            }
+        }
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -274,6 +262,7 @@ class JournalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLayoutSubviews() {
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
+        handlePan()
     }
 }
 
