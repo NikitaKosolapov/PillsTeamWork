@@ -63,7 +63,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     private func configureMocData () {
-        self.coursesCurrent = CourseMock.shared.coursesCurrent
+        self.coursesCurrent = []
         self.coursesPassed = CourseMock.shared.coursesPassed
     }
     
