@@ -33,7 +33,7 @@ class NotificationService {
         }
     }
     
-    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> Void) {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         notificationCenter.requestAuthorization(options: options) { (success, error) in
             if let error = error {
@@ -77,4 +77,3 @@ class NotificationService {
         }
     }
 }
-

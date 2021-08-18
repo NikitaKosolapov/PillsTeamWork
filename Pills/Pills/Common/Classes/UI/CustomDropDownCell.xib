@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCell" rowHeight="175" id="aSV-cd-2ni" customClass="CustomDropDownCell" customModule="Pills" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="71" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aSV-cd-2ni" id="CMi-BT-can">
+                <rect key="frame" x="0.0" y="0.0" width="71" height="40"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iN-e3-fFX">
+                        <rect key="frame" x="8" y="0.0" width="63" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Oa-2B-0s1">
+                        <rect key="frame" x="8" y="0.0" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="bjE-WJ-tzV"/>
+                            <constraint firstAttribute="height" constant="40" id="lgX-FB-2oi"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9iN-e3-fFX" firstAttribute="top" secondItem="CMi-BT-can" secondAttribute="top" id="GpY-Cf-RD2"/>
+                    <constraint firstAttribute="trailing" secondItem="9iN-e3-fFX" secondAttribute="trailing" id="IKW-Y7-YsS"/>
+                    <constraint firstAttribute="bottom" secondItem="9iN-e3-fFX" secondAttribute="bottom" id="PPw-j0-Ufk"/>
+                    <constraint firstItem="9Oa-2B-0s1" firstAttribute="leading" secondItem="CMi-BT-can" secondAttribute="leading" constant="8" id="Re2-x2-pFv"/>
+                    <constraint firstItem="9Oa-2B-0s1" firstAttribute="top" secondItem="CMi-BT-can" secondAttribute="top" id="UW5-9O-GRk"/>
+                    <constraint firstItem="9iN-e3-fFX" firstAttribute="leading" secondItem="CMi-BT-can" secondAttribute="leading" constant="8" id="YxT-HN-kPV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cellImage" destination="9Oa-2B-0s1" id="JXD-3b-aQF"/>
+                <outlet property="optionLabel" destination="9iN-e3-fFX" id="gVH-c9-D1n"/>
+            </connections>
+            <point key="canvasLocation" x="-574.63768115942037" y="-66.294642857142861"/>
+        </tableViewCell>
+    </objects>
+</document>

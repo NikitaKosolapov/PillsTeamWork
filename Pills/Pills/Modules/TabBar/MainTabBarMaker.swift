@@ -13,22 +13,24 @@ class MainTabBarMaker {
         
         let mainVC = CoursesViewController()
         let mainNavig = UINavigationController(rootViewController: mainVC)
+        
         // TODO: get text and images from constants when ready
         mainVC.tabBarItem = tabItemBuilder(title: "Courses", icon: UIImage(named: "courses"))
         
         let medicationVC = JournalViewController()
-        let medicationNavig = UINavigationController(rootViewController: medicationVC)
+        let medicationNC = UINavigationController(rootViewController: medicationVC)
         medicationVC.tabBarItem = tabItemBuilder(title: "Journal", icon: UIImage(named: "journal"))
-        
+
         let settingsVC = SettingsViewController()
         let settingsNavig = UINavigationController(rootViewController: settingsVC)
         settingsVC.tabBarItem = tabItemBuilder(title: Text.Tabs.settings, icon: UIImage(named: "settings"))
         
         let tabBarVC = UITabBarController()
-        tabBarVC.viewControllers = [mainNavig, medicationNavig, settingsNavig]
+        tabBarVC.viewControllers = [mainNavig, medicationNC, settingsNavig]
         tabBarVC.tabBar.tintColor = UIColor.systemBlue // TODO: get from constants when ready
         tabBarVC.tabBar.unselectedItemTintColor = UIColor.systemGray // TODO: get from constants when ready
         tabBarVC.tabBar.barTintColor = .white
+        tabBarVC.tabBar.clipsToBounds = true
 
         return tabBarVC
     }

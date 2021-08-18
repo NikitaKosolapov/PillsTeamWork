@@ -22,17 +22,17 @@ final class CourseMock {
         var startDate = dateFormatter.date(from: "01.01.2021")!
         var endDate = dateFormatter.date(from: "01.09.2022")!
         let firstCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
+            imagePill: PillType.tablets.image(),
             namePill: "Valium",
             dateStartOfCourse: startDate,
             dateEndOfCourse: endDate)
         let secondCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
+            imagePill: PillType.tablets.image(),
             namePill: "Gydroxizin",
             dateStartOfCourse: startDate,
             dateEndOfCourse: endDate)
         let thirdCurrentCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
+            imagePill: PillType.tablets.image(),
             namePill: "Sulpirid",
             dateStartOfCourse: startDate,
             dateEndOfCourse: endDate)
@@ -41,12 +41,12 @@ final class CourseMock {
         startDate = dateFormatter.date(from: "01.01.2021")!
         endDate = dateFormatter.date(from: "10.08.2021")!
         let firstPassedCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
+            imagePill: PillType.tablets.image(),
             namePill: "Sulpirid",
             dateStartOfCourse: startDate,
             dateEndOfCourse: endDate)
         let secondPassedCourse = Course(
-            imagePill: AppImages.Pills.tablets ?? UIImage(),
+            imagePill: PillType.tablets.image(),
             namePill: "Donormil",
             dateStartOfCourse: startDate,
             dateEndOfCourse: endDate)

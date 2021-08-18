@@ -18,8 +18,17 @@
 
 "addNewPill" = "Add a new pill";
 "name" = "Pill's name";
+"namePlaceholder" = "Enter the pill's name here...";
+"dose" = "Dose";
+"dosePlaceholder" = "Input dose here...";
+"pillType" = "Type";
+"takingFrequency" = "Taking frequency...";
+"startFrom" = "Start from";
+"takeAtTime" = "Take at";
+"takePeriod" = "Take in...";
+"takePeriodPlaceholder" = "Amount of days...";
 "singleDose" = "Single dose";
-"concentration" = "Concentration";
+"unit" = "Unit";
 "instruction" = "Instruction";
 "comments" = "Сomments";
 "time" = "Time";
@@ -27,6 +36,19 @@
 "of" = "of";
 "takePillsInTime" = "Take pills in time";
 "justAddAnOrder" = "Just add an order";
+"periodExpired" = "Period already expired...";
+"save" = "Save";
+
+"week" = "1 week";
+"month" = "1 month";
+"halfYear" = "half year";
+"year" = "year";
+
+"done" = "Done";
+"now" = "Now";
+"today" = "Today";
+"cancel" = "Cancel";
+"till" = "till";
 
 "beforeMeals" = "Before meal";
 "whileEating" = "While eating";

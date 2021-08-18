@@ -22,7 +22,6 @@
 		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
 		A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20026C83C6400AA1942 /* CalendarCell.swift */; };
 		A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20326C94C1700AA1942 /* CalendarFont.swift */; };
-		A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
 		A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBD326B68AAE004E7365 /* ProgressView.swift */; };
@@ -43,6 +42,10 @@
 		A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF026A9A31E00624579 /* CourseViewModel.swift */; };
 		A870B00526A9D58E00624579 /* AppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870B00426A9D58E00624579 /* AppLayout.swift */; };
 		A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C4DC26B079AF00BACC90 /* AddButton.swift */; };
+		FE2899C426CC3C5900B145FB /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899C326CC3C5900B145FB /* JournalViewController.swift */; };
+		FE2899C926CC3C6200B145FB /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899C826CC3C6200B145FB /* JournalMock.swift */; };
+		FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */; };
+		FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899D226CC3C7500B145FB /* JournalTableView.swift */; };
 		FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */; };
 		FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE79E3B9269CC09D00DACD24 /* Assets.xcassets */; };
 		FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE79E3BB269CC09D00DACD24 /* LaunchScreen.storyboard */; };
@@ -64,13 +67,17 @@
 		FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */; };
 		FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */; };
 		FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */; };
-		FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957E026AAC1A40093BA8D /* JournalTableView.swift */; };
-		FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */; };
-		FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB957FE26AAE1B20093BA8D /* JournalMock.swift */; };
 		FEB9580626AAF0D30093BA8D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9580526AAF0D30093BA8D /* Date.swift */; };
 		FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9586D26AF1FB00093BA8D /* RealmService.swift */; };
 		FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */; };
 		FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */; };
+		FECB1A6C26BAE69400136DF0 /* AddNewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */; };
+		FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9593A26C4253F00E9B6C3 /* JournalView.swift */; };
+		FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */; };
+		FED9599626C59CF300E9B6C3 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */; };
+		FED9599B26C59D0800E9B6C3 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */; };
+		FED959AE26C9808E00E9B6C3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED959AD26C9808D00E9B6C3 /* Int.swift */; };
+		FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +117,6 @@
 		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A35BE20026C83C6400AA1942 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		A35BE20326C94C1700AA1942 /* CalendarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFont.swift; sourceTree = "<group>"; };
-		A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
 		A802CBD326B68AAE004E7365 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -133,6 +139,10 @@
 		A884C4DC26B079AF00BACC90 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		C58451548CF40FBAE1B7588A /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		D5D99469B3E6DFACF19A1D91 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE2899C326CC3C5900B145FB /* JournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
+		FE2899C826CC3C6200B145FB /* JournalMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
+		FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
+		FE2899D226CC3C7500B145FB /* JournalTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalTableView.swift; sourceTree = "<group>"; };
 		FE79E3AD269CC09A00DACD24 /* Pills.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pills.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE79E3B9269CC09D00DACD24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,13 +171,17 @@
 		FEB957B226A96FDF0093BA8D /* DevelopmentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentRouter.swift; sourceTree = "<group>"; };
 		FEB957B326A96FDF0093BA8D /* DevelopmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentViewController.swift; sourceTree = "<group>"; };
 		FEB957B926A96FEB0093BA8D /* MainTabBarMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarMaker.swift; sourceTree = "<group>"; };
-		FEB957E026AAC1A40093BA8D /* JournalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableView.swift; sourceTree = "<group>"; };
-		FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
-		FEB957FE26AAE1B20093BA8D /* JournalMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
 		FEB9580526AAF0D30093BA8D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FEB9586D26AF1FB00093BA8D /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		FECB19D726B1D69100136DF0 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
+		FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCourseViewController.swift; sourceTree = "<group>"; };
+		FED9593A26C4253F00E9B6C3 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCell.xib; sourceTree = "<group>"; };
+		FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCell.swift; sourceTree = "<group>"; };
+		FED959AD26C9808D00E9B6C3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCourseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,11 +254,9 @@
 		A3FBD9ED26A926BB00B8BE0E /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				A3FBD9EE26A926D200B8BE0E /* JournalViewController.swift */,
-				A35BE20026C83C6400AA1942 /* CalendarCell.swift */,
-				FEB957E026AAC1A40093BA8D /* JournalTableView.swift */,
-				FEB957E826AAC1BB0093BA8D /* JournalTableViewCell.swift */,
-				FEB957FE26AAE1B20093BA8D /* JournalMock.swift */,
+				FED9593726C421AE00E9B6C3 /* Models */,
+				FED9593926C421C700E9B6C3 /* View */,
+				FED9593826C421BA00E9B6C3 /* Controller */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -397,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				A86DB93C26C54BD000AE866A /* Rate */,
+				FECB1A6A26BAE5D300136DF0 /* AddNewCourse */,
 				A870AFE826A9A31E00624579 /* Courses */,
 				A3FBD9ED26A926BB00B8BE0E /* Calendar */,
 				FE79E3FB269CCCE100DACD24 /* Intro */,
@@ -448,6 +461,7 @@
 		FE79E3F0269CC98200DACD24 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FED9597A26C587F800E9B6C3 /* UI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -480,6 +494,7 @@
 				A86DB95526C54C5300AE866A /* StackView.swift */,
 				A8329E6826C69A8600AD6A11 /* Label.swift */,
 				A81ECCF726C6D61E0039DE67 /* Button.swift */,
+				FED959AD26C9808D00E9B6C3 /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -550,6 +565,52 @@
 				FECB19D626B1D63D00136DF0 /* SFCompactDisplay-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FECB1A6A26BAE5D300136DF0 /* AddNewCourse */ = {
+			isa = PBXGroup;
+			children = (
+				FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */,
+				FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */,
+			);
+			path = AddNewCourse;
+			sourceTree = "<group>";
+		};
+		FED9593726C421AE00E9B6C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FE2899C826CC3C6200B145FB /* JournalMock.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FED9593826C421BA00E9B6C3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE2899C326CC3C5900B145FB /* JournalViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FED9593926C421C700E9B6C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE2899D226CC3C7500B145FB /* JournalTableView.swift */,
+				FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */,
+				FED9593A26C4253F00E9B6C3 /* JournalView.swift */,
+				A35BE20026C83C6400AA1942 /* CalendarCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FED9597A26C587F800E9B6C3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */,
+				FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */,
+				FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -668,6 +729,7 @@
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
 				FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */,
+				FED9599626C59CF300E9B6C3 /* CustomDropDownCell.xib in Resources */,
 				FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,27 +897,27 @@
 				8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */,
 				A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
-				A3FBD9EF26A926D200B8BE0E /* JournalViewController.swift in Sources */,
+				FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */,
 				553A358D26C02BC9006FFA6F /* NotificationService.swift in Sources */,
 				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
+				FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
-				FEB957FF26AAE1B20093BA8D /* JournalMock.swift in Sources */,
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */,
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
-				FEB957E126AAC1A40093BA8D /* JournalTableView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
 				553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */,
 				A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */,
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
+				FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
 				A86DB94726C54C3600AE866A /* TableView.swift in Sources */,
 				A81ECCF826C6D61E0039DE67 /* Button.swift in Sources */,
@@ -866,18 +928,24 @@
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
-				FEB957E926AAC1BB0093BA8D /* JournalTableViewCell.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
+				FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */,
+				FED9599B26C59D0800E9B6C3 /* CustomDropDownCell.swift in Sources */,
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,
+				FED959AE26C9808E00E9B6C3 /* Int.swift in Sources */,
 				FE79E43C26A31C4900DACD24 /* AppColors.swift in Sources */,
 				FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */,
+				FECB1A6C26BAE69400136DF0 /* AddNewCourseViewController.swift in Sources */,
 				849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */,
+				FE2899C426CC3C5900B145FB /* JournalViewController.swift in Sources */,
 				FE79E43226A3186900DACD24 /* Text.swift in Sources */,
+				FE2899C926CC3C6200B145FB /* JournalMock.swift in Sources */,
 				A870B00526A9D58E00624579 /* AppLayout.swift in Sources */,
 				A86DB94126C54BD000AE866A /* RateViewController.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
+				FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */,
 				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

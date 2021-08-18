@@ -20,29 +20,82 @@ import RealmSwift
 //   // var entry: RealmMedKitEntry ...
 //   entry.unitString.localized()
 
-enum PillType: String {
-    case tablets
+enum PillType: String, CaseIterable {
     case capsules
+    case tablets
+    case syringe
     case drops
-    case procedure
     case salve
     case liquid
-    case syringe
+    case suspension
     case spray
-    
-    fileprivate static let types = [
-        PillType.tablets: ["pill", "piece", "mg", "g"],
-        PillType.capsules: ["capsule", "piece", "mg", "g"],
-        PillType.drops: ["drop", "times", "piece"],
-        PillType.procedure: ["times", "inhalation", "taking", "suppository", "enema"],
-        PillType.salve: ["taking", "times", "piece"],
-        PillType.liquid: ["bowl", "flask", "teaspoon", "tablespoon", "ml"],
-        PillType.syringe: ["piece", "ampoule", "syringe", "ml", "mg", "g", "cm3"],
-        PillType.spray: ["times", "injection"]
+    case procedure
+
+    fileprivate static let unitsMap = [
+        PillType.capsules: [
+            "capsule",
+            "piece",
+            "mg",
+            "g"
+        ].map {$0.localized()},
+        PillType.tablets: [
+            "pill",
+            "piece",
+            "mg",
+            "g"
+        ].map {$0.localized()},
+        PillType.syringe: [
+            "piece",
+            "ampoule",
+            "syringe",
+            "ml",
+            "mg",
+            "g",
+            "cm3"
+        ].map {$0.localized()},
+        PillType.drops: [
+            "drop",
+            "times",
+            "piece"
+        ].map {$0.localized()},
+        PillType.salve: [
+            "taking",
+            "times",
+            "piece"
+        ].map {$0.localized()},
+        PillType.liquid: [
+            "bowl",
+            "flask",
+            "teaspoon",
+            "tablespoon",
+            "ml"
+        ].map {$0.localized()},
+        PillType.suspension: [
+            "bowl",
+            "flask",
+            "teaspoon",
+            "tablespoon",
+            "ml"
+        ].map {$0.localized()},
+        PillType.spray: [
+            "times",
+            "injection"
+        ].map {$0.localized()},
+        PillType.procedure: [
+            "times",
+            "inhalation",
+            "taking",
+            "suppository",
+            "enema"
+        ].map {$0.localized()}
     ]
 
-    func pillUnits() -> [String] {
-        return PillType.types[self]!
+    func image() -> UIImage {
+        return UIImage(named: self.rawValue) ?? UIImage()
+    }
+    
+    func units() -> [String] {
+        return PillType.unitsMap[self] ?? []
     }
 }
 

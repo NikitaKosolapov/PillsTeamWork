@@ -1,13 +1,13 @@
 //
-//  JournalTableView.swift
+//  JournalViewController.swift
 //  Pills
 //
-//  Created by aprirez on 7/23/21.
+//  Created by Rayen on 22.07.2021.
 //
 
 import UIKit
 
-class JournalTableView: UITableView {
+class JournalViewController: BaseViewController<JournalView> {
 
     class Event {
         let time: Date
@@ -21,6 +21,8 @@ class JournalTableView: UITableView {
 
     fileprivate var eventsToShow: [Event] = []
 
+    // ---------------------------------------------------------
+    // MARK: - MOCK DATA
     var journalEntries: [RealmMedKitEntry] = [
         JournalMock.shared.entryExample1,
         JournalMock.shared.entryExample2
@@ -29,18 +31,7 @@ class JournalTableView: UITableView {
             prepareDataForDay()
         }
     }
-
-    func configure(_ forDate: Date = Date()) {
-        self.tableFooterView = UIView()
-        self.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.bounces = false
-        self.dataSource = self
-        self.delegate = self
-        register(JournalTableViewCell.self, forCellReuseIdentifier: "JournalCell")
-        rowHeight = JournalTableViewCell.CellTheme.cellHeight
-        prepareDataForDay(forDate)
-    }
-
+    
     func prepareDataForDay(_ forDate: Date = Date()) {
         let selectedDate = forDate.startOfDay
         eventsToShow = []
@@ -53,16 +44,45 @@ class JournalTableView: UITableView {
             return event1.time < event2.time ? true : false
         }
     }
+
+    // ---------------------------------------------------------
+    // MARK: - Controller logic
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
+    }
+ 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareDataForDay(Date())
+        rootView.delegate = self
+        rootView.configure(tableDataSource: self)
+    }
+
+    @objc func addNewCourseButtonAction(sender: UIButton!) {
+        let addNewCourseViewController = AddNewCourseViewController()
+        addNewCourseViewController.modalPresentationStyle = .pageSheet
+        self.present(addNewCourseViewController, animated: true)
+    }
 }
 
-extension JournalTableView: UITableViewDelegate, UITableViewDataSource {
+extension JournalViewController: JournalEventsDelegate {
+    func addNewPill() {
+        let addNewCourseViewController = AddNewCourseViewController()
+        self.navigationController?.pushViewController(addNewCourseViewController, animated: true)
+    }
+}
+
+extension JournalViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventsToShow.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell =
-                dequeueReusableCell(
+                tableView.dequeueReusableCell(
                     withIdentifier: "JournalCell",
                     for: indexPath
                 ) as? JournalTableViewCell
@@ -71,7 +91,6 @@ extension JournalTableView: UITableViewDelegate, UITableViewDataSource {
         }
 
         cell.configure(model: eventsToShow[indexPath.row])
-
         return cell
     }
 
