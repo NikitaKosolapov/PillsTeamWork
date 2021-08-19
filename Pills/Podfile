@@ -4,13 +4,9 @@
 target 'Pills' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-<<<<<<< HEAD
+
   pod 'RealmSwift', '10.7.2'
   pod 'FSCalendar', '2.8.2'
-=======
-  pod 'RealmSwift'
-  pod 'FSCalendar'
->>>>>>> GEEK-89 [Курсы] Реализовать экран добавления лекарства
   pod 'DropDown', '2.3.13'
 
   # Pods for Pills
