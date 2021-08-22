@@ -32,7 +32,7 @@ final class JournalMock {
             schedule.append(
                 RealmTimePoint(
                     time: scheduleTime,
-                    isUsed: false
+                    isUsed: scheduleTime < now ? true : false
                 )
             )
             // move to 8 hours forward
