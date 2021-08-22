@@ -41,5 +41,35 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func configureNotificationService() {
         notificationService.registerForNotifications()
         notificationService.notificationCenter.delegate = self
+        addNotifications()
+        
     }
+    
+    func addNotifications() {
+        let journalEntries: [RealmMedKitEntry] = [ // MOCK data to be removed once DB and business logic are both finalised
+            JournalMock.shared.entryExample1,
+            JournalMock.shared.entryExample2
+        ]
+        journalEntries.forEach({ pill in
+            pill.schedule.forEach({ date in
+                let model = NotificationModel(identifier: pill.entryID,
+                                              title: Text.PushNotifications.itIsTimeToTakePill,
+                                              subTitile: "",
+                                              body: pill.name,
+                                              date: date.time,
+                                              isRepeating: true)
+                debugPrint("date.time:", date.time)
+                notificationService.addNotificationModel(notificationModel: model) { _ in
+                }
+            })
+        })
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler:
+                                    @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner,.sound,.badge])
+    }
+    
 }

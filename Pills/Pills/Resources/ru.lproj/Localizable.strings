@@ -126,3 +126,6 @@
 "iOSVersion" = "iOS версия:";
 "deviceModel" = "Модель устройства:";
 "appVersion" = "Версия приложения";
+
+//MARK: - Push Notifications
+"itIsTimeToTakePill" = "Время принять лекарство";

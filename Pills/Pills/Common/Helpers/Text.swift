@@ -181,4 +181,10 @@ enum Text {
         static let deviceModel = "deviceModel".localized()
         static let appVersion = "appVersion".localized()
     }
+    
+    // MARK: - Push Notifications
+    
+    enum PushNotifications {
+        static let itIsTimeToTakePill = "itIsTimeToTakePill".localized()
+    }
 }
