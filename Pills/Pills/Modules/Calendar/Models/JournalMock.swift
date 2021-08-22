@@ -20,10 +20,10 @@ final class JournalMock {
         let now = Date()
 
         var startDate = now.addingTimeInterval(-3600 * 24 * 7)
-//        startDate = startDate.startOfDay
+        startDate = startDate.startOfDay
 
         var endDate = now.addingTimeInterval(3600 * 24 * 7)
-//        endDate = endDate.endOfDay
+        endDate = endDate.endOfDay
 
         let schedule = List<RealmTimePoint>()
 

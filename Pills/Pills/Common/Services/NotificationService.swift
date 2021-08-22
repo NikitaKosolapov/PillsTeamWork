@@ -53,10 +53,6 @@ class NotificationService {
         return content
     }
     
-//    private func makeTrigger(interval: TimeInterval = 20) -> UNNotificationTrigger {
-//        return UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
-//    }
-    
     private func createNotificationTrigger(date: Date, isNeedRepeat: Bool = true) -> UNCalendarNotificationTrigger {
         // Configure the recurring date.
         var dateComponents = DateComponents()
@@ -94,24 +90,4 @@ class NotificationService {
                                                   completion: completion)
         
     }
-    
-//    func send(title: String, subtitle: String, content: String, interval: TimeInterval = 20) {
-//        if isNotificationGranted {
-//            let message = makeContent(title: title, subtitle: subtitle, body: content)
-//            let trigger = makeTrigger(interval: interval)
-//
-//            let request = UNNotificationRequest(identifier: "alarm",
-//                                                content: message,
-//                                                trigger: trigger
-//            )
-//
-//            let center = notificationCenter
-//
-//            center.add(request) { error in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
-//    }
 }
