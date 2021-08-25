@@ -18,13 +18,12 @@ fileprivate final class VStackViewFabric {
 }
 
 fileprivate final class HStackViewFabric {
-    static func generate(_ views: [UIView], _ distribution: UIStackView.Distribution = .equalCentering) -> UIStackView {
+    static func generate(_ views: [UIView], _ distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.distribution = distribution
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = AppLayout.AddCourse.horizontalSpacing
-        stackView.distribution = .fill
         return stackView
     }
 }
@@ -57,6 +56,7 @@ class AddNewCourseView: UIView {
         CustomTextFieldBuilder()
             .withPlaceholder(Text.dosePlaceholder)
             .withType(.numeric)
+            .withTextAlignment(.center)
             .withMaxLength(AppLayout.AddCourse.doseFieldMaxLength)
             .build()
     private lazy var stackDose = VStackViewFabric.generate([doseLabel, doseInput])
@@ -66,8 +66,8 @@ class AddNewCourseView: UIView {
     private lazy var doseUnitInput =
         CustomTextFieldBuilder()
             .withPlaceholder(Text.unit)
-            .dropDown(width: AppLayout.AddCourse.doseTypeDropDownWidth)
-            .withImage()
+            .withSimplePicker(options: [], {_ in return true})
+            .withTextAlignment(.center)
             .build()
     private lazy var stackDoseType = VStackViewFabric.generate([doseUnitLabel, doseUnitInput])
 
@@ -78,23 +78,43 @@ class AddNewCourseView: UIView {
             .withPlaceholder(Text.pillType)
             .dropDown()
             .withImage()
-            .withDropDownProcessor({ [weak self] (items, index) in
+            .withDropDownProcessor({ [weak self] (_, index) in
                 guard let self = self else {return true}
-                self.doseUnitInput.items =
-                    PillType.allCases[index].units().map { (nil, $0 )}
+                self.typeNameOfDef.text = PillType.allCases[index].rawValue.localized()
+                self.doseUnitInput.pickerOptions =
+                    PillType.allCases[index].units().map { $0 }
+                self.doseUnitInput.text = PillType.allCases[index].units()[0]
                 return true // continue default processing
             })
             .withItems(PillType.allCases.map {($0.image(), "")})
             .build()
-    private lazy var stackType = VStackViewFabric.generate([typeLabel, typeInput])
+    private lazy var typeNameLabel = FieldHeaderFabric.generate(header: "")
+    
+    private lazy var typeNameOfDef =
+        CustomTextFieldBuilder()
+            .withType(.readOnly)
+            .withTextAlignment(.center)
+            .build()
+    
+    private lazy var stackTypeImage = VStackViewFabric.generate([typeLabel, typeInput])
+    private lazy var stackTypeName = VStackViewFabric.generate([typeNameLabel, typeNameOfDef])
 
+    private lazy var stackTypeImageAndTypeName =
+        HStackViewFabric.generate([stackTypeImage, stackTypeName], .fillEqually)
+    
     private lazy var stackDoseAndType =
-        HStackViewFabric.generate([stackDose, stackType, stackDoseType], .fillEqually)
+        HStackViewFabric.generate([stackDose, stackDoseType], .fillEqually)
 
     // MARK: - Frequency Input
     private lazy var frequencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
-            .withImage(AppImages.Tools.rightArrow)
+            .withSimplePicker(
+                options: Text.Frequency.all(), { [weak self] (option) in
+                    guard let self = self else {return false}
+                    // Alexander, please open additional view here:
+                    debugPrint("\(option)")
+                    return true
+                })
             .build()
         textField.text = Text.takingFrequency
         return textField
@@ -136,7 +156,7 @@ class AddNewCourseView: UIView {
         CustomTextFieldBuilder()
             .withPlaceholder(Text.takePeriodPlaceholder)
             .withType(.numeric)
-        .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
+            .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
             .withEndEditProcessor(self.processTakePeriodInput)
             .clearOnFocus()
             .build()
@@ -180,9 +200,26 @@ class AddNewCourseView: UIView {
         return stack
     }()
 
+    // MARK: - Frequency Input
+    private lazy var mealDependencyLabel =
+        FieldHeaderFabric.generate(header: Text.instruction)
+    private lazy var mealDependencyInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withSimplePicker(
+                options: Text.Usage.all(), { [weak self] (option) in
+                    guard let self = self else {return false}
+                    debugPrint("\(option)")
+                    return true
+                })
+            .build()
+        textField.placeholder = Text.instruction
+        return textField
+    }()
+    private lazy var stackMealDependency = VStackViewFabric.generate([mealDependencyLabel, mealDependencyInput])
+
     // MARK: - Note Input
     private lazy var noteLabel =
-        FieldHeaderFabric.generate(header: Text.comments)
+        FieldHeaderFabric.generate(header: Text.notes)
     private lazy var noteInput: UITextView = {
         let textField = UITextView()
         textField.isEditable = true
@@ -205,10 +242,12 @@ class AddNewCourseView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Text.save, for: .normal)
         button.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
+        button.isEnabled = false
         NSLayoutConstraint.activate(
             [button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)])
         return button
     }()
+
     @objc func doneButtonPressed() {
         // dummy
     }
@@ -217,10 +256,12 @@ class AddNewCourseView: UIView {
     private lazy var formStackView: UIStackView = {
         let stack = VStackViewFabric.generate([
             stackPillName,
+            stackTypeImageAndTypeName,
             stackDoseAndType,
             frequencyInput,
             stackStartAndWhen,
             stackTakePeriodWithDropDown,
+            stackMealDependency,
             stackNote
         ])
         stack.spacing = AppLayout.AddCourse.horizontalSpacing
@@ -235,11 +276,20 @@ class AddNewCourseView: UIView {
         stackView.spacing = AppLayout.AddCourse.horizontalSpacing
         return stackView
     }()
+    private var majorStackViewBottomAnchor: NSLayoutConstraint?
 
     // MARK: - Constraints
     // swiftlint:disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
+
+        if majorStackViewBottomAnchor == nil {
+            majorStackViewBottomAnchor = majorStackView.bottomAnchor
+                .constraint(
+                    equalTo: safeAreaLayoutGuide.bottomAnchor,
+                    constant: -AppLayout.AddCourse.horizontalSpacing
+                )
+        }
 
         NSLayoutConstraint.activate([
             majorStackView.topAnchor
@@ -254,11 +304,7 @@ class AddNewCourseView: UIView {
                     equalTo: trailingAnchor,
                     constant: -AppLayout.AddCourse.horizontalSpacing
                 ),
-            majorStackView.bottomAnchor
-                .constraint(
-                    equalTo: safeAreaLayoutGuide.bottomAnchor,
-                    constant: -AppLayout.AddCourse.horizontalSpacing
-                ),
+            majorStackViewBottomAnchor!,
 
             formStackView.topAnchor
                 .constraint(equalTo: scrollView.topAnchor),
@@ -275,10 +321,6 @@ class AddNewCourseView: UIView {
                 .constraint(equalToConstant: AppLayout.CustomTextField.standardHeight),
             typeInput.heightAnchor
                 .constraint(equalToConstant: AppLayout.CustomTextField.standardHeight),
-            typeInput.widthAnchor
-                .constraint(equalToConstant: AppLayout.AddCourse.typeInputWidth),
-            doseUnitInput.widthAnchor
-                .constraint(equalToConstant: AppLayout.AddCourse.doseUnitInputWidth),
 
             frequencyInput.heightAnchor
                 .constraint(equalToConstant: AppLayout.CustomTextField.standardHeight),
@@ -303,15 +345,51 @@ class AddNewCourseView: UIView {
             noteInput.heightAnchor
                 .constraint(greaterThanOrEqualToConstant: AppLayout.AddCourse.noteInputHeight)
         ])
-        layoutIfNeeded()
     }
     
     // MARK: - Class Methods
     func setup() {
         addSubviews()
         backgroundColor = AppColors.addNewCourseBackgroundColor
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(keyboardWillShow),
+                name: UIResponder.keyboardWillShowNotification,
+                object: nil)
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(keyboardWillHide),
+                name: UIResponder.keyboardWillHideNotification,
+                object: nil)
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            
+            majorStackViewBottomAnchor?.isActive = false
+            majorStackViewBottomAnchor = majorStackView.bottomAnchor
+                .constraint(
+                    equalTo: self.bottomAnchor,
+                    constant: -keyboardHeight - AppLayout.AddCourse.horizontalSpacing
+                )
+            majorStackViewBottomAnchor?.isActive = true
+        }
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+        majorStackViewBottomAnchor?.isActive = false
+        majorStackViewBottomAnchor = majorStackView.bottomAnchor
+            .constraint(
+                equalTo: safeAreaLayoutGuide.bottomAnchor,
+                constant: -AppLayout.AddCourse.horizontalSpacing
+            )
+        majorStackViewBottomAnchor?.isActive = true
+    }
+
     func addSubviews() {
         scrollView.addSubview(formStackView)
         addSubview(majorStackView)
@@ -377,7 +455,7 @@ class AddNewCourseView: UIView {
     func processTakePeriodInput() {
         guard let days = Int(self.takePeriodInput.text ?? "0") else {return}
         let date = Calendar.current.date(byAdding: .day, value: days, to: getStartDate())
-        setTakePeriodText(fromDate: Date(), tillDate: date ?? getStartDate())
+        setTakePeriodText(fromDate: getStartDate(), tillDate: date ?? getStartDate())
     }
     
 }

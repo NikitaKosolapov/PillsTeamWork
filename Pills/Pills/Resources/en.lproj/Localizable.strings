@@ -14,29 +14,31 @@
 "salve" = "salve";
 "liquid" = "liquid";
 "syringe" = "syringe";
+"spray" = "spray";
 "suspension" = "suspension";
 
 "addNewPill" = "Add a new pill";
+"newPill" = "New pill";
 "name" = "Pill's name";
-"namePlaceholder" = "Enter the pill's name here...";
+"namePlaceholder" = "Aspirin 100 mg";
 "dose" = "Dose";
-"dosePlaceholder" = "Input dose here...";
+"dosePlaceholder" = "Input dose here";
 "pillType" = "Type";
-"takingFrequency" = "Taking frequency...";
+"takingFrequency" = "Taking frequency";
 "startFrom" = "Start from";
 "takeAtTime" = "Take at";
 "takePeriod" = "Take in...";
-"takePeriodPlaceholder" = "Amount of days...";
+"takePeriodPlaceholder" = "Amount of days";
 "singleDose" = "Single dose";
 "unit" = "Unit";
 "instruction" = "Instruction";
-"comments" = "Сomments";
+"notes" = "Notes";
 "time" = "Time";
 "add" = "Add";
 "of" = "of";
 "takePillsInTime" = "Take pills in time";
 "justAddAnOrder" = "Just add an order";
-"periodExpired" = "Period already expired...";
+"periodExpired" = "Period already expired";
 "save" = "Save";
 
 "week" = "1 week";
@@ -49,6 +51,11 @@
 "today" = "Today";
 "cancel" = "Cancel";
 "till" = "till";
+
+"someDaysInAWeek" = "Selected days of week";
+"severalTimesInADay" = "Several times per day";
+"everyNHoursInADay" = "Every N hours per day";
+"everyNDaysAfterMDays" = "Every N days with breaks";
 
 "beforeMeals" = "Before meal";
 "whileEating" = "While eating";

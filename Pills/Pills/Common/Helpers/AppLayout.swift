@@ -163,6 +163,6 @@ enum AppLayout {
         static let periodDropDownWidth: CGFloat = 120
 
         static let horizontalSpacing: CGFloat = 16
-        static let noteInputHeight: CGFloat = 400
+        static let noteInputHeight: CGFloat = 200
     }
 }

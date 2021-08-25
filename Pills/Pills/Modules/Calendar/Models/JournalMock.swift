@@ -50,9 +50,9 @@ final class JournalMock {
             singleDose: 0.5,
             concentration: 500,
             concentrationUnit: .g,
-            unitString: Text.Unit.all()[unitIndex],
+            unitString: Text.Unit.allCases[unitIndex].rawValue,
             usage: .whileEating,
-            comments: "",
+            notes: "",
             startDate: startDate,
             endDate: endDate,
             schedule: schedule
@@ -65,9 +65,9 @@ final class JournalMock {
             singleDose: 1,
             concentration: 100,
             concentrationUnit: .mg,
-            unitString: Text.Unit.all().last ?? "#error",
+            unitString: Text.Unit.allCases.last?.rawValue ?? "#error",
             usage: .afterMeals,
-            comments: "",
+            notes: "",
             startDate: startDate,
             endDate: endDate,
             schedule: schedule

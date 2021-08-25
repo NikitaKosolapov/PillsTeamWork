@@ -15,6 +15,7 @@ class CustomTextFieldBuilder {
     
     enum InputType {
         case numeric
+        case readOnly
         case any
     }
 
@@ -33,6 +34,7 @@ class CustomTextFieldBuilder {
     
     func withType(_ type: InputType) -> CustomTextFieldBuilder {
         builtObject.isNumeric = (type == InputType.numeric)
+        builtObject.readOnly = (type == InputType.readOnly)
         return self
     }
 
@@ -73,6 +75,18 @@ class CustomTextFieldBuilder {
         return self
     }
     
+    func withSimplePicker(options: [String], _ onPicked: @escaping ((_ option: String) -> Bool)
+    ) -> CustomTextFieldBuilder {
+        builtObject.onPicked = onPicked
+        builtObject.setupPicker(options)
+        return self
+    }
+    
+    func withTextAlignment(_ alignment: NSTextAlignment) -> CustomTextFieldBuilder {
+        builtObject.textAlignment = alignment
+        return self
+    }
+    
     func clearOnFocus() -> CustomTextFieldBuilder {
         builtObject.clearOnFocus = true
         return self
@@ -97,6 +111,10 @@ class CustomTextField: UITextField {
     fileprivate var datePicker: UIDatePicker?
     fileprivate var onDatePicked: ((_ date: Date) -> Bool)?
 
+    fileprivate var picker: UIPickerView?
+    public var pickerOptions: [String] = []
+    fileprivate var onPicked: ((_ option: String) -> Bool)?
+
     private var isDropDownMode: Bool = false
     private var dropDown: DropDown?
     
@@ -112,6 +130,7 @@ class CustomTextField: UITextField {
     
     fileprivate var clearOnFocus = false
     fileprivate var isNumeric = false
+    fileprivate var readOnly = false
     fileprivate var maxLength: Int = -1
     
     fileprivate var dropDownProcessor:
@@ -148,12 +167,7 @@ class CustomTextField: UITextField {
         }
         didSet {
             guard let textImage = self.customOptionImage else {return}
-            let width = textImage.image?.cgImage?.width ?? 0
-            let height = textImage.image?.cgImage?.height ?? 0
-            textImage.contentMode =
-                (width > height)
-                    ? .scaleAspectFit
-                    : .scaleAspectFill
+            textImage.contentMode = .scaleAspectFit
             textImage.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(textImage)
 
@@ -162,8 +176,8 @@ class CustomTextField: UITextField {
                     .constraint(equalTo: self.topAnchor, constant: 1),
                 textImage.bottomAnchor
                     .constraint(equalTo: self.bottomAnchor, constant: -3),
-                textImage.leadingAnchor
-                    .constraint(equalTo: self.leadingAnchor, constant: 8),
+                textImage.centerXAnchor
+                    .constraint(equalTo: self.centerXAnchor),
                 textImage.widthAnchor
                     .constraint(equalToConstant: AppLayout.CustomTextField.standardHeight - 4)
             ])
@@ -289,11 +303,22 @@ class CustomTextField: UITextField {
         datePicker?.date = Date()
         self.inputView = datePicker
 
-        setupToolbar()
+        setupDatePickerToolbar()
         self.inputAccessoryView = toolbar
     }
-    
-    private func setupToolbar() {
+
+    fileprivate func setupPicker(_ options: [String]) {
+        picker = UIPickerView()
+        pickerOptions = options
+        picker?.delegate = self
+        picker?.dataSource = self
+        self.inputView = picker
+
+        setupSimplePickerToolbar()
+        self.inputAccessoryView = toolbar
+    }
+
+    private func setupDatePickerToolbar() {
         if toolbar != nil { return }
 
         // dumb fix for constraints errors,
@@ -334,15 +359,54 @@ class CustomTextField: UITextField {
             action: #selector(cancelPicker)
         )
 
-        toolbar.setItems([doneButton, nowButton, spaceButton, cancelButton], animated: false)
+        toolbar.setItems([cancelButton, nowButton, spaceButton, doneButton], animated: false)
     }
     
+    private func setupSimplePickerToolbar() {
+        if toolbar != nil { return }
+
+        toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100.0, height: 44.0))
+        guard let toolbar = toolbar
+        else {return}
+
+        let doneButton = UIBarButtonItem(
+            title: Text.DatePickerButtons.done,
+            style: .plain,
+            target: self,
+            action: #selector(doneWithSimplePicker)
+        )
+
+        let spaceButton = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace,
+            target: nil, action: nil
+        )
+
+        let cancelButton = UIBarButtonItem(
+            title: Text.DatePickerButtons.cancel,
+            style: .plain,
+            target: self,
+            action: #selector(cancelPicker)
+        )
+
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+    }
     @objc private func donePickerWithNow() {
         guard let datePicker = datePicker else {return}
         datePicker.date = Date()
         doneWithPicker()
     }
-    
+
+    @objc private func doneWithSimplePicker() {
+        guard let picker = picker else {return}
+        let row = picker.selectedRow(inComponent: 0)
+        if false == onPicked?(pickerOptions[row]) {
+            self.endEditing(true)
+            return
+        }
+        self.text = pickerOptions[row]
+        self.endEditing(true)
+    }
+
     @objc private func doneWithPicker() {
         guard let datePicker = datePicker else {return}
         if false == onDatePicked?(datePicker.date) {
@@ -379,10 +443,12 @@ class CustomTextField: UITextField {
 extension CustomTextField: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if datePicker != nil { return true }
+        if picker != nil { return true }
         if let dropDown = dropDown {
             dropDown.show()
             return false
         }
+        if readOnly { return false }
         if clearOnFocus {
             text = ""
         }
@@ -395,6 +461,7 @@ extension CustomTextField: UITextFieldDelegate {
         replacementString string: String
     ) -> Bool {
         if datePicker != nil { return false }
+        if picker != nil { return false }
 
         if maxLength >= 0 {
             guard let text = self.text,
@@ -454,5 +521,19 @@ extension CustomTextField {
                 cell.optionLabel.text = self.items[index].1
             }
         }
+    }
+}
+
+extension CustomTextField: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerOptions[row]
     }
 }

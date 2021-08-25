@@ -157,16 +157,11 @@ final class JournalTableViewCell: UITableViewCell {
 
             self.pillTypeImage.image = item.pillType.image()
             self.pillNameLabel.text = item.name
-            let type = item.pillType.rawValue.localized()
             let dose = numFormatter.string(from: item.singleDose as NSNumber) ?? "#error"
-            let concentration = numFormatter.string(from: item.concentration as NSNumber) ?? "#error"
-            let concentrationUnit = item.concentrationUnit.rawValue.localized()
+            let unit = item.unitString.localized()
             let usage = item.usage.rawValue.localized()
-            let prepositionOf = Text.of
-            self.instructionLabel.text =
-                "\(dose) \(type) \(prepositionOf) \(concentration) \(concentrationUnit)"
-            self.usageLabel.text =
-                "\(usage)"
+            self.instructionLabel.text = "\(dose) \(unit)"
+            self.usageLabel.text = "\(usage)"
         }
     }
 

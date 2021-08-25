@@ -20,6 +20,9 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = AppColors.addNewCourseBackgroundColor
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.title = "\(Text.newPill)"
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
     }
     
 }

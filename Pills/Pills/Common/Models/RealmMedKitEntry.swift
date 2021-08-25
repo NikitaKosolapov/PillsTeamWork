@@ -138,7 +138,7 @@ class RealmMedKitEntry: Object {
     @objc dynamic var name = "(not named)"
     @objc dynamic var singleDose: Double = 0
     @objc dynamic var concentration: Double = 0
-    @objc dynamic var comments = "(no comments)"
+    @objc dynamic var notes = "(no comments)"
     @objc dynamic var startDate = Date()
     @objc dynamic var endDate = Date()
     @objc dynamic var pillTypeHolder = PillType.tablets.rawValue
@@ -176,7 +176,7 @@ class RealmMedKitEntry: Object {
          concentrationUnit: ConcentrationUnit,
          unitString: String,
          usage: Usage,
-         comments: String,
+         notes: String,
          startDate: Date,
          endDate: Date,
          schedule: List<RealmTimePoint>
@@ -185,7 +185,7 @@ class RealmMedKitEntry: Object {
         self.singleDose = singleDose
         self.concentration = concentration
         self.concentrationUnitHolder = concentrationUnit.rawValue
-        self.comments = comments
+        self.notes = notes
         self.startDate = startDate
         self.endDate = endDate
         self.pillTypeHolder = pillType.rawValue
