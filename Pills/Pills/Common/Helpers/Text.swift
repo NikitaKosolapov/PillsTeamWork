@@ -160,7 +160,6 @@ enum Text {
 
     // MARK: - Settings
     enum Settings {
-        static let language = "language".localized()
         static let aboutApp = "aboutApp".localized()
         static let writeSupport = "writeSupport".localized()
         static let notification = "notification".localized()
@@ -169,8 +168,6 @@ enum Text {
         static let termsOfUsage = "termsOfUsage".localized()
         static let privacyPolicy = "privacyPolicy".localized()
         static let rate = "rate".localized()
-        static let mainSection = "mainSection".localized()
-        static let infoSection = "infoSection".localized()
     }
 
     // MARK: - Rating
