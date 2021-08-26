@@ -8,6 +8,17 @@
 import UIKit
 
 class AddButton: UIButton {
+    
+    override var isEnabled: Bool {
+        willSet {
+            super.isEnabled = newValue
+            backgroundColor =
+                AppColors.AidKit.addButton.withAlphaComponent(
+                    newValue ? 1 : 0.5
+                )
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()

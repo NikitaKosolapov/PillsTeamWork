@@ -194,7 +194,7 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
         calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
         calendar.appearance.weekdayTextColor = AppColors.CalendarColor.weekdayTextColor
         calendar.appearance.selectionColor = AppColors.CalendarColor.selectionDefaultColor
-        calendar.appearance.todayColor = AppColors.CalendarColor.todayDeafaultColor
+        calendar.appearance.todayColor = AppColors.CalendarColor.todayDefaultColor
         calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleDefaultTodayColor
         calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionDefaultColor
         calendar.appearance.eventDefaultColor = AppColors.CalendarColor.eventDefaultColor

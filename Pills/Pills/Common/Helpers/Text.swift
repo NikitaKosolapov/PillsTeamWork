@@ -20,6 +20,7 @@ enum Text {
     // MARK: - Add a new pill
     // swiftlint:disable variable_name
     static let addNewPill = "addNewPill".localized()
+    static let newPill = "newPill".localized()
     static let name = "name".localized()
     static let namePlaceholder = "namePlaceholder".localized()
     static let dose = "dose".localized()
@@ -33,7 +34,7 @@ enum Text {
     static let takePeriodPlaceholder = "takePeriodPlaceholder".localized()
     static let unit = "unit".localized()
     static let instruction = "instruction".localized()
-    static let comments = "comments".localized()
+    static let notes = "notes".localized()
     static let time = "time".localized()
     static let add = "add".localized()
     static let of = "of".localized()
@@ -64,11 +65,15 @@ enum Text {
         }
     }
 
-    enum Usage {
-        static let beforeMeals = "beforeMeals".localized()
-        static let whileEating = "whileEating".localized()
-        static let afterMeals = "afterMeals".localized()
-        static let noMatter = "noMatter".localized()
+    enum Usage: String, CaseIterable {
+        case beforeMeals
+        case whileEating
+        case afterMeals
+        case noMatter
+
+        static func all() -> [String] {
+            Text.Usage.allCases.map {$0.rawValue.localized()}
+        }
     }
 
     enum Unit: String, CaseIterable {
@@ -113,6 +118,18 @@ enum Text {
         static func all() -> [String] {
             Text.ConcentrationUnit.allCases.map {$0.rawValue.localized()}
         }
+    }
+    
+    enum Frequency: String, CaseIterable {
+        case someDaysInAWeek
+        case severalTimesInADay
+        case everyNHoursInADay
+        case everyNDaysAfterMDays
+
+        static func all() -> [String] {
+            Text.Frequency.allCases.map { $0.rawValue.localized() }
+        }
+
     }
 
     enum Period: String, CaseIterable {

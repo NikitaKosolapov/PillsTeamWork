@@ -22,7 +22,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Oa-2B-0s1">
-                        <rect key="frame" x="8" y="0.0" width="40" height="40"/>
+                        <rect key="frame" x="15.5" y="0.0" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="bjE-WJ-tzV"/>
                             <constraint firstAttribute="height" constant="40" id="lgX-FB-2oi"/>
@@ -33,9 +33,9 @@
                     <constraint firstItem="9iN-e3-fFX" firstAttribute="top" secondItem="CMi-BT-can" secondAttribute="top" id="GpY-Cf-RD2"/>
                     <constraint firstAttribute="trailing" secondItem="9iN-e3-fFX" secondAttribute="trailing" id="IKW-Y7-YsS"/>
                     <constraint firstAttribute="bottom" secondItem="9iN-e3-fFX" secondAttribute="bottom" id="PPw-j0-Ufk"/>
-                    <constraint firstItem="9Oa-2B-0s1" firstAttribute="leading" secondItem="CMi-BT-can" secondAttribute="leading" constant="8" id="Re2-x2-pFv"/>
                     <constraint firstItem="9Oa-2B-0s1" firstAttribute="top" secondItem="CMi-BT-can" secondAttribute="top" id="UW5-9O-GRk"/>
                     <constraint firstItem="9iN-e3-fFX" firstAttribute="leading" secondItem="CMi-BT-can" secondAttribute="leading" constant="8" id="YxT-HN-kPV"/>
+                    <constraint firstItem="9Oa-2B-0s1" firstAttribute="centerX" secondItem="CMi-BT-can" secondAttribute="centerX" id="r3q-MJ-84T"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
