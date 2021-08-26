@@ -125,3 +125,6 @@
 "iOSVersion" = "iOS version:";
 "deviceModel" = "Device Model:";
 "appVersion" = "App version";
+
+//MARK: - Push Notifications
+"itIsTimeToTakePill" = "It's time to take your pills";
