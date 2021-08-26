@@ -71,4 +71,9 @@ enum AppColors {
         static let headerTitleDefaultColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
         static let headerTitleColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1) 
     }
+    
+    enum SettingsColor {
+        static let cellHighlight = UIColor(named: "cellHighlight") ?? badColor
+        static let cellUnhighlight = UIColor(named: "cellUnhighlight") ?? badColor
+    }
 }

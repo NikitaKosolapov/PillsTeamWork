@@ -101,17 +101,14 @@
 "days" = "days";
 
 // MARK: - Settings
-"language" = "Language";
-"aboutApp" = "About App";
-"writeSupport" = "Write to support";
-"notification" = "Notification";
+"aboutApp" = "About Application";
+"writeSupport" = "Write to developers";
+"notification" = "Notifications";
 "appearance" = "Appearance";
 "privacy" = "Privacy";
 "termsOfUsage" = "Terms of usage";
-"privacyPolicy" = "Privacy Policy";
-"rate" = "Rate Application";
-"mainSection" = "Main";
-"infoSection" = "Info";
+"privacyPolicy" = "Privacy policy";
+"rate" = "Rate the Application";
 
 // MARK: - Rating
 "rateApp" = "Rate the Application";

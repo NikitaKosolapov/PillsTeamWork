@@ -165,4 +165,9 @@ enum AppLayout {
         static let horizontalSpacing: CGFloat = 16
         static let noteInputHeight: CGFloat = 200
     }
+    
+    enum Settings {
+        static let cellHeight: CGFloat = 68
+        static let cellCornerRadius: CGFloat = 10
+    }
 }

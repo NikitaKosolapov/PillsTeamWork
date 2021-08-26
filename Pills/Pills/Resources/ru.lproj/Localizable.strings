@@ -74,7 +74,6 @@
 "mgToG" = "мг/г";
 "mgToCm2" = "мг/см²";
 "mgToMl" = "мг/мл";
-"capsule" = "capsule";
 "capsule" = "капсула";
 "drop" = "капля";
 "times" = "раз";
@@ -102,17 +101,14 @@
 "days" = "дней";
 
 // MARK: - Settings
-"language" = "Язык";
-"aboutApp" = "О программе";
-"writeSupport" = "Написать в поддержку";
-"notification" = "Нотификации";
+"aboutApp" = "О приложении";
+"writeSupport" = "Написать разработчикам";
+"notification" = "Уведомления";
 "appearance" = "Внешний вид";
 "privacy" = "Приватность";
-"termsOfUsage" = "Правила использования";
+"termsOfUsage" = "Условия использования";
 "privacyPolicy" = "Политика конфиденциальности";
-"rate" = "Оценить";
-"mainSection" = "Основные";
-"infoSection" = "Информация";
+"rate" = "Оценить приложение";
 
 // MARK: - Rating
 "rateApp" = "Оцени приложение";

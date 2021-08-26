@@ -16,4 +16,9 @@ enum AppConstant {
     enum Emails {
         static let feedback = "feedback_pills@g-mail.ru"
     }
+    
+    enum Urls {
+        static let terms = "https://wachanga.com/ru/terms"
+        static let policy = "https://wachanga.com/ru/privacy"
+    }
 }

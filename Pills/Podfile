@@ -8,6 +8,7 @@ target 'Pills' do
   pod 'RealmSwift', '10.7.2'
   pod 'FSCalendar', '2.8.2'
   pod 'DropDown', '2.3.13'
+  pod 'DeviceKit', '4.4.0'
 
   # Pods for Pills
 

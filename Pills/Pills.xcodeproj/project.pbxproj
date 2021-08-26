@@ -16,9 +16,9 @@
 		553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A359426C02D59006FFA6F /* NotificationModel.swift */; };
 		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
 		556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A4FF126C0134F00249B49 /* BaseViewController.swift */; };
-		8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F026BB346C008F64AA /* UIDevice.swift */; };
 		8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F526BB3510008F64AA /* AppConstants.swift */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
+		84C440B426D7E31200860F77 /* SettingsViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C440B326D7E31200860F77 /* SettingsViewTableCell.swift */; };
 		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
 		A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20026C83C6400AA1942 /* CalendarCell.swift */; };
 		A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20326C94C1700AA1942 /* CalendarFont.swift */; };
@@ -110,9 +110,9 @@
 		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		556A4FF126C0134F00249B49 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5E9DA3CF85C98D4181839194 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8423A9F026BB346C008F64AA /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		8423A9F526BB3510008F64AA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		84C440B326D7E31200860F77 /* SettingsViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewTableCell.swift; sourceTree = "<group>"; };
 		8854F59E3DAF27C378F1435B /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A35BE20026C83C6400AA1942 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -238,6 +238,7 @@
 		849AE5C126A9CF2D00262D12 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				84C440B326D7E31200860F77 /* SettingsViewTableCell.swift */,
 				849AE5C226A9CF5400262D12 /* SettingsViewController.swift */,
 			);
 			path = Settings;
@@ -488,7 +489,6 @@
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
-				8423A9F026BB346C008F64AA /* UIDevice.swift */,
 				A86DB94626C54C3600AE866A /* TableView.swift */,
 				A86DB94B26C54C3D00AE866A /* CollectionView.swift */,
 				A86DB95526C54C5300AE866A /* StackView.swift */,
@@ -894,7 +894,6 @@
 			files = (
 				A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */,
 				A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */,
-				8423A9F126BB346C008F64AA /* UIDevice.swift in Sources */,
 				A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */,
@@ -910,6 +909,7 @@
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */,
+				84C440B426D7E31200860F77 /* SettingsViewTableCell.swift in Sources */,
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
