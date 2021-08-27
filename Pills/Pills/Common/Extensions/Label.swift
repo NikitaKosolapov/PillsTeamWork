@@ -16,4 +16,12 @@ extension UILabel {
         self.font = font
         textColor = AppColors.black
     }
+    
+    func leftStyleLabel (font: UIFont?, text: String) {
+        numberOfLines = 1
+        textAlignment = .left
+        self.text = text
+        self.font = font
+        textColor = AppColors.black
+    }
 }

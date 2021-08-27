@@ -13,6 +13,7 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         rootView.setup()
+        rootView.receiveFreqStackView.showView(typeView: .certainDays)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -16,18 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwx-gz-gnN">
+                            <tabBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwx-gz-gnN">
                                 <rect key="frame" x="0.0" y="764" width="414" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="Курсы" image="courses" id="XW8-6a-gLn"/>
                                     <tabBarItem title="Журнал" image="journal" id="Any-bQ-bPj"/>
                                     <tabBarItem title="Настройки" image="settings" id="zc9-68-Yx5"/>
                                 </items>
+                                <color key="barTintColor" name="white"/>
+                                <color key="selectedImageTintColor" name="white"/>
                             </tabBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="LaunchScreenBackground"/>
+                        <color key="backgroundColor" name="white"/>
                         <constraints>
                             <constraint firstItem="rwx-gz-gnN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Abh-aj-9Jo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rwx-gz-gnN" secondAttribute="bottom" id="SvX-TN-DnV"/>
@@ -45,8 +47,8 @@
         <image name="courses" width="28" height="28"/>
         <image name="journal" width="28" height="28"/>
         <image name="settings" width="22" height="22"/>
-        <namedColor name="LaunchScreenBackground">
-            <color red="0.8784313725490196" green="0.93725490196078431" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -89,6 +89,14 @@
 "cm3" = "cм³";
 "injection" = "впрыск";
 
+"Monday" = "Пн";
+"Tuesday" = "Вт";
+"Wednesday" = "Ср";
+"Thursday" = "Чт";
+"Friday" = "Пт";
+"Saturday" = "Сб";
+"Sunday" = "Вс";
+
 // MARK: - Journal Event Status
 "accepted" = "Принято";
 "missed" = "Пропущено";

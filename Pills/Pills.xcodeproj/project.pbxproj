@@ -42,6 +42,10 @@
 		A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF026A9A31E00624579 /* CourseViewModel.swift */; };
 		A870B00526A9D58E00624579 /* AppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870B00426A9D58E00624579 /* AppLayout.swift */; };
 		A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C4DC26B079AF00BACC90 /* AddButton.swift */; };
+		A8E594DF26D976D5006F414A /* ReceiveFreqPillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */; };
+		A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */; };
+		A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */; };
+		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
 		FE2899C426CC3C5900B145FB /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899C326CC3C5900B145FB /* JournalViewController.swift */; };
 		FE2899C926CC3C6200B145FB /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899C826CC3C6200B145FB /* JournalMock.swift */; };
 		FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */; };
@@ -137,6 +141,10 @@
 		A870AFF026A9A31E00624579 /* CourseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		A870B00426A9D58E00624579 /* AppLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayout.swift; sourceTree = "<group>"; };
 		A884C4DC26B079AF00BACC90 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFreqPillsView.swift; sourceTree = "<group>"; };
+		A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysCycleStackView.swift; sourceTree = "<group>"; };
+		A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertainDaysStackView.swift; sourceTree = "<group>"; };
+		A8E594E526D976FD006F414A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C58451548CF40FBAE1B7588A /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		D5D99469B3E6DFACF19A1D91 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2899C326CC3C5900B145FB /* JournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +335,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A8E594DB26D976D5006F414A /* ReceiveFreqPillsView */ = {
+			isa = PBXGroup;
+			children = (
+				A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */,
+				A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */,
+				A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */,
+			);
+			path = ReceiveFreqPillsView;
+			sourceTree = "<group>";
+		};
 		FE79E3A4269CC09A00DACD24 = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +510,7 @@
 				A86DB94626C54C3600AE866A /* TableView.swift */,
 				A86DB94B26C54C3D00AE866A /* CollectionView.swift */,
 				A86DB95526C54C5300AE866A /* StackView.swift */,
+				A8E594E526D976FD006F414A /* TextField.swift */,
 				A8329E6826C69A8600AD6A11 /* Label.swift */,
 				A81ECCF726C6D61E0039DE67 /* Button.swift */,
 				FED959AD26C9808D00E9B6C3 /* Int.swift */,
@@ -572,6 +591,7 @@
 			children = (
 				FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */,
 				FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */,
+				A8E594DB26D976D5006F414A /* ReceiveFreqPillsView */,
 			);
 			path = AddNewCourse;
 			sourceTree = "<group>";
@@ -896,6 +916,7 @@
 				A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */,
 				A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
+				A8E594E626D976FD006F414A /* TextField.swift in Sources */,
 				FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */,
 				553A358D26C02BC9006FFA6F /* NotificationService.swift in Sources */,
 				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
@@ -903,6 +924,7 @@
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
+				A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */,
 				FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
@@ -915,6 +937,7 @@
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
 				553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */,
+				A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */,
 				A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */,
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */,
@@ -929,6 +952,7 @@
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
+				A8E594DF26D976D5006F414A /* ReceiveFreqPillsView.swift in Sources */,
 				FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */,
 				FED9599B26C59D0800E9B6C3 /* CustomDropDownCell.swift in Sources */,
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,

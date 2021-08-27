@@ -119,6 +119,11 @@ class AddNewCourseView: UIView {
         textField.text = Text.takingFrequency
         return textField
     }()
+    
+    private(set) lazy var receiveFreqStackView: ReceiveFreqPillsViewAbstract = {
+        let receiveFreqStackView = ReceiveFreqPillsView()
+        return receiveFreqStackView
+    }()
 
     // MARK: - Start Date Input
     private lazy var startLabel = FieldHeaderFabric.generate(header: Text.startFrom)
@@ -254,11 +259,16 @@ class AddNewCourseView: UIView {
 
     // MARK: - Major Stack View
     private lazy var formStackView: UIStackView = {
+        guard let receiveFreqStackView = receiveFreqStackView as? ReceiveFreqPillsView
+        else {
+            return UIStackView()
+        }
         let stack = VStackViewFabric.generate([
             stackPillName,
             stackTypeImageAndTypeName,
             stackDoseAndType,
             frequencyInput,
+            receiveFreqStackView,
             stackStartAndWhen,
             stackTakePeriodWithDropDown,
             stackMealDependency,
