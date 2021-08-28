@@ -42,7 +42,7 @@ class ReceiveFreqPillsView: UIStackView, ReceiveFreqPillsViewAbstract {
     private let everyDayXTimesADayTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isHidden = false
+        textField.isHidden = true
         textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "1")
         return textField
     }()
@@ -50,7 +50,7 @@ class ReceiveFreqPillsView: UIStackView, ReceiveFreqPillsViewAbstract {
     private let everyDayEveryXHourTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isHidden = false
+        textField.isHidden = true
         textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "1")
         return textField
     }()
