@@ -92,8 +92,7 @@ class CertainDaysStackView: UIStackView {
     private func configureButtons() {
         dayOfWeekButtonArray.forEach { (button) in
             NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalToConstant: AppLayout.AddCourse.heightCheckOfDay),
-                button.widthAnchor.constraint(equalToConstant: AppLayout.AddCourse.widthCheckOfDay)
+                button.heightAnchor.constraint(equalToConstant: AppLayout.AddCourse.heightCheckOfDay)
             ])
         }
     }
