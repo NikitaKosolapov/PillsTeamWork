@@ -48,14 +48,16 @@ final class JournalMock {
             name: "Aspirin",
             pillType: .tablets,
             singleDose: 0.5,
-            concentration: 500,
-            concentrationUnit: .g,
             unitString: Text.Unit.allCases[unitIndex].rawValue,
-            usage: .whileEating,
-            notes: "",
             startDate: startDate,
+            takeAtTime: startDate.startOfDay,
             endDate: endDate,
+            usage: .whileEating,
+            freqString: Text.Frequency.someDaysInAWeek.rawValue,
+            note: "",
             schedule: schedule
+            // concentration: 500,
+            // concentrationUnit: .g,
         )
 
         pillType = PillType.syringe
@@ -63,14 +65,16 @@ final class JournalMock {
             name: "Haloperidol",
             pillType: pillType,
             singleDose: 1,
-            concentration: 100,
-            concentrationUnit: .mg,
             unitString: Text.Unit.allCases.last?.rawValue ?? "#error",
-            usage: .afterMeals,
-            notes: "",
             startDate: startDate,
+            takeAtTime: startDate.startOfDay,
             endDate: endDate,
+            usage: .afterMeals,
+            freqString: Text.Frequency.someDaysInAWeek.rawValue,
+            note: "",
             schedule: schedule
+            // concentration: 100,
+            // concentrationUnit: .mg,
         )
     }
 }
