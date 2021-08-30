@@ -63,7 +63,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     private func configureMocData () {
-        self.coursesCurrent = []
+        self.coursesCurrent = CourseMock.shared.coursesCurrent
         self.coursesPassed = CourseMock.shared.coursesPassed
     }
     
@@ -124,18 +124,18 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     @objc private func addButtonTouchUpInside() {
-        let rateViewController = RateViewController()
-        rateViewController.modalPresentationStyle = .overCurrentContext
-        present(rateViewController, animated: true, completion: nil)
+        // let rateViewController = RateViewController()
+        // rateViewController.modalPresentationStyle = .overCurrentContext
+        // present(rateViewController, animated: true, completion: nil)
         
         // TODO: - You should present a addPillsController
-        //        switcher.toggle()
-        //        if switcher {
-        //            coursesCurrent = []
-        //            coursesPassed = []
-        //        } else {
-        //            configureMocData()
-        //        }
+        switcher.toggle()
+        if switcher {
+            coursesCurrent = []
+            coursesPassed = []
+        } else {
+            configureMocData()
+        }
     }
 }
 // MARK: - UICollectionViewDataSource

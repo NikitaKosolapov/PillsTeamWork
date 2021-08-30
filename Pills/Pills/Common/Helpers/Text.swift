@@ -43,6 +43,14 @@ enum Text {
     static let periodExpired = "periodExpired".localized()
     static let till = "till".localized()
     static let save = "save".localized()
+    
+    static let Monday = "Monday".localized()
+    static let Tuesday = "Tuesday".localized()
+    static let Wednesday = "Wednesday".localized()
+    static let Thursday = "Thursday".localized()
+    static let Friday = "Friday".localized()
+    static let Saturday = "Saturday".localized()
+    static let Sunday = "Sunday".localized()
 
     enum DatePickerButtons {
         static let done = "done".localized()

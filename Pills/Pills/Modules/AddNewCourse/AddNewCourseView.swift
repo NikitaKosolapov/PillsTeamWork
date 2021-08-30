@@ -111,13 +111,29 @@ class AddNewCourseView: UIView {
             .withSimplePicker(
                 options: Text.Frequency.all(), { [weak self] (option) in
                     guard let self = self else {return false}
-                    // Alexander, please open additional view here:
+                    switch option {
+                    case Text.Frequency.someDaysInAWeek.rawValue.localized():
+                        self.receiveFreqStackView.showView(typeView: .certainDays)
+                    case Text.Frequency.severalTimesInADay.rawValue.localized():
+                        self.receiveFreqStackView.showView(typeView: .everyDayXTimesADay)
+                    case Text.Frequency.everyNHoursInADay.rawValue.localized():
+                        self.receiveFreqStackView.showView(typeView: .everyDayEveryXHour)
+                    case Text.Frequency.everyNDaysAfterMDays.rawValue.localized():
+                        self.receiveFreqStackView.showView(typeView: .daysCycle)
+                    default:
+                        break
+                    }
                     debugPrint("\(option)")
                     return true
                 })
             .build()
         textField.text = Text.takingFrequency
         return textField
+    }()
+    
+    private(set) lazy var receiveFreqStackView: ReceiveFreqPillsViewAbstract = {
+        let receiveFreqStackView = ReceiveFreqPillsView()
+        return receiveFreqStackView
     }()
 
     // MARK: - Start Date Input
@@ -254,11 +270,16 @@ class AddNewCourseView: UIView {
 
     // MARK: - Major Stack View
     private lazy var formStackView: UIStackView = {
+        guard let receiveFreqStackView = receiveFreqStackView as? ReceiveFreqPillsView
+        else {
+            return UIStackView()
+        }
         let stack = VStackViewFabric.generate([
             stackPillName,
             stackTypeImageAndTypeName,
             stackDoseAndType,
             frequencyInput,
+            receiveFreqStackView,
             stackStartAndWhen,
             stackTakePeriodWithDropDown,
             stackMealDependency,

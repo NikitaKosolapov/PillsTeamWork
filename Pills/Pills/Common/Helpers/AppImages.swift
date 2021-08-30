@@ -40,4 +40,9 @@ class AppImages {
         static let rightArrow = UIImage(named: "rightArrow")
         static let calendar = UIImage(named: "calendar")
     }
+    
+    enum AddCourse {
+        static let check = UIImage(named: "check")
+        static let noCheck = UIImage(named: "noCheck")
+    }
 }
