@@ -27,9 +27,9 @@ class MainTabBarMaker {
         
         let tabBarVC = UITabBarController()
         tabBarVC.viewControllers = [mainNavig, medicationNC, settingsNavig]
-        tabBarVC.tabBar.tintColor = UIColor.systemBlue // TODO: get from constants when ready
-        tabBarVC.tabBar.unselectedItemTintColor = UIColor.systemGray // TODO: get from constants when ready
-        tabBarVC.tabBar.barTintColor = .white
+        tabBarVC.tabBar.tintColor = AppColors.blue // TODO: get from constants when ready
+        tabBarVC.tabBar.unselectedItemTintColor = AppColors.gray // TODO: get from constants when ready
+        tabBarVC.tabBar.barTintColor = AppColors.white
         tabBarVC.tabBar.clipsToBounds = true
 
         return tabBarVC

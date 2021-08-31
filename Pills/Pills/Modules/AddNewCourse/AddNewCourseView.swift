@@ -282,7 +282,7 @@ class AddNewCourseView: UIView {
         let textField = UITextView()
         textField.isEditable = true
         textField.font = AppLayout.Fonts.normalRegular
-        textField.backgroundColor = .white
+        textField.backgroundColor = AppColors.white
         textField.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         textField.delegate = self
         // onCommentChanged

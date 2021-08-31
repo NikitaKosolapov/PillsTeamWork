@@ -52,7 +52,7 @@ final class SettingsViewController: UITableViewController {
         tableView.dataSource = self
         tableView.register(SettingsViewTableCell.self, forCellReuseIdentifier: idSettingsCell)
         
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = AppColors.white
         tableView.separatorStyle = .none
         
     }
@@ -119,7 +119,9 @@ final class SettingsViewController: UITableViewController {
         case .privacyPolicy:
             openUrl(url: AppConstant.Urls.policy)
         case .rate:
-            debugPrint("Rate tapped")
+            let rateViewController = RateViewController()
+            rateViewController.modalPresentationStyle = .overCurrentContext
+            present(rateViewController, animated: true, completion: nil)
         }
     }
     

@@ -31,7 +31,7 @@ final class AppCoordinator {
     
     private func makeWindowVisible() {
         app.window = UIWindow(frame: UIScreen.main.bounds)
-        app.window?.backgroundColor = UIColor.white
+        app.window?.backgroundColor = AppColors.white
         app.window?.makeKeyAndVisible()
     }
 

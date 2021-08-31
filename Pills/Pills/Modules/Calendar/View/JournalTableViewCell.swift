@@ -34,7 +34,7 @@ final class JournalTableViewCell: UITableViewCell {
     private var pillTypeImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = AppColors.white
         view.layer.cornerRadius = AppLayout.Journal.pillImageContainerRadius
         return view
     }()
@@ -49,7 +49,7 @@ final class JournalTableViewCell: UITableViewCell {
 
     private let pillNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = AppColors.black
         label.font = AppLayout.Journal.pillNameFont
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -78,11 +78,11 @@ final class JournalTableViewCell: UITableViewCell {
 
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = AppColors.black
         label.font = AppLayout.Journal.timeFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = AppColors.white.cgColor
         label.layer.cornerRadius = 4
         return label
     }()
