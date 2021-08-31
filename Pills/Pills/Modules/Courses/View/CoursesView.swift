@@ -29,7 +29,6 @@ class CoursesView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .green
         tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none

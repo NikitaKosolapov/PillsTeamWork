@@ -35,7 +35,7 @@ class SettingsViewTableCell: UITableViewCell {
     private let accessoryButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "chevron.forward"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = AppColors.semiGray
         button.isHidden = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

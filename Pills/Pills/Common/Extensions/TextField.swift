@@ -11,7 +11,7 @@ import UIKit
 extension UITextField {
     func centerStyleTextField (font: UIFont?, text: String) {
         layer.cornerRadius = 10
-        backgroundColor = .white
+        backgroundColor = AppColors.white
         textAlignment = .center
         self.text = text
         self.font = font
@@ -20,7 +20,7 @@ extension UITextField {
     
     func leftStyleTextField (font: UIFont?, text: String) {
         layer.cornerRadius = 10
-        backgroundColor = .white
+        backgroundColor = AppColors.white
         textAlignment = .left
         self.text = text
         self.font = font

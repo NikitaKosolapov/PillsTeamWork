@@ -17,7 +17,6 @@ final class SeparatorFactory: SeparatorFactoryAbstract {
     func makeTranslucent() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
         return view
     }
     func makeTranslucent(height: CGFloat) -> UIView {
