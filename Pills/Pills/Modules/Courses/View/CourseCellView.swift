@@ -21,7 +21,7 @@ class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.font = AppLayout.Fonts.normalSemibold
-        label.textColor = AppColors.AidKit.cellTextName
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -30,7 +30,7 @@ class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.font = AppLayout.Fonts.smallRegular
-        label.textColor = AppColors.AidKit.cellTextDuration
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -39,7 +39,7 @@ class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .right
         label.font = AppLayout.Fonts.verySmallRegular
-        label.textColor = AppColors.AidKit.cellTextDays
+        label.textColor = AppColors.gray
         return label
     }()
     
@@ -98,7 +98,7 @@ class CourseCellView: UIView {
     
     // MARK: - ConfigureUI
     private func configureUI() {
-        backgroundColor = AppColors.AidKit.cell
+        backgroundColor = AppColors.lightGray
         layer.cornerRadius = 10
         configureStackView()
         configureVerticalStackView()

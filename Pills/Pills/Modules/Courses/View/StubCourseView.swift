@@ -23,7 +23,7 @@ class StubCourseView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
-        label.textColor = AppColors.AidKit.stubText
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -39,7 +39,7 @@ class StubCourseView: UIView {
     
     // MARK: - Private public
     private func configureUI() {
-        backgroundColor = AppColors.AidKit.background
+        backgroundColor = AppColors.white
         configureImageView()
         configureLabel()
     }

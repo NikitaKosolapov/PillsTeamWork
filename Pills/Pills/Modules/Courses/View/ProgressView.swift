@@ -16,7 +16,7 @@ class ProgressView: UIView {
     private lazy var progressView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.AidKit.progress
+        view.backgroundColor = AppColors.blue
         view.layer.cornerRadius = 10.0
         return view
     }()
@@ -50,7 +50,7 @@ class ProgressView: UIView {
     
     // MARK: - Configure
     private func configureUI() {
-        backgroundColor = AppColors.AidKit.shadowOfCell
+        backgroundColor = AppColors.semiGray
         layer.cornerRadius = 10.0
         configureProgressView()
     }

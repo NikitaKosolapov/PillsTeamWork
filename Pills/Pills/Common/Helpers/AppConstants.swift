@@ -18,7 +18,7 @@ enum AppConstant {
     }
     
     enum Urls {
-        static let terms = "https://wachanga.com/ru/terms"
-        static let policy = "https://wachanga.com/ru/privacy"
+        static let terms = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+        static let policy = "https://docs.google.com/document/d/1hW0XXUKRjhXA91bPNb8jgTxnN-L7h9-XylTeLw_nzbQ"
     }
 }

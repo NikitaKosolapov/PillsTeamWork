@@ -14,13 +14,13 @@ class CoursesView: UIView {
     // MARK: - Subviews
     let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
-        segmentedControl.selectedSegmentTintColor = AppColors.AidKit.segmentActive
-        segmentedControl.backgroundColor = AppColors.AidKit.segmentNoActive
+        segmentedControl.selectedSegmentTintColor = AppColors.blue
+        segmentedControl.backgroundColor = AppColors.lightGray
         segmentedControl.setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextActive],
+            [NSAttributedString.Key.foregroundColor: AppColors.white],
             for: .selected)
         segmentedControl.setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: AppColors.AidKit.segmentTextNoActive],
+            [NSAttributedString.Key.foregroundColor: AppColors.gray],
             for: .normal)
         segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
@@ -29,12 +29,11 @@ class CoursesView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .green
         tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets.zero
-        tableView.backgroundColor = AppColors.AidKit.background
+        tableView.backgroundColor = AppColors.white
         tableView.isHidden = false
         return tableView
     }()
@@ -49,8 +48,8 @@ class CoursesView: UIView {
     let addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
-        button.backgroundColor = AppColors.AidKit.addButton
+        button.setTitleColor(AppColors.white, for: .normal)
+        button.backgroundColor = AppColors.blue
         return button
     }()
     
@@ -76,7 +75,7 @@ class CoursesView: UIView {
     
     // MARK: - ConfigureUI
     private func configureUI() {
-        backgroundColor = AppColors.AidKit.background
+        backgroundColor = AppColors.white
         configureSegmentedControl()
         configureAddButton()
         configureStackView()

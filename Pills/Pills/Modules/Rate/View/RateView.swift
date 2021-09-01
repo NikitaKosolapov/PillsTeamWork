@@ -24,7 +24,7 @@ class RateView: UIView {
     private let rateView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = AppColors.Rate.backgroundRateView
+        view.backgroundColor = AppColors.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -83,7 +83,7 @@ class RateView: UIView {
     private let provideFeedbackButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.rateStyleButton(backgroundColor: AppColors.Rate.provideFeedbackButton,
+        button.rateStyleButton(backgroundColor: AppColors.blue,
                                text: Text.Rating.provideFeedback)
         button.addTarget(self, action: #selector(provideFeedbackButtonTouchUpInside),
                                                  for: .touchUpInside)
@@ -93,7 +93,7 @@ class RateView: UIView {
     private let noThanksButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.rateStyleButton(backgroundColor: AppColors.Rate.noThanksButton,
+        button.rateStyleButton(backgroundColor: AppColors.red,
                                text: Text.Rating.noThanks)
         button.addTarget(self, action: #selector(noThanksButtonTouchUpInside), for: .touchUpInside)
         return button
@@ -192,7 +192,7 @@ class RateView: UIView {
     // MARK: - Private configure
     private func configureUI() {
         isOpaque = false
-        backgroundColor = AppColors.Rate.backgroundTransparentRateView
+        backgroundColor = AppColors.semiWhite
         configureButtons()
         configureRateView()
         configureStackView()

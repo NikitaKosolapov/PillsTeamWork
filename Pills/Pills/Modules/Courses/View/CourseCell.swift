@@ -39,14 +39,14 @@ class CourseCell: UITableViewCell {
     
     // MARK: - ConfigureUI
     private func configureUI () {
-        backgroundColor = AppColors.AidKit.background
+        backgroundColor = AppColors.white
         configureContentView()
         configureProgressView()
         configureMainView()
     }
     
     private func configureContentView () {
-        contentView.backgroundColor = AppColors.AidKit.background
+        contentView.backgroundColor = AppColors.white
     }
     
     private func configureProgressView () {

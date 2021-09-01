@@ -453,7 +453,7 @@ extension CustomTextField {
 
         appearance.cellHeight = AppLayout.CustomTextField.standardHeight
         appearance.backgroundColor = AppColors.white
-        appearance.selectionBackgroundColor = AppColors.selectedCellBackgroundColor
+        appearance.selectionBackgroundColor = AppColors.lightBlue
         appearance.cornerRadius = AppLayout.CustomTextField.cornerRadius
         appearance.animationduration = 0.25
         appearance.textColor = AppColors.black

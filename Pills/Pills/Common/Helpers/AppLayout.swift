@@ -44,10 +44,10 @@ enum AppLayout {
         static let timeLabelSize = CGSize(width: 54, height: 18)
         
         static let instructionFont = AppLayout.Fonts.smallRegular
-        static let instructionTextColor = AppColors.semiTransparentBlack
+        static let instructionTextColor = AppColors.semiBlack
         
         static let cellCornerRadius: CGFloat = 10
-        static let cellBackgroundColor = AppColors.cellBackgroundColor
+        static let cellBackgroundColor = AppColors.lightGray
         static let cellVerticalSpacing: CGFloat = 8
         static let cellPaddingTop: CGFloat = 18
         static let cellPaddingBottom: CGFloat = 18
