@@ -81,7 +81,7 @@ enum AppColors {
             static let eventDefaultColor = semiBlack
             static let titleWeekendColor = semiBlack
             static let headerTitleDefaultColor = black
-            static let headerTitleColor = white
+            static let headerTitleColor = black
         }
         
         //    enum SettingsColor {
