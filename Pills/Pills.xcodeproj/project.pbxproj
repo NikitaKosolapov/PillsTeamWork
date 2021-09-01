@@ -46,6 +46,9 @@
 		A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */; };
 		A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */; };
 		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
+		FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */; };
+		FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */; };
+		FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */; };
 		FE2899C426CC3C5900B145FB /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899C326CC3C5900B145FB /* JournalViewController.swift */; };
 		FE2899C926CC3C6200B145FB /* JournalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899C826CC3C6200B145FB /* JournalMock.swift */; };
 		FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */; };
@@ -147,6 +150,9 @@
 		A8E594E526D976FD006F414A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C58451548CF40FBAE1B7588A /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		D5D99469B3E6DFACF19A1D91 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
+		FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCourseView+PublicInterface.swift"; sourceTree = "<group>"; };
 		FE2899C326CC3C5900B145FB /* JournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		FE2899C826CC3C6200B145FB /* JournalMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalMock.swift; sourceTree = "<group>"; };
 		FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalTableViewCell.swift; sourceTree = "<group>"; };
@@ -592,6 +598,7 @@
 				FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */,
 				FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */,
 				A8E594DB26D976D5006F414A /* ReceiveFreqPillsView */,
+				FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */,
 			);
 			path = AddNewCourse;
 			sourceTree = "<group>";
@@ -629,6 +636,8 @@
 				FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */,
 				FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */,
 				FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */,
+				FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */,
+				FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -935,6 +944,7 @@
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
+				FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
 				553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */,
 				A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */,
@@ -959,6 +969,7 @@
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,
 				FED959AE26C9808E00E9B6C3 /* Int.swift in Sources */,
 				FE79E43C26A31C4900DACD24 /* AppColors.swift in Sources */,
+				FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */,
 				FEB9586E26AF1FB00093BA8D /* RealmService.swift in Sources */,
 				FECB1A6C26BAE69400136DF0 /* AddNewCourseViewController.swift in Sources */,
 				849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */,
@@ -969,6 +980,7 @@
 				A86DB94126C54BD000AE866A /* RateViewController.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
+				FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */,
 				FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */,
 				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,
 			);

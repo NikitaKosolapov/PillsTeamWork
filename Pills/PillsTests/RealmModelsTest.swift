@@ -21,7 +21,7 @@ extension RealmMedKitEntry {
         debugPrint("MedKitEntry \(self.entryID)")
         debugPrint("  name = \(self.name)")
         debugPrint("  singleDose = \(self.singleDose)")
-        debugPrint("  comments = \(self.comments)")
+        debugPrint("  comments = \(self.note)")
         debugPrint("  startDate = \(self.startDate)")
         debugPrint("  endDate = \(self.endDate)")
         debugPrint("  pillType = \(self.pillType)")
@@ -60,23 +60,24 @@ class RealmModelsTest: XCTestCase {
         dates.append(RealmTimePoint(time: currentTime, isUsed: true))
 
         let pillType = PillType.syringe
-        let unit = pillType.pillUnits().last!
+        let unit = pillType.units().first!
 
-        let units = pillType.pillUnits().map { $0.localized("ru") }
+        let units = pillType.units().map { $0.localized("ru") }
         debugPrint(units)
-
+        
         let entry = RealmMedKitEntry(
             name: "Vitamine B12",
             pillType: pillType,
             singleDose: 2,
             unitString: unit,
-            usage: .afterMeals,
-            comments: "bla-bla",
             startDate: currentTime,
+            takeAtTime: currentTime,
             endDate: currentTime,
+            usage: .afterMeals,
+            freqString: Text.Frequency.someDaysInAWeek.rawValue,
+            note: "bla-bla",
             schedule: dates
         )
-
         entry.debugDump()
 
         debugPrint("REALM: Saving...")
@@ -103,7 +104,7 @@ class RealmModelsTest: XCTestCase {
         XCTAssertTrue(loaded.singleDose == entry.singleDose)
         XCTAssertTrue(loaded.unitString == entry.unitString)
         XCTAssertTrue(loaded.usage == entry.usage)
-        XCTAssertTrue(loaded.comments == entry.comments)
+        XCTAssertTrue(loaded.note == entry.note)
         XCTAssertTrue(loaded.startDate == entry.startDate)
         XCTAssertTrue(loaded.endDate == entry.endDate)
 
@@ -138,11 +139,13 @@ class RealmModelsTest: XCTestCase {
             name: "Aspirine",
             pillType: .capsules,
             singleDose: 2,
-            unitString: PillType.capsules.pillUnits().first!,
-            usage: .afterMeals,
-            comments: "bla-bla",
+            unitString: PillType.capsules.units().first!,
             startDate: currentTime,
+            takeAtTime: currentTime,
             endDate: currentTime,
+            usage: .afterMeals,
+            freqString: Text.Frequency.someDaysInAWeek.rawValue,
+            note: "bla-bla",
             schedule: dates
         )
 
@@ -157,7 +160,7 @@ class RealmModelsTest: XCTestCase {
         RealmService.shared.create(entry)
 
         RealmService.shared.update {
-            entry.comments = "updated"
+            entry.note = "updated"
         }
 
         debugPrint("REALM: Loading...")
@@ -178,7 +181,7 @@ class RealmModelsTest: XCTestCase {
         XCTAssertTrue(loaded.singleDose == entry.singleDose)
         XCTAssertTrue(loaded.unitString == entry.unitString)
         XCTAssertTrue(loaded.usage == entry.usage)
-        XCTAssertTrue(loaded.comments == entry.comments)
+        XCTAssertTrue(loaded.note == entry.note)
         XCTAssertTrue(loaded.startDate == entry.startDate)
         XCTAssertTrue(loaded.endDate == entry.endDate)
 
