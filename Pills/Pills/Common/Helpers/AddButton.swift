@@ -13,7 +13,7 @@ class AddButton: UIButton {
         willSet {
             super.isEnabled = newValue
             backgroundColor =
-                AppColors.AidKit.addButton.withAlphaComponent(
+                AppColors.blue.withAlphaComponent(
                     newValue ? 1 : 0.5
                 )
         }
@@ -31,10 +31,10 @@ class AddButton: UIButton {
     // MARK: - Private functions
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = AppColors.AidKit.addButton
+        backgroundColor = AppColors.blue
         layer.cornerRadius = 10
         setTitle(Text.add, for: .normal)
-        setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
+        setTitleColor(AppColors.white, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
 

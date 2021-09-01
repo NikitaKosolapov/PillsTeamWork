@@ -39,7 +39,7 @@ class StubCourseView: UIView {
     
     // MARK: - Private public
     private func configureUI() {
-        backgroundColor = AppColors.AidKit.background
+        backgroundColor = AppColors.white
         configureImageView()
         configureLabel()
     }

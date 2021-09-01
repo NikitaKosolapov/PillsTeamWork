@@ -69,7 +69,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
     
     private func configNavigationBar() {
         navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.backgroundColor = AppColors.AidKit.background
+        navigationController?.navigationBar.backgroundColor = AppColors.white
     }
     
     private func configureSegmentedControl () {

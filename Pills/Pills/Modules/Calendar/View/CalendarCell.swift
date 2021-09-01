@@ -12,7 +12,7 @@ class CalendarCell: FSCalendarCell {
         super.init(frame: frame)
         let view = UIView(frame: self.bounds)
         self.backgroundView = view
-        view.backgroundColor = AppColors.AidKit.background
+        view.backgroundColor = AppColors.white
     }
     
     required init!(coder aDecoder: NSCoder!) {

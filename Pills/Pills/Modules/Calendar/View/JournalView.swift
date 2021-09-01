@@ -81,7 +81,7 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
     private var manImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.cellBackgroundColor
+        view.backgroundColor = AppColors.lightGray
         return view
     }()
     

@@ -33,7 +33,7 @@ class CoursesView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets.zero
-        tableView.backgroundColor = AppColors.AidKit.background
+        tableView.backgroundColor = AppColors.white
         tableView.isHidden = false
         return tableView
     }()
@@ -48,8 +48,8 @@ class CoursesView: UIView {
     let addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(AppColors.AidKit.addButtonText, for: .normal)
-        button.backgroundColor = AppColors.AidKit.addButton
+        button.setTitleColor(AppColors.white, for: .normal)
+        button.backgroundColor = AppColors.blue
         return button
     }()
     
@@ -75,7 +75,7 @@ class CoursesView: UIView {
     
     // MARK: - ConfigureUI
     private func configureUI() {
-        backgroundColor = AppColors.AidKit.background
+        backgroundColor = AppColors.white
         configureSegmentedControl()
         configureAddButton()
         configureStackView()

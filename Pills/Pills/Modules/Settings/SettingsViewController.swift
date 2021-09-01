@@ -93,13 +93,13 @@ final class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? SettingsViewTableCell {
-            cell.setColor(backgroundColor: AppColors.SettingsColor.cellHighlight)
+            cell.setColor(backgroundColor: AppColors.lightBlue)
         }
     }
     
     override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? SettingsViewTableCell {
-            cell.setColor(backgroundColor: AppColors.SettingsColor.cellUnhighlight)
+            cell.setColor(backgroundColor: AppColors.lightGray)
         }
     }
     

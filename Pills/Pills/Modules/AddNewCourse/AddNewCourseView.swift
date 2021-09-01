@@ -292,7 +292,7 @@ class AddNewCourseView: UIView {
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = AppColors.addNewCourseBackgroundColor
+        scrollView.backgroundColor = AppColors.lightBlue
         return scrollView
     }()
     
@@ -412,7 +412,7 @@ class AddNewCourseView: UIView {
     // MARK: - Class Methods
     public func setup() {
         addSubviews()
-        backgroundColor = AppColors.addNewCourseBackgroundColor
+        backgroundColor = AppColors.lightBlue
         NotificationCenter.default
             .addObserver(
                 self,

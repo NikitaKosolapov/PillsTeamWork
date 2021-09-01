@@ -18,7 +18,7 @@ class SettingsViewTableCell: UITableViewCell {
     
     private let backgroundViewCell: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.SettingsColor.cellUnhighlight
+        view.backgroundColor = AppColors.lightGray
         view.layer.cornerRadius = AppLayout.Settings.cellCornerRadius
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
