@@ -37,7 +37,7 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
     private var rounderСornersView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.shadowColor = AppColors.AidKit.shadowOfCell.cgColor
+        view.layer.shadowColor = AppColors.semiGray.cgColor
         view.layer.shadowOpacity = 1
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 3
@@ -49,7 +49,7 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
     private lazy var minusView: UIView =  {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.AidKit.shadowOfCell
+        view.backgroundColor = AppColors.semiGray
         view.layer.cornerRadius = 2.5
         return view
     }()
@@ -192,40 +192,40 @@ class JournalView: UIView, UIGestureRecognizerDelegate {
 
     private func configureCalendarDefaultUI() {
         calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
-        calendar.appearance.weekdayTextColor = AppColors.CalendarColor.weekdayTextColor
-        calendar.appearance.selectionColor = AppColors.CalendarColor.selectionDefaultColor
-        calendar.appearance.todayColor = AppColors.CalendarColor.todayDefaultColor
-        calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleDefaultTodayColor
-        calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionDefaultColor
-        calendar.appearance.eventDefaultColor = AppColors.CalendarColor.eventDefaultColor
-        calendar.appearance.titleWeekendColor = AppColors.CalendarColor.titleWeekendColor
+        calendar.appearance.weekdayTextColor = AppColors.black
+        calendar.appearance.selectionColor = AppColors.white
+        calendar.appearance.todayColor = AppColors.blue
+        calendar.appearance.titleTodayColor = AppColors.white
+        calendar.appearance.titleSelectionColor = AppColors.black
+        calendar.appearance.eventDefaultColor = AppColors.semiBlack
+        calendar.appearance.titleWeekendColor = AppColors.semiBlack
         calendar.appearance.titleFont = UIFont.SFPro17()
         calendar.appearance.weekdayFont = UIFont.SFPro10()
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
+        calendar.appearance.headerTitleColor = AppColors.black
     }
 
     private func selectDay() {
-        calendar.appearance.titleTodayColor = AppColors.CalendarColor.titleTodayColor
-        calendar.appearance.todayColor = AppColors.CalendarColor.todayColor
-        calendar.appearance.selectionColor = AppColors.CalendarColor.selectionColor
-        calendar.appearance.titleSelectionColor = AppColors.CalendarColor.titleSelectionColor
-        calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
+        calendar.appearance.titleTodayColor = AppColors.blue
+        calendar.appearance.todayColor = AppColors.white
+        calendar.appearance.selectionColor = AppColors.blue
+        calendar.appearance.titleSelectionColor = AppColors.white
+        calendar.appearance.headerTitleColor = AppColors.black
     }
  
     func handlePan() {
         if scopeGesture.state == .changed {
             let velocity = scopeGesture.velocity(in: self)
             if  velocity.y < 0 {
-                calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
+                calendar.appearance.headerTitleColor = AppColors.black
             } else if velocity.y > 0 {
-                calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleDefaultColor
+                calendar.appearance.headerTitleColor = AppColors.black
             }
             if scopeGesture.state == .cancelled || scopeGesture.state == .failed {
                 if calendar.scope == .month {
-                    calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleColor
+                    calendar.appearance.headerTitleColor = AppColors.black
                 } else if calendar.scope == .week {
-                    calendar.appearance.headerTitleColor = AppColors.CalendarColor.headerTitleDefaultColor
+                    calendar.appearance.headerTitleColor = AppColors.black
                 }
             }
         }
