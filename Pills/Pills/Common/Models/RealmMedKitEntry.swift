@@ -37,13 +37,13 @@ enum PillType: String, CaseIterable {
             "piece",
             "mg",
             "g"
-        ].map {$0.localized()},
+        ],
         PillType.tablets: [
             "pill",
             "piece",
             "mg",
             "g"
-        ].map {$0.localized()},
+        ],
         PillType.syringe: [
             "piece",
             "ampoule",
@@ -52,42 +52,42 @@ enum PillType: String, CaseIterable {
             "mg",
             "g",
             "cm3"
-        ].map {$0.localized()},
+        ],
         PillType.drops: [
             "drop",
             "times",
             "piece"
-        ].map {$0.localized()},
+        ],
         PillType.salve: [
             "taking",
             "times",
             "piece"
-        ].map {$0.localized()},
+        ],
         PillType.liquid: [
             "bowl",
             "flask",
             "teaspoon",
             "tablespoon",
             "ml"
-        ].map {$0.localized()},
+        ],
         PillType.suspension: [
             "bowl",
             "flask",
             "teaspoon",
             "tablespoon",
             "ml"
-        ].map {$0.localized()},
+        ],
         PillType.spray: [
             "times",
             "injection"
-        ].map {$0.localized()},
+        ],
         PillType.procedure: [
             "times",
             "inhalation",
             "taking",
             "suppository",
             "enema"
-        ].map {$0.localized()}
+        ]
     ]
 
     func image() -> UIImage {
@@ -96,6 +96,10 @@ enum PillType: String, CaseIterable {
     
     func units() -> [String] {
         return PillType.unitsMap[self] ?? []
+    }
+    
+    static func allLocalized() -> [String] {
+        PillType.allCases.map {$0.rawValue.localized()}
     }
 }
 
@@ -137,28 +141,25 @@ class RealmMedKitEntry: Object {
     @objc dynamic var entryID = UUID.init().uuidString
     @objc dynamic var name = "(not named)"
     @objc dynamic var singleDose: Double = 0
-    @objc dynamic var concentration: Double = 0
-    @objc dynamic var notes = "(no comments)"
-    @objc dynamic var startDate = Date()
-    @objc dynamic var endDate = Date()
-    @objc dynamic var pillTypeHolder = PillType.tablets.rawValue
-    @objc dynamic var concentrationUnitHolder = ConcentrationUnit.g.rawValue
-    @objc dynamic var usageHolder = Usage.noMatter.rawValue
+    @objc dynamic var startDate = Date.distantPast
+    @objc dynamic var takeAtTime = Date.distantPast
+    @objc dynamic var endDate = Date.distantPast
+    @objc dynamic var pillTypeString = PillType.tablets.rawValue
+    @objc dynamic var usageString = Usage.noMatter.rawValue
     @objc dynamic var unitString = ""
+    @objc dynamic var freqString = ""
+    @objc dynamic var note = ""
+    
+    public private(set) var isValid = false
 
     var pillType: PillType {
-      get { return PillType(rawValue: pillTypeHolder)! }
-      set { pillTypeHolder = newValue.rawValue }
-    }
-    
-    var concentrationUnit: ConcentrationUnit {
-      get { return ConcentrationUnit(rawValue: concentrationUnitHolder)! }
-      set { concentrationUnitHolder = newValue.rawValue }
+      get { return PillType(rawValue: pillTypeString)! }
+      set { pillTypeString = newValue.rawValue }
     }
 
     var usage: Usage {
-      get { return Usage(rawValue: usageHolder)! }
-      set { usageHolder = newValue.rawValue }
+      get { return Usage(rawValue: usageString)! }
+      set { usageString = newValue.rawValue }
     }
 
     var schedule = List<RealmTimePoint>()
@@ -172,27 +173,51 @@ class RealmMedKitEntry: Object {
     init(name: String,
          pillType: PillType,
          singleDose: Double,
-         concentration: Double,
-         concentrationUnit: ConcentrationUnit,
          unitString: String,
-         usage: Usage,
-         notes: String,
          startDate: Date,
+         takeAtTime: Date,
          endDate: Date,
+         usage: Usage,
+         freqString: String,
+         note: String,
          schedule: List<RealmTimePoint>
     ) {
         self.name = name
+
+        self.pillTypeString = pillType.rawValue
+
         self.singleDose = singleDose
-        self.concentration = concentration
-        self.concentrationUnitHolder = concentrationUnit.rawValue
-        self.notes = notes
-        self.startDate = startDate
-        self.endDate = endDate
-        self.pillTypeHolder = pillType.rawValue
-        self.usageHolder = usage.rawValue
         self.unitString = unitString
 
+        self.startDate = startDate
+        self.takeAtTime = takeAtTime
+
+        self.endDate = endDate
+
+        self.usageString = usage.rawValue
+        self.freqString = freqString
+        self.note = note
+
         super.init()
+        _ = validate()
         self.schedule.append(objectsIn: schedule)
+    }
+    
+    func validate() -> Bool {
+        guard !name.isEmpty,
+              !pillTypeString.isEmpty,
+              !unitString.isEmpty,
+              !usageString.isEmpty,
+              !freqString.isEmpty,
+              startDate > Date.distantPast,
+              takeAtTime > Date.distantPast,
+              endDate > Date.distantPast,
+              singleDose > 0.0
+        else {
+            isValid = false
+            return isValid
+        }
+        isValid = true
+        return isValid
     }
 }

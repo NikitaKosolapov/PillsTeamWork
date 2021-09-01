@@ -56,7 +56,7 @@ class CustomTextFieldBuilder {
     }
     
     func withEndEditProcessor(
-        _ processor: @escaping () -> Void
+        _ processor: @escaping (_ value: String) -> Void
     ) -> CustomTextFieldBuilder {
         builtObject.endEditProcessor = processor
         return self
@@ -97,6 +97,7 @@ class CustomTextFieldBuilder {
     }
 }
 
+// swiftlint:disable type_body_length
 class CustomTextField: UITextField {
     private var padding = UIEdgeInsets(
         top: AppLayout.CustomTextField.paddingTop,
@@ -108,15 +109,15 @@ class CustomTextField: UITextField {
 
     private var toolbar: UIToolbar?
 
-    fileprivate var datePicker: UIDatePicker?
-    fileprivate var onDatePicked: ((_ date: Date) -> Bool)?
+    internal var datePicker: UIDatePicker?
+    internal var onDatePicked: ((_ date: Date) -> Bool)?
 
-    fileprivate var picker: UIPickerView?
+    internal var picker: UIPickerView?
     public var pickerOptions: [String] = []
-    fileprivate var onPicked: ((_ option: String) -> Bool)?
+    internal var onPicked: ((_ option: String) -> Bool)?
 
     private var isDropDownMode: Bool = false
-    private var dropDown: DropDown?
+    internal var dropDown: DropDown?
     
     public var items: [DropDownItem] = [] {
         didSet {
@@ -128,14 +129,14 @@ class CustomTextField: UITextField {
         }
     }
     
-    fileprivate var clearOnFocus = false
-    fileprivate var isNumeric = false
-    fileprivate var readOnly = false
-    fileprivate var maxLength: Int = -1
+    internal var clearOnFocus = false
+    internal var isNumeric = false
+    internal var readOnly = false
+    internal var maxLength: Int = -1
     
-    fileprivate var dropDownProcessor:
+    internal var dropDownProcessor:
         ((_ items: [DropDownItem], _ index: Int) -> Bool)?
-    fileprivate var endEditProcessor: (() -> Void)?
+    internal var endEditProcessor: ((_ text: String) -> Void)?
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -211,7 +212,11 @@ class CustomTextField: UITextField {
         }
         let item = self.items[index]
         if let image = item.0 {
-            self.customOptionImage = UIImageView(image: image)
+            if self.customOptionImage != nil {
+                self.customOptionImage?.image = image
+            } else {
+                self.customOptionImage = UIImageView(image: image)
+            }
             self.text = ""
         } else {
             self.text = itemText
@@ -403,7 +408,7 @@ class CustomTextField: UITextField {
             self.endEditing(true)
             return
         }
-        self.text = pickerOptions[row]
+        self.text = pickerOptions[row].localized()
         self.endEditing(true)
     }
 
@@ -440,58 +445,6 @@ class CustomTextField: UITextField {
     }
 }
 
-extension CustomTextField: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if datePicker != nil { return true }
-        if picker != nil { return true }
-        if let dropDown = dropDown {
-            dropDown.show()
-            return false
-        }
-        if readOnly { return false }
-        if clearOnFocus {
-            text = ""
-        }
-        return true
-    }
-
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        if datePicker != nil { return false }
-        if picker != nil { return false }
-
-        if maxLength >= 0 {
-            guard let text = self.text,
-                  let rangeToReplace = Range(range, in: text)
-            else { return false }
-
-            let substringToReplace = text[rangeToReplace]
-            let count = text.count - substringToReplace.count + string.count
-            if count > maxLength { return false }
-        }
-
-        if isNumeric {
-            let allowedCharacters = CharacterSet.decimalDigits
-            let characterSet = CharacterSet(charactersIn: string)
-            return allowedCharacters.isSuperset(of: characterSet)
-        }
-
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let endEditProcessor = endEditProcessor else {return}
-        endEditProcessor()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        endEditing(true)
-    }
-}
-
 extension CustomTextField {
     func customizeDropDown() {
         guard let dropDown = dropDown else {return}
@@ -521,19 +474,5 @@ extension CustomTextField {
                 cell.optionLabel.text = self.items[index].1
             }
         }
-    }
-}
-
-extension CustomTextField: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerOptions.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerOptions[row]
     }
 }
