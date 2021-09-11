@@ -16,7 +16,7 @@ import UIKit
 //   let image: UIImage = AppImages.Pills.tablets
 //   let image = AppImages.Pills.tablets
 
-class AppImages {
+final class AppImages {
     private static let badImage = UIImage()
 
     enum Tabs {

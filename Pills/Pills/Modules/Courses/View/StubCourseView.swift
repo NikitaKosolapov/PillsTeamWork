@@ -7,27 +7,32 @@
 
 import UIKit
 
-class StubCourseView: UIView {
-    // MARK: - Subviews
-    private lazy var imageView: UIImageView = {
+final class StubCourseView: UIView {
+    
+    // MARK: - Private Properties
+    
+    private lazy var stubImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = AppImages.AidKit.stubImage
+        imageView.backgroundColor = AppColors.lightBlueStubImageViewBG
+        imageView.layer.cornerRadius = AppLayout.AidKit.heightStubImage / 2
         return imageView
     }()
     
-    private lazy var label: UILabel = {
+    private lazy var stubInfolabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Text.AidKit.stubText
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
-        label.textColor = AppColors.black
+        label.textColor = AppColors.blackStubInfoLabel
         return label
     }()
     
-    // MARK: - Init
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -37,33 +42,42 @@ class StubCourseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private public
+    // MARK: - Private Methods
+    
     private func configureUI() {
-        backgroundColor = AppColors.white
+        backgroundColor = AppColors.whiteStubCoursesBG
         configureImageView()
         configureLabel()
     }
     
     private func configureImageView() {
         let safeArea = safeAreaLayoutGuide
-        addSubview(imageView)
-        NSLayoutConstraint.activate(
-            [imageView.topAnchor.constraint(equalTo: safeArea.topAnchor,
-                                            constant: AppLayout.AidKit.indentImageFromTop),
-             imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                                constant: AppLayout.AidKit.leadingStubImage),
-             imageView.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthStubImage),
-             imageView.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightStubImage)
-            ])
+        addSubview(stubImageView)
+        
+        NSLayoutConstraint.activate([
+            stubImageView.topAnchor.constraint(
+                equalTo: safeArea.topAnchor,
+                constant: AppLayout.AidKit.indentImageFromTop
+            ),
+            stubImageView.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor,
+                constant: AppLayout.AidKit.leadingStubImage
+            ),
+            stubImageView.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthStubImage),
+            stubImageView.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightStubImage)
+        ])
     }
     
     private func configureLabel() {
         let marginGuide = layoutMarginsGuide
-        addSubview(label)
-        NSLayoutConstraint.activate(
-            [label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15.0),
-             label.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor),
-             label.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor)])
+        addSubview(stubInfolabel)
+        
+        NSLayoutConstraint.activate([
+            stubInfolabel.topAnchor.constraint(equalTo: stubImageView.bottomAnchor, constant: 15.0
+            ),
+            stubInfolabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor),
+            stubInfolabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor)
+        ])
     }
     
 }

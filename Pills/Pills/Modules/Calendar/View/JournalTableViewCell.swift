@@ -8,13 +8,13 @@
 import UIKit
 
 final class JournalTableViewCell: UITableViewCell {
-
+    
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter
     }()
-
+    
     private let numFormatter: NumberFormatter = {
         let numFormatter = NumberFormatter()
         numFormatter.minimumFractionDigits = 0
@@ -22,7 +22,7 @@ final class JournalTableViewCell: UITableViewCell {
         numFormatter.numberStyle = .decimal
         return numFormatter
     }()
-
+    
     private var majorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -30,15 +30,15 @@ final class JournalTableViewCell: UITableViewCell {
         view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         return view
     }()
-
+    
     private var pillTypeImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.white
+        view.backgroundColor = AppColors.whiteJournalPillImageContainer
         view.layer.cornerRadius = AppLayout.Journal.pillImageContainerRadius
         return view
     }()
-
+    
     private var pillTypeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -46,19 +46,19 @@ final class JournalTableViewCell: UITableViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-
+    
     private let pillNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.black
+        label.textColor = AppColors.blackJournalPillNameLabel
         label.font = AppLayout.Journal.pillNameFont
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let instructionLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppLayout.Journal.instructionTextColor
+        label.textColor = AppColors.semiBlackJournalInstructionLabel
         label.font = AppLayout.Journal.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -68,25 +68,25 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let usageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppLayout.Journal.instructionTextColor
+        label.textColor = AppColors.semiBlackJournalUsageLabel
         label.font = AppLayout.Journal.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         label.numberOfLines = 0
         return label
     }()
-
+    
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.black
+        label.textColor = AppColors.blackJournalTimeLabel
         label.font = AppLayout.Journal.timeFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.layer.backgroundColor = AppColors.white.cgColor
+        label.layer.backgroundColor = AppColors.whiteJournalTimeLabelBG.cgColor
         label.layer.cornerRadius = 4
         return label
     }()
-
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
@@ -100,7 +100,7 @@ final class JournalTableViewCell: UITableViewCell {
         stackView.alignment = .leading
         return stackView
     }()
-
+    
     private lazy var stackViewNameAndTime: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
@@ -126,7 +126,7 @@ final class JournalTableViewCell: UITableViewCell {
         stackView.alignment = .leading
         return stackView
     }()
-
+    
     private lazy var stackViewVertical: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
@@ -138,14 +138,14 @@ final class JournalTableViewCell: UITableViewCell {
         stackView.spacing = 0
         return stackView
     }()
-
+    
     private var journalTime: Date? {
         willSet(time) {
             let dateInFormat = dateFormatter.string(from: time ?? Date().startOfDay)
             self.timeLabel.text = dateInFormat
         }
     }
-
+    
     private var journalEntry: RealmMedKitEntry? {
         willSet(item) {
             guard let item = item
@@ -154,7 +154,7 @@ final class JournalTableViewCell: UITableViewCell {
                 self.instructionLabel.text = ""
                 return
             }
-
+            
             self.pillTypeImage.image = item.pillType.image()
             self.pillNameLabel.text = item.name
             let dose = numFormatter.string(from: item.singleDose as NSNumber) ?? "#error"
@@ -164,82 +164,84 @@ final class JournalTableViewCell: UITableViewCell {
             self.usageLabel.text = "\(usage)"
         }
     }
-
+    
     func configure(model: JournalViewController.Event) {
         journalTime = model.time
         journalEntry = model.pill
     }
-
+    
     // swiftlint:disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
-
+        
         NSLayoutConstraint.activate([
-            majorView.topAnchor
-                .constraint(equalTo: contentView.topAnchor),
-            majorView.leadingAnchor
-                .constraint(equalTo: contentView.leadingAnchor),
-            majorView.widthAnchor
-                .constraint(equalToConstant: contentView.frame.width),
-            majorView.heightAnchor
-                .constraint(equalToConstant: contentView.frame.height - AppLayout.Journal.cellVerticalSpacing),
-
-            stackView.topAnchor
-                .constraint(equalTo: majorView.topAnchor, constant: AppLayout.Journal.cellPaddingTop),
-            stackView.leadingAnchor
-                .constraint(equalTo: majorView.leadingAnchor, constant: AppLayout.Journal.cellHorizontalSpacing),
-            stackView.trailingAnchor
-                .constraint(equalTo: majorView.trailingAnchor, constant: -AppLayout.Journal.cellHorizontalSpacing),
-            stackView.bottomAnchor
-                .constraint(equalTo: majorView.bottomAnchor, constant: -AppLayout.Journal.cellPaddingBottom),
-
-            pillTypeImageContainer.widthAnchor
-                .constraint(equalToConstant: AppLayout.Journal.pillImageContainerSize.width),
-            pillTypeImageContainer.heightAnchor
-                .constraint(equalToConstant: AppLayout.Journal.pillImageContainerSize.height),
-
-            pillTypeImage.topAnchor
-                .constraint(
-                    equalTo: pillTypeImageContainer.topAnchor,
-                    constant: (
-                        AppLayout.Journal.pillImageContainerSize.height -
+            majorView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            majorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            majorView.widthAnchor.constraint(equalToConstant: contentView.frame.width),
+            majorView.heightAnchor.constraint(
+                equalToConstant: contentView.frame.height - AppLayout.Journal.cellVerticalSpacing
+            ),
+            
+            stackView.topAnchor.constraint(
+                equalTo: majorView.topAnchor,
+                constant: AppLayout.Journal.cellPaddingTop
+            ),
+            stackView.leadingAnchor.constraint(
+                equalTo: majorView.leadingAnchor,
+                constant: AppLayout.Journal.cellHorizontalSpacing
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: majorView.trailingAnchor,
+                constant: -AppLayout.Journal.cellHorizontalSpacing
+            ),
+            stackView.bottomAnchor.constraint(
+                equalTo: majorView.bottomAnchor,
+                constant: -AppLayout.Journal.cellPaddingBottom
+            ),
+            
+            pillTypeImageContainer.widthAnchor.constraint(
+                equalToConstant: AppLayout.Journal.pillImageContainerSize.width
+            ),
+            pillTypeImageContainer.heightAnchor.constraint(
+                equalToConstant: AppLayout.Journal.pillImageContainerSize.height
+            ),
+            
+            pillTypeImage.topAnchor.constraint(
+                equalTo: pillTypeImageContainer.topAnchor,
+                constant: (
+                    AppLayout.Journal.pillImageContainerSize.height -
                         AppLayout.Journal.pillImageSize.height
-                    ) / 2
-                ),
-            pillTypeImage.leadingAnchor
-                .constraint(
-                    equalTo: pillTypeImageContainer.leadingAnchor,
-                    constant: (
-                        AppLayout.Journal.pillImageContainerSize.width -
+                ) / 2
+            ),
+            pillTypeImage.leadingAnchor.constraint(
+                equalTo: pillTypeImageContainer.leadingAnchor,
+                constant: (
+                    AppLayout.Journal.pillImageContainerSize.width -
                         AppLayout.Journal.pillImageSize.width
-                    ) / 2
-                ),
-            pillTypeImage.widthAnchor
-                .constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
-            pillTypeImage.heightAnchor
-                .constraint(equalToConstant: AppLayout.Journal.pillImageSize.height),
-
-            timeLabel.widthAnchor
-                .constraint(equalToConstant: AppLayout.Journal.timeLabelSize.width),
-            timeLabel.heightAnchor
-                .constraint(equalToConstant: AppLayout.Journal.timeLabelSize.height)
+                ) / 2
+            ),
+            pillTypeImage.widthAnchor.constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
+            pillTypeImage.heightAnchor.constraint(equalToConstant: AppLayout.Journal.pillImageSize.height),
+            
+            timeLabel.widthAnchor.constraint(equalToConstant: AppLayout.Journal.timeLabelSize.width),
+            timeLabel.heightAnchor.constraint(equalToConstant: AppLayout.Journal.timeLabelSize.height)
         ])
     }
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         pillTypeImageContainer.addSubview(pillTypeImage)
         majorView.addSubview(stackView)
         addSubview(majorView)
-
+        
         setNeedsUpdateConstraints()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: animated)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

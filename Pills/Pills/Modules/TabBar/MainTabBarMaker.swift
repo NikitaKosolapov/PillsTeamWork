@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarMaker {
+final class MainTabBarMaker {
     
     func createTabBarController() -> UITabBarController {
         
@@ -27,11 +27,10 @@ class MainTabBarMaker {
         
         let tabBarVC = UITabBarController()
         tabBarVC.viewControllers = [mainNavig, medicationNC, settingsNavig]
-        tabBarVC.tabBar.tintColor = AppColors.blue // TODO: get from constants when ready
-        tabBarVC.tabBar.unselectedItemTintColor = AppColors.gray // TODO: get from constants when ready
-        tabBarVC.tabBar.barTintColor = AppColors.white
+        tabBarVC.tabBar.tintColor = AppColors.blueTintTabBar // TODO: get from constants when ready
+        tabBarVC.tabBar.unselectedItemTintColor = AppColors.grayUnselectedItemTintTabBar // TODO: get from constants when ready
+        tabBarVC.tabBar.barTintColor = AppColors.whiteTabBarTintColor
         tabBarVC.tabBar.clipsToBounds = true
-
         return tabBarVC
     }
     

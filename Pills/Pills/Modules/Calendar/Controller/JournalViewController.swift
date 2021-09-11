@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JournalViewController: BaseViewController<JournalView> {
+final class JournalViewController: BaseViewController<JournalView> {
 
     class Event {
         let time: Date

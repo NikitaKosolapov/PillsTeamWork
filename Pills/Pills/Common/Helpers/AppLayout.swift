@@ -44,7 +44,6 @@ enum AppLayout {
         static let timeLabelSize = CGSize(width: 54, height: 18)
         
         static let instructionFont = AppLayout.Fonts.smallRegular
-        static let instructionTextColor = AppColors.semiBlack
         
         static let cellCornerRadius: CGFloat = 10
         static let cellBackgroundColor = AppColors.lightGray
@@ -53,7 +52,7 @@ enum AppLayout {
         static let cellPaddingBottom: CGFloat = 18
         static let cellHorizontalSpacing: CGFloat = 8
         
-        static let pillImageSize = CGSize(width: 28, height: 28)
+        static let pillImageSize = CGSize(width: 25, height: 25)
         static let pillImageContainerSize = CGSize(width: 36, height: 36)
         static let pillImageContainerRadius: CGFloat = 18
         
@@ -79,8 +78,9 @@ enum AppLayout {
         static let heightSegmentControl: CGFloat = 37.0
         
         // MARK: - UITableViewCell
-        static let widthPillsImageView: CGFloat = 36.0
-        static let heightPillsImageView: CGFloat = widthPillsImageView
+        static let pillImageSize = CGSize(width: 25, height: 25)
+        static let pillImageContainerSize = CGSize(width: 36, height: 36)
+        static let pillImageContainerRadius: CGFloat = 18
         static let leadingCourseCellView: CGFloat = 14.0
         static let trailingCourseCellView: CGFloat = -leadingCourseCellView
         static let topCourseCellView: CGFloat = 20.0

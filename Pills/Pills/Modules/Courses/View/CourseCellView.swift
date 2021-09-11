@@ -7,13 +7,24 @@
 
 import UIKit
 
-class CourseCellView: UIView {
-    // MARK: - SubView
+final class CourseCellView: UIView {
+    
+    // MARK: - Private Properties
+    
     private lazy var pillImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    private lazy var pillTypeImageContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.whitePillImageContainer
+        view.layer.cornerRadius = AppLayout.AidKit.pillImageContainerRadius
+        return view
     }()
     
     private lazy var pillNameLabel: UILabel = {
@@ -21,7 +32,7 @@ class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.font = AppLayout.Fonts.normalSemibold
-        label.textColor = AppColors.black
+        label.textColor = AppColors.blackPillNameLabel
         return label
     }()
     
@@ -30,7 +41,7 @@ class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.font = AppLayout.Fonts.smallRegular
-        label.textColor = AppColors.black
+        label.textColor = AppColors.blackDurationOfCoursesLabel
         return label
     }()
     
@@ -39,7 +50,7 @@ class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .right
         label.font = AppLayout.Fonts.verySmallRegular
-        label.textColor = AppColors.gray
+        label.textColor = AppColors.grayTextPassedDaysLabel
         return label
     }()
     
@@ -70,8 +81,9 @@ class CourseCellView: UIView {
         stackView.spacing = 10
         return stackView
     }()
-
-    // MARK: - Initialisation
+    
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -81,7 +93,8 @@ class CourseCellView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public functions
+    // MARK: - Public Methods
+    
     func configure(with model: CourseViewModel) {
         pillImage.image = model.imagePill
         pillNameLabel.text = model.namePill
@@ -96,29 +109,55 @@ class CourseCellView: UIView {
         countPassedDaysLabel.text = nil
     }
     
-    // MARK: - ConfigureUI
+    // MARK: - Private Methods
+    
     private func configureUI() {
-        backgroundColor = AppColors.lightGray
+        backgroundColor = AppColors.lightGrayCoursesCellView
         layer.cornerRadius = 10
         configureStackView()
         configureVerticalStackView()
         configureDurationAndDaysStackView()
     }
-
+    
     private func configureStackView () {
-        stackView.addArrangedSubviews(views: pillImage,verticalStackView)
+        pillTypeImageContainer.addSubview(pillImage)
+        stackView.addArrangedSubviews(views: pillTypeImageContainer, verticalStackView)
         addSubview(stackView)
         let safeArea = safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
-            pillImage.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthPillsImageView),
-            pillImage.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightPillsImageView),
-            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppLayout.AidKit.topCourseCellView),
-            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                               constant: AppLayout.AidKit.leadingCourseCellView),
-            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
-                                                constant: AppLayout.AidKit.trailingCourseCellView),
-            stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
-                                              constant: AppLayout.AidKit.bottomCourseCellView)
+            pillImage.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.pillImageSize.width),
+            pillImage.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.pillImageSize.height),
+            pillImage.centerXAnchor.constraint(equalTo: pillTypeImageContainer.centerXAnchor),
+            pillImage.centerYAnchor.constraint(equalTo: pillTypeImageContainer.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            pillTypeImageContainer.widthAnchor.constraint(
+                equalToConstant: AppLayout.AidKit.pillImageContainerSize.width
+            ),
+            pillTypeImageContainer.heightAnchor.constraint(
+                equalToConstant: AppLayout.AidKit.pillImageContainerSize.height
+            )
+        ])
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(
+                equalTo: safeArea.topAnchor,
+                constant: AppLayout.AidKit.topCourseCellView
+            ),
+            stackView.leadingAnchor.constraint(
+                equalTo: safeArea.leadingAnchor,
+                constant: AppLayout.AidKit.leadingCourseCellView
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: safeArea.trailingAnchor,
+                constant: AppLayout.AidKit.trailingCourseCellView
+            ),
+            stackView.bottomAnchor.constraint(
+                equalTo: safeArea.bottomAnchor,
+                constant: AppLayout.AidKit.bottomCourseCellView
+            )
         ])
     }
     
@@ -129,4 +168,5 @@ class CourseCellView: UIView {
     private func configureDurationAndDaysStackView () {
         durationAndDaysStackView.addArrangedSubviews(views: durationOfCourseLabel, countPassedDaysLabel)
     }
+    
 }

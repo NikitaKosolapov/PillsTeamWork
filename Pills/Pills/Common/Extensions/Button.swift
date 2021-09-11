@@ -13,7 +13,7 @@ extension UIButton {
         self.backgroundColor = backgroundColor
         layer.cornerRadius = 10
         setTitle(text, for: .normal)
-        setTitleColor(AppColors.white, for: .normal)
+        setTitleColor(AppColors.whiteRateStyleButtonTextColor, for: .normal)
         titleLabel?.font = AppLayout.Fonts.verySmallRegular
     }
 }

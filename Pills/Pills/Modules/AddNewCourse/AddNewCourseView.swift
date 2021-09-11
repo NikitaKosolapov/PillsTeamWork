@@ -63,7 +63,7 @@ protocol AddNewCourseDataSource: AnyObject {
 }
 
 // swiftlint:disable type_body_length
-class AddNewCourseView: UIView {
+final class AddNewCourseView: UIView {
 
     public weak var delegate: AddNewCourseDelegate?
     public weak var dataSource: AddNewCourseDataSource? {
@@ -75,24 +75,24 @@ class AddNewCourseView: UIView {
     }
 
     // MARK: - Pill Name Input
-    internal lazy var pillNameLabel =
-        FieldHeaderFabric.generate(header: Text.name)
-    internal lazy var pillNameInput =
-        CustomTextFieldBuilder()
-            .withPlaceholder(Text.namePlaceholder)
-            .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
-            .withEndEditProcessor { [weak self] text in
-                self?.delegate?.onPillNameChanged(text)
-            }
-            .build()
+    
+    internal lazy var pillNameLabel = FieldHeaderFabric.generate(header: Text.name)
+    internal lazy var pillNameInput = CustomTextFieldBuilder()
+        .withPlaceholder(Text.namePlaceholder)
+        .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
+        .withEndEditProcessor { [weak self] text in
+            self?.delegate?.onPillNameChanged(text)
+        }
+        .build()
     internal lazy var stackPillName = VStackViewFabric.generate([pillNameLabel, pillNameInput])
 
     // MARK: - Type Input
+    
     internal lazy var typeLabel = FieldHeaderFabric.generate(header: "")
     internal lazy var typeImageHolder: UIView = {
         let holder = UIView()
         holder.translatesAutoresizingMaskIntoConstraints = false
-        holder.backgroundColor = AppColors.white
+        holder.backgroundColor = AppColors.lightBlueTypeImageHolder
         holder.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         holder.addSubview(typeImage)
         NSLayoutConstraint.activate([
@@ -107,6 +107,7 @@ class AddNewCourseView: UIView {
         ])
         return holder
     }()
+    
     internal lazy var typeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -261,8 +262,8 @@ class AddNewCourseView: UIView {
     }()
 
     // MARK: - Meal Dependency Input
-    internal lazy var mealDependencyLabel =
-        FieldHeaderFabric.generate(header: Text.instruction)
+    
+    internal lazy var mealDependencyLabel = FieldHeaderFabric.generate(header: Text.instruction)
     internal lazy var mealDependencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: []) { [weak self] option in
@@ -276,8 +277,9 @@ class AddNewCourseView: UIView {
     internal lazy var stackMealDependency = VStackViewFabric.generate([mealDependencyLabel, mealDependencyInput])
 
     // MARK: - Note Input
-    internal lazy var noteLabel =
-        FieldHeaderFabric.generate(header: Text.notes)
+    
+    internal lazy var noteLabel = FieldHeaderFabric.generate(header: Text.notes)
+    
     internal lazy var noteInput: UITextView = {
         let textField = UITextView()
         textField.isEditable = true
@@ -288,23 +290,31 @@ class AddNewCourseView: UIView {
         // onCommentChanged
         return textField
     }()
+    
     internal lazy var stackNote = VStackViewFabric.generate([noteLabel, noteInput])
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = AppColors.lightBlue
+        scrollView.backgroundColor = AppColors.lightBlueScrollViewBG
         return scrollView
     }()
     
     // MARK: - Continue Button
+    
     internal lazy var doneButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Text.save, for: .normal)
-        button.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(doneButtonPressed),
+            for: .touchUpInside
+        )
         button.isEnabled = false
-        NSLayoutConstraint.activate(
-            [button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)])
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
+        ])
         return button
     }()
 
@@ -412,7 +422,7 @@ class AddNewCourseView: UIView {
     // MARK: - Class Methods
     public func setup() {
         addSubviews()
-        backgroundColor = AppColors.lightBlue
+        backgroundColor = AppColors.lightBlueAddNewCourseVCBG
         NotificationCenter.default
             .addObserver(
                 self,

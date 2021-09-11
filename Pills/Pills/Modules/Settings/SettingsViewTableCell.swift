@@ -18,35 +18,37 @@ class SettingsViewTableCell: UITableViewCell {
     
     private let backgroundViewCell: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.lightGray
+        view.backgroundColor = AppColors.lightGrayTableViewCellBG
         view.layer.cornerRadius = AppLayout.Settings.cellCornerRadius
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private let nameCellLabel: UILabel = {
+    private let cellTitleLabel: UILabel = {
         let label = UILabel()
         label.font = AppLayout.Fonts.normalRegular
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = AppColors.blackCellTitleLabel
         return label
     }()
     
     private let accessoryButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "chevron.forward"), for: .normal)
-        button.tintColor = AppColors.semiGray
+        button.tintColor = AppColors.semiGrayAccessoryButton
         button.isHidden = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let notificationsSwitch: UISwitch = {
-        let swtch = UISwitch()
-        swtch.isOn = true
-        swtch.isHidden = false
-        swtch.translatesAutoresizingMaskIntoConstraints = false
-        return swtch
+        let switcher = UISwitch()
+        switcher.isOn = true
+        switcher.isHidden = false
+        switcher.translatesAutoresizingMaskIntoConstraints = false
+        switcher.onTintColor = AppColors.greenSwitcherBG
+        return switcher
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -88,11 +90,11 @@ class SettingsViewTableCell: UITableViewCell {
             notificationsSwitch.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -42)
         ])
         
-        self.addSubview(nameCellLabel)
+        self.addSubview(cellTitleLabel)
         NSLayoutConstraint.activate([
-            nameCellLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            nameCellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 24),
-            nameCellLabel.trailingAnchor.constraint(equalTo: notificationsSwitch.leadingAnchor, constant: -10)
+            cellTitleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            cellTitleLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 24),
+            cellTitleLabel.trailingAnchor.constraint(equalTo: notificationsSwitch.leadingAnchor, constant: -10)
         ])
         
     }
@@ -111,7 +113,7 @@ extension SettingsViewTableCell: SettingsViewTableCellDelegate {
     }
     
     func setName(name: String) {
-        nameCellLabel.text = name
+        cellTitleLabel.text = name
     }
     
     func setColor(backgroundColor: UIColor) {
