@@ -42,11 +42,11 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     private var rounderСornersView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.shadowColor = AppColors.semiGray.cgColor
+        view.layer.shadowColor = AppColors.semiGrayOnly.cgColor
         view.layer.shadowOpacity = 1
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 3
-        view.backgroundColor = AppColors.whiteRounderСornersViewBG
+        view.backgroundColor = AppColors.white
         view.layer.cornerRadius = 14
         return view
     }()
@@ -54,7 +54,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     private lazy var minusView: UIView =  {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.semiGrayMinusViewBG
+        view.backgroundColor = AppColors.semiGrayOnly
         view.layer.cornerRadius = 2.5
         return view
     }()
@@ -74,7 +74,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     private var journalTableView: JournalTableView = {
         let view = JournalTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.whiteJournalTableViewBG
+        view.backgroundColor = AppColors.white
         return view
     }()
     
@@ -87,7 +87,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     private var manImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.lightBlueJournalManImageViewBG
+        view.backgroundColor = AppColors.lightBlueSapphire
         return view
     }()
     
@@ -104,7 +104,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         label.text = Text.takePillsInTime
         label.font = AppLayout.Fonts.bigSemibold
         label.textAlignment = .center
-        label.textColor = AppColors.blackTextManHintHeaderLabel
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -114,20 +114,20 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         label.text = Text.justAddAnOrder
         label.font = AppLayout.Fonts.normalRegular
         label.textAlignment = .center
-        label.textColor = AppColors.blackTextManHintSubtitleLabel
+        label.textColor = AppColors.black
         return label
     }()
     
     private lazy var addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(AppColors.whiteTextJournalAddButton, for: .normal)
+        button.setTitleColor(AppColors.whiteOnly, for: .normal)
         // Add onDebugSwitchView instead callAddNewPill for debugging
         button.addTarget(self, action: #selector(callAddNewPill), for: .touchUpInside)
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
         ])
-        button.backgroundColor = AppColors.blueJournalAddButtonBG
+        button.backgroundColor = AppColors.blue
         return button
     }()
     
@@ -183,7 +183,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // swiftlint:disable function_body_length
     override func updateConstraints() {
-        backgroundColor = AppColors.whiteJournalVCBG
+        backgroundColor = AppColors.white
         super.updateConstraints()
         calendarHeighConstraint = NSLayoutConstraint(
             item: calendar,
@@ -349,16 +349,16 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     private func configureCalendarDefaultUI() {
         calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
-        calendar.appearance.headerTitleColor = AppColors.blackHeaderTitleJournalCalendar
-        calendar.appearance.weekdayTextColor = AppColors.blackWeekdayTextJournalCalendar
+        calendar.appearance.headerTitleColor = AppColors.black
+        calendar.appearance.weekdayTextColor = AppColors.black
         
-        calendar.appearance.titleDefaultColor = AppColors.blackDayTextJournalCalendar
-        calendar.appearance.selectionColor = AppColors.whiteSelectedDayTextJournalCalendar
-        calendar.appearance.todayColor = AppColors.blueTodayDateTextJournalCalendar
+        calendar.appearance.titleDefaultColor = AppColors.black
+        calendar.appearance.selectionColor = AppColors.whiteOnly
+        calendar.appearance.todayColor = AppColors.blue
         calendar.appearance.titleTodayColor = AppColors.white
         calendar.appearance.titleSelectionColor = AppColors.black
         calendar.appearance.eventDefaultColor = AppColors.semiBlack
-        calendar.appearance.titleWeekendColor = AppColors.semiBlackWeekendTextJournalCalendar
+        calendar.appearance.titleWeekendColor = AppColors.semiGrayOnly
         calendar.appearance.titleFont = UIFont.SFPro17()
         calendar.appearance.weekdayFont = UIFont.SFPro10()
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
@@ -368,7 +368,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         calendar.appearance.titleTodayColor = AppColors.blue
         calendar.appearance.todayColor = AppColors.white
         calendar.appearance.selectionColor = AppColors.blue
-        calendar.appearance.titleSelectionColor = AppColors.whiteSelectedDayTextJournalCalendar
+        calendar.appearance.titleSelectionColor = AppColors.whiteOnly
         calendar.appearance.headerTitleColor = AppColors.black
     }
     

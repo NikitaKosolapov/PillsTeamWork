@@ -26,7 +26,7 @@ final class RateView: UIView {
     private let rateView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = AppColors.lightBlueRateViewBG
+        view.backgroundColor = AppColors.lightBlueSapphire
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -37,7 +37,7 @@ final class RateView: UIView {
             font: AppLayout.Fonts.normalSemibold,
             text: Text.Rating.rateApp
         )
-        label.textColor = AppColors.blackRateViewTopLabel
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -227,7 +227,7 @@ final class RateView: UIView {
     
     private func configureUI() {
         isOpaque = false
-        backgroundColor = AppColors.semiWhiteRateVCBG
+        backgroundColor = AppColors.semiWhite
         configureButtons()
         configureRateView()
         configureStackView()

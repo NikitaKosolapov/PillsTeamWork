@@ -34,7 +34,7 @@ final class JournalTableViewCell: UITableViewCell {
     private var pillTypeImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.whiteJournalPillImageContainer
+        view.backgroundColor = AppColors.whiteOnly
         view.layer.cornerRadius = AppLayout.Journal.pillImageContainerRadius
         return view
     }()
@@ -49,7 +49,7 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let pillNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.blackJournalPillNameLabel
+        label.textColor = AppColors.black
         label.font = AppLayout.Journal.pillNameFont
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +58,7 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let instructionLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.semiBlackJournalInstructionLabel
+        label.textColor = AppColors.black
         label.font = AppLayout.Journal.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -68,7 +68,7 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let usageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.semiBlackJournalUsageLabel
+        label.textColor = AppColors.black
         label.font = AppLayout.Journal.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
@@ -78,11 +78,11 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.blackJournalTimeLabel
+        label.textColor = AppColors.blackOnly
         label.font = AppLayout.Journal.timeFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.layer.backgroundColor = AppColors.whiteJournalTimeLabelBG.cgColor
+        label.layer.backgroundColor = AppColors.whiteOnly.cgColor
         label.layer.cornerRadius = 4
         return label
     }()

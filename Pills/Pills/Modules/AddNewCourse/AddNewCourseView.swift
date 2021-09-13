@@ -92,7 +92,7 @@ final class AddNewCourseView: UIView {
     internal lazy var typeImageHolder: UIView = {
         let holder = UIView()
         holder.translatesAutoresizingMaskIntoConstraints = false
-        holder.backgroundColor = AppColors.lightBlueTypeImageHolder
+        holder.backgroundColor = AppColors.whiteAnthracite
         holder.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         holder.addSubview(typeImage)
         NSLayoutConstraint.activate([
@@ -284,7 +284,7 @@ final class AddNewCourseView: UIView {
         let textField = UITextView()
         textField.isEditable = true
         textField.font = AppLayout.Fonts.normalRegular
-        textField.backgroundColor = AppColors.white
+        textField.backgroundColor = AppColors.whiteAnthracite
         textField.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         textField.delegate = self
         // onCommentChanged
@@ -296,7 +296,7 @@ final class AddNewCourseView: UIView {
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = AppColors.lightBlueScrollViewBG
+        scrollView.backgroundColor = AppColors.lightBlueBlack
         return scrollView
     }()
     
@@ -422,7 +422,7 @@ final class AddNewCourseView: UIView {
     // MARK: - Class Methods
     public func setup() {
         addSubviews()
-        backgroundColor = AppColors.lightBlueAddNewCourseVCBG
+        backgroundColor = AppColors.lightBlueBlack
         NotificationCenter.default
             .addObserver(
                 self,

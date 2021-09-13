@@ -14,7 +14,7 @@ extension UILabel {
         textAlignment = .center
         self.text = text
         self.font = font
-        textColor = AppColors.blackCenterStyleLabel
+        textColor = AppColors.black
     }
     
     func leftStyleLabel (font: UIFont?, text: String) {
@@ -22,6 +22,6 @@ extension UILabel {
         textAlignment = .left
         self.text = text
         self.font = font
-        textColor = AppColors.blackCenterStyleLabel
+        textColor = AppColors.black
     }
 }

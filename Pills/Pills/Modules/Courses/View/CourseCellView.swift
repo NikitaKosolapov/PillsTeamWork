@@ -22,7 +22,7 @@ final class CourseCellView: UIView {
     private lazy var pillTypeImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.whitePillImageContainer
+        view.backgroundColor = AppColors.whiteOnly
         view.layer.cornerRadius = AppLayout.AidKit.pillImageContainerRadius
         return view
     }()
@@ -32,7 +32,7 @@ final class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.font = AppLayout.Fonts.normalSemibold
-        label.textColor = AppColors.blackPillNameLabel
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -41,7 +41,7 @@ final class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.font = AppLayout.Fonts.smallRegular
-        label.textColor = AppColors.blackDurationOfCoursesLabel
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -50,7 +50,7 @@ final class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .right
         label.font = AppLayout.Fonts.verySmallRegular
-        label.textColor = AppColors.grayTextPassedDaysLabel
+        label.textColor = AppColors.semiGrayOnly
         return label
     }()
     
@@ -112,7 +112,7 @@ final class CourseCellView: UIView {
     // MARK: - Private Methods
     
     private func configureUI() {
-        backgroundColor = AppColors.lightGrayCoursesCellView
+        backgroundColor = AppColors.lightGray
         layer.cornerRadius = 10
         configureStackView()
         configureVerticalStackView()

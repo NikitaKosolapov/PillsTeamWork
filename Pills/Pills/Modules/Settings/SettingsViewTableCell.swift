@@ -18,7 +18,7 @@ class SettingsViewTableCell: UITableViewCell {
     
     private let backgroundViewCell: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.lightGrayTableViewCellBG
+        view.backgroundColor = AppColors.lightGray
         view.layer.cornerRadius = AppLayout.Settings.cellCornerRadius
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -29,14 +29,14 @@ class SettingsViewTableCell: UITableViewCell {
         label.font = AppLayout.Fonts.normalRegular
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = AppColors.blackCellTitleLabel
+        label.textColor = AppColors.black
         return label
     }()
     
     private let accessoryButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "chevron.forward"), for: .normal)
-        button.tintColor = AppColors.semiGrayAccessoryButton
+        button.tintColor = AppColors.semiGrayOnly
         button.isHidden = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -47,7 +47,7 @@ class SettingsViewTableCell: UITableViewCell {
         switcher.isOn = true
         switcher.isHidden = false
         switcher.translatesAutoresizingMaskIntoConstraints = false
-        switcher.onTintColor = AppColors.greenSwitcherBG
+        switcher.onTintColor = AppColors.greenBlue
         return switcher
     }()
     

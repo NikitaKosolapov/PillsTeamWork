@@ -50,7 +50,7 @@ class CourseCell: UITableViewCell {
     }
     
     private func configureContentView () {
-        contentView.backgroundColor = AppColors.whiteCellBG
+        contentView.backgroundColor = AppColors.white
     }
     
     private func configureProgressView () {

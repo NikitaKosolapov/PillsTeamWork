@@ -15,12 +15,12 @@ class CoursesView: UIView {
     let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
         segmentedControl.selectedSegmentTintColor = AppColors.blue
-        segmentedControl.backgroundColor = AppColors.lightGrayBackgroundSC
+        segmentedControl.backgroundColor = AppColors.lightGrayOnly
         segmentedControl.setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: AppColors.whiteSelectedTextSC],
+            [NSAttributedString.Key.foregroundColor: AppColors.whiteOnly],
             for: .selected)
         segmentedControl.setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: AppColors.gray],
+            [NSAttributedString.Key.foregroundColor: AppColors.semiGrayOnly],
             for: .normal)
         segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
@@ -33,7 +33,7 @@ class CoursesView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets.zero
-        tableView.backgroundColor = AppColors.whiteTableViewBG
+        tableView.backgroundColor = AppColors.white
         tableView.isHidden = false
         return tableView
     }()
@@ -48,8 +48,8 @@ class CoursesView: UIView {
     let addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(AppColors.whiteTextAddButton, for: .normal)
-        button.backgroundColor = AppColors.blueAddButtonBG
+        button.setTitleColor(AppColors.whiteOnly, for: .normal)
+        button.backgroundColor = AppColors.blue
         return button
     }()
     
@@ -62,7 +62,7 @@ class CoursesView: UIView {
         view.spacing = 0
         return view
     }()
-
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,7 +75,7 @@ class CoursesView: UIView {
     
     // MARK: - ConfigureUI
     private func configureUI() {
-        backgroundColor = AppColors.whiteCoursesVCBG
+        backgroundColor = AppColors.white
         configureSegmentedControl()
         configureAddButton()
         configureStackView()
@@ -90,7 +90,7 @@ class CoursesView: UIView {
         NSLayoutConstraint.activate(
             [addButton.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightAddButton)])
     }
-
+    
     private func configureStackView() {
         stackView.addArrangedSubviews(views: segmentedControl,
                                       stubView,

@@ -32,10 +32,10 @@ class AddButton: UIButton {
     // MARK: - Private functions
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = AppColors.lightBlueSaveButtonBG
+        backgroundColor = AppColors.blue
         layer.cornerRadius = 10
         setTitle(Text.add, for: .normal)
-        setTitleColor(AppColors.blackSaveButtonTextColor, for: .normal)
+        setTitleColor(AppColors.whiteOnly, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
 

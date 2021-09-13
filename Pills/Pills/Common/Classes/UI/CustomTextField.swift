@@ -192,7 +192,7 @@ class CustomTextField: UITextField {
         super.init(frame: CGRect())
 
         self.font = AppLayout.Fonts.normalRegular
-        self.backgroundColor = AppColors.whiteTextFieldBG
+        self.backgroundColor = AppColors.whiteAnthracite
         self.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         self.delegate = self
     }

@@ -52,7 +52,7 @@ final class SettingsViewController: UITableViewController {
         tableView.dataSource = self
         tableView.register(SettingsViewTableCell.self, forCellReuseIdentifier: idSettingsCell)
         
-        tableView.backgroundColor = AppColors.whiteSettingsTableViewBG
+        tableView.backgroundColor = AppColors.white
         tableView.separatorStyle = .none
         
     }

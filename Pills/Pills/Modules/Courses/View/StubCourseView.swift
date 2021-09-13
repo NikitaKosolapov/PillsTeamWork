@@ -15,7 +15,7 @@ final class StubCourseView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = AppImages.AidKit.stubImage
-        imageView.backgroundColor = AppColors.lightBlueStubImageViewBG
+        imageView.backgroundColor = AppColors.lightBlueSapphire
         imageView.layer.cornerRadius = AppLayout.AidKit.heightStubImage / 2
         return imageView
     }()
@@ -27,7 +27,7 @@ final class StubCourseView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
-        label.textColor = AppColors.blackStubInfoLabel
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -45,7 +45,7 @@ final class StubCourseView: UIView {
     // MARK: - Private Methods
     
     private func configureUI() {
-        backgroundColor = AppColors.whiteStubCoursesBG
+        backgroundColor = AppColors.white
         configureImageView()
         configureLabel()
     }
