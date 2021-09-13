@@ -12,10 +12,11 @@ class AddButton: UIButton {
     override var isEnabled: Bool {
         willSet {
             super.isEnabled = newValue
-            backgroundColor =
-                AppColors.blue.withAlphaComponent(
-                    newValue ? 1 : 0.5
-                )
+            //  Для чего этот код? В темной теме бэкграунд кнопки Save отображается некорректно из-за alpha = 0.5
+//            backgroundColor =
+//                AppColors.lightBlueAddButtonBG.withAlphaComponent(
+//                    newValue ? 1 : 0.5
+//                )
         }
     }
     
@@ -34,7 +35,7 @@ class AddButton: UIButton {
         backgroundColor = AppColors.blue
         layer.cornerRadius = 10
         setTitle(Text.add, for: .normal)
-        setTitleColor(AppColors.white, for: .normal)
+        setTitleColor(AppColors.whiteOnly, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
 

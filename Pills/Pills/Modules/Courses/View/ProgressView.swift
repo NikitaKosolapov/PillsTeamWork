@@ -7,12 +7,13 @@
 
 import UIKit
 
-class ProgressView: UIView {
-    // MARK: - Properties
+final class ProgressView: UIView {
+    
+    // MARK: - Private Properties
+    
     private var progress: CGFloat = AppLayout.halfWidthScreen
     private var progressViewWidthConstraint: NSLayoutConstraint?
     
-    // MARK: - Subviews
     private lazy var progressView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +21,9 @@ class ProgressView: UIView {
         view.layer.cornerRadius = 10.0
         return view
     }()
-    // MARK: - Initialisation
+    
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -30,27 +33,30 @@ class ProgressView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public functions
+    // MARK: - Public Methods
+    
     func configure(with model: CourseViewModel) {
         if let progressViewWidthConstraint = self.progressViewWidthConstraint {
             NSLayoutConstraint.deactivate([progressViewWidthConstraint])
         }
-
+        
         self.progressViewWidthConstraint = progressView.widthAnchor.constraint(equalToConstant: model.widthProgress)
-
+        
         if let progressViewWidthConstraint = self.progressViewWidthConstraint {
             NSLayoutConstraint.activate([progressViewWidthConstraint])
         }
     }
     
     func resetView() {
-        NSLayoutConstraint.activate(
-            [progressView.widthAnchor.constraint(equalToConstant: CGFloat(0))])
+        NSLayoutConstraint.activate([
+            progressView.widthAnchor.constraint(equalToConstant: CGFloat(0))
+        ])
     }
     
-    // MARK: - Configure
+    // MARK: - Private Methods
+    
     private func configureUI() {
-        backgroundColor = AppColors.semiGray
+        backgroundColor = AppColors.semiGrayOnly
         layer.cornerRadius = 10.0
         configureProgressView()
     }
@@ -59,10 +65,12 @@ class ProgressView: UIView {
         layoutMargins = UIEdgeInsets.zero
         let marginsGuide = layoutMarginsGuide
         addSubview(progressView)
-        NSLayoutConstraint.activate(
-            [progressView.topAnchor.constraint(equalTo: marginsGuide.topAnchor),
-             progressView.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor),
-             progressView.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor)
-            ])
+        
+        NSLayoutConstraint.activate([
+            progressView.topAnchor.constraint(equalTo: marginsGuide.topAnchor),
+            progressView.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor),
+            progressView.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor)
+        ])
     }
+    
 }

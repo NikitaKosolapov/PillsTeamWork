@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JournalTableView: UITableView {
+final class JournalTableView: UITableView {
 
     func configure() {
         self.tableFooterView = UIView()

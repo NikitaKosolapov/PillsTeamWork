@@ -15,23 +15,29 @@ protocol RateViewDelegate: AnyObject {
     func noThanksButtonTouchUpInside()
 }
 
-class RateView: UIView {
+final class RateView: UIView {
     
-    // MARK: - Properties
+    // MARK: - Public Properties
+    
     weak var rateViewDelegate: RateViewDelegate?
     
-    // MARK: - Subviews
+    // MARK: - Private Properties
+    
     private let rateView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = AppColors.lightGray
+        view.backgroundColor = AppColors.lightBlueSapphire
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.centerStyleLabel(font: AppLayout.Fonts.normalSemibold, text: Text.Rating.rateApp)
+        label.centerStyleLabel(
+            font: AppLayout.Fonts.normalSemibold,
+            text: Text.Rating.rateApp
+        )
+        label.textColor = AppColors.black
         return label
     }()
     
@@ -64,45 +70,69 @@ class RateView: UIView {
     
     private let badLabel: UILabel = {
         let label = UILabel()
-        label.centerStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.Rating.badRate)
+        label.centerStyleLabel(
+            font: AppLayout.Fonts.smallRegular,
+            text: Text.Rating.badRate
+        )
         return label
     }()
     
     private let normLabel: UILabel = {
         let label = UILabel()
-        label.centerStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.Rating.normRate)
+        label.centerStyleLabel(
+            font: AppLayout.Fonts.smallRegular,
+            text: Text.Rating.normRate
+        )
         return label
     }()
     
     private let bestLabel: UILabel = {
         let label = UILabel()
-        label.centerStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.Rating.bestRate)
+        label.centerStyleLabel(
+            font: AppLayout.Fonts.smallRegular,
+            text: Text.Rating.bestRate
+        )
         return label
     }()
     
     private let provideFeedbackButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.rateStyleButton(backgroundColor: AppColors.blue,
-                               text: Text.Rating.provideFeedback)
-        button.addTarget(self, action: #selector(provideFeedbackButtonTouchUpInside),
-                                                 for: .touchUpInside)
+        button.rateStyleButton(
+            backgroundColor: AppColors.blue,
+            text: Text.Rating.provideFeedback
+        )
+        button.addTarget(
+            self,
+            action: #selector(provideFeedbackButtonTouchUpInside),
+            for: .touchUpInside
+        )
         return button
     }()
     
     private let noThanksButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.rateStyleButton(backgroundColor: AppColors.red,
-                               text: Text.Rating.noThanks)
-        button.addTarget(self, action: #selector(noThanksButtonTouchUpInside), for: .touchUpInside)
+        button.rateStyleButton(
+            backgroundColor: AppColors.red,
+            text: Text.Rating.noThanks
+        )
+        button.addTarget(
+            self,
+            action: #selector(noThanksButtonTouchUpInside),
+            for: .touchUpInside
+        )
         return button
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews:[titleLabel,
-                                                      horizontalButtonsLabelsStackView,
-                                                      horizontalButtonsStackView])
+        let stackView = UIStackView(
+            arrangedSubviews:[
+                titleLabel,
+                horizontalButtonsLabelsStackView,
+                horizontalButtonsStackView
+            ]
+        )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -112,9 +142,13 @@ class RateView: UIView {
     }()
     
     private lazy var horizontalButtonsLabelsStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [badButtonLabelStackView,
-                                                      normButtonLabelStackView,
-                                                      bestButtonLabelStackView])
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                badButtonLabelStackView,
+                normButtonLabelStackView,
+                bestButtonLabelStackView
+            ]
+        )
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
@@ -158,7 +192,8 @@ class RateView: UIView {
         return stackView
     }()
     
-    // MARK: - Initialisation
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -168,7 +203,8 @@ class RateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Actions
+    // MARK: - Private Methods
+    
     @objc internal func badSmileButtonTouchUpInside() {
         rateViewDelegate?.badSmileButtonTouchUpInside()
     }
@@ -189,7 +225,6 @@ class RateView: UIView {
         rateViewDelegate?.noThanksButtonTouchUpInside()
     }
     
-    // MARK: - Private configure
     private func configureUI() {
         isOpaque = false
         backgroundColor = AppColors.semiWhite
@@ -241,4 +276,5 @@ class RateView: UIView {
              stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
                                                constant: AppLayout.Rate.bottomStackView)])
     }
+    
 }
