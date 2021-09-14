@@ -177,6 +177,13 @@ enum Text {
         static let privacyPolicy = "privacyPolicy".localized()
         static let rate = "rate".localized()
     }
+    
+    // MARK: - Medicine Description
+    
+    enum MedicineDescription {
+        static let accept = "accept".localized()
+        static let skip = "skip".localized()
+    }
 
     // MARK: - Rating
     enum Rating {

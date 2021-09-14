@@ -61,6 +61,21 @@ enum AppLayout {
         static let cellHeight: CGFloat = 80
     }
     
+    enum MedicineDescription {
+        static let pillImageContainerRadius: CGFloat = 18
+        static let pillNameFont = AppLayout.Fonts.normalSemibold
+        static let pillsQuantityFont = AppLayout.Fonts.smallRegular
+        static let instructionFont = AppLayout.Fonts.smallRegular
+        static let timeFont = AppLayout.Fonts.normalRegular
+        static let pillInstructionFont = AppLayout.Fonts.verySmallRegular
+        static let defaultStackViewSpacing: CGFloat = 10
+        static let descriptionViewHeight: CGFloat = 181
+        static let topDescriptionView: CGFloat = (0.8 * AppLayout.heightScreen - descriptionViewHeight) / 2
+        static let descriptionViewLeading: CGFloat = 16
+        static let descriptionViewtrailing: CGFloat = -16
+        static let topAnchorDescriptionView: CGFloat = 16
+    }
+    
     enum AidKit {
         // MARK: - UIStackView
         static var indentStackView: CGFloat = 16.0
