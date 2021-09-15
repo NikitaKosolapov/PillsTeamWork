@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11B0B76D26FF4D5700BD86BF /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76B26FF4D5700BD86BF /* AlertViewController.swift */; };
+		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
 		455133E9FD3C22F2F266D4B8 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */; };
 		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
 		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
@@ -109,6 +111,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11B0B76B26FF4D5700BD86BF /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		15CC9380A7D7692447008383 /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		3AA129D021F9E8300DC954A7 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DA6DE1F3583984F385AD82 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11B0B76A26FF4D5700BD86BF /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				11B0B76B26FF4D5700BD86BF /* AlertViewController.swift */,
+				11B0B76C26FF4D5700BD86BF /* AlertView.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		310B926E18EFEE7AE8E286B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +479,7 @@
 		FE79E3EB269CC8A100DACD24 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				11B0B76A26FF4D5700BD86BF /* Alerts */,
 				FA9D86FE26F110F700408604 /* MedicineDescription */,
 				A86DB93C26C54BD000AE866A /* Rate */,
 				FECB1A6A26BAE5D300136DF0 /* AddNewCourse */,
@@ -971,6 +985,7 @@
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */,
+				11B0B76D26FF4D5700BD86BF /* AlertViewController.swift in Sources */,
 				FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
@@ -989,6 +1004,7 @@
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
+				11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */,
 				A86DB94726C54C3600AE866A /* TableView.swift in Sources */,
 				A81ECCF826C6D61E0039DE67 /* Button.swift in Sources */,
 				A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */,
