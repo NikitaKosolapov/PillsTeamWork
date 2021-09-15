@@ -23,20 +23,18 @@ class AlertView: UIView {
         let label = UILabel()
         label.centerStyleLabel(
             font: AppLayout.Fonts.normalSemibold,
-            text: "Какой-то текст"
+            text: "Заголовок"
         )
         label.textColor = AppColors.black
         return label
     }()
-    
-    private var additionalField = UIView()
     
     private let agreeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.rateStyleButton(
             backgroundColor: AppColors.blue,
-            text: Text.Rating.provideFeedback
+            text: "Yes"
         )
         button.addTarget(
             self,
@@ -51,7 +49,7 @@ class AlertView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.rateStyleButton(
             backgroundColor: AppColors.red,
-            text: Text.Rating.noThanks
+            text: "No"
         )
         button.addTarget(
             self,
@@ -80,6 +78,8 @@ class AlertView: UIView {
         return stackView
     }()
     
+    var additionalField = UIView()
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -91,19 +91,37 @@ class AlertView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private Methods
-    
     @objc internal func agreeButtonTouchUpInside() {
     }
     
     @objc internal func denyButtonTouchUpInside() {
     }
     
+    func configureView() {
+        addSubview(alertView)
+        let safeArea = safeAreaLayoutGuide
+        NSLayoutConstraint.activate(
+            [alertView.topAnchor.constraint(equalTo: safeArea.topAnchor,
+                                           constant: AppLayout.Rate.topRateView),
+             alertView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                               constant: AppLayout.Rate.leadingRateView),
+             alertView.widthAnchor.constraint( equalToConstant: AppLayout.Rate.widthRateView),
+             alertView.heightAnchor.constraint(equalToConstant: AppLayout.Rate.heightRateView)])
+    }
+    
+    func configureText(title: String, agree: String, deny: String) {
+        titleLabel.text = title
+        agreeButton.setTitle(agree, for: .normal)
+        denyButton.setTitle(deny, for: .normal)
+    }
+    
+    // MARK: - Private Methods
+    
     private func configureUI() {
         isOpaque = false
         backgroundColor = AppColors.semiWhite
         configureButtons()
-        configureAlertView()
+        configureView()
         configureStackView()
     }
     
@@ -115,18 +133,6 @@ class AlertView: UIView {
              denyButton.widthAnchor.constraint(equalToConstant: AppLayout.Rate.widthRateButton),
              denyButton.heightAnchor.constraint(equalToConstant:
                                                         AppLayout.Rate.heightRateButton)])
-    }
-    
-    private func configureAlertView() {
-        addSubview(alertView)
-        let safeArea = safeAreaLayoutGuide
-        NSLayoutConstraint.activate(
-            [alertView.topAnchor.constraint(equalTo: safeArea.topAnchor,
-                                           constant: AppLayout.Rate.topRateView),
-             alertView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                               constant: AppLayout.Rate.leadingRateView),
-             alertView.widthAnchor.constraint( equalToConstant: AppLayout.Rate.widthRateView),
-             alertView.heightAnchor.constraint(equalToConstant: 156)])
     }
     
     private func configureStackView() {

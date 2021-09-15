@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11B0B76D26FF4D5700BD86BF /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76B26FF4D5700BD86BF /* AlertViewController.swift */; };
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
 		455133E9FD3C22F2F266D4B8 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */; };
 		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
@@ -111,7 +110,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11B0B76B26FF4D5700BD86BF /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		15CC9380A7D7692447008383 /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		3AA129D021F9E8300DC954A7 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,7 +239,6 @@
 		11B0B76A26FF4D5700BD86BF /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
-				11B0B76B26FF4D5700BD86BF /* AlertViewController.swift */,
 				11B0B76C26FF4D5700BD86BF /* AlertView.swift */,
 			);
 			path = Alerts;
@@ -985,7 +982,6 @@
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */,
-				11B0B76D26FF4D5700BD86BF /* AlertViewController.swift in Sources */,
 				FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
