@@ -7,17 +7,17 @@
 
 import UIKit
 
-final class JournalViewController: BaseViewController<JournalView> {
+class Event {
+    let time: Date
+    let pill: RealmMedKitEntry
     
-    class Event {
-        let time: Date
-        let pill: RealmMedKitEntry
-        
-        init(time: Date, pill: RealmMedKitEntry) {
-            self.time = time
-            self.pill = pill
-        }
+    init(time: Date, pill: RealmMedKitEntry) {
+        self.time = time
+        self.pill = pill
     }
+}
+
+final class JournalViewController: BaseViewController<JournalView> {
     
     fileprivate var eventsToShow: [Event] = []
     
@@ -109,8 +109,11 @@ extension JournalViewController: UITableViewDataSource {
 
 extension JournalViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = MedicineDescriptionVC()
+        
+        let event = eventsToShow[indexPath.row]
+        
+        let vc = MedicineDescriptionVC(event: event)
         vc.modalPresentationStyle = .overCurrentContext
-        present(vc, animated: true, completion: nil)
+        present(vc, animated: false, completion: nil)
     }
 }

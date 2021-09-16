@@ -62,18 +62,27 @@ enum AppLayout {
     }
     
     enum MedicineDescription {
-        static let pillImageContainerRadius: CGFloat = 18
         static let pillNameFont = AppLayout.Fonts.normalSemibold
         static let pillsQuantityFont = AppLayout.Fonts.smallRegular
         static let instructionFont = AppLayout.Fonts.smallRegular
         static let timeFont = AppLayout.Fonts.normalRegular
         static let pillInstructionFont = AppLayout.Fonts.verySmallRegular
+        static let pillImageContainerRadius: CGFloat = 18
         static let defaultStackViewSpacing: CGFloat = 10
         static let descriptionViewHeight: CGFloat = 181
-        static let topDescriptionView: CGFloat = (0.8 * AppLayout.heightScreen - descriptionViewHeight) / 2
+        static let descriptionViewWidth: CGFloat = 288
+        // не совсем понял как вычисляется в данном случае высота
+        // static let topDescriptionView: CGFloat = (0.8 * AppLayout.heightScreen - descriptionViewHeight) / 2
         static let descriptionViewLeading: CGFloat = 16
-        static let descriptionViewtrailing: CGFloat = -16
-        static let topAnchorDescriptionView: CGFloat = 16
+        static let descriptionViewTrailing: CGFloat = -16
+        static let descriptionViewBottomAnchor: CGFloat = -16
+        static let descriptionViewTopAnchor: CGFloat = 16
+        static let stackViewHorizontalHeight: CGFloat = 36
+        static let pillImageContainerWidthAndHeight: CGFloat = 36
+        static let timeLabelWidth: CGFloat = 54
+        static let pillInstructionLabelTopAnchor: CGFloat = 14
+        static let horizontalButtonStackViewTopAnchor: CGFloat = 14
+        static let horizontalButtonStackViewHeight: CGFloat = 45
     }
     
     enum AidKit {

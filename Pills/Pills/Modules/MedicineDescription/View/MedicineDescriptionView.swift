@@ -42,7 +42,7 @@ final class MedicineDescriptionView: UIView {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "tablets")
+        imageView.image = UIImage(named: "capsules")
         return imageView
     }()
     
@@ -83,6 +83,7 @@ final class MedicineDescriptionView: UIView {
         label.textAlignment = .center
         label.layer.backgroundColor = AppColors.whiteOnly.cgColor
         label.layer.cornerRadius = 4
+        label.text = "00:00"
         return label
     }()
     
@@ -93,6 +94,7 @@ final class MedicineDescriptionView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.text = "Проглатывать, запивая водой, нельзя принимать одновременно с другими лекарствами, особенно с антибиотиком"
         return label
     }()
     
@@ -103,6 +105,7 @@ final class MedicineDescriptionView: UIView {
             backgroundColor: AppColors.blue,
             text: Text.MedicineDescription.accept
         )
+        button.titleLabel?.font = AppLayout.Fonts.normalSemibold
         return button
     }()
     
@@ -113,6 +116,7 @@ final class MedicineDescriptionView: UIView {
             backgroundColor: AppColors.red,
             text: Text.MedicineDescription.skip
         )
+        button.titleLabel?.font = AppLayout.Fonts.normalSemibold
         return button
     }()
     
@@ -150,18 +154,34 @@ final class MedicineDescriptionView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
-        stackView.spacing = 0
+        stackView.spacing = 2
         return stackView
     }()
     
     private lazy var stackViewHorizontal: UIStackView = {
         let stackView = UIStackView()
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = AppLayout.MedicineDescription.defaultStackViewSpacing
-        stackView.alignment = .leading
+        stackView.alignment = .fill
+        stackView.spacing = 13
         return stackView
+    }()
+    
+    private lazy var mainVerticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.spacing = 14
+        return stackView
+    }()
+    
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
     }()
     
     // MARK: - Initializers
@@ -178,7 +198,22 @@ final class MedicineDescriptionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    
+    public func set(with event: Event) {
+        pillTypeImage.image = event.pill.pillType.image()
+        pillNameLabel.text = event.pill.name
+        timeLabel.text = dateToText(time: event.time)
+        pillsQuantityLabel.text = "\(event.pill.singleDose)"
+        usageLabel.text = event.pill.usageString
+        pillInstructionLabel.text = event.pill.note
+    }
+    
     // MARK: - Private Methods
+    
+    private func dateToText(time: Date) -> String {
+        return dateFormatter.string(from: time)
+    }
     
     private func addButtonAction() {
         [
@@ -206,8 +241,9 @@ final class MedicineDescriptionView: UIView {
     
     private func addSubview() {
         addSubview(descriptionView)
-        addSubview(pillInstructionLabel)
-        descriptionView.addSubview(stackViewHorizontal)
+        
+        descriptionView.addSubview(pillImageContainer)
+        descriptionView.addSubview(pillInstructionLabel)
         pillImageContainer.addSubview(pillTypeImage)
         
         stackViewNameAndTime.addArrangedSubview(pillNameLabel)
@@ -219,53 +255,75 @@ final class MedicineDescriptionView: UIView {
         stackViewVertical.addArrangedSubview(stackViewNameAndTime)
         stackViewVertical.addArrangedSubview(stackViewQuantityAndUsage)
         
+        horizontalButtonStackView.addArrangedSubview(acceptButton)
+        horizontalButtonStackView.addArrangedSubview(skipButton)
+        
         stackViewHorizontal.addArrangedSubview(pillImageContainer)
         stackViewHorizontal.addArrangedSubview(stackViewVertical)
         
-        horizontalButtonStackView.addArrangedSubview(acceptButton)
-        horizontalButtonStackView.addArrangedSubview(skipButton)
+        descriptionView.addSubview(mainVerticalStackView)
+        mainVerticalStackView.addArrangedSubview(stackViewHorizontal)
+        mainVerticalStackView.addArrangedSubview(pillInstructionLabel)
+        mainVerticalStackView.addArrangedSubview(horizontalButtonStackView)
     }
     
     private func setupConstraints() {
+        
         NSLayoutConstraint.activate([
-            descriptionView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            descriptionView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            descriptionView.widthAnchor.constraint(equalToConstant: 200),
-            descriptionView.heightAnchor.constraint(equalToConstant: 200)
-            
-//            descriptionView.topAnchor.constraint(
-//                equalTo: safeAreaLayoutGuide.topAnchor,
-//                constant: AppLayout.MedicineDescription.topDescriptionView
-//            ),
-//            descriptionView.leadingAnchor.constraint(
-//                equalTo: safeAreaLayoutGuide.leadingAnchor,
-//                constant: AppLayout.MedicineDescription.descriptionViewLeading
-//            ),
-//            descriptionView.trailingAnchor.constraint(
-//                equalTo: safeAreaLayoutGuide.leadingAnchor,
-//                constant: AppLayout.MedicineDescription.descriptionViewtrailing
-//            ),
-//            descriptionView.heightAnchor.constraint(
-//                equalToConstant: AppLayout.MedicineDescription.descriptionViewHeight
-//            )
-        ])
-        NSLayoutConstraint.activate([
-            stackViewHorizontal.topAnchor.constraint(
-                equalTo: descriptionView.topAnchor,
-                constant: AppLayout.MedicineDescription.topAnchorDescriptionView
-            ),
-            stackViewHorizontal.leadingAnchor.constraint(
+            mainVerticalStackView.leadingAnchor.constraint(
                 equalTo: descriptionView.leadingAnchor,
                 constant: AppLayout.MedicineDescription.descriptionViewLeading
             ),
-            stackViewHorizontal.trailingAnchor.constraint(
+            mainVerticalStackView.trailingAnchor.constraint(
                 equalTo: descriptionView.trailingAnchor,
-                constant: AppLayout.MedicineDescription.descriptionViewtrailing
+                constant: AppLayout.MedicineDescription.descriptionViewTrailing
             ),
-            //            stackViewHorizontal.bottomAnchor.constraint(
-            //                equalTo: safeArea.bottomAnchor,
-            //                constant: AppLayout.Rate.bottomStackView
-            //            )
+            mainVerticalStackView.topAnchor.constraint(
+                equalTo: descriptionView.topAnchor,
+                constant: AppLayout.MedicineDescription.descriptionViewTopAnchor
+            ),
+            mainVerticalStackView.bottomAnchor.constraint(
+                equalTo: descriptionView.bottomAnchor,
+                constant: AppLayout.MedicineDescription.descriptionViewBottomAnchor
+            )
+        ])
+        
+        NSLayoutConstraint.activate([
+            pillImageContainer.widthAnchor.constraint(
+                equalToConstant: AppLayout.MedicineDescription.stackViewHorizontalHeight
+            ),
+            pillImageContainer.heightAnchor.constraint(
+                equalToConstant: AppLayout.MedicineDescription.stackViewHorizontalHeight
+            )
+        ])
+        
+        NSLayoutConstraint.activate([
+            timeLabel.widthAnchor.constraint(
+                equalToConstant: AppLayout.MedicineDescription.timeLabelWidth
+            )
+        ])
+        
+        NSLayoutConstraint.activate([
+            descriptionView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            descriptionView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            descriptionView.widthAnchor.constraint(
+                equalToConstant: AppLayout.MedicineDescription.descriptionViewWidth
+            )
+        ])
+        
+        NSLayoutConstraint.activate([
+            pillTypeImage.centerXAnchor.constraint(equalTo: pillImageContainer.centerXAnchor),
+            pillTypeImage.centerYAnchor.constraint(equalTo: pillImageContainer.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            acceptButton.heightAnchor.constraint(
+                equalToConstant: AppLayout.MedicineDescription.horizontalButtonStackViewHeight
+            ),
+            skipButton.heightAnchor.constraint(
+                equalToConstant: AppLayout.MedicineDescription.horizontalButtonStackViewHeight
+            )
+
         ])
     }
     

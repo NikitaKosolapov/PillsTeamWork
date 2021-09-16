@@ -405,6 +405,7 @@
 		FE79E3AF269CC09A00DACD24 /* Pills */ = {
 			isa = PBXGroup;
 			children = (
+				FE79E3F3269CCA0D00DACD24 /* Factories */,
 				FEB957AC26A96FB80093BA8D /* Core */,
 				FE79E3E9269CC83100DACD24 /* Application */,
 				FE79E3EA269CC88200DACD24 /* Common */,
@@ -450,7 +451,6 @@
 			children = (
 				FE79E3EE269CC95000DACD24 /* Services */,
 				FE79E3ED269CC93E00DACD24 /* Models */,
-				FE79E3F3269CCA0D00DACD24 /* Factories */,
 				FE79E3F2269CC99D00DACD24 /* Extensions */,
 				FE79E3F1269CC98E00DACD24 /* Helpers */,
 				FE79E3F0269CC98200DACD24 /* Classes */,

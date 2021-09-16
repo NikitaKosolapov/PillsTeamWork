@@ -9,6 +9,19 @@ import UIKit
 
 /// Class displays description card of the tapped medicine
 final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
+    
+    // MARK: - Initializers
+    
+    init(
+        event: Event
+    ) {
+        super.init(nibName: nil, bundle: nil)
+        rootView.set(with: event)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Life Cycle
     
@@ -24,6 +37,6 @@ extension MedicineDescriptionVC: MedicineDescriptionViewDelegate {
     }
     
     func skipButtonTapped() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
 }
