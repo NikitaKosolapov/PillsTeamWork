@@ -38,6 +38,7 @@ enum Text {
     static let time = "time".localized()
     static let add = "add".localized()
     static let of = "of".localized()
+    static let one = "1"
     static let takePillsInTime = "takePillsInTime".localized()
     static let justAddAnOrder = "justAddAnOrder".localized()
     static let periodExpired = "periodExpired".localized()

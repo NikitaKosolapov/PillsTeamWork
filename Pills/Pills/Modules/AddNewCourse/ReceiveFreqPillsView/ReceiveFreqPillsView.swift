@@ -40,18 +40,24 @@ class ReceiveFreqPillsView: UIStackView, ReceiveFreqPillsViewAbstract {
     }()
     
     private let everyDayXTimesADayTextField: UITextField = {
-        let textField = UITextField()
+        let textField = CustomTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isHidden = true
-        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "1")
+        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
+        textField.placeholder = Text.one
+        textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
+        textField.isNumeric = true
         return textField
     }()
     
     private let everyDayEveryXHourTextField: UITextField = {
-        let textField = UITextField()
+        let textField = CustomTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isHidden = true
-        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "1")
+        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
+        textField.placeholder = Text.one
+        textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
+        textField.isNumeric = true
         return textField
     }()
     
