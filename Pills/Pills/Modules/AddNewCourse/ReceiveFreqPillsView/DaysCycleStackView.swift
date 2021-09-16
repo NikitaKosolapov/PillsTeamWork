@@ -36,9 +36,12 @@ class DaysCycleStackView: UIStackView {
     }()
     
     private let xDaysTextField: UITextField = {
-        let textField = UITextField()
+        let textField = CustomTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "1")
+        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
+        textField.placeholder = Text.one
+        textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
+        textField.isNumeric = true
         return textField
     }()
     
@@ -50,9 +53,12 @@ class DaysCycleStackView: UIStackView {
     }()
     
     private let yDaysTextField: UITextField = {
-        let textField = UITextField()
+        let textField = CustomTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "1")
+        textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
+        textField.placeholder = Text.one
+        textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
+        textField.isNumeric = true
         return textField
     }()
     

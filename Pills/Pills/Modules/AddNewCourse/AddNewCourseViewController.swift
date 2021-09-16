@@ -118,6 +118,5 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
     }
     
     func onSubmit() {
-        
     }
 }
