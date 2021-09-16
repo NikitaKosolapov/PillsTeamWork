@@ -145,21 +145,24 @@ enum AppLayout {
         static let indentFromBottomAddButton: CGFloat = 14
     }
     
-    enum Rate {
-        static let indentRateView: CGFloat = 36
-        static let widthRateView: CGFloat = widthScreen - indentRateView*2
-        static let heightRateView: CGFloat = 176.0
-        static let leadingRateView: CGFloat = (AppLayout.widthScreen - widthRateView)/2
-        static let topRateView: CGFloat = (0.8 * AppLayout.heightScreen - heightRateView)/2
-        static let topStackView: CGFloat = 21
-        static let leadingStackView: CGFloat = 22
+    enum Alert {
+        static let indentView: CGFloat = 36
+        static let widthView: CGFloat = widthScreen - indentView*2
+        static let leadingView: CGFloat = (AppLayout.widthScreen - widthView)/2
+        static let heightView: CGFloat = 213.0
+        static let topView: CGFloat = (0.8 * AppLayout.heightScreen - heightView)/2
+        static let widthButton: CGFloat = 122
+        static let heightButton: CGFloat = 45
+        static let topStackView: CGFloat = 24
+        static let leadingStackView: CGFloat = 16
         static let trailingStackView: CGFloat = -leadingStackView
         static let bottomStackView: CGFloat = -topStackView
+        
+    }
+    
+    enum Rate {
         static let widthSmileImageView: CGFloat = 38
         static let heightSmileImageView: CGFloat = 38
-        static let widthRateButton: CGFloat = 88
-        static let heightRateButton: CGFloat = 24
-        
     }
 
     enum Fonts {

@@ -102,11 +102,11 @@ class AlertView: UIView {
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate(
             [alertView.topAnchor.constraint(equalTo: safeArea.topAnchor,
-                                           constant: AppLayout.Rate.topRateView),
+                                           constant: AppLayout.Alert.topView),
              alertView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                               constant: AppLayout.Rate.leadingRateView),
-             alertView.widthAnchor.constraint( equalToConstant: AppLayout.Rate.widthRateView),
-             alertView.heightAnchor.constraint(equalToConstant: AppLayout.Rate.heightRateView)])
+                                               constant: AppLayout.Alert.leadingView),
+             alertView.widthAnchor.constraint( equalToConstant: AppLayout.Alert.widthView),
+             alertView.heightAnchor.constraint(equalToConstant: AppLayout.Alert.heightView)])
     }
     
     func configureText(title: String, agree: String, deny: String) {
@@ -127,24 +127,24 @@ class AlertView: UIView {
     
     private func configureButtons() {
         NSLayoutConstraint.activate(
-            [agreeButton.widthAnchor.constraint(equalToConstant: AppLayout.Rate.widthRateButton),
+            [agreeButton.widthAnchor.constraint(equalToConstant: AppLayout.Alert.widthButton),
              agreeButton.heightAnchor.constraint(equalToConstant:
-                                                            AppLayout.Rate.heightRateButton),
-             denyButton.widthAnchor.constraint(equalToConstant: AppLayout.Rate.widthRateButton),
+                                                            AppLayout.Alert.heightButton),
+             denyButton.widthAnchor.constraint(equalToConstant: AppLayout.Alert.widthButton),
              denyButton.heightAnchor.constraint(equalToConstant:
-                                                        AppLayout.Rate.heightRateButton)])
+                                                        AppLayout.Alert.heightButton)])
     }
     
     private func configureStackView() {
         alertView.addSubview(stackView)
         let safeArea = alertView.safeAreaLayoutGuide
         NSLayoutConstraint.activate(
-            [stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppLayout.Rate.topStackView),
+            [stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppLayout.Alert.topStackView),
              stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                                constant: AppLayout.Rate.leadingStackView),
+                                                constant: AppLayout.Alert.leadingStackView),
              stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
-                                                 constant: AppLayout.Rate.trailingStackView),
+                                                 constant: AppLayout.Alert.trailingStackView),
              stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
-                                               constant: AppLayout.Rate.bottomStackView)])
+                                               constant: AppLayout.Alert.bottomStackView)])
     }
 }
