@@ -106,7 +106,7 @@ enum AppLayout {
         }
         
         // MARK: - UISegmentControl
-        static let heightSegmentControl: CGFloat = 37.0
+        static let heightSegmentControl: CGFloat = 50.0
         
         // MARK: - UITableViewCell
         static let pillImageSize = CGSize(width: 25, height: 25)

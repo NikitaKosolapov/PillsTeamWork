@@ -46,6 +46,7 @@
 		A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */; };
 		A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */; };
 		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
+		E1EC06B026F774550045AAB1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC06AF26F774550045AAB1 /* UIImage.swift */; };
 		FA9D870226F1114500408604 /* MedicineDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870126F1114500408604 /* MedicineDescriptionVC.swift */; };
 		FA9D870A26F111AF00408604 /* MedicineDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */; };
 		FA9D87E226F6416400408604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D87E126F6416300408604 /* Event.swift */; };
@@ -151,6 +152,7 @@
 		A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysCycleStackView.swift; sourceTree = "<group>"; };
 		A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertainDaysStackView.swift; sourceTree = "<group>"; };
 		A8E594E526D976FD006F414A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		E1EC06AF26F774550045AAB1 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		F02E28BF080770F5D9757D6A /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9D870126F1114500408604 /* MedicineDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDescriptionVC.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				A8329E6826C69A8600AD6A11 /* Label.swift */,
 				A81ECCF726C6D61E0039DE67 /* Button.swift */,
 				FED959AD26C9808D00E9B6C3 /* Int.swift */,
+				E1EC06AF26F774550045AAB1 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				A8E594E626D976FD006F414A /* TextField.swift in Sources */,
 				FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */,
+				E1EC06B026F774550045AAB1 /* UIImage.swift in Sources */,
 				553A358D26C02BC9006FFA6F /* NotificationService.swift in Sources */,
 				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
@@ -1202,15 +1206,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 58ZQ5G77TJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gb.Pills;
+				PRODUCT_BUNDLE_IDENTIFIER = gb.pillsTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1222,15 +1228,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 58ZQ5G77TJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gb.Pills;
+				PRODUCT_BUNDLE_IDENTIFIER = gb.pillsTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1242,7 +1250,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PillsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1252,6 +1263,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gb.PillsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pills.app/Pills";
@@ -1264,7 +1277,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PillsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1274,6 +1290,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gb.PillsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pills.app/Pills";
@@ -1285,7 +1303,10 @@
 			baseConfigurationReference = 48DA6DE1F3583984F385AD82 /* Pods-Pills-PillsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PillsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1294,6 +1315,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gb.PillsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Pills;
@@ -1305,7 +1328,8 @@
 			baseConfigurationReference = F02E28BF080770F5D9757D6A /* Pods-Pills-PillsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PillsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1314,6 +1338,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gb.PillsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Pills;

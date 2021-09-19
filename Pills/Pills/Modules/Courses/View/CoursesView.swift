@@ -14,8 +14,10 @@ class CoursesView: UIView {
     // MARK: - Subviews
     let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
-        segmentedControl.selectedSegmentTintColor = AppColors.blue
-        segmentedControl.backgroundColor = AppColors.lightGrayOnly
+        segmentedControl.setBackgroundImage(UIImage(color: AppColors.white), for: .normal, barMetrics: .default)
+        segmentedControl.setBackgroundImage(UIImage(color: AppColors.blue), for: .selected, barMetrics: .default)
+        segmentedControl.layer.borderWidth = 1
+        segmentedControl.layer.borderColor = AppColors.gray.cgColor
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: AppColors.whiteOnly],
             for: .selected)
@@ -59,7 +61,7 @@ class CoursesView: UIView {
         view.axis = .vertical
         view.distribution = .fill
         view.alignment = .fill
-        view.spacing = 0
+        view.spacing = 5
         return view
     }()
     
