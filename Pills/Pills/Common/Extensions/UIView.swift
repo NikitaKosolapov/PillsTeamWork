@@ -16,3 +16,27 @@ extension UIView {
         layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
     }
 }
+
+// MARK: - Blur Effect
+
+// MARK: - BlurEffect
+
+extension UIView {
+    func addBlur(
+        style: UIBlurEffect.Style,
+        alpha: CGFloat,
+        cornerRadius: CGFloat,
+        zPosition: CGFloat
+    ) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.isUserInteractionEnabled = false
+        blurEffectView.alpha = alpha
+        blurEffectView.clipsToBounds = true
+        blurEffectView.layer.cornerRadius = cornerRadius
+        blurEffectView.layer.zPosition = zPosition
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+    }
+}

@@ -61,6 +61,37 @@ enum AppLayout {
         static let cellHeight: CGFloat = 80
     }
     
+    enum MedicineDescription {
+        static let pillNameFont = AppLayout.Fonts.normalSemibold
+        static let pillsQuantityFont = AppLayout.Fonts.smallRegular
+        static let instructionFont = AppLayout.Fonts.smallRegular
+        static let timeFont = AppLayout.Fonts.normalRegular
+        static let pillInstructionFont = AppLayout.Fonts.verySmallRegular
+        static let pillImageContainerRadius: CGFloat = 18
+        static let defaultStackViewSpacing: CGFloat = 10
+        static let stackViewVerticalSpacing: CGFloat = 2
+        static let stackViewHorizontalSpacing: CGFloat = 13
+        static let mainVerticalStackViewSpacing: CGFloat = 14
+        static let windowViewCornerRadius: CGFloat = 10
+        static let timeLabelCornerRadius: CGFloat = 4
+        static let windowViewHeight: CGFloat = 181
+        static let windowViewWidth: CGFloat = 288
+        static let aspectRatio: CGFloat = 156 / 568
+        static let topPadding: CGFloat = aspectRatio * UIScreen.main.bounds.height
+        static let windowViewLeading: CGFloat = 16
+        static let windowViewTrailing: CGFloat = -16
+        static let windowViewBottomAnchor: CGFloat = -16
+        static let windowViewTopAnchor: CGFloat = 16
+        static let stackViewHorizontalHeight: CGFloat = 36
+        static let pillImageContainerWidthAndHeight: CGFloat = 36
+        static let timeLabelWidth: CGFloat = 54
+        static let pillInstructionLabelTopAnchor: CGFloat = 14
+        static let buttonStackViewTopAnchor: CGFloat = 14
+        static let buttonStackViewHeight: CGFloat = 45
+        static let buttonStackViewSpacing: CGFloat = 12
+        
+    }
+    
     enum AidKit {
         // MARK: - UIStackView
         static var indentStackView: CGFloat = 16.0

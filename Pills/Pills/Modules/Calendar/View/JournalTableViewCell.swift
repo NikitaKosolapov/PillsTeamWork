@@ -165,7 +165,7 @@ final class JournalTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(model: JournalViewController.Event) {
+    func configure(model: Event) {
         journalTime = model.time
         journalEntry = model.pill
     }

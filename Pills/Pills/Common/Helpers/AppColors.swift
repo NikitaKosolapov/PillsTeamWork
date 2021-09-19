@@ -31,6 +31,7 @@ enum AppColors {
     static let semiBlack = UIColor(named: "semiBlack") ?? badColor
     static let semiGrayOnly = UIColor(named: "semiGrayOnly") ?? badColor
     static let semiWhite = UIColor(named: "semiWhite") ?? badColor
+    static let semiWhiteDarkTheme = UIColor(named: "semiWhiteDarkTheme") ?? badColor
     static let white = UIColor(named: "white") ?? badColor
     static let whiteOnly = UIColor(named: "whiteOnly") ?? badColor
     static let whiteSapphire = UIColor(named: "whiteSapphire") ?? badColor

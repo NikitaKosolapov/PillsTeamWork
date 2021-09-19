@@ -8,19 +8,9 @@
 import UIKit
 
 final class JournalViewController: BaseViewController<JournalView> {
-
-    class Event {
-        let time: Date
-        let pill: RealmMedKitEntry
-
-        init(time: Date, pill: RealmMedKitEntry) {
-            self.time = time
-            self.pill = pill
-        }
-    }
-
+    
     fileprivate var eventsToShow: [Event] = []
-
+    
     // ---------------------------------------------------------
     // MARK: - MOCK DATA
     var journalEntries: [RealmMedKitEntry] = [
@@ -44,7 +34,7 @@ final class JournalViewController: BaseViewController<JournalView> {
             return event1.time < event2.time ? true : false
         }
     }
-
+    
     // ---------------------------------------------------------
     // MARK: - Controller logic
     override func viewWillAppear(_ animated: Bool) {
@@ -53,20 +43,24 @@ final class JournalViewController: BaseViewController<JournalView> {
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareDataForDay(Date())
         rootView.delegate = self
         rootView.configure(tableDataSource: self)
+        rootView.journalTableView.dataSource = self
+        rootView.journalTableView.delegate = self
     }
-
+    
     @objc func addNewCourseButtonAction(sender: UIButton!) {
         let addNewCourseViewController = AddNewCourseViewController()
         addNewCourseViewController.modalPresentationStyle = .pageSheet
         self.present(addNewCourseViewController, animated: true)
     }
 }
+
+// MARK: - JournalEventsDelegate
 
 extension JournalViewController: JournalEventsDelegate {
     func addNewPill() {
@@ -75,11 +69,13 @@ extension JournalViewController: JournalEventsDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension JournalViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventsToShow.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell =
                 tableView.dequeueReusableCell(
@@ -89,12 +85,25 @@ extension JournalViewController: UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-
+        
         cell.configure(model: eventsToShow[indexPath.row])
         return cell
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension JournalViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let event = eventsToShow[indexPath.row]
+        
+        let vc = MedicineDescriptionVC(event: event)
+        vc.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(vc, animated: false, completion: nil)
     }
 }

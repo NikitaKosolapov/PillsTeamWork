@@ -71,7 +71,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         return panGesture
     }()
     
-    private var journalTableView: JournalTableView = {
+    public var journalTableView: JournalTableView = {
         let view = JournalTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.white

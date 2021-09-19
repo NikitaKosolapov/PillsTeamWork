@@ -140,3 +140,8 @@
 
 //MARK: - Push Notifications
 "itIsTimeToTakePill" = "Время принять лекарство";
+
+// MARK: - MedicineDescriptionVC
+
+"accept" = "Принять";
+"skip" = "Пропустить";
