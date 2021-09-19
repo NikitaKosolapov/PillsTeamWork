@@ -25,6 +25,7 @@ extension AddNewCourseView {
     }
     /// Set dose unit
     public func setDoseUnit(_ unit: Text.Unit) {
+        doseUnitInput.isUserInteractionEnabled = true
         doseUnitInput.text = unit.rawValue.localized()
     }
     /// Set dose unit selector options

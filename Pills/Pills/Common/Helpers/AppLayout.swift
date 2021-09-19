@@ -187,6 +187,7 @@ enum AppLayout {
         static let pillNameFieldMaxLength = 50
         static let doseFieldMaxLength = 10
         static let periodFieldMaxLength = 5
+        static let textFieldsXDaysAndYDays = 2
 
         static let doseTypeDropDownWidth: CGFloat = 67
         static let typeInputWidth: CGFloat = 92

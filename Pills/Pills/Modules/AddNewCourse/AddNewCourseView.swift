@@ -112,21 +112,24 @@ final class AddNewCourseView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = PillType.tablets.image()
         return imageView
     }()
 
     internal lazy var pillTypeNameLabel = FieldHeaderFabric.generate(header: Text.pillType)
-    internal lazy var pillTypeName =
-        CustomTextFieldBuilder()
-            .withPlaceholder(Text.pillType)
+    internal lazy var pillTypeName: CustomTextField =
+            CustomTextFieldBuilder()
+        .withPlaceholder(Text.Pills.tablets.rawValue.localized())
             .withTextAlignment(.center)
-            .withSimplePicker(options: []) { [weak self] (option) in
+        .withSimplePicker(options: []) { [weak self] (option) in
+
                     guard let self = self else {return true}
                     let type = PillType.init(rawValue: option) ?? .tablets
-                    self.setPillType(type)
-                    self.delegate?.onPillTypeChanged(type)
+                        
+            self.setPillType(type)
+            self.delegate?.onPillTypeChanged(type)
                     return true
-                }
+        }
             .build()
     
     internal lazy var stackTypeImage = VStackViewFabric.generate([typeLabel, typeImageHolder])
@@ -151,8 +154,8 @@ final class AddNewCourseView: UIView {
 
     // MARK: - Dose Unit
     internal lazy var doseUnitLabel = FieldHeaderFabric.generate(header: Text.unit)
-    internal lazy var doseUnitInput =
-        CustomTextFieldBuilder()
+    internal lazy var doseUnitInput: CustomTextField = {
+           let textField = CustomTextFieldBuilder()
             .withPlaceholder(Text.unit)
             .withSimplePicker(options: []) { [weak self] option in
                 self?.delegate?.onDoseUnitChanged(Text.Unit.init(rawValue: option) ?? .pill)
@@ -160,6 +163,10 @@ final class AddNewCourseView: UIView {
             }
             .withTextAlignment(.center)
             .build()
+        textField.isUserInteractionEnabled = false
+        return textField
+    }()
+
     internal lazy var stackDoseUnit = VStackViewFabric.generate([doseUnitLabel, doseUnitInput])
 
     internal lazy var stackDoseAndUnit =
@@ -185,8 +192,8 @@ final class AddNewCourseView: UIView {
                     self.delegate?.onPillFreqChanged(freq)
                     return true
                 })
+            .withPlaceholder(Text.takingFrequency)
             .build()
-        textField.text = Text.takingFrequency
         return textField
     }()
     
