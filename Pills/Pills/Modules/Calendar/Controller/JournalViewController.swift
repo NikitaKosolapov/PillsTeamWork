@@ -7,16 +7,6 @@
 
 import UIKit
 
-class Event {
-    let time: Date
-    let pill: RealmMedKitEntry
-    
-    init(time: Date, pill: RealmMedKitEntry) {
-        self.time = time
-        self.pill = pill
-    }
-}
-
 final class JournalViewController: BaseViewController<JournalView> {
     
     fileprivate var eventsToShow: [Event] = []
@@ -114,6 +104,6 @@ extension JournalViewController: UITableViewDelegate {
         
         let vc = MedicineDescriptionVC(event: event)
         vc.modalPresentationStyle = .overCurrentContext
-        present(vc, animated: false, completion: nil)
+        tabBarController?.present(vc, animated: false, completion: nil)
     }
 }

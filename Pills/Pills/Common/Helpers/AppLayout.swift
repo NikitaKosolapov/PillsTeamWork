@@ -69,20 +69,27 @@ enum AppLayout {
         static let pillInstructionFont = AppLayout.Fonts.verySmallRegular
         static let pillImageContainerRadius: CGFloat = 18
         static let defaultStackViewSpacing: CGFloat = 10
-        static let descriptionViewHeight: CGFloat = 181
-        static let descriptionViewWidth: CGFloat = 288
-        // не совсем понял как вычисляется в данном случае высота
-        // static let topDescriptionView: CGFloat = (0.8 * AppLayout.heightScreen - descriptionViewHeight) / 2
-        static let descriptionViewLeading: CGFloat = 16
-        static let descriptionViewTrailing: CGFloat = -16
-        static let descriptionViewBottomAnchor: CGFloat = -16
-        static let descriptionViewTopAnchor: CGFloat = 16
+        static let stackViewVerticalSpacing: CGFloat = 2
+        static let stackViewHorizontalSpacing: CGFloat = 13
+        static let mainVerticalStackViewSpacing: CGFloat = 14
+        static let windowViewCornerRadius: CGFloat = 10
+        static let timeLabelCornerRadius: CGFloat = 4
+        static let windowViewHeight: CGFloat = 181
+        static let windowViewWidth: CGFloat = 288
+        static let aspectRatio: CGFloat = 156 / 568
+        static let topPadding: CGFloat = aspectRatio * UIScreen.main.bounds.height
+        static let windowViewLeading: CGFloat = 16
+        static let windowViewTrailing: CGFloat = -16
+        static let windowViewBottomAnchor: CGFloat = -16
+        static let windowViewTopAnchor: CGFloat = 16
         static let stackViewHorizontalHeight: CGFloat = 36
         static let pillImageContainerWidthAndHeight: CGFloat = 36
         static let timeLabelWidth: CGFloat = 54
         static let pillInstructionLabelTopAnchor: CGFloat = 14
-        static let horizontalButtonStackViewTopAnchor: CGFloat = 14
-        static let horizontalButtonStackViewHeight: CGFloat = 45
+        static let buttonStackViewTopAnchor: CGFloat = 14
+        static let buttonStackViewHeight: CGFloat = 45
+        static let buttonStackViewSpacing: CGFloat = 12
+        
     }
     
     enum AidKit {

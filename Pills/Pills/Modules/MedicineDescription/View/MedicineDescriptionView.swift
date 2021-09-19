@@ -21,9 +21,9 @@ final class MedicineDescriptionView: UIView {
     
     // MARK: - Private Properties
     
-    private let descriptionView: UIView = {
+    private let windowView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = AppLayout.MedicineDescription.windowViewCornerRadius
         view.backgroundColor = AppColors.lightBlueSapphire
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -42,7 +42,6 @@ final class MedicineDescriptionView: UIView {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "capsules")
         return imageView
     }()
     
@@ -61,7 +60,7 @@ final class MedicineDescriptionView: UIView {
         label.font = AppLayout.MedicineDescription.pillsQuantityFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         return label
     }()
     
@@ -71,7 +70,7 @@ final class MedicineDescriptionView: UIView {
         label.font = AppLayout.MedicineDescription.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         return label
     }()
     
@@ -82,19 +81,17 @@ final class MedicineDescriptionView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.layer.backgroundColor = AppColors.whiteOnly.cgColor
-        label.layer.cornerRadius = 4
-        label.text = "00:00"
+        label.layer.cornerRadius = AppLayout.MedicineDescription.timeLabelCornerRadius
         return label
     }()
     
-    private let pillInstructionLabel: UILabel = {
+    private let noteLabel: UILabel = {
         let label = UILabel()
         label.textColor = AppColors.black
         label.font = AppLayout.MedicineDescription.pillInstructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.text = "Проглатывать, запивая водой, нельзя принимать одновременно с другими лекарствами, особенно с антибиотиком"
         return label
     }()
     
@@ -120,27 +117,27 @@ final class MedicineDescriptionView: UIView {
         return button
     }()
     
-    private let horizontalButtonStackView: UIStackView = {
-        let stackView = UIStackView()
+    private lazy var horizontalButtonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [acceptButton, skipButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 12
+        stackView.spacing = AppLayout.MedicineDescription.buttonStackViewSpacing
         return stackView
     }()
     
     private lazy var stackViewNameAndTime: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [pillNameLabel, timeLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
         stackView.spacing = AppLayout.MedicineDescription.defaultStackViewSpacing
         return stackView
     }()
     
     private lazy var stackViewQuantityAndUsage: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [pillsQuantityLabel, usageLabel])
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -150,31 +147,30 @@ final class MedicineDescriptionView: UIView {
     }()
     
     private lazy var stackViewVertical: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [stackViewNameAndTime, stackViewQuantityAndUsage])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = AppLayout.MedicineDescription.stackViewVerticalSpacing
         return stackView
     }()
     
     private lazy var stackViewHorizontal: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [pillImageContainer, stackViewVertical])
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = AppLayout.MedicineDescription.defaultStackViewSpacing
         stackView.alignment = .fill
-        stackView.spacing = 13
+        stackView.spacing = AppLayout.MedicineDescription.stackViewHorizontalSpacing
         return stackView
     }()
     
     private lazy var mainVerticalStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [stackViewHorizontal, noteLabel, horizontalButtonStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
-        stackView.spacing = 14
+        stackView.spacing = AppLayout.MedicineDescription.mainVerticalStackViewSpacing
         return stackView
     }()
     
@@ -198,6 +194,11 @@ final class MedicineDescriptionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addBlur(style: .light, alpha: 0.7, cornerRadius: 0, zPosition: -1)
+    }
+    
     // MARK: - Public Methods
     
     public func set(with event: Event) {
@@ -206,7 +207,7 @@ final class MedicineDescriptionView: UIView {
         timeLabel.text = dateToText(time: event.time)
         pillsQuantityLabel.text = "\(event.pill.singleDose)"
         usageLabel.text = event.pill.usageString
-        pillInstructionLabel.text = event.pill.note
+        noteLabel.text = event.pill.note
     }
     
     // MARK: - Private Methods
@@ -236,55 +237,35 @@ final class MedicineDescriptionView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = AppColors.semiWhite
+        backgroundColor = AppColors.semiWhiteDarkTheme
     }
     
     private func addSubview() {
-        addSubview(descriptionView)
-        
-        descriptionView.addSubview(pillImageContainer)
-        descriptionView.addSubview(pillInstructionLabel)
+        addSubview(windowView)
+        windowView.addSubview(pillImageContainer)
+        windowView.addSubview(noteLabel)
         pillImageContainer.addSubview(pillTypeImage)
-        
-        stackViewNameAndTime.addArrangedSubview(pillNameLabel)
-        stackViewNameAndTime.addArrangedSubview(timeLabel)
-        
-        stackViewQuantityAndUsage.addArrangedSubview(pillsQuantityLabel)
-        stackViewQuantityAndUsage.addArrangedSubview(usageLabel)
-        
-        stackViewVertical.addArrangedSubview(stackViewNameAndTime)
-        stackViewVertical.addArrangedSubview(stackViewQuantityAndUsage)
-        
-        horizontalButtonStackView.addArrangedSubview(acceptButton)
-        horizontalButtonStackView.addArrangedSubview(skipButton)
-        
-        stackViewHorizontal.addArrangedSubview(pillImageContainer)
-        stackViewHorizontal.addArrangedSubview(stackViewVertical)
-        
-        descriptionView.addSubview(mainVerticalStackView)
-        mainVerticalStackView.addArrangedSubview(stackViewHorizontal)
-        mainVerticalStackView.addArrangedSubview(pillInstructionLabel)
-        mainVerticalStackView.addArrangedSubview(horizontalButtonStackView)
+        windowView.addSubview(mainVerticalStackView)
     }
     
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
             mainVerticalStackView.leadingAnchor.constraint(
-                equalTo: descriptionView.leadingAnchor,
-                constant: AppLayout.MedicineDescription.descriptionViewLeading
+                equalTo: windowView.leadingAnchor,
+                constant: AppLayout.MedicineDescription.windowViewLeading
             ),
             mainVerticalStackView.trailingAnchor.constraint(
-                equalTo: descriptionView.trailingAnchor,
-                constant: AppLayout.MedicineDescription.descriptionViewTrailing
+                equalTo: windowView.trailingAnchor,
+                constant: AppLayout.MedicineDescription.windowViewTrailing
             ),
             mainVerticalStackView.topAnchor.constraint(
-                equalTo: descriptionView.topAnchor,
-                constant: AppLayout.MedicineDescription.descriptionViewTopAnchor
+                equalTo: windowView.topAnchor,
+                constant: AppLayout.MedicineDescription.windowViewTopAnchor
             ),
             mainVerticalStackView.bottomAnchor.constraint(
-                equalTo: descriptionView.bottomAnchor,
-                constant: AppLayout.MedicineDescription.descriptionViewBottomAnchor
+                equalTo: windowView.bottomAnchor,
+                constant: AppLayout.MedicineDescription.windowViewBottomAnchor
             )
         ])
         
@@ -304,10 +285,14 @@ final class MedicineDescriptionView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            descriptionView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            descriptionView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            descriptionView.widthAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.descriptionViewWidth
+            windowView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            windowView.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: AppLayout.MedicineDescription.topPadding
+            ),
+            windowView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: AppLayout.MedicineDescription.windowViewLeading
             )
         ])
         
@@ -318,10 +303,10 @@ final class MedicineDescriptionView: UIView {
         
         NSLayoutConstraint.activate([
             acceptButton.heightAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.horizontalButtonStackViewHeight
+                equalToConstant: AppLayout.MedicineDescription.buttonStackViewHeight
             ),
             skipButton.heightAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.horizontalButtonStackViewHeight
+                equalToConstant: AppLayout.MedicineDescription.buttonStackViewHeight
             )
 
         ])
