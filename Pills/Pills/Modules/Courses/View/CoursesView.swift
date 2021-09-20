@@ -14,10 +14,12 @@ class CoursesView: UIView {
     // MARK: - Subviews
     let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
-        segmentedControl.setBackgroundImage(UIImage(color: AppColors.white), for: .normal, barMetrics: .default)
+        segmentedControl.setBackgroundImage(UIImage(color: AppColors.whiteOnly), for: .normal, barMetrics: .default)
         segmentedControl.setBackgroundImage(UIImage(color: AppColors.blue), for: .selected, barMetrics: .default)
         segmentedControl.layer.borderWidth = 1
-        segmentedControl.layer.borderColor = AppColors.gray.cgColor
+        segmentedControl.layer.borderColor = AppColors.semiGrayOnly.cgColor
+        segmentedControl.setDividerImage(UIImage(color: AppColors.semiGrayOnly), forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        segmentedControl.setDividerImage(UIImage(color: AppColors.semiGrayOnly), forLeftSegmentState: .normal, rightSegmentState: .selected, barMetrics: .default)
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: AppColors.whiteOnly],
             for: .selected)
