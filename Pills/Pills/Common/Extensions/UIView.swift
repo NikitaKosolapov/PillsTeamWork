@@ -17,8 +17,6 @@ extension UIView {
     }
 }
 
-// MARK: - Blur Effect
-
 // MARK: - BlurEffect
 
 extension UIView {

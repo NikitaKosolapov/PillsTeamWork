@@ -88,6 +88,7 @@ extension JournalViewController: UITableViewDataSource {
         
         cell.configure(model: eventsToShow[indexPath.row])
         return cell
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,8 +103,16 @@ extension JournalViewController: UITableViewDelegate {
         
         let event = eventsToShow[indexPath.row]
         
-        let vc = MedicineDescriptionVC(event: event)
-        vc.modalPresentationStyle = .overCurrentContext
-        tabBarController?.present(vc, animated: false, completion: nil)
+        let destinationVC = MedicineDescriptionVC(index: indexPath, subscriber: self, event: event)
+        destinationVC.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(destinationVC, animated: false, completion: nil)
+    }
+}
+
+// MARK: - MedicineDescriptionVCDelegate
+
+extension JournalViewController: MedicineDescriptionVCDelegate {
+    func update(index: IndexPath) {
+        rootView.journalTableView.reloadRows(at: [index], with: .automatic)
     }
 }

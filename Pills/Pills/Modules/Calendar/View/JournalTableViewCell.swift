@@ -168,6 +168,9 @@ final class JournalTableViewCell: UITableViewCell {
     func configure(model: Event) {
         journalTime = model.time
         journalEntry = model.pill
+        if let isUsed = model.pill.schedule.first?.isUsed.value {
+            majorView.backgroundColor = isUsed ? AppColors.lightBlueSapphire : AppColors.lightRed
+        }
     }
     
     // swiftlint:disable function_body_length

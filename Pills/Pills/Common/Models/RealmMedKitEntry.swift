@@ -127,13 +127,13 @@ enum ConcentrationUnit: String {
 
 class RealmTimePoint: Object {
     @objc dynamic var time = Date()  // time and date when to use a pill
-    @objc dynamic var isUsed = false // false - wasn't used yet, true - was used
+    var isUsed = RealmOptional<Bool>() // false - wasn't used yet, true - was used
 
     required override init() {}
     
-    init(time: Date, isUsed: Bool) {
+    init(time: Date, isUsed: Bool?) {
         self.time = time
-        self.isUsed = isUsed
+        self.isUsed.value = isUsed
     }
 }
 

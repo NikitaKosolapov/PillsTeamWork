@@ -32,7 +32,7 @@ final class JournalMock {
             schedule.append(
                 RealmTimePoint(
                     time: scheduleTime,
-                    isUsed: scheduleTime < now ? true : false
+                    isUsed: nil
                 )
             )
             // move to 8 hours forward
@@ -56,8 +56,6 @@ final class JournalMock {
             freqString: Text.Frequency.someDaysInAWeek.rawValue,
             note: "",
             schedule: schedule
-            // concentration: 500,
-            // concentrationUnit: .g,
         )
 
         pillType = PillType.syringe

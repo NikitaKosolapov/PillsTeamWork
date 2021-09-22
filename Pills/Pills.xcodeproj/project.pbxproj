@@ -641,6 +641,7 @@
 		FED9593726C421AE00E9B6C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA9D87E126F6416300408604 /* Event.swift */,
 				FE2899C826CC3C6200B145FB /* JournalMock.swift */,
 			);
 			path = Models;
@@ -650,7 +651,6 @@
 			isa = PBXGroup;
 			children = (
 				FE2899C326CC3C5900B145FB /* JournalViewController.swift */,
-				FA9D87E126F6416300408604 /* Event.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

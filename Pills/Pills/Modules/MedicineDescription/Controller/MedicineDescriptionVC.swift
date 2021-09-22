@@ -7,14 +7,30 @@
 
 import UIKit
 
+protocol MedicineDescriptionVCDelegate: AnyObject {
+    func update(index: IndexPath)
+}
+
 /// Class displays description card of the tapped medicine
 final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
+    
+    // MARK: - Private Properties
+    
+    private var realm = RealmService.shared
+    private weak var delegate: MedicineDescriptionVCDelegate?
+    private var event: Event?
+    private var index: IndexPath
     
     // MARK: - Initializers
     
     init(
+        index: IndexPath,
+        subscriber: MedicineDescriptionVCDelegate?,
         event: Event
     ) {
+        self.index = index
+        self.event = event
+        self.delegate = subscriber
         super.init(nibName: nil, bundle: nil)
         rootView.set(with: event)
     }
@@ -22,7 +38,7 @@ final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -33,10 +49,18 @@ final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
 
 extension MedicineDescriptionVC: MedicineDescriptionViewDelegate {
     func acceptButtonTapped() {
-        // TODO: Add logic for accept button
+        realm.update {
+            event?.pill.schedule.first?.isUsed.value = true
+        }
+        delegate?.update(index: index)
+        dismiss(animated: false, completion: nil)
     }
     
     func skipButtonTapped() {
+        realm.update {
+            event?.pill.schedule.first?.isUsed.value = false
+        }
+        delegate?.update(index: index)
         dismiss(animated: false, completion: nil)
     }
 }

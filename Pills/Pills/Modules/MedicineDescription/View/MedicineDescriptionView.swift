@@ -286,10 +286,7 @@ final class MedicineDescriptionView: UIView {
         
         NSLayoutConstraint.activate([
             windowView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            windowView.topAnchor.constraint(
-                equalTo: topAnchor,
-                constant: AppLayout.MedicineDescription.topPadding
-            ),
+            windowView.centerYAnchor.constraint(equalTo: centerYAnchor),
             windowView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: AppLayout.MedicineDescription.windowViewLeading
