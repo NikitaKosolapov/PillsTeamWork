@@ -26,9 +26,6 @@ final class DeletePillView: AlertView {
     private func configureDescription() {
 
     }
-    
-    override func configureAlert(alertType: AlertView.AlertType, title: String, agree: String, deny: String) {
 
-    }
 
 }

@@ -154,11 +154,11 @@ final class RateView: AlertView {
                                                         AppLayout.Rate.heightSmileImageView)])
     }
     
-    override func configureAlert(alertType: AlertView.AlertType, title: String, agree: String, deny: String) {
+    override func configureView() {
+        configureHeight(height: AppLayout.Rate.heightView)
         additionalField = horizontalButtonsLabelsStackView
         configureButtons()
-        super.configureAlert(alertType: .rate, title: Text.Rating.rateApp, agree: Text.Rating.provideFeedback, deny: Text.Rating.noThanks)
-
+        configureText(title: Text.Rating.rateApp, agree: Text.Rating.provideFeedback, deny: Text.Rating.noThanks)
     }
 
 }

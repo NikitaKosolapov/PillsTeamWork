@@ -17,7 +17,7 @@ class AlertView: UIView {
 
     // MARK: - Private Properties
     
-    private let alertViewContainer: UIView = {
+    internal let alertViewContainer: UIView = {
         let view = UIView()
         view.layer.cornerRadius = AppLayout.Alert.cornerRadius
         view.backgroundColor = AppColors.lightBlueSapphire
@@ -93,7 +93,6 @@ class AlertView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        configureAlert(alertType: .deletePill, title: "", agree: "", deny: "")
     }
     
     required init?(coder: NSCoder) {
@@ -112,34 +111,20 @@ class AlertView: UIView {
         denyButton.setTitle(deny, for: .normal)
     }
     
-    func configureAlert(alertType: AlertType, title: String, agree: String, deny: String) {
-        configureViewContainer(alertType: alertType)
-        configureText(title: title, agree: agree, deny: deny)
-    }
-    
-    private func configureViewContainer(alertType: AlertType) {
+    func configureHeight(height: CGFloat) {
         addSubview(alertViewContainer)
         let safeArea = safeAreaLayoutGuide
-        
-        let height: CGFloat = {
-            switch alertType {
-            case .deletePill:
-                return AppLayout.Alert.heightView
-            case .rate:
-                return AppLayout.Rate.heightView
-            case .addPill:
-                return AppLayout.Alert.heightView
-            }
-        }()
-        
-        NSLayoutConstraint.activate([
-            alertViewContainer.topAnchor.constraint(equalTo: safeArea.topAnchor,
+        NSLayoutConstraint.activate(
+            [alertViewContainer.topAnchor.constraint(equalTo: safeArea.topAnchor,
                                            constant: AppLayout.Alert.topView),
              alertViewContainer.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                               constant: AppLayout.Alert.leadingView),
+                                                         constant: AppLayout.Alert.leadingView),
              alertViewContainer.widthAnchor.constraint( equalToConstant: AppLayout.Alert.widthView),
-            alertViewContainer.heightAnchor.constraint(equalToConstant: height)
-        ])
+             alertViewContainer.heightAnchor.constraint(equalToConstant: height)])
+    }
+    
+    func configureView() {
+        configureHeight(height: AppLayout.Alert.heightView)
     }
     
     // MARK: - Private Methods
@@ -147,6 +132,7 @@ class AlertView: UIView {
     private func configureUI() {
         isOpaque = false
         backgroundColor = AppColors.semiWhite
+        configureView()
         configureButtons()
         configureStackView()
     }
