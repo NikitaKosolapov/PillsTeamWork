@@ -237,7 +237,9 @@ final class JournalTableViewCell: UITableViewCell {
         pillTypeImageContainer.addSubview(pillTypeImage)
         majorView.addSubview(stackView)
         addSubview(majorView)
-        
+        self.selectionStyle = .none
+        self.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
+        self.clipsToBounds = true
         setNeedsUpdateConstraints()
     }
     

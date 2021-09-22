@@ -223,14 +223,14 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
             clearView.centerXAnchor.constraint(equalTo: rounderСornersView.centerXAnchor),
             clearView.trailingAnchor.constraint(equalTo: rounderСornersView.trailingAnchor),
             clearView.leadingAnchor.constraint(equalTo: rounderСornersView.leadingAnchor),
-            clearView.heightAnchor.constraint(equalToConstant: 20),
+            clearView.bottomAnchor.constraint(equalTo: stackViewTableViewAndButton.topAnchor),
 
-            minusView.topAnchor.constraint(equalTo: rounderСornersView.topAnchor),
+            minusView.topAnchor.constraint(equalTo: rounderСornersView.topAnchor, constant: 6),
             minusView.centerXAnchor.constraint(equalTo: rounderСornersView.centerXAnchor),
             minusView.widthAnchor.constraint(equalToConstant: 35),
             minusView.heightAnchor.constraint(equalToConstant: 5),
             
-            stackViewTableViewAndButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 16),
+            stackViewTableViewAndButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 28),
             stackViewTableViewAndButton.leadingAnchor.constraint(
                 equalTo: self.leadingAnchor,
                 constant: AppLayout.Journal.paddingLeft
