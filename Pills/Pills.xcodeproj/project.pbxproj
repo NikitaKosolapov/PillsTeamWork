@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
+		11B0B77C26FF4F7900BD86BF /* DeletePillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */; };
+		11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */; };
 		455133E9FD3C22F2F266D4B8 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */; };
 		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
 		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
@@ -111,6 +113,8 @@
 
 /* Begin PBXFileReference section */
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillViewController.swift; sourceTree = "<group>"; };
+		11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillView.swift; sourceTree = "<group>"; };
 		15CC9380A7D7692447008383 /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		3AA129D021F9E8300DC954A7 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DA6DE1F3583984F385AD82 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +246,31 @@
 				11B0B76C26FF4D5700BD86BF /* AlertView.swift */,
 			);
 			path = Alerts;
+			sourceTree = "<group>";
+		};
+		11B0B77726FF4F7900BD86BF /* DeletePill */ = {
+			isa = PBXGroup;
+			children = (
+				11B0B77826FF4F7900BD86BF /* Controller */,
+				11B0B77A26FF4F7900BD86BF /* View */,
+			);
+			path = DeletePill;
+			sourceTree = "<group>";
+		};
+		11B0B77826FF4F7900BD86BF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		11B0B77A26FF4F7900BD86BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		310B926E18EFEE7AE8E286B8 /* Frameworks */ = {
@@ -476,6 +505,7 @@
 		FE79E3EB269CC8A100DACD24 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				11B0B77726FF4F7900BD86BF /* DeletePill */,
 				11B0B76A26FF4D5700BD86BF /* Alerts */,
 				FA9D86FE26F110F700408604 /* MedicineDescription */,
 				A86DB93C26C54BD000AE866A /* Rate */,
@@ -992,6 +1022,7 @@
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
+				11B0B77C26FF4F7900BD86BF /* DeletePillViewController.swift in Sources */,
 				FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
 				553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */,
@@ -1032,6 +1063,7 @@
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
 				FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */,
+				11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */,
 				FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */,
 				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,
 				FA9D87E226F6416400408604 /* Event.swift in Sources */,

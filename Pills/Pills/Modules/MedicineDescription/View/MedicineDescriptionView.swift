@@ -98,9 +98,10 @@ final class MedicineDescriptionView: UIView {
     private let acceptButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.rateStyleButton(
+        button.setButtonStyle(
             backgroundColor: AppColors.blue,
-            text: Text.MedicineDescription.accept
+            text: Text.MedicineDescription.accept,
+            font: AppLayout.Fonts.rateButtonSmall
         )
         button.titleLabel?.font = AppLayout.Fonts.normalSemibold
         return button
@@ -109,9 +110,10 @@ final class MedicineDescriptionView: UIView {
     private let skipButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.rateStyleButton(
+        button.setButtonStyle(
             backgroundColor: AppColors.red,
-            text: Text.MedicineDescription.skip
+            text: Text.MedicineDescription.skip,
+            font: AppLayout.Fonts.rateButtonSmall
         )
         button.titleLabel?.font = AppLayout.Fonts.normalSemibold
         return button

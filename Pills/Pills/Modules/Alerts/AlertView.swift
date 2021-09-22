@@ -10,9 +10,9 @@ import UIKit
 class AlertView: UIView {
     
     enum AlertType {
-        case description
+        case deletePill
         case rate
-        case pill
+        case addPill
     }
 
     // MARK: - Private Properties
@@ -93,7 +93,7 @@ class AlertView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        configureAlert(alertType: .description, title: "", agree: "", deny: "")
+        configureAlert(alertType: .deletePill, title: "", agree: "", deny: "")
     }
     
     required init?(coder: NSCoder) {
@@ -123,11 +123,11 @@ class AlertView: UIView {
         
         let height: CGFloat = {
             switch alertType {
-            case .description:
+            case .deletePill:
                 return AppLayout.Alert.heightView
             case .rate:
                 return AppLayout.Rate.heightView
-            case .pill:
+            case .addPill:
                 return AppLayout.Alert.heightView
             }
         }()
