@@ -149,18 +149,22 @@ enum AppLayout {
         static let indentView: CGFloat = 36
         static let widthView: CGFloat = widthScreen - indentView*2
         static let leadingView: CGFloat = (AppLayout.widthScreen - widthView)/2
-        static let heightView: CGFloat = 213.0
-        static let topView: CGFloat = (0.8 * AppLayout.heightScreen - heightView)/2
+        static let heightView: CGFloat = 181.0
+        static let topView: CGFloat = 0.25 * AppLayout.heightScreen
         static let widthButton: CGFloat = 122
         static let heightButton: CGFloat = 45
         static let topStackView: CGFloat = 24
         static let leadingStackView: CGFloat = 16
         static let trailingStackView: CGFloat = -leadingStackView
         static let bottomStackView: CGFloat = -topStackView
+        static let cornerRadius: CGFloat = 10
+        static let spacingVertical: CGFloat = 15
+        static let spasingHorizontal: CGFloat = 16
         
     }
     
     enum Rate {
+        static let heightView: CGFloat = 213.0
         static let widthSmileImageView: CGFloat = 38
         static let heightSmileImageView: CGFloat = 38
     }
@@ -174,6 +178,8 @@ enum AppLayout {
 
         static let smallRegular = UIFont(name: "SFCompactDisplay-Regular", size: 13)
         static let verySmallRegular = UIFont(name: "SFCompactDisplay-Regular", size: 10)
+        
+        static let rateButtonSmall = UIFont(name: "SFCompactDisplay-Semibold", size: 14)
     }
 
     enum CustomTextField {

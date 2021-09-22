@@ -118,7 +118,7 @@ final class RateView: AlertView {
         stackView.spacing = 10
         return stackView
     }()
-    
+
     // MARK: - Private Methods
     
     @objc internal override func agreeButtonTouchUpInside() {
@@ -154,10 +154,11 @@ final class RateView: AlertView {
                                                         AppLayout.Rate.heightSmileImageView)])
     }
     
-    override func configureView() {
-        super.configureView()
+    override func configureAlert(alertType: AlertView.AlertType, title: String, agree: String, deny: String) {
         additionalField = horizontalButtonsLabelsStackView
-        self.configureText(title: Text.Rating.rateApp, agree: Text.Rating.provideFeedback, deny: Text.Rating.noThanks)
+        configureButtons()
+        super.configureAlert(alertType: .rate, title: Text.Rating.rateApp, agree: Text.Rating.provideFeedback, deny: Text.Rating.noThanks)
+
     }
 
 }

@@ -9,11 +9,12 @@ import Foundation
 import UIKit
 
 extension UIButton {
-    func rateStyleButton (backgroundColor: UIColor, text: String) {
+    func setButtonStyle (backgroundColor: UIColor, text: String, font: UIFont?) {
         self.backgroundColor = backgroundColor
         layer.cornerRadius = 10
         setTitle(text, for: .normal)
         setTitleColor(AppColors.whiteOnly, for: .normal)
-        titleLabel?.font = AppLayout.Fonts.verySmallRegular
+        titleLabel?.font = font
     }
+
 }
