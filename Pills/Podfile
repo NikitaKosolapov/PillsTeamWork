@@ -15,7 +15,7 @@ target 'Pills' do
   target 'PillsTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'RealmSwift'
+    pod 'RealmSwift', '10.7.2'
   end
 
   target 'PillsUITests' do

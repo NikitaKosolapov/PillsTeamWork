@@ -69,7 +69,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler:
                                     @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner,.sound,.badge])
+        completionHandler([.alert,.sound,.badge])
     }
     
 }
