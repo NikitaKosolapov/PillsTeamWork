@@ -47,7 +47,8 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 3
         view.backgroundColor = AppColors.white
-        view.layer.cornerRadius = 14
+        view.layer.cornerRadius = 10
+        view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return view
     }()
     
@@ -56,6 +57,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.white
         view.addGestureRecognizer(scopeGesture)
+        view.layer.cornerRadius = 10
         return view
     }()
     
@@ -83,6 +85,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         let view = JournalTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.white
+        view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         return view
     }()
     

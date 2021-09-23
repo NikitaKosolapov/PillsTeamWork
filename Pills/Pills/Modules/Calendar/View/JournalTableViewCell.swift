@@ -240,6 +240,7 @@ final class JournalTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         self.clipsToBounds = true
+        self.backgroundColor = .clear
         setNeedsUpdateConstraints()
     }
     
