@@ -69,7 +69,8 @@ final class JournalMock {
             endDate: endDate,
             usage: .afterMeals,
             freqString: Text.Frequency.someDaysInAWeek.rawValue,
-            note: "Проглатывать, запивая водой, нельзя принимать одновременно с другими лекарствами, особенно с антибиотиком",
+            note:
+            "Проглатывать, запивая водой, нельзя принимать одновременно с другими лекарствами, особенно с антибиотиком",
             schedule: schedule
             // concentration: 100,
             // concentrationUnit: .mg,

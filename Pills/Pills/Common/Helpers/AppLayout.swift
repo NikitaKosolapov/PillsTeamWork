@@ -144,7 +144,7 @@ enum AppLayout {
         static let heightAddButton: CGFloat = 52.0
         static let indentFromBottomAddButton: CGFloat = 14
     }
-    
+
     enum Alert {
         static let indentView: CGFloat = 36
         static let widthView: CGFloat = widthScreen - indentView*2

@@ -10,7 +10,7 @@ import MessageUI
 import DeviceKit
 
 final class SettingsViewController: UITableViewController {
-    
+        
     enum SettingsSections : String {
         case about
         case writeSupport
@@ -54,9 +54,8 @@ final class SettingsViewController: UITableViewController {
         
         tableView.backgroundColor = AppColors.white
         tableView.separatorStyle = .none
-        
     }
-    
+
     // Return the number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -121,7 +120,7 @@ final class SettingsViewController: UITableViewController {
         case .rate:
             let rateViewController = RateViewController()
             rateViewController.modalPresentationStyle = .overCurrentContext
-            present(rateViewController, animated: true, completion: nil)
+            tabBarController?.present(rateViewController, animated: false)
         }
     }
     

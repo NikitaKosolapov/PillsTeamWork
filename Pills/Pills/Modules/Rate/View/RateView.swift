@@ -17,6 +17,11 @@ protocol RateViewDelegate: AnyObject {
 
 final class RateView: AlertView {
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addBlur(style: .light, alpha: 0.7, cornerRadius: 0, zPosition: -1)
+    }
+    
     // MARK: - Public Properties
     
     weak var rateViewDelegate: RateViewDelegate?
@@ -76,7 +81,7 @@ final class RateView: AlertView {
         )
         return label
     }()
-    
+
     private lazy var horizontalButtonsLabelsStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
@@ -97,7 +102,7 @@ final class RateView: AlertView {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 10
+        stackView.spacing = 9
         return stackView
     }()
     
@@ -106,7 +111,7 @@ final class RateView: AlertView {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 10
+        stackView.spacing = 9
         return stackView
     }()
     
@@ -115,12 +120,11 @@ final class RateView: AlertView {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 10
+        stackView.spacing = 9
         return stackView
     }()
 
     // MARK: - Private Methods
-    
     @objc internal override func agreeButtonTouchUpInside() {
         rateViewDelegate?.provideFeedbackButtonTouchUpInside()
     }
@@ -140,21 +144,19 @@ final class RateView: AlertView {
     @objc internal func bestSmileButtonTouchUpInside() {
         rateViewDelegate?.bestSmileButtonTouchUpInside()
     }
-    
+
     private func configureButtons() {
         NSLayoutConstraint.activate(
-            [badSmileButton.widthAnchor.constraint(equalToConstant: AppLayout.Rate.widthSmileImageView),
-             badSmileButton.heightAnchor.constraint(equalToConstant:
+            [badSmileButton.heightAnchor.constraint(equalToConstant:
                                                         AppLayout.Rate.heightSmileImageView),
-             normSmileButton.widthAnchor.constraint(equalToConstant: AppLayout.Rate.widthSmileImageView),
              normSmileButton.heightAnchor.constraint(equalToConstant:
                                                         AppLayout.Rate.heightSmileImageView),
-             bestSmileButton.widthAnchor.constraint(equalToConstant: AppLayout.Rate.widthSmileImageView),
              bestSmileButton.heightAnchor.constraint(equalToConstant:
                                                         AppLayout.Rate.heightSmileImageView)])
     }
     
     override func configureView() {
+        backgroundColor = AppColors.semiWhiteDarkTheme
         configureHeight(height: AppLayout.Rate.heightView)
         additionalField = horizontalButtonsLabelsStackView
         configureButtons()

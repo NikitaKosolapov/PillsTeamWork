@@ -33,6 +33,7 @@ extension RateViewController: RateViewDelegate {
     }
     
     @objc internal func noThanksButtonTouchUpInside() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false) {
+        }
     }
 }
