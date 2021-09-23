@@ -24,4 +24,13 @@ extension UILabel {
         self.font = font
         textColor = AppColors.black
     }
+    
+    func centerMultilineLabel (font: UIFont?, text: String) {
+        numberOfLines = 0
+        textAlignment = .center
+        self.text = text
+        self.font = font
+        textColor = AppColors.black
+    }
+    
 }

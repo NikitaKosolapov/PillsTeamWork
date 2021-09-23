@@ -168,6 +168,11 @@ enum AppLayout {
         static let widthSmileImageView: CGFloat = 38
         static let heightSmileImageView: CGFloat = 38
     }
+    
+    enum DeletePill {
+        static let heightView: CGFloat = 181.0
+        static let labelHeight: CGFloat = 32
+    }
 
     enum Fonts {
         static let bigRegular = UIFont(name: "SFCompactDisplay-Regular", size: 20)

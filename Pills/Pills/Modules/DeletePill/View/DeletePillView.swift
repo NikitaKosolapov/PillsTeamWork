@@ -13,19 +13,20 @@ final class DeletePillView: AlertView {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerStyleLabel(
+        label.centerMultilineLabel(
             font: AppLayout.Fonts.smallRegular,
-            text: ""
+            text: "После удаления курс нельзя будет восстановить."
         )
         return label
     }()
 
     // MARK: - Private Methods
-    
-    private func configureDescription() {
 
+    override func configureView() {
+        configureHeight(height: AppLayout.DeletePill.heightView)
+        additionalField = descriptionLabel
+        configureText(title: "Удалить", agree: "Отменить", deny: "Удалить")
+        // MARK: To do: add delete pills texts to Text.swift
     }
-
 
 }

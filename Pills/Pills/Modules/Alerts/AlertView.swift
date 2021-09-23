@@ -150,8 +150,8 @@ class AlertView: UIView {
     private func configureStackView() {
         alertViewContainer.addSubview(stackView)
         let safeArea = alertViewContainer.safeAreaLayoutGuide
-        NSLayoutConstraint.activate(
-            [stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppLayout.Alert.topStackView),
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppLayout.Alert.topStackView),
              stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
                                                 constant: AppLayout.Alert.leadingStackView),
              stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
