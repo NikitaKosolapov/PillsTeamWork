@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar clipsSubviews="YES" contentMode="scaleToFill" id="rwx-gz-gnN">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <tabBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwx-gz-gnN">
+                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
                                 <color key="backgroundColor" name="whiteSapphire"/>
                                 <items>
                                     <tabBarItem title="Курсы" image="courses" id="XW8-6a-gLn"/>
@@ -30,16 +29,19 @@
                                 <color key="selectedImageTintColor" name="white"/>
                             </tabBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhQ-IB-w72">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="815"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="781"/>
                                 <color key="backgroundColor" name="white"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MjE-lJ-lqn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rwx-gz-gnN" firstAttribute="trailing" secondItem="MjE-lJ-lqn" secondAttribute="trailing" id="NVF-1h-9S0"/>
                             <constraint firstItem="rwx-gz-gnN" firstAttribute="top" secondItem="PhQ-IB-w72" secondAttribute="bottom" constant="-2" id="Q28-VG-6q8"/>
+                            <constraint firstItem="rwx-gz-gnN" firstAttribute="leading" secondItem="MjE-lJ-lqn" secondAttribute="leading" id="Qps-oJ-IL3"/>
                             <constraint firstItem="PhQ-IB-w72" firstAttribute="trailing" secondItem="MjE-lJ-lqn" secondAttribute="trailing" id="cH5-Bn-hwR"/>
                             <constraint firstItem="PhQ-IB-w72" firstAttribute="leading" secondItem="MjE-lJ-lqn" secondAttribute="leading" id="jrp-Wd-6tX"/>
+                            <constraint firstItem="rwx-gz-gnN" firstAttribute="bottom" secondItem="MjE-lJ-lqn" secondAttribute="bottom" id="obf-Lq-IvA"/>
                             <constraint firstItem="PhQ-IB-w72" firstAttribute="top" secondItem="CfW-e3-nBj" secondAttribute="top" id="rex-Xa-us4"/>
                         </constraints>
                     </view>
