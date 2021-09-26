@@ -18,18 +18,20 @@ fileprivate final class VStackViewFabric {
 }
 
 fileprivate final class HStackViewFabric {
-    static func generate(_ views: [UIView], _ distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
+    static func generate(_ views: [UIView],
+                         _ distribution: UIStackView.Distribution = .fillEqually,
+                         spacing: CGFloat = AppLayout.AddCourse.horizontalSpacing) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.distribution = distribution
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = AppLayout.AddCourse.horizontalSpacing
+        stackView.spacing = spacing
         return stackView
     }
 }
 
 fileprivate final class FieldHeaderFabric {
-    static func generate(header: String) -> UILabel {
+    static func generate(header: String = "") -> UILabel {
         let view = UILabel()
         view.text = header
         view.font = AppLayout.Fonts.smallRegular
@@ -44,14 +46,14 @@ protocol AddNewCourseDelegate: AnyObject {
     func onPillTypeChanged(_ type: PillType)
     func onPillDoseChanged(_ dose: Double)
     func onDoseUnitChanged(_ unit: Text.Unit)
-    func onPillFreqChanged(_ freq: Text.Frequency)
+    func onPillFreqTypeChanged(_ freq: Frequency)
     func onStartDateChanged(_ date: Date)
     func onStartTimeChanged(_ time: Date)
     func onTakePeriodChanged(_ days: Int)
     func onTakePeriodTill(_ tillDate: Date)
     func onMealDependencyChanged(_ usage: Text.Usage)
     func onCommentChanged(_ text: String)
-    
+    func onFrequencyDateChanged(_ frequency: ReceiveFreqPills)
     func onSubmit()
 }
 
@@ -75,8 +77,6 @@ final class AddNewCourseView: UIView {
     }
 
     // MARK: - Pill Name Input
-    
-    internal lazy var pillNameLabel = FieldHeaderFabric.generate(header: Text.name)
     internal lazy var pillNameInput = CustomTextFieldBuilder()
         .withPlaceholder(Text.namePlaceholder)
         .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
@@ -84,27 +84,13 @@ final class AddNewCourseView: UIView {
             self?.delegate?.onPillNameChanged(text)
         }
         .build()
-    internal lazy var stackPillName = VStackViewFabric.generate([pillNameLabel, pillNameInput])
 
     // MARK: - Type Input
-    
-    internal lazy var typeLabel = FieldHeaderFabric.generate(header: "")
     internal lazy var typeImageHolder: UIView = {
         let holder = UIView()
         holder.translatesAutoresizingMaskIntoConstraints = false
         holder.backgroundColor = AppColors.whiteAnthracite
         holder.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
-        holder.addSubview(typeImage)
-        NSLayoutConstraint.activate([
-            typeImage.topAnchor
-                .constraint(equalTo: holder.topAnchor, constant: 1),
-            typeImage.bottomAnchor
-                .constraint(equalTo: holder.bottomAnchor, constant: -3),
-            typeImage.centerXAnchor
-                .constraint(equalTo: holder.centerXAnchor),
-            typeImage.widthAnchor
-                .constraint(equalToConstant: AppLayout.CustomTextField.standardHeight - 4)
-        ])
         return holder
     }()
     
@@ -116,7 +102,6 @@ final class AddNewCourseView: UIView {
         return imageView
     }()
 
-    internal lazy var pillTypeNameLabel = FieldHeaderFabric.generate(header: Text.pillType)
     internal lazy var pillTypeName: CustomTextField =
             CustomTextFieldBuilder()
         .withPlaceholder(Text.Pills.tablets.rawValue.localized())
@@ -132,14 +117,7 @@ final class AddNewCourseView: UIView {
         }
             .build()
     
-    internal lazy var stackTypeImage = VStackViewFabric.generate([typeLabel, typeImageHolder])
-    internal lazy var stackTypeName = VStackViewFabric.generate([pillTypeNameLabel, pillTypeName])
-
-    internal lazy var stackTypeImageAndTypeName =
-        HStackViewFabric.generate([stackTypeName, stackTypeImage], .fillEqually)
-    
     // MARK: - Dose Input
-    internal lazy var doseLabel = FieldHeaderFabric.generate(header: Text.dose)
     internal lazy var doseInput =
         CustomTextFieldBuilder()
             .withPlaceholder(Text.dosePlaceholder)
@@ -150,10 +128,8 @@ final class AddNewCourseView: UIView {
                 self?.delegate?.onPillDoseChanged(Double.init(text) ?? 0.0)
             }
             .build()
-    internal lazy var stackDose = VStackViewFabric.generate([doseLabel, doseInput])
 
     // MARK: - Dose Unit
-    internal lazy var doseUnitLabel = FieldHeaderFabric.generate(header: Text.unit)
     internal lazy var doseUnitInput: CustomTextField = {
            let textField = CustomTextFieldBuilder()
             .withPlaceholder(Text.unit)
@@ -167,43 +143,25 @@ final class AddNewCourseView: UIView {
         return textField
     }()
 
-    internal lazy var stackDoseUnit = VStackViewFabric.generate([doseUnitLabel, doseUnitInput])
-
-    internal lazy var stackDoseAndUnit =
-        HStackViewFabric.generate([stackDose, stackDoseUnit], .fillEqually)
-
     // MARK: - Frequency Input
     internal lazy var frequencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(
-                options: Text.Frequency.all(), { [weak self] (option) in
+                options: Frequency.all(), { [weak self] (option) in
                     guard let self = self else {return false}
-                    let freq = Text.Frequency.init(rawValue: option) ?? .someDaysInAWeek
-                    switch freq {
-                    case Text.Frequency.someDaysInAWeek:
-                        self.receiveFreqStackView.showView(typeView: .certainDays)
-                    case Text.Frequency.severalTimesInADay:
-                        self.receiveFreqStackView.showView(typeView: .everyDayXTimesADay)
-                    case Text.Frequency.everyNHoursInADay:
-                        self.receiveFreqStackView.showView(typeView: .everyDayEveryXHour)
-                    case Text.Frequency.everyNDaysAfterMDays:
-                        self.receiveFreqStackView.showView(typeView: .daysCycle)
-                    }
-                    self.delegate?.onPillFreqChanged(freq)
+                    let freq = Frequency.init(rawValue: option) ?? .daysOfTheWeek
+                    self.receiveFreqStackView.showView(with: freq)
+                    self.delegate?.onPillFreqTypeChanged(freq)
                     return true
                 })
             .withPlaceholder(Text.takingFrequency)
             .build()
         return textField
     }()
-    
-    private(set) lazy var receiveFreqStackView: ReceiveFreqPillsViewAbstract = {
-        let receiveFreqStackView = ReceiveFreqPillsView()
-        return receiveFreqStackView
-    }()
+
+    let receiveFreqStackView = ReceiveFreqPillsView()
 
     // MARK: - Start Date Input
-    internal lazy var startLabel = FieldHeaderFabric.generate(header: Text.startFrom)
     internal lazy var startInput =
         CustomTextFieldBuilder()
             .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
@@ -213,10 +171,8 @@ final class AddNewCourseView: UIView {
                 return true
             })
             .build()
-    internal lazy var stackStart = VStackViewFabric.generate([startLabel, startInput])
 
     // MARK: - Start Time Input
-    internal lazy var timeLabel = FieldHeaderFabric.generate(header: Text.takeAtTime)
     internal lazy var timeInput =
         CustomTextFieldBuilder()
             .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
@@ -225,14 +181,8 @@ final class AddNewCourseView: UIView {
                 return true
             })
             .build()
-    internal let timePicker = UIDatePicker()
-    internal lazy var stackTime = VStackViewFabric.generate([timeLabel, timeInput])
-    internal lazy var stackStartAndWhen =
-        HStackViewFabric.generate([stackStart, stackTime], .fillEqually)
 
     // MARK: - Period Input
-    // simple input
-    internal lazy var takePeriodLabel = FieldHeaderFabric.generate(header: Text.takePeriod)
     internal lazy var takePeriodInput =
         CustomTextFieldBuilder()
             .withPlaceholder(Text.takePeriodPlaceholder)
@@ -243,11 +193,7 @@ final class AddNewCourseView: UIView {
             }
             .clearOnFocus()
             .build()
-    internal lazy var stackTakePeriod = VStackViewFabric.generate([takePeriodLabel, takePeriodInput])
 
-    // date picker
-    internal lazy var takePeriodDatePickerLabel =
-        FieldHeaderFabric.generate(header: "")
     internal lazy var takePeriodDatePickerInput
         = CustomTextFieldBuilder()
             .withImage(AppImages.Tools.calendar)
@@ -256,21 +202,8 @@ final class AddNewCourseView: UIView {
                 return false
             }
             .build()
-    internal lazy var stackTakeDatePickerPeriod
-        = VStackViewFabric.generate([takePeriodDatePickerLabel, takePeriodDatePickerInput])
-
-    internal lazy var stackTakePeriodWithDropDown: UIStackView = {
-        let stack = HStackViewFabric.generate([
-            stackTakePeriod,
-            stackTakeDatePickerPeriod],
-            .fill)
-        stack.spacing = -AppLayout.CustomTextField.cornerRadius
-        return stack
-    }()
 
     // MARK: - Meal Dependency Input
-    
-    internal lazy var mealDependencyLabel = FieldHeaderFabric.generate(header: Text.instruction)
     internal lazy var mealDependencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: []) { [weak self] option in
@@ -281,12 +214,8 @@ final class AddNewCourseView: UIView {
         textField.placeholder = Text.instruction
         return textField
     }()
-    internal lazy var stackMealDependency = VStackViewFabric.generate([mealDependencyLabel, mealDependencyInput])
 
     // MARK: - Note Input
-    
-    internal lazy var noteLabel = FieldHeaderFabric.generate(header: Text.notes)
-    
     internal lazy var noteInput: UITextView = {
         let textField = UITextView()
         textField.isEditable = true
@@ -297,8 +226,6 @@ final class AddNewCourseView: UIView {
         // onCommentChanged
         return textField
     }()
-    
-    internal lazy var stackNote = VStackViewFabric.generate([noteLabel, noteInput])
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -325,16 +252,53 @@ final class AddNewCourseView: UIView {
         return button
     }()
 
+    lazy var pillNameLabel = FieldHeaderFabric.generate(header: Text.name)
+    lazy var stackPillName = VStackViewFabric.generate([pillNameLabel, pillNameInput])
+
+    lazy var typeLabel = FieldHeaderFabric.generate()
+    lazy var stackTypeImage = VStackViewFabric.generate([typeLabel, typeImageHolder])
+
+    lazy var pillTypeNameLabel = FieldHeaderFabric.generate(header: Text.pillType)
+    lazy var stackTypeName = VStackViewFabric.generate([pillTypeNameLabel, pillTypeName])
+    lazy var stackTypeImageAndTypeName = HStackViewFabric.generate([stackTypeName, stackTypeImage])
+
+    lazy var doseUnitLabel = FieldHeaderFabric.generate(header: Text.unit)
+    lazy var stackDoseUnit = VStackViewFabric.generate([doseUnitLabel, doseUnitInput])
+
+    lazy var doseLabel = FieldHeaderFabric.generate(header: Text.dose)
+    lazy var stackDose = VStackViewFabric.generate([doseLabel, doseInput])
+    lazy var stackDoseAndUnit = HStackViewFabric.generate([stackDose, stackDoseUnit])
+
+    lazy var startLabel = FieldHeaderFabric.generate(header: Text.startFrom)
+    lazy var stackStart = VStackViewFabric.generate([startLabel, startInput])
+    lazy var timeLabel = FieldHeaderFabric.generate(header: Text.takeAtTime)
+    lazy var stackTime = VStackViewFabric.generate([timeLabel, timeInput])
+    lazy var stackStartAndWhen = HStackViewFabric.generate([stackStart, stackTime])
+
+    lazy var takePeriodDatePickerLabel = FieldHeaderFabric.generate()
+    lazy var stackTakeDatePickerPeriod = VStackViewFabric.generate([takePeriodDatePickerLabel,
+                                                                    takePeriodDatePickerInput])
+
+    lazy var takePeriodLabel = FieldHeaderFabric.generate(header: Text.takePeriod)
+    lazy var stackTakePeriod = VStackViewFabric.generate([takePeriodLabel, takePeriodInput])
+
+    lazy var mealDependencyLabel = FieldHeaderFabric.generate(header: Text.instruction)
+    lazy var stackMealDependency = VStackViewFabric.generate([mealDependencyLabel, mealDependencyInput])
+
+    lazy var noteLabel = FieldHeaderFabric.generate(header: Text.notes)
+    lazy var stackNote = VStackViewFabric.generate([noteLabel, noteInput])
+
+    lazy var stackTakePeriodWithDropDown = HStackViewFabric.generate(
+        [stackTakePeriod, stackTakeDatePickerPeriod],
+        .fill,
+        spacing: -AppLayout.CustomTextField.cornerRadius * 2)
+
     @objc func doneButtonPressed() {
         delegate?.onSubmit()
     }
 
     // MARK: - Major Stack View
-    internal lazy var formStackView: UIStackView = {
-        guard let receiveFreqStackView = receiveFreqStackView as? ReceiveFreqPillsView
-        else {
-            return UIStackView()
-        }
+    lazy var formStackView: UIStackView = {
         let stack = VStackViewFabric.generate([
             stackPillName,
             stackTypeImageAndTypeName,
@@ -372,6 +336,8 @@ final class AddNewCourseView: UIView {
                     constant: -AppLayout.AddCourse.horizontalSpacing
                 )
         }
+
+        typeImageHolder.addSubview(typeImage)
 
         NSLayoutConstraint.activate([
             majorStackView.topAnchor
@@ -422,7 +388,18 @@ final class AddNewCourseView: UIView {
                 .constraint(equalToConstant: AppLayout.CustomTextField.standardHeight),
             
             noteInput.heightAnchor
-                .constraint(greaterThanOrEqualToConstant: AppLayout.AddCourse.noteInputHeight)
+                .constraint(greaterThanOrEqualToConstant: AppLayout.AddCourse.noteInputHeight),
+
+            typeImage.centerXAnchor
+                .constraint(equalTo: typeImageHolder.centerXAnchor),
+            typeImage.centerYAnchor
+                .constraint(equalTo: typeImageHolder.centerYAnchor),
+            typeImage.widthAnchor
+                .constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
+            typeImage.heightAnchor
+                .constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
+
+            doneButton.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
         ])
     }
     

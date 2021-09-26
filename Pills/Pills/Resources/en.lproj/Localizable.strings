@@ -52,10 +52,10 @@
 "cancel" = "Cancel";
 "till" = "till";
 
-"someDaysInAWeek" = "Selected days of week";
-"severalTimesInADay" = "Several times per day";
-"everyNHoursInADay" = "Every N hours per day";
-"everyNDaysAfterMDays" = "Every N days with breaks";
+"daysOfTheWeek" = "Selected days of week";
+"dailyXTimes" = "Several times per day";
+"dailyEveryXHour" = "Every N hours per day";
+"daysCycle" = "Every N days with breaks";
 
 "beforeMeals" = "Before meal";
 "whileEating" = "While eating";

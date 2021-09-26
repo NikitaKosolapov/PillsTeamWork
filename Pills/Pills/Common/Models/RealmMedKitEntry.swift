@@ -20,6 +20,17 @@ import RealmSwift
 //   // var entry: RealmMedKitEntry ...
 //   entry.unitString.localized()
 
+enum Frequency: String, CaseIterable {
+    case daysOfTheWeek
+    case dailyXTimes
+    case dailyEveryXHour
+    case daysCycle
+
+    static func all() -> [String] {
+        Frequency.allCases.map { $0.rawValue.localized() }
+    }
+}
+
 enum PillType: String, CaseIterable {
     case capsules
     case tablets
@@ -146,11 +157,17 @@ class RealmMedKitEntry: Object {
     @objc dynamic var endDate = Date.distantPast
     @objc dynamic var pillTypeString = PillType.tablets.rawValue
     @objc dynamic var usageString = Usage.noMatter.rawValue
+    @objc dynamic var freqString = Frequency.daysOfTheWeek.rawValue
     @objc dynamic var unitString = ""
-    @objc dynamic var freqString = ""
     @objc dynamic var note = ""
+    var schedule = List<RealmTimePoint>()
     
     public private(set) var isValid = false
+
+    var frequency: Frequency {
+        get { return Frequency(rawValue: freqString)! }
+        set { freqString = newValue.rawValue }
+      }
 
     var pillType: PillType {
       get { return PillType(rawValue: pillTypeString)! }
@@ -161,8 +178,6 @@ class RealmMedKitEntry: Object {
       get { return Usage(rawValue: usageString)! }
       set { usageString = newValue.rawValue }
     }
-
-    var schedule = List<RealmTimePoint>()
     
     override class func primaryKey() -> String? {
         return "entryID"
@@ -178,7 +193,7 @@ class RealmMedKitEntry: Object {
          takeAtTime: Date,
          endDate: Date,
          usage: Usage,
-         freqString: String,
+         frequency: Frequency,
          note: String,
          schedule: List<RealmTimePoint>
     ) {
@@ -195,7 +210,7 @@ class RealmMedKitEntry: Object {
         self.endDate = endDate
 
         self.usageString = usage.rawValue
-        self.freqString = freqString
+        self.freqString = frequency.rawValue
         self.note = note
 
         super.init()
@@ -204,15 +219,17 @@ class RealmMedKitEntry: Object {
     }
     
     func validate() -> Bool {
-        guard !name.isEmpty,
-              !pillTypeString.isEmpty,
-              !unitString.isEmpty,
-              !usageString.isEmpty,
-              !freqString.isEmpty,
+        guard name.isEmpty.not,
+              pillTypeString.isEmpty.not,
+              unitString.isEmpty.not,
+              usageString.isEmpty.not,
+              freqString.isEmpty.not,
               startDate > Date.distantPast,
               takeAtTime > Date.distantPast,
               endDate > Date.distantPast,
-              singleDose > 0.0
+              singleDose > 0
+              //TODO: Добавить проверку на наличие расписания, когда будут готовы все методы
+//              schedule.isEmpty.not
         else {
             isValid = false
             return isValid

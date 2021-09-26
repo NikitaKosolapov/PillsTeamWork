@@ -10,6 +10,7 @@
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
 		11B0B77C26FF4F7900BD86BF /* DeletePillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */; };
 		11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */; };
+		11B0B77F26FF926500BD86BF /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77E26FF926500BD86BF /* Bool.swift */; };
 		455133E9FD3C22F2F266D4B8 /* Pods_PillsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */; };
 		5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */; };
 		5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C6AE26AC29E4009CDA41 /* DevelopmentBuilder.swift */; };
@@ -115,6 +116,7 @@
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillViewController.swift; sourceTree = "<group>"; };
 		11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillView.swift; sourceTree = "<group>"; };
+		11B0B77E26FF926500BD86BF /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
 		15CC9380A7D7692447008383 /* Pods-Pills.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.debug.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.debug.xcconfig"; sourceTree = "<group>"; };
 		3AA129D021F9E8300DC954A7 /* Pods_Pills_PillsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills_PillsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DA6DE1F3583984F385AD82 /* Pods-Pills-PillsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -388,14 +390,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A8E594DB26D976D5006F414A /* ReceiveFreqPillsView */ = {
+		A8E594DB26D976D5006F414A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */,
 				A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */,
 				A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */,
 			);
-			path = ReceiveFreqPillsView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA9D86FE26F110F700408604 /* MedicineDescription */ = {
@@ -596,6 +598,7 @@
 				A81ECCF726C6D61E0039DE67 /* Button.swift */,
 				FED959AD26C9808D00E9B6C3 /* Int.swift */,
 				E1EC06AF26F774550045AAB1 /* UIImage.swift */,
+				11B0B77E26FF926500BD86BF /* Bool.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -673,7 +676,7 @@
 			children = (
 				FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */,
 				FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */,
-				A8E594DB26D976D5006F414A /* ReceiveFreqPillsView */,
+				A8E594DB26D976D5006F414A /* Views */,
 				FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */,
 			);
 			path = AddNewCourse;
@@ -1011,6 +1014,7 @@
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
+				11B0B77F26FF926500BD86BF /* Bool.swift in Sources */,
 				A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */,
 				FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
@@ -1252,7 +1256,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = RTLGBYJM5X;
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -1278,7 +1282,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = RTLGBYJM5X;
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;

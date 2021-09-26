@@ -33,7 +33,7 @@ extension AddNewCourseView {
         doseUnitInput.pickerOptions = units
     }
     /// Set taking frequency
-    public func setTakeFreq(_ freq: Text.Frequency) {
+    public func setTakeFreq(_ freq: Frequency) {
         frequencyInput.text = freq.rawValue.localized()
     }
     /// Set course start date

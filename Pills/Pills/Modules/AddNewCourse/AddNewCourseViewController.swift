@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import DropDown
+import RealmSwift
 
 class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     
     private var startDate = Date()
     private let newCourse = RealmMedKitEntry()
+    private let realm = RealmService.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ extension AddNewCourseViewController: AddNewCourseDataSource {
     }
     
     func frequencyOptions() -> [String] {
-        return Text.Frequency.allCases.map {$0.rawValue}
+        return Frequency.allCases.map {$0.rawValue}
     }
     
     func mealOptions() -> [String] {
@@ -50,6 +51,12 @@ extension AddNewCourseViewController: AddNewCourseDataSource {
 }
 
 extension AddNewCourseViewController: AddNewCourseDelegate {
+    func onFrequencyDateChanged(_ frequency: ReceiveFreqPills) {
+        let schedule = getSchedule(with: frequency)
+        newCourse.schedule = schedule
+        onValidate(newCourse.validate())
+    }
+
     func onPillNameChanged(_ name: String) {
         newCourse.name = name
         onValidate(newCourse.validate())
@@ -76,7 +83,7 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
         onValidate(newCourse.validate())
     }
     
-    func onPillFreqChanged(_ freq: Text.Frequency) {
+    func onPillFreqTypeChanged(_ freq: Frequency) {
         newCourse.freqString = freq.rawValue
         onValidate(newCourse.validate())
     }
@@ -118,5 +125,25 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
     }
     
     func onSubmit() {
+        realm.create(newCourse) {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    func getSchedule(with frequency: ReceiveFreqPills) -> List<RealmTimePoint> {
+        switch frequency {
+        case .daysOfTheWeek(let days):
+            break
+        case .dailyEveryXHour(let xHour):
+            break
+        case .dailyXTimes(let xTimes):
+            break
+        case .daysCycle(let cycle):
+            break
+        default:
+            break
+        }
+
+        return List<RealmTimePoint>()
     }
 }

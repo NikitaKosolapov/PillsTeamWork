@@ -44,20 +44,26 @@ enum Text {
     static let periodExpired = "periodExpired".localized()
     static let till = "till".localized()
     static let save = "save".localized()
-    
-    static let Monday = "Monday".localized()
-    static let Tuesday = "Tuesday".localized()
-    static let Wednesday = "Wednesday".localized()
-    static let Thursday = "Thursday".localized()
-    static let Friday = "Friday".localized()
-    static let Saturday = "Saturday".localized()
-    static let Sunday = "Sunday".localized()
 
     enum DatePickerButtons {
         static let done = "done".localized()
         static let now = "now".localized()
         static let cancel = "cancel".localized()
         static let today = "today".localized()
+    }
+
+    enum DaysOfAWeek: String, CaseIterable {
+        case Monday
+        case Tuesday
+        case Wednesday
+        case Thursday
+        case Friday
+        case Saturday
+        case Sunday
+
+        static func all() -> [String] {
+            allCases.map {$0.rawValue.localized()}
+        }
     }
 
     enum Pills: String, CaseIterable {
@@ -128,18 +134,6 @@ enum Text {
             Text.ConcentrationUnit.allCases.map {$0.rawValue.localized()}
         }
     }
-    
-    enum Frequency: String, CaseIterable {
-        case someDaysInAWeek
-        case severalTimesInADay
-        case everyNHoursInADay
-        case everyNDaysAfterMDays
-
-        static func all() -> [String] {
-            Text.Frequency.allCases.map { $0.rawValue.localized() }
-        }
-
-    }
 
     enum Period: String, CaseIterable {
         case week
@@ -180,7 +174,6 @@ enum Text {
     }
     
     // MARK: - Medicine Description
-    
     enum MedicineDescription {
         static let accept = "accept".localized()
         static let skip = "skip".localized()
@@ -213,7 +206,6 @@ enum Text {
     }
     
     // MARK: - Push Notifications
-    
     enum PushNotifications {
         static let itIsTimeToTakePill = "itIsTimeToTakePill".localized()
     }

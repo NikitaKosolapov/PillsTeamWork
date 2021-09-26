@@ -53,7 +53,7 @@ final class JournalMock {
             takeAtTime: startDate.startOfDay,
             endDate: endDate,
             usage: .whileEating,
-            freqString: Text.Frequency.someDaysInAWeek.rawValue,
+            frequency: .daysOfTheWeek,
             note: "",
             schedule: schedule
         )
@@ -68,7 +68,7 @@ final class JournalMock {
             takeAtTime: startDate.startOfDay,
             endDate: endDate,
             usage: .afterMeals,
-            freqString: Text.Frequency.someDaysInAWeek.rawValue,
+            frequency: .daysOfTheWeek,
             note:
             "Проглатывать, запивая водой, нельзя принимать одновременно с другими лекарствами, особенно с антибиотиком",
             schedule: schedule

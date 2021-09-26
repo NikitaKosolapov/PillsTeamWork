@@ -10,8 +10,7 @@ import UIKit
 final class JournalViewController: BaseViewController<JournalView> {
     
     fileprivate var eventsToShow: [Event] = []
-    
-    // ---------------------------------------------------------
+
     // MARK: - MOCK DATA
     var journalEntries: [RealmMedKitEntry] = [
         JournalMock.shared.entryExample1,
@@ -46,6 +45,8 @@ final class JournalViewController: BaseViewController<JournalView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //TODO: После реализации сохранения модели в БД
+//        journalEntries = RealmService.shared.get(RealmMedKitEntry.self)
         prepareDataForDay(Date())
         rootView.delegate = self
         rootView.configure(tableDataSource: self)

@@ -305,6 +305,7 @@ class CustomTextField: UITextField {
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = mode
         datePicker?.preferredDatePickerStyle = .wheels
+        datePicker?.minimumDate = Date()
         datePicker?.date = Date()
         self.inputView = datePicker
 
