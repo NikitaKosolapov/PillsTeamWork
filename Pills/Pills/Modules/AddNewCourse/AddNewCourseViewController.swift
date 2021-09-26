@@ -19,6 +19,7 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
         rootView.dataSource = self
         rootView.delegate = self
         rootView.setup()
+		rootView.addEventToHideKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {

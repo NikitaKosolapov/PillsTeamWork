@@ -57,6 +57,10 @@ protocol AddNewCourseDelegate: AnyObject {
     func onSubmit()
 }
 
+protocol AddNewCourceTextFieldDelegate: AnyObject {
+	func textFieldStartEditing(_ textField: UITextField)
+}
+
 /// Data Source
 protocol AddNewCourseDataSource: AnyObject {
     func pillTypeOptions() -> [String]
@@ -140,6 +144,7 @@ final class AddNewCourseView: UIView {
             .withTextAlignment(.center)
             .build()
         textField.isUserInteractionEnabled = false
+		textField.addNewCourseDelegate = self
         return textField
     }()
 
@@ -156,6 +161,7 @@ final class AddNewCourseView: UIView {
                 })
             .withPlaceholder(Text.takingFrequency)
             .build()
+		textField.addNewCourseDelegate = self
         return textField
     }()
 
@@ -212,6 +218,7 @@ final class AddNewCourseView: UIView {
             }
             .build()
         textField.placeholder = Text.instruction
+		textField.addNewCourseDelegate = self
         return textField
     }()
 
@@ -231,6 +238,7 @@ final class AddNewCourseView: UIView {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = AppColors.lightBlueBlack
+		scrollView.keyboardDismissMode = .onDrag
         return scrollView
     }()
     
@@ -323,7 +331,8 @@ final class AddNewCourseView: UIView {
         return stackView
     }()
     internal var majorStackViewBottomAnchor: NSLayoutConstraint?
-
+	var activeView: UIView?
+	var keyboardHeight: CGFloat = 0.0
     // MARK: - Constraints
     // swiftlint:disable function_body_length
     override func updateConstraints() {
@@ -424,7 +433,7 @@ final class AddNewCourseView: UIView {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
+            keyboardHeight = keyboardRectangle.height
             
             majorStackViewBottomAnchor?.isActive = false
             majorStackViewBottomAnchor = majorStackView.bottomAnchor
@@ -434,6 +443,9 @@ final class AddNewCourseView: UIView {
                 )
             majorStackViewBottomAnchor?.isActive = true
         }
+		if let activeView = activeView {
+			setScrollViewOffset(for: activeView)
+		}
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {
@@ -444,6 +456,8 @@ final class AddNewCourseView: UIView {
                 constant: -AppLayout.AddCourse.horizontalSpacing
             )
         majorStackViewBottomAnchor?.isActive = true
+		scrollView.contentInset = .zero
+		scrollView.setContentOffset(.zero, animated: true)
     }
 
     private func addSubviews() {
@@ -458,10 +472,38 @@ final class AddNewCourseView: UIView {
             height: stackNote.frame.maxY
         )
     }
+	func addEventToHideKeyboard() {
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
+		formStackView.addGestureRecognizer(tapGesture)
+		majorStackView.addGestureRecognizer(tapGesture)
+		self.addGestureRecognizer(tapGesture)
+	}
+	
+	func setScrollViewOffset(for textField: UIView) {
+		let bottomOfTextField = textField.convert(textField.bounds, to: self).maxY
+		let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
+		let visibleContent = self.frame.height - coveringContent
+		let contentOffset = CGPoint(x: 0, y: keyboardHeight + doneButton.frame.height)
+		let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
+		if bottomOfTextField > visibleContent {
+			scrollView.contentInset = contentInset
+			scrollView.setContentOffset(contentOffset, animated: true)
+		}
+	}
 }
 
-extension AddNewCourseView: UITextViewDelegate {
+extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
+		activeView = nil
         delegate?.onCommentChanged(textView.text)
     }
+	func textViewDidBeginEditing(_ textView: UITextView) {
+		activeView = textView
+	}
+}
+
+extension AddNewCourseView: AddNewCourceTextFieldDelegate {
+	func textFieldStartEditing(_ textField: UITextField) {
+		activeView = textField
+	}
 }

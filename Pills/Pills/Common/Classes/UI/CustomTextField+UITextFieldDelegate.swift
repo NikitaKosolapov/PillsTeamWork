@@ -58,4 +58,7 @@ extension CustomTextField: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditing(true)
     }
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		addNewCourseDelegate?.textFieldStartEditing(textField)
+	}
 }
