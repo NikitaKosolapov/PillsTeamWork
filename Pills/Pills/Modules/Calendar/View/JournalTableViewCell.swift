@@ -9,6 +9,8 @@ import UIKit
 
 final class JournalTableViewCell: UITableViewCell {
     
+    // MARK: - Private Properties
+    
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -165,12 +167,37 @@ final class JournalTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(model: Event) {
+    // MARK: - Initializers
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+        addSubviews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        majorView.layer.borderWidth = 0
+        majorView.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(false, animated: animated)
+    }
+    
+    // MARK: - Public Methods
+    
+    public func configure(model: Event) {
         journalTime = model.time
         journalEntry = model.pill
         if let isUsed = model.pill.schedule.first?.isUsed.value {
             majorView.backgroundColor = isUsed ? AppColors.lightBlueSapphire : AppColors.lightRed
         }
+        addCellBorderInDarkMode(model: model)
     }
     
     // swiftlint:disable function_body_length
@@ -213,14 +240,14 @@ final class JournalTableViewCell: UITableViewCell {
                 equalTo: pillTypeImageContainer.topAnchor,
                 constant: (
                     AppLayout.Journal.pillImageContainerSize.height -
-                        AppLayout.Journal.pillImageSize.height
+                    AppLayout.Journal.pillImageSize.height
                 ) / 2
             ),
             pillTypeImage.leadingAnchor.constraint(
                 equalTo: pillTypeImageContainer.leadingAnchor,
                 constant: (
                     AppLayout.Journal.pillImageContainerSize.width -
-                        AppLayout.Journal.pillImageSize.width
+                    AppLayout.Journal.pillImageSize.width
                 ) / 2
             ),
             pillTypeImage.widthAnchor.constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
@@ -231,12 +258,9 @@ final class JournalTableViewCell: UITableViewCell {
         ])
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        pillTypeImageContainer.addSubview(pillTypeImage)
-        majorView.addSubview(stackView)
-        addSubview(majorView)
+    // MARK: - Private Methods
+    
+    private func setupView() {
         self.selectionStyle = .none
         self.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         self.clipsToBounds = true
@@ -244,11 +268,26 @@ final class JournalTableViewCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(false, animated: animated)
+    private func addSubviews() {
+        pillTypeImageContainer.addSubview(pillTypeImage)
+        majorView.addSubview(stackView)
+        addSubview(majorView)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func addCellBorderInDarkMode(model: Event) {
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            if let isUsed = model.pill.schedule.first?.isUsed.value {
+                majorView.layer.borderWidth = isUsed ? 0 : 0
+            }
+        case .dark:
+            if let isUsed = model.pill.schedule.first?.isUsed.value {
+                majorView.layer.borderWidth = 2
+                majorView.layer.borderColor = isUsed ? AppColors.blue.cgColor : AppColors.red.cgColor
+            }
+        @unknown default:
+            assertionFailure("Неизвестный тип темы")
+        }
     }
+    
 }
