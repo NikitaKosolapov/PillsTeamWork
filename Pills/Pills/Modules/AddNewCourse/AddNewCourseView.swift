@@ -238,7 +238,6 @@ final class AddNewCourseView: UIView {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = AppColors.lightBlueBlack
-		scrollView.keyboardDismissMode = .onDrag
         return scrollView
     }()
     
@@ -443,9 +442,6 @@ final class AddNewCourseView: UIView {
                 )
             majorStackViewBottomAnchor?.isActive = true
         }
-		if let activeView = activeView {
-			setScrollViewOffset(for: activeView)
-		}
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {
@@ -456,8 +452,6 @@ final class AddNewCourseView: UIView {
                 constant: -AppLayout.AddCourse.horizontalSpacing
             )
         majorStackViewBottomAnchor?.isActive = true
-		scrollView.contentInset = .zero
-		scrollView.setContentOffset(.zero, animated: true)
     }
 
     private func addSubviews() {
@@ -480,14 +474,25 @@ final class AddNewCourseView: UIView {
 	}
 	
 	func setScrollViewOffset(for textField: UIView) {
-		let bottomOfTextField = textField.convert(textField.bounds, to: self).maxY
 		let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
 		let visibleContent = self.frame.height - coveringContent
-		let contentOffset = CGPoint(x: 0, y: keyboardHeight + doneButton.frame.height)
-		let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
-		if bottomOfTextField > visibleContent {
-			scrollView.contentInset = contentInset
-			scrollView.setContentOffset(contentOffset, animated: true)
+		var contentOffset = CGPoint(x: 0, y: 0)
+		
+		let middleOfVisibleArea = visibleContent / 2
+		let middleOfField = textField.convert(textField.bounds, to: self).midY
+		
+		if middleOfField <= middleOfVisibleArea {
+			contentOffset = CGPoint(x: 0, y: 0)
+		} else {
+			contentOffset =  CGPoint(x: 0, y: middleOfField - middleOfVisibleArea)
+			var actualContentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y + contentOffset.y)
+			let visibleScrollView = scrollView.contentSize.height - keyboardHeight
+			if actualContentOffset.y > visibleScrollView {
+				actualContentOffset = CGPoint(x: 0, y: visibleScrollView)
+			}
+			DispatchQueue.main.async {
+				self.scrollView.setContentOffset(actualContentOffset, animated: true)
+			}
 		}
 	}
 }
@@ -499,11 +504,13 @@ extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
     }
 	func textViewDidBeginEditing(_ textView: UITextView) {
 		activeView = textView
+		setScrollViewOffset(for: activeView!)
 	}
 }
 
 extension AddNewCourseView: AddNewCourceTextFieldDelegate {
 	func textFieldStartEditing(_ textField: UITextField) {
 		activeView = textField
+		setScrollViewOffset(for: activeView!)
 	}
 }
