@@ -104,7 +104,7 @@
 // MARK: - AidKit Event Type
 "active" = "Активные";
 "completed" = "Завершенные";
-"stubTextAidKit" = "Тут будут хранится твои курсы";
+"stubTextAidKit" = "Тут будут храниться твои курсы";
 "from" = "из";
 "days" = "дней";
 

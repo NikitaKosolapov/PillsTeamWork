@@ -15,11 +15,11 @@ final class MainTabBarMaker {
         let mainNavig = UINavigationController(rootViewController: mainVC)
         
         // TODO: get text and images from constants when ready
-        mainVC.tabBarItem = tabItemBuilder(title: "Courses", icon: UIImage(named: "courses"))
+        mainVC.tabBarItem = tabItemBuilder(title: Text.Tabs.aidkit, icon: UIImage(named: "courses"))
         
         let medicationVC = JournalViewController()
         let medicationNC = UINavigationController(rootViewController: medicationVC)
-        medicationVC.tabBarItem = tabItemBuilder(title: "Journal", icon: UIImage(named: "journal"))
+        medicationVC.tabBarItem = tabItemBuilder(title: Text.Tabs.journal, icon: UIImage(named: "journal"))
 
         let settingsVC = SettingsViewController()
         let settingsNavig = UINavigationController(rootViewController: settingsVC)

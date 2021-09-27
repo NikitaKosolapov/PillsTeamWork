@@ -50,7 +50,7 @@ final class CourseCellView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .right
         label.font = AppLayout.Fonts.verySmallRegular
-        label.textColor = AppColors.semiGrayOnly
+        label.textColor = AppColors.semiGrayFont
         return label
     }()
     
