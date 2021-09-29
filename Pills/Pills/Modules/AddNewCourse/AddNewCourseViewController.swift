@@ -27,9 +27,9 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = AppColors.lightBlueSapphire
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = "\(Text.newPill)"
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationItem.largeTitleDisplayMode = .never
     }
 
     func onValidate(_ valid: Bool) {

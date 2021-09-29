@@ -486,13 +486,10 @@ final class AddNewCourseView: UIView {
 		} else {
 			contentOffset =  CGPoint(x: 0, y: middleOfField - middleOfVisibleArea)
 			var actualContentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y + contentOffset.y)
-			let visibleScrollView = scrollView.contentSize.height - keyboardHeight
-			if actualContentOffset.y > visibleScrollView {
-				actualContentOffset = CGPoint(x: 0, y: visibleScrollView)
+			if actualContentOffset.y > visibleContent {
+				actualContentOffset = CGPoint(x: 0, y: visibleContent)
 			}
-			DispatchQueue.main.async {
-				self.scrollView.setContentOffset(actualContentOffset, animated: true)
-			}
+			scrollView.setContentOffset(actualContentOffset, animated: true)
 		}
 	}
 }
