@@ -41,6 +41,7 @@ final class JournalViewController: BaseViewController<JournalView> {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
+        rootView.updateBGColor()
     }
     
     override func viewDidLoad() {
