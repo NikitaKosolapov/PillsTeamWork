@@ -30,33 +30,33 @@ default_platform(:ios)
          use_bundle_exec: false
     )
 
-    # run tests
     # run_tests
-
 
     increment_build_number
     #set_info_plist_value(path: "./Pills/Application/Info.plist", key: "CFBundleShortVersionString", value: "2.0")
 
-  gym(
-    scheme: "Pills",
-    configuration: "Debug",
-    export_method: "development",
-    include_symbols: true,
-    include_bitcode: true,
-    silent: false
+  build_app(
+    scheme: "Pills", #The project's scheme.
+    configuration: "Debug", #The configuration to use when building the app. 
+    export_method: "development", #Method used to export the archive.
+    include_symbols: true, #Should the ipa file include symbols?
+    include_bitcode: true, #Should the ipa file include bitcode?
+    silent: true, #Hide all information that's not necessary while building
+    xcargs: "-allowProvisioningUpdates" #enable Automatically Manage Signing feature
   )
 
     # commit changes to git
-    versionNumber = get_version_number
-    buildNumber = get_build_number
-    tag = "#{versionNumber}.#{buildNumber}"
 
-    # git_add
-    git_add(path: ["./Podfile.lock", "./Pills.xcodeproj/project.pbxproj", "./PillsTests/Info.plist", "./Pills/Application/Info.plist", "./PillsUITests/Info.plist"])
-    git_commit(path: ["./Podfile.lock", "./Pills.xcodeproj/project.pbxproj", "./PillsTests/Info.plist", "./Pills/Application/Info.plist", "./PillsUITests/Info.plist"], message: "verson up")
-    add_git_tag(
-      tag: tag
-    )
+    #versionNumber = get_version_number
+    #buildNumber = get_build_number
+    #tag = "#{versionNumber}.#{buildNumber}"
+
+    #git_add
+    #git_add(path: ["./Podfile.lock", "./Pills.xcodeproj/project.pbxproj", "./PillsTests/Info.plist", "./Pills/Application/Info.plist", "./PillsUITests/Info.plist"])
+    #git_commit(path: ["./Podfile.lock", "./Pills.xcodeproj/project.pbxproj", "./PillsTests/Info.plist", "./Pills/Application/Info.plist", "./PillsUITests/Info.plist"], message: "verson up")
+    #dd_git_tag(
+    # tag: tag
+    #)
 
     upload_to_testflight(
       username: "kosolapovnikitav@gmail.com",
