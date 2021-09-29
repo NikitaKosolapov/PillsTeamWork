@@ -179,8 +179,8 @@ final class JournalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    override func setNeedsDisplay() {
+        super.setNeedsDisplay()
         majorView.layer.borderWidth = 0
         majorView.layer.borderColor = UIColor.clear.cgColor
     }
