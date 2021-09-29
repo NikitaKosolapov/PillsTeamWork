@@ -25,11 +25,12 @@ final class JournalTableViewCell: UITableViewCell {
         return numFormatter
     }()
     
-    private var majorView: UIView = {
+    private lazy var majorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppLayout.Journal.cellBackgroundColor
         view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
+        view.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
         return view
     }()
     
@@ -179,14 +180,12 @@ final class JournalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setNeedsDisplay() {
-        super.setNeedsDisplay()
-        majorView.layer.borderWidth = 0
-        majorView.layer.borderColor = UIColor.clear.cgColor
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: animated)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        majorView.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
     }
     
     // MARK: - Public Methods
@@ -196,8 +195,8 @@ final class JournalTableViewCell: UITableViewCell {
         journalEntry = model.pill
         if let isUsed = model.pill.schedule.first?.isUsed.value {
             majorView.backgroundColor = isUsed ? AppColors.lightBlueSapphire : AppColors.lightRed
+            majorView.layer.borderColor = isUsed ? AppColors.blue.cgColor : AppColors.red.cgColor
         }
-        addCellBorderInDarkMode(model: model)
     }
     
     // swiftlint:disable function_body_length
@@ -272,22 +271,6 @@ final class JournalTableViewCell: UITableViewCell {
         pillTypeImageContainer.addSubview(pillTypeImage)
         majorView.addSubview(stackView)
         addSubview(majorView)
-    }
-    
-    private func addCellBorderInDarkMode(model: Event) {
-        switch traitCollection.userInterfaceStyle {
-        case .light, .unspecified:
-            if let isUsed = model.pill.schedule.first?.isUsed.value {
-                majorView.layer.borderWidth = isUsed ? 0 : 0
-            }
-        case .dark:
-            if let isUsed = model.pill.schedule.first?.isUsed.value {
-                majorView.layer.borderWidth = 2
-                majorView.layer.borderColor = isUsed ? AppColors.blue.cgColor : AppColors.red.cgColor
-            }
-        @unknown default:
-            assertionFailure("Неизвестный тип темы")
-        }
     }
     
 }
