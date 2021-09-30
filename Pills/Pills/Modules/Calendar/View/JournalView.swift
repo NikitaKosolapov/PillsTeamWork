@@ -52,15 +52,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         return view
     }()
     
-    private lazy var clearView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.white
-        view.addGestureRecognizer(scopeGesture)
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
     private lazy var minusView: UIView =  {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -222,12 +213,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
             rounderСornersView.trailingAnchor.constraint(equalTo: trailingAnchor),
             rounderСornersView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
-            clearView.topAnchor.constraint(equalTo: rounderСornersView.topAnchor),
-            clearView.centerXAnchor.constraint(equalTo: rounderСornersView.centerXAnchor),
-            clearView.trailingAnchor.constraint(equalTo: rounderСornersView.trailingAnchor),
-            clearView.leadingAnchor.constraint(equalTo: rounderСornersView.leadingAnchor),
-            clearView.bottomAnchor.constraint(equalTo: stackViewTableViewAndButton.topAnchor),
-
             minusView.topAnchor.constraint(equalTo: rounderСornersView.topAnchor, constant: 6),
             minusView.centerXAnchor.constraint(equalTo: rounderСornersView.centerXAnchor),
             minusView.widthAnchor.constraint(equalToConstant: 35),
@@ -295,30 +280,26 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         }
         return 0
     }
-
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let point = touch.location(in: self)
+        return !calendar.frame.contains(point)
+    }
+    
     func handlePan() {
         if scopeGesture.state == .changed {
             let velocity = scopeGesture.velocity(in: self)
             if velocity.y < 0 {
                 calendar.appearance.headerTitleColor = AppColors.black
+                scopeGesture.state = .ended
             } else if velocity.y > 0 {
                 calendar.appearance.headerTitleColor = AppColors.black
-            }
-            
-            if scopeGesture.state == .cancelled || scopeGesture.state == .failed {
-                scopeGesture.state = .ended
-                
-                if calendar.scope == .month {
-                    calendar.appearance.headerTitleColor = AppColors.black
-                } else if calendar.scope == .week {
-                    calendar.appearance.headerTitleColor = AppColors.black
-                }
             }
         }
     }
     
     func configure(tableDataSource: UITableViewDataSource) {
-
+        addGestureRecognizer(scopeGesture)
         journalTableView.panGestureRecognizer.require(toFail: scopeGesture)
         
         calendar.delegate = self
@@ -394,7 +375,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     private func addSubviews() {
         addSubview(calendar)
         addSubview(rounderСornersView)
-        addSubview(clearView)
         addSubview(minusView)
         addSubview(calendar)
         // TODO: make visible when table has no data
@@ -405,7 +385,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         emptyTableStub.addSubview(manHintSubtitleLabel)
         manImageContainer.addSubview(manImageView)
     }
-    
 }
 
 extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
