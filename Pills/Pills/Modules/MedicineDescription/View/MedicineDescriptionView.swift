@@ -95,8 +95,8 @@ final class MedicineDescriptionView: UIView {
         return label
     }()
     
-    private let acceptButton: UIButton = {
-        let button = UIButton()
+    private let acceptButton: AddButton = {
+        let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.blue,
@@ -107,8 +107,8 @@ final class MedicineDescriptionView: UIView {
         return button
     }()
     
-    private let skipButton: UIButton = {
-        let button = UIButton()
+    private let skipButton: AddButton = {
+        let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.red,

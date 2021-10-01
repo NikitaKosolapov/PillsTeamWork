@@ -252,7 +252,6 @@ final class AddNewCourseView: UIView {
             action: #selector(doneButtonPressed),
             for: .touchUpInside
         )
-        button.addTarget(self, action: #selector(setNewBGColor), for: .touchDown)
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
         ])
@@ -457,15 +456,6 @@ final class AddNewCourseView: UIView {
     }
     
     // MARK: - Private Methods
-    
-    @objc private func setNewBGColor() {
-        doneButton.isSelected.toggle()
-        guard doneButton.isSelected else {
-            doneButton.backgroundColor = AppColors.blue
-            return
-        }
-        doneButton.backgroundColor = AppColors.selectedBlue
-    }
     
     private func addSubviews() {
         scrollView.addSubview(formStackView)

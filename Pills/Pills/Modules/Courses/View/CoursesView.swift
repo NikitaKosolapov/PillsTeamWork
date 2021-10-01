@@ -8,8 +8,11 @@
 import UIKit
 
 class CoursesView: UIView {
-    // MARK: Properties
+    
+    // MARK: - Private Properties
+    
     private var separatorFactory = SeparatorFactory()
+    
     
     // MARK: - Subviews
     let segmentedControl: UISegmentedControl = {
@@ -56,7 +59,8 @@ class CoursesView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
         button.backgroundColor = AppColors.blue
-        button.addTarget(self, action: #selector(setNewBGColor), for: .touchDown)
+        //button.addTarget(self, action: #selector(setNewBGColor), for: .touchDown)
+        button.isHighlighted = true
         return button
     }()
     

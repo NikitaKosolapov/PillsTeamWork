@@ -125,6 +125,7 @@ final class RateView: AlertView {
     }()
 
     // MARK: - Private Methods
+    
     @objc internal override func agreeButtonTouchUpInside() {
         rateViewDelegate?.provideFeedbackButtonTouchUpInside()
     }

@@ -24,14 +24,13 @@ final class JournalTableViewCell: UITableViewCell {
         numFormatter.numberStyle = .decimal
         return numFormatter
     }()
-    
+
     private lazy var majorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppLayout.Journal.cellBackgroundColor
         view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
-        view.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
-        view.layer.borderColor = UIColor.clear.cgColor
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -181,26 +180,12 @@ final class JournalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(false, animated: animated)
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        majorView.backgroundColor = highlighted ? AppColors.lightGray : AppLayout.Journal.cellBackgroundColor
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        majorView.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
-    }
-    
-    // MARK: - Public Methods
-    
-    public func configure(model: Event) {
-        journalTime = model.time
-        journalEntry = model.pill
-        if let isUsed = model.pill.schedule.first?.isUsed.value {
-            majorView.backgroundColor = isUsed ? AppColors.lightBlueSapphire : AppColors.lightRed
-            majorView.layer.borderColor = isUsed ? AppColors.blue.cgColor : AppColors.red.cgColor
-        }
-    }
-    
-    // swiftlint:disable function_body_length
+    // swiftlint: disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
         
@@ -240,14 +225,14 @@ final class JournalTableViewCell: UITableViewCell {
                 equalTo: pillTypeImageContainer.topAnchor,
                 constant: (
                     AppLayout.Journal.pillImageContainerSize.height -
-                    AppLayout.Journal.pillImageSize.height
+                        AppLayout.Journal.pillImageSize.height
                 ) / 2
             ),
             pillTypeImage.leadingAnchor.constraint(
                 equalTo: pillTypeImageContainer.leadingAnchor,
                 constant: (
                     AppLayout.Journal.pillImageContainerSize.width -
-                    AppLayout.Journal.pillImageSize.width
+                        AppLayout.Journal.pillImageSize.width
                 ) / 2
             ),
             pillTypeImage.widthAnchor.constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
@@ -257,7 +242,7 @@ final class JournalTableViewCell: UITableViewCell {
             timeLabel.heightAnchor.constraint(equalToConstant: AppLayout.Journal.timeLabelSize.height)
         ])
     }
-    
+
     // MARK: - Private Methods
     
     private func setupView() {
@@ -269,9 +254,17 @@ final class JournalTableViewCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        pillTypeImageContainer.addSubview(pillTypeImage)
+        contentView.addSubview(majorView)
         majorView.addSubview(stackView)
-        addSubview(majorView)
+        pillTypeImageContainer.addSubview(pillTypeImage)
     }
-    
+
+    // MARK: - Public Methods
+    func configure(model: Event) {
+        journalTime = model.time
+        journalEntry = model.pill
+        if let isUsed = model.pill.schedule.first?.isUsed.value {
+            majorView.backgroundColor = isUsed ? AppColors.lightBlueSapphire : AppColors.lightRed
+        }
+    }
 }

@@ -16,5 +16,11 @@ extension UIButton {
         setTitleColor(AppColors.whiteOnly, for: .normal)
         titleLabel?.font = font
     }
+    
+    open override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? AppColors.selectedBlue : AppColors.blue
+        }
+    }
 
 }

@@ -35,8 +35,8 @@ class AlertView: UIView {
         return label
     }()
     
-    private let agreeButton: UIButton = {
-        let button = UIButton()
+    private let agreeButton: AddButton = {
+        let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.blue,
@@ -51,8 +51,8 @@ class AlertView: UIView {
         return button
     }()
     
-    private let denyButton: UIButton = {
-        let button = UIButton()
+    private let denyButton: AddButton = {
+        let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.red,
@@ -66,7 +66,7 @@ class AlertView: UIView {
         )
         return button
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, additionalField, horizontalButtonsStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false

@@ -403,8 +403,8 @@
 		FA9D86FE26F110F700408604 /* MedicineDescription */ = {
 			isa = PBXGroup;
 			children = (
-				FA9D870026F1111300408604 /* View */,
 				FA9D86FF26F1110D00408604 /* Controller */,
+				FA9D870026F1111300408604 /* View */,
 			);
 			path = MedicineDescription;
 			sourceTree = "<group>";

@@ -7,18 +7,35 @@
 
 import UIKit
 
-class AddButton: UIButton {
+/// Класс отвечает за настройку кнопки типа Add
+final class AddButton: UIButton {
     
     override var isEnabled: Bool {
         willSet {
             super.isEnabled = newValue
             //  Для чего этот код? В темной теме бэкграунд кнопки Save отображается некорректно из-за alpha = 0.5
-//            backgroundColor =
-//                AppColors.lightBlueAddButtonBG.withAlphaComponent(
-//                    newValue ? 1 : 0.5
-//                )
+            //            backgroundColor =
+            //                AppColors.lightBlueAddButtonBG.withAlphaComponent(
+            //                    newValue ? 1 : 0.5
+            //                )
         }
     }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            if titleLabel?.text == "No, thanks" ||
+                titleLabel?.text == "Нет, спасибо" ||
+                titleLabel?.text == "Skip" ||
+                titleLabel?.text == "Пропустить" {
+                backgroundColor = isHighlighted ? AppColors.selectedRed : AppColors.red
+            } else {
+                backgroundColor = isHighlighted ? AppColors.selectedBlue : AppColors.blue
+            }
+            
+        }
+    }
+    
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +46,8 @@ class AddButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private functions
+    // MARK: - Private Methods
+    
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = AppColors.blue
@@ -38,8 +56,6 @@ class AddButton: UIButton {
         setTitleColor(AppColors.whiteOnly, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
-
-    private func setupConstraint() {
-        
-    }
+    
+    private func setupConstraint() {}
 }

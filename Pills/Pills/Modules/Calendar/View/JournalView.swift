@@ -126,7 +126,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
         // Add onDebugSwitchView instead callAddNewPill for debugging
         button.addTarget(self, action: #selector(callAddNewPill), for: .touchUpInside)
-        button.addTarget(self, action: #selector(setNewBGcolor), for: .touchDown)
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
         ])
@@ -274,10 +273,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Public Methods
     
-    public func updateBGColor() {
-           addButton.backgroundColor = AppColors.blue
-       }
-    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateString = dateFormatter.string(from: date)
         if self.testDatesWithEvent.contains(dateString) {
@@ -330,10 +325,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Private Methods
-    
-     @objc private func setNewBGcolor() {
-            addButton.backgroundColor = AppColors.selectedBlue
-        }
     
     private func configureFirstDayOfWeek() {
         if calendar.locale.identifier == "ru_US" {

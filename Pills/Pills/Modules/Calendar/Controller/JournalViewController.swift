@@ -10,7 +10,7 @@ import UIKit
 final class JournalViewController: BaseViewController<JournalView> {
     
     fileprivate var eventsToShow: [Event] = []
-
+    
     // MARK: - MOCK DATA
     var journalEntries: [RealmMedKitEntry] = [
         JournalMock.shared.entryExample1,
@@ -41,13 +41,12 @@ final class JournalViewController: BaseViewController<JournalView> {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
-        rootView.updateBGColor()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //TODO: После реализации сохранения модели в БД
-//        journalEntries = RealmService.shared.get(RealmMedKitEntry.self)
+        //        journalEntries = RealmService.shared.get(RealmMedKitEntry.self)
         prepareDataForDay(Date())
         rootView.delegate = self
         rootView.configure(tableDataSource: self)
@@ -79,18 +78,12 @@ extension JournalViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell =
-                tableView.dequeueReusableCell(
-                    withIdentifier: "JournalCell",
-                    for: indexPath
-                ) as? JournalTableViewCell
-        else {
-            return UITableViewCell()
-        }
-        
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "JournalCell",
+            for: indexPath
+        ) as? JournalTableViewCell else { return UITableViewCell() }
         cell.configure(model: eventsToShow[indexPath.row])
         return cell
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
