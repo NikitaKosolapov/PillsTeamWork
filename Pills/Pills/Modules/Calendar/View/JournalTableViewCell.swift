@@ -11,6 +11,8 @@ final class JournalTableViewCell: UITableViewCell {
     
     // MARK: - Private Properties
     
+    private var acceptedType: SelectionType?
+    
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -182,7 +184,17 @@ final class JournalTableViewCell: UITableViewCell {
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        majorView.backgroundColor = highlighted ? AppColors.lightGray : AppLayout.Journal.cellBackgroundColor
+
+        switch acceptedType {
+        case .undefined:
+            majorView.backgroundColor = highlighted ? AppColors.selectedGray : AppLayout.Journal.cellBackgroundColor
+        case .used:
+            majorView.backgroundColor = highlighted ? AppColors.selectedBlue : .blue
+        case .unused:
+            majorView.backgroundColor = highlighted ? AppColors.selectedRed : .red
+        case .none:
+            print("Unknown")
+        }
     }
     
     // swiftlint: disable function_body_length

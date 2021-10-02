@@ -31,6 +31,12 @@ enum Frequency: String, CaseIterable {
     }
 }
 
+enum SelectionType {
+    case used
+    case unused
+    case undefined
+}
+
 enum PillType: String, CaseIterable {
     case capsules
     case tablets
@@ -137,6 +143,7 @@ enum ConcentrationUnit: String {
 }
 
 class RealmTimePoint: Object {
+    
     @objc dynamic var time = Date()  // time and date when to use a pill
     var isUsed = RealmOptional<Bool>() // false - wasn't used yet, true - was used
 
