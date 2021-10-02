@@ -33,6 +33,7 @@ final class JournalTableViewCell: UITableViewCell {
         view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         view.isUserInteractionEnabled = true
         view.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
+        view.layer.borderColor = UIColor.clear.cgColor
         return view
     }()
     
