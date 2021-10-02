@@ -20,6 +20,11 @@ or alternatively using `brew install fastlane`
 fastlane project
 ```
 
+### testflight_lane
+```
+fastlane testflight_lane
+```
+
 ### release
 ```
 fastlane release

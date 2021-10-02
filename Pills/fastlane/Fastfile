@@ -13,10 +13,15 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+app_identifier = "gb.pillsTime"
+username = "kosolapovnikitav@gmail.com"
+
 default_platform(:ios)
-  lane :project do
-  # checkout release branch
-  # ensure_git_status_clean
+  lane :testflight_lane do
+
+    # sing code
+    cert
+    sigh
 
     # clear data
     clear_derived_data
@@ -25,25 +30,40 @@ default_platform(:ios)
         workspace: "Pills.xcworkspace"
     )
 
-    # update a dependencies
+    # update dependencies
     cocoapods(
          use_bundle_exec: false
     )
 
-    # run_tests
+    # increment build number
+    version = get_version_number(
+                     xcodeproj: "Piils.xcodeproj", 
+                     target: "Pills"
+              )
 
-    increment_build_number
-    #set_info_plist_value(path: "./Pills/Application/Info.plist", key: "CFBundleShortVersionString", value: "2.0")
+    build_number = latest_testflight_build_number(
+                         version: version,   
+                         app_identifier: app_identifier
+                    )
 
-  build_app(
-    scheme: "Pills", #The project's scheme.
-    configuration: "Debug", #The configuration to use when building the app. 
-    export_method: "development", #Method used to export the archive.
-    include_symbols: true, #Should the ipa file include symbols?
-    include_bitcode: true, #Should the ipa file include bitcode?
-    silent: true, #Hide all information that's not necessary while building
-    xcargs: "-allowProvisioningUpdates" #enable Automatically Manage Signing feature
-  )
+    increment_build_number({
+      build_number: build_number + 1
+    })
+
+    # gym
+    build_app(
+      scheme: "Pills", #The project's scheme.
+      configuration: "Debug", #The configuration to use when building the app. 
+      include_symbols: true, #Should the ipa file include symbols?
+      include_bitcode: true, #Should the ipa file include bitcode?
+      silent: true, #Hide all information that's not necessary while building
+    )
+
+    # testFlight
+    upload_to_testflight(
+      username: username,
+      app_identifier: app_identifier
+    )
 
     # commit changes to git
 
@@ -57,17 +77,4 @@ default_platform(:ios)
     #dd_git_tag(
     # tag: tag
     #)
-
-    upload_to_testflight(
-      username: "kosolapovnikitav@gmail.com",
-      app_identifier: "gb.pillsTime"
-    )
-  end
-
-  lane :release do
-    sync_code_signing
-    disable_automatic_code_signing(path: "Pills.xcodeproj")
-    build_app
-    enable_automatic_code_signing(path: "Pills.xcodeproj")
-    upload_to_testflight
   end
