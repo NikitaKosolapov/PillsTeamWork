@@ -32,6 +32,7 @@ final class JournalTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         view.isUserInteractionEnabled = true
+        view.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
         return view
     }()
     
@@ -183,17 +184,38 @@ final class JournalTableViewCell: UITableViewCell {
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-
-        switch acceptedType {
-        case .used:
-            majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
-        case .unused:
-            majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
-        case .undefined:
-            majorView.backgroundColor = highlighted ? AppColors.highlightedGray : AppColors.lightGray
-        case .none:
-            break
+        let theme = traitCollection.userInterfaceStyle
+        
+        switch theme {
+        case .unspecified:
+            print("None")
+        case .light:
+            switch acceptedType {
+            case .used:
+                majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
+            case .unused:
+                majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
+            case .undefined:
+                majorView.backgroundColor = highlighted ? AppColors.highlightedGray : AppColors.lightGray
+            case .none:
+                break
+            }
+        case .dark:
+            switch acceptedType {
+            case .used:
+                majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
+            case .unused:
+                majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
+            case .undefined:
+                majorView.backgroundColor = highlighted ? AppColors.sapphireDark : AppColors.lightGray
+            case .none:
+                break
+            }
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        majorView.layer.borderWidth = traitCollection.userInterfaceStyle == .dark ? 1 : 0
     }
     
     // swiftlint: disable function_body_length
@@ -279,8 +301,10 @@ final class JournalTableViewCell: UITableViewCell {
         switch acceptedType {
         case .used:
             majorView.backgroundColor = AppColors.lightBlueSapphire
+            majorView.layer.borderColor = AppColors.blue.cgColor
         case .unused:
             majorView.backgroundColor = AppColors.lightRed
+            majorView.layer.borderColor = AppColors.red.cgColor
         case .undefined:
             majorView.backgroundColor = AppColors.lightGray
         case .none:

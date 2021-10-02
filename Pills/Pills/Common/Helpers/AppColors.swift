@@ -20,6 +20,7 @@ enum AppColors {
     
     // Commom colors section
     static let black = UIColor(named: "black") ?? badColor
+    static let sapphireDark = UIColor(named: "sapphireDark") ?? badColor
     static let blackOnly = UIColor(named: "blackOnly") ?? badColor
     static let blue = UIColor(named: "blue") ?? badColor
     static let selectedBlue = UIColor(named: "selectedBlue") ?? badColor

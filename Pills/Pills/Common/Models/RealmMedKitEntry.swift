@@ -31,12 +31,6 @@ enum Frequency: String, CaseIterable {
     }
 }
 
-enum SelectionType {
-    case used
-    case unused
-    case undefined
-}
-
 enum PillType: String, CaseIterable {
     case capsules
     case tablets
