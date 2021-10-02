@@ -43,4 +43,8 @@ enum AppColors {
     static let greenBlue = UIColor(named: "greenBlue") ?? badColor
     static let whiteAnthracite = UIColor(named: "whiteAnthracite") ?? badColor
     static let lightBlueBlack = UIColor(named: "lightBlueBlack") ?? badColor
+    static let highlightedGray = UIColor(named: "highlightedGray") ?? badColor
+    static let highlightedRed = UIColor(named: "highlightedRed") ?? badColor
+    static let highlighedBlue = UIColor(named: "highlighedBlue") ?? badColor
+    static let unfilledProgressBar = UIColor(named: "unfilledProgressBar") ?? badColor
 }

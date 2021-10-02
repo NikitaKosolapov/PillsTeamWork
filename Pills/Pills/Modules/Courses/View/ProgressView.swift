@@ -56,7 +56,7 @@ final class ProgressView: UIView {
     // MARK: - Private Methods
     
     private func configureUI() {
-        backgroundColor = AppColors.semiGrayOnly
+        backgroundColor = AppColors.unfilledProgressBar
         layer.cornerRadius = 10.0
         configureProgressView()
     }

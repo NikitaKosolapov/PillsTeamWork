@@ -50,7 +50,7 @@ final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
 extension MedicineDescriptionVC: MedicineDescriptionViewDelegate {
     func acceptButtonTapped() {
         realm.update {
-            event?.pill.schedule.first?.isUsed.value = true
+            event?.pill.schedule.first?.acceptedType = .used
         }
         delegate?.update(index: index)
         dismiss(animated: false, completion: nil)
@@ -58,7 +58,7 @@ extension MedicineDescriptionVC: MedicineDescriptionViewDelegate {
     
     func skipButtonTapped() {
         realm.update {
-            event?.pill.schedule.first?.isUsed.value = false
+            event?.pill.schedule.first?.acceptedType = .unused
         }
         delegate?.update(index: index)
         dismiss(animated: false, completion: nil)

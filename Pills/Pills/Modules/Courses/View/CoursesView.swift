@@ -59,8 +59,6 @@ class CoursesView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
         button.backgroundColor = AppColors.blue
-        //button.addTarget(self, action: #selector(setNewBGColor), for: .touchDown)
-        button.isHighlighted = true
         return button
     }()
     
@@ -85,15 +83,6 @@ class CoursesView: UIView {
     }
     
     // MARK: - Private Methods
-    
-    @objc private func setNewBGColor() {
-        addButton.isSelected.toggle()
-        guard addButton.isSelected else {
-            addButton.backgroundColor = AppColors.blue
-            return
-        }
-        addButton.backgroundColor = AppColors.selectedBlue
-    }
     
     private func configureUI() {
         backgroundColor = AppColors.white

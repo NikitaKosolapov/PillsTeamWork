@@ -10,8 +10,8 @@ import UIKit
 final class JournalTableViewCell: UITableViewCell {
     
     // MARK: - Private Properties
-    
-    private var acceptedType: SelectionType?
+
+    private var acceptedType: AcceptedType?
     
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -30,7 +30,6 @@ final class JournalTableViewCell: UITableViewCell {
     private lazy var majorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppLayout.Journal.cellBackgroundColor
         view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
         view.isUserInteractionEnabled = true
         return view
@@ -186,14 +185,14 @@ final class JournalTableViewCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
 
         switch acceptedType {
-        case .undefined:
-            majorView.backgroundColor = highlighted ? AppColors.selectedGray : AppLayout.Journal.cellBackgroundColor
         case .used:
-            majorView.backgroundColor = highlighted ? AppColors.selectedBlue : .blue
+            majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
         case .unused:
-            majorView.backgroundColor = highlighted ? AppColors.selectedRed : .red
+            majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
+        case .undefined:
+            majorView.backgroundColor = highlighted ? AppColors.highlightedGray : AppColors.lightGray
         case .none:
-            print("Unknown")
+            break
         }
     }
     
@@ -275,8 +274,17 @@ final class JournalTableViewCell: UITableViewCell {
     func configure(model: Event) {
         journalTime = model.time
         journalEntry = model.pill
-        if let isUsed = model.pill.schedule.first?.isUsed.value {
-            majorView.backgroundColor = isUsed ? AppColors.lightBlueSapphire : AppColors.lightRed
+        acceptedType = model.pill.schedule.first?.acceptedType
+
+        switch acceptedType {
+        case .used:
+            majorView.backgroundColor = AppColors.lightBlueSapphire
+        case .unused:
+            majorView.backgroundColor = AppColors.lightRed
+        case .undefined:
+            majorView.backgroundColor = AppColors.lightGray
+        case .none:
+            break
         }
     }
 }

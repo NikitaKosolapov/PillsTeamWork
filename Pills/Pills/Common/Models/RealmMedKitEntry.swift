@@ -120,6 +120,12 @@ enum PillType: String, CaseIterable {
     }
 }
 
+enum AcceptedType: String {
+    case used
+    case unused
+    case undefined
+}
+
 enum Usage: String {
     case beforeMeals
     case whileEating
@@ -145,13 +151,18 @@ enum ConcentrationUnit: String {
 class RealmTimePoint: Object {
     
     @objc dynamic var time = Date()  // time and date when to use a pill
-    var isUsed = RealmOptional<Bool>() // false - wasn't used yet, true - was used
+    @objc dynamic var acceptedTypeString = "" // false - wasn't used yet, true - was used
+
+    var acceptedType: AcceptedType {
+        get { return AcceptedType(rawValue: acceptedTypeString) ?? .undefined }
+        set { acceptedTypeString = newValue.rawValue }
+    }
 
     required override init() {}
     
-    init(time: Date, isUsed: Bool?) {
+    init(time: Date, acceptedType: AcceptedType) {
         self.time = time
-        self.isUsed.value = isUsed
+        self.acceptedTypeString = acceptedType.rawValue
     }
 }
 
