@@ -126,9 +126,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
         // Add onDebugSwitchView instead callAddNewPill for debugging
         button.addTarget(self, action: #selector(callAddNewPill), for: .touchUpInside)
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
-        ])
         button.backgroundColor = AppColors.blue
         return button
     }()
@@ -137,8 +134,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         let stackView = UIStackView(
             arrangedSubviews: [
                 journalTableView,
-                emptyTableStub,
-                addButton
+                emptyTableStub
             ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -161,15 +157,14 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
         handlePan()
     }
-    
+
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
         let shouldBegin = journalTableView.contentOffset.y <= -journalTableView.contentInset.top
-        
+
         if shouldBegin {
             calendar.currentPage = Date()
             let velocity = scopeGesture.velocity(in: self)
-            
+
             switch calendar.scope {
             case .month:
                 return velocity.y < 0
@@ -227,10 +222,12 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
                 equalTo: self.trailingAnchor,
                 constant: -AppLayout.Journal.paddingRight
             ),
-            stackViewTableViewAndButton.bottomAnchor.constraint(
-                equalTo: self.safeAreaLayoutGuide.bottomAnchor,
-                constant: -AppLayout.Journal.paddingBottom
-            ),
+
+            addButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: AppLayout.Journal.paddingLeft),
+            addButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -AppLayout.Journal.paddingLeft),
+            addButton.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton),
+            addButton.topAnchor.constraint(equalTo: stackViewTableViewAndButton.bottomAnchor, constant: 6),
+            addButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -6),
             
             manImageContainer.topAnchor.constraint(
                 equalTo: emptyTableStub.topAnchor,
@@ -287,17 +284,17 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     }
     
     func handlePan() {
-        if scopeGesture.state == .changed {
-            let velocity = scopeGesture.velocity(in: self)
-            if velocity.y < 0 {
-                calendar.appearance.headerTitleColor = AppColors.black
-                scopeGesture.state = .ended
-            } else if velocity.y > 0 {
-                calendar.appearance.headerTitleColor = AppColors.black
-            }
+        let translations = scopeGesture.translation(in: self)
+
+        if translations.y <= -183 {
+            scopeGesture.isEnabled = false
+            scopeGesture.isEnabled = true
+        } else if translations.y >= 183 {
+            scopeGesture.isEnabled = false
+            scopeGesture.isEnabled = true
         }
     }
-    
+
     func configure(tableDataSource: UITableViewDataSource) {
         addGestureRecognizer(scopeGesture)
         journalTableView.panGestureRecognizer.require(toFail: scopeGesture)
@@ -380,6 +377,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         // TODO: make visible when table has no data
         // - when mock data will be replaced with real one
         addSubview(stackViewTableViewAndButton)
+        addSubview(addButton)
         emptyTableStub.addSubview(manImageContainer)
         emptyTableStub.addSubview(manHintTitleLabel)
         emptyTableStub.addSubview(manHintSubtitleLabel)
@@ -390,6 +388,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
 extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeighConstraint.constant = bounds.height
+
         layoutIfNeeded()
     }
     

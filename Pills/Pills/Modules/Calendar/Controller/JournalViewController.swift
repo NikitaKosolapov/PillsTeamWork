@@ -33,7 +33,7 @@ final class JournalViewController: BaseViewController<JournalView> {
             return event1.time < event2.time ? true : false
         }
     }
-    
+
     // ---------------------------------------------------------
     // MARK: - Controller logic
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +42,7 @@ final class JournalViewController: BaseViewController<JournalView> {
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //TODO: После реализации сохранения модели в БД
@@ -53,7 +53,7 @@ final class JournalViewController: BaseViewController<JournalView> {
         rootView.journalTableView.dataSource = self
         rootView.journalTableView.delegate = self
     }
-    
+
     @objc func addNewCourseButtonAction(sender: UIButton!) {
         let addNewCourseViewController = AddNewCourseViewController()
         addNewCourseViewController.modalPresentationStyle = .pageSheet
@@ -76,7 +76,7 @@ extension JournalViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventsToShow.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "JournalCell",
