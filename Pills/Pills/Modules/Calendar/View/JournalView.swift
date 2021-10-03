@@ -27,7 +27,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.scope = .week
-        calendar.placeholderType = .none
         calendar.clipsToBounds = true
         calendar.appearance.headerDateFormat = "LLLL yyyy"
         return calendar
@@ -139,7 +138,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
-        stackView.spacing = 5
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -162,7 +161,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         let shouldBegin = journalTableView.contentOffset.y <= -journalTableView.contentInset.top
 
         if shouldBegin {
-            calendar.currentPage = Date()
             let velocity = scopeGesture.velocity(in: self)
 
             switch calendar.scope {
@@ -210,7 +208,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
             
             minusView.topAnchor.constraint(equalTo: rounderСornersView.topAnchor, constant: 6),
             minusView.centerXAnchor.constraint(equalTo: rounderСornersView.centerXAnchor),
-            minusView.widthAnchor.constraint(equalToConstant: 35),
+            minusView.widthAnchor.constraint(equalToConstant: 36),
             minusView.heightAnchor.constraint(equalToConstant: 5),
             
             stackViewTableViewAndButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 28),
@@ -286,12 +284,10 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     func handlePan() {
         let translations = scopeGesture.translation(in: self)
 
-        if translations.y <= -183 {
-            scopeGesture.isEnabled = false
-            scopeGesture.isEnabled = true
-        } else if translations.y >= 183 {
-            scopeGesture.isEnabled = false
-            scopeGesture.isEnabled = true
+        if translations.y <= -AppLayout.Journal.Calendar.headerLabelHeight {
+            enabledScope()
+        } else if translations.y >= AppLayout.Journal.Calendar.headerLabelHeight {
+            enabledScope()
         }
     }
 
@@ -342,6 +338,11 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         } else {
             calendar.setScope(.week, animated: true)
         }
+    }
+    
+    private func enabledScope() {
+        scopeGesture.isEnabled = false
+        scopeGesture.isEnabled = true
     }
     
     private func configureCalendarDefaultUI() {
@@ -401,4 +402,5 @@ extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
         return cell
     }
+    
 }

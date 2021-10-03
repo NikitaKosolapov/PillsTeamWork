@@ -39,6 +39,8 @@ final class AppImages {
         static let downArrow = UIImage(named: "downArrow")
         static let rightArrow = UIImage(named: "rightArrow")
         static let calendar = UIImage(named: "calendar")
+        static let nextMonthArrow = UIImage(named: "nextMonthArrow")
+        static let prevMonthArrow = UIImage(named: "prevMonthArrow")
     }
     
     enum AddCourse {

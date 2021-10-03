@@ -32,6 +32,12 @@ enum AppLayout {
         enum Calendar {
             static let paddingLeft: CGFloat = 10
             static let paddingRight: CGFloat = 10
+            static let heightArrowButton: CGFloat = 12
+            static let widthArrowButton: CGFloat = 10
+            static let arrowButtonTopSpacing: CGFloat = 16
+            static let arrowButtonTrailing: CGFloat = 32
+            static let arrowButtonLeading: CGFloat = -arrowButtonTrailing
+            static let headerLabelHeight: CGFloat = 183
         }
 
         enum Stub {

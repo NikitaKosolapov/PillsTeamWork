@@ -56,7 +56,7 @@ final class MedicineDescriptionView: UIView {
     
     private let pillsQuantityLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.black
+        label.textColor = AppColors.semiGrayFont
         label.font = AppLayout.MedicineDescription.pillsQuantityFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -66,7 +66,7 @@ final class MedicineDescriptionView: UIView {
     
     private let usageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.black
+        label.textColor = AppColors.semiGrayFont
         label.font = AppLayout.MedicineDescription.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
@@ -198,7 +198,7 @@ final class MedicineDescriptionView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addBlur(style: .light, alpha: 0.7, cornerRadius: 0, zPosition: -1)
+        addBlur(style: .light, alpha: 0.3, cornerRadius: 0, zPosition: -1)
     }
     
     // MARK: - Public Methods

@@ -64,7 +64,7 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let instructionLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.black
+        label.textColor = AppColors.semiGrayFont
         label.font = AppLayout.Journal.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -74,7 +74,7 @@ final class JournalTableViewCell: UITableViewCell {
     
     private let usageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.black
+        label.textColor = AppColors.semiGrayFont
         label.font = AppLayout.Journal.instructionFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
