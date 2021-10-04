@@ -6,36 +6,44 @@
 //
 
 import UIKit
+import SnapKit
 
-class CoursesView: UIView {
+/// Class contains Ui elements for CoursesViewController
+final class CoursesView: UIView {
     
-    // MARK: - Private Properties
+    // MARK: - Public Methods
     
-    private var separatorFactory = SeparatorFactory()
-    
-    
-    // MARK: - Subviews
-    let segmentedControl: UISegmentedControl = {
+    public let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: [Text.AidKit.active, Text.AidKit.completed])
         segmentedControl.setBackgroundImage(UIImage(color: AppColors.whiteOnly), for: .normal, barMetrics: .default)
         segmentedControl.setBackgroundImage(UIImage(color: AppColors.blue), for: .selected, barMetrics: .default)
         segmentedControl.layer.borderWidth = 1
         segmentedControl.layer.borderColor = AppColors.semiGrayOnly.cgColor
-        segmentedControl.setDividerImage(UIImage(color: AppColors.semiGrayOnly), forLeftSegmentState: .selected,
-                                         rightSegmentState: .normal, barMetrics: .default)
-        segmentedControl.setDividerImage(UIImage(color: AppColors.semiGrayOnly), forLeftSegmentState: .normal,
-                                         rightSegmentState: .selected, barMetrics: .default)
+        segmentedControl.setDividerImage(
+            UIImage(color: AppColors.semiGrayOnly),
+            forLeftSegmentState: .selected,
+            rightSegmentState: .normal,
+            barMetrics: .default
+        )
+        segmentedControl.setDividerImage(
+            UIImage(color: AppColors.semiGrayOnly),
+            forLeftSegmentState: .normal,
+            rightSegmentState: .selected,
+            barMetrics: .default
+        )
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: AppColors.whiteOnly],
-            for: .selected)
+            for: .selected
+        )
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: AppColors.semiGrayOnly],
-            for: .normal)
+            for: .normal
+        )
         segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
     }()
     
-    let tableView: UITableView = {
+    public let coursesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
@@ -47,14 +55,14 @@ class CoursesView: UIView {
         return tableView
     }()
     
-    let stubView: StubCourseView = {
+    public let coursesStubView: StubCourseView = {
         let view = StubCourseView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
     }()
     
-    let addButton: AddButton = {
+    public let addButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
@@ -62,20 +70,33 @@ class CoursesView: UIView {
         return button
     }()
     
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
+    // MARK: - Private Properties
+    
+    private var separatorFactory = SeparatorFactory()
+    
+    private lazy var mainStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [
+            segmentedControl,
+            coursesStubView,
+            coursesTableView,
+            addButton
+        ])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.distribution = .fill
         view.alignment = .fill
-        view.spacing = 5
+        view.spacing = AppLayout.AidKit.mainStackViewSpacing
         return view
     }()
     
-    // MARK: - Init
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configureUI()
+        
+        addSubviews()
+        setupView()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -84,39 +105,30 @@ class CoursesView: UIView {
     
     // MARK: - Private Methods
     
-    private func configureUI() {
+    private func setupView() {
         backgroundColor = AppColors.white
-        configureSegmentedControl()
-        configureAddButton()
-        configureStackView()
     }
     
-    private func configureSegmentedControl() {
-        NSLayoutConstraint.activate(
-            [segmentedControl.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightSegmentControl)])
+    private func addSubviews() {
+        addSubview(mainStackView)
     }
     
-    private func configureAddButton() {
-        NSLayoutConstraint.activate(
-            [addButton.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightAddButton)])
-    }
-    
-    private func configureStackView() {
-        stackView.addArrangedSubviews(views: segmentedControl,
-                                      stubView,
-                                      tableView,
-                                      addButton)
-        addSubview(stackView)
-        let safeArea = safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 19.0),
-            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                               constant: AppLayout.AidKit.leadingStackView),
-            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
-                                                constant: AppLayout.AidKit.trailingStackView),
-            stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
-                                              constant: -AppLayout.AidKit.indentFromBottomAddButton)
-        ])
+    private func setupLayout() {
+        
+        segmentedControl.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AidKit.heightSegmentControl)
+        }
+        
+        addButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AidKit.heightAddButton)
+        }
+        
+        mainStackView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(AppLayout.AidKit.topAnchorStackView)
+            $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(AppLayout.AidKit.leadingStackView)
+            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(AppLayout.AidKit.trailingStackView)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-AppLayout.AidKit.indentFromBottomAddButton)
+        }
     }
     
 }

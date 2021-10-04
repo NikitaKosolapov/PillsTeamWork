@@ -22,19 +22,20 @@ final class CourseViewModelFactory {
         dateFormatter.dateFormat = "dd MMM"
         let dateStartOfCourse = dateFormatter.string(from: model.dateStartOfCourse)
         let dateEndOfCourse = dateFormatter.string(from: model.dateEndOfCourse)
-        let countOfCourseDays = Int(model.dateEndOfCourse.timeIntervalSince(model.dateStartOfCourse)/60/60/24)
-        var countOfDaysPassed = countOfCourseDays - Int(model.dateEndOfCourse.timeIntervalSinceNow/60/60/24)
+        let countOfCourseDays = Int(model.dateEndOfCourse.timeIntervalSince(model.dateStartOfCourse) / 60 / 60 / 24)
+        var countOfDaysPassed = countOfCourseDays - Int(model.dateEndOfCourse.timeIntervalSinceNow / 60 / 60 / 24)
         if countOfDaysPassed > countOfCourseDays {
             countOfDaysPassed = countOfCourseDays
         }
         
-        let widthProgress = CGFloat(countOfDaysPassed)/CGFloat(countOfCourseDays)*AppLayout.AidKit.widthProgressiveView
+        let widthProgress = CGFloat(countOfDaysPassed) / CGFloat(countOfCourseDays) *
+        AppLayout.AidKit.widthProgressiveView
         return CourseViewModel(
             imagePill: model.imagePill,
             namePill: model.namePill,
             durationOfCourseString: dateStartOfCourse + " - " + dateEndOfCourse,
             countPassedDaysString:  String(countOfDaysPassed) + " " + Text.AidKit.from +
-                " " + String(countOfCourseDays) + " " + Text.AidKit.days,
+            " " + String(countOfCourseDays) + " " + Text.AidKit.days,
             widthProgress: widthProgress)
-        }
+    }
 }

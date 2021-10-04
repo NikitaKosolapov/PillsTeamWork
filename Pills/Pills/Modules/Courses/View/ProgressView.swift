@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import SnapKit
 
+/// Class contains UI elements for ProgressView
 final class ProgressView: UIView {
     
     // MARK: - Private Properties
@@ -26,7 +28,10 @@ final class ProgressView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        
+        setupView()
+        addSubviews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -55,22 +60,24 @@ final class ProgressView: UIView {
     
     // MARK: - Private Methods
     
-    private func configureUI() {
+    private func setupView() {
         backgroundColor = AppColors.unfilledProgressBar
         layer.cornerRadius = 10.0
-        configureProgressView()
     }
     
-    private func configureProgressView() {
+    private func addSubviews() {
+        addSubview(progressView)
+    }
+    
+    private func setupLayout() {
         layoutMargins = UIEdgeInsets.zero
         let marginsGuide = layoutMarginsGuide
-        addSubview(progressView)
         
-        NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: marginsGuide.topAnchor),
-            progressView.leadingAnchor.constraint(equalTo: marginsGuide.leadingAnchor),
-            progressView.bottomAnchor.constraint(equalTo: marginsGuide.bottomAnchor)
-        ])
+        progressView.snp.makeConstraints {
+            $0.top.equalTo(marginsGuide.snp.top)
+            $0.leading.equalTo(marginsGuide.snp.leading)
+            $0.bottom.equalTo(marginsGuide.snp.bottom)
+        }
     }
     
 }

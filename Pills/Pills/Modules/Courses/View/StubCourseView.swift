@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import SnapKit
 
+/// Class contains UI elements for StubView when there is no data
 final class StubCourseView: UIView {
     
     // MARK: - Private Properties
@@ -26,7 +28,7 @@ final class StubCourseView: UIView {
         label.text = Text.AidKit.stubText
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
+        label.font = AppLayout.Fonts.bigSemibold
         label.textColor = AppColors.black
         return label
     }()
@@ -35,7 +37,10 @@ final class StubCourseView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        
+        setupView()
+        addSubviews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -44,40 +49,29 @@ final class StubCourseView: UIView {
     
     // MARK: - Private Methods
     
-    private func configureUI() {
+    private func setupView() {
         backgroundColor = AppColors.white
-        configureImageView()
-        configureLabel()
     }
     
-    private func configureImageView() {
-        let safeArea = safeAreaLayoutGuide
+    private func addSubviews() {
         addSubview(stubImageView)
-        
-        NSLayoutConstraint.activate([
-            stubImageView.topAnchor.constraint(
-                equalTo: safeArea.topAnchor,
-                constant: AppLayout.AidKit.indentImageFromTop
-            ),
-            stubImageView.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: AppLayout.AidKit.leadingStubImage
-            ),
-            stubImageView.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.widthStubImage),
-            stubImageView.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.heightStubImage)
-        ])
+        addSubview(stubInfolabel)
     }
     
-    private func configureLabel() {
-        let marginGuide = layoutMarginsGuide
-        addSubview(stubInfolabel)
+    private func setupLayout() {
         
-        NSLayoutConstraint.activate([
-            stubInfolabel.topAnchor.constraint(equalTo: stubImageView.bottomAnchor, constant: 15.0
-            ),
-            stubInfolabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor),
-            stubInfolabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor)
-        ])
+        stubImageView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(AppLayout.AidKit.indentImageFromTop)
+            $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(AppLayout.AidKit.leadingStubImage)
+            $0.width.equalTo(AppLayout.AidKit.widthStubImage)
+            $0.height.equalTo(AppLayout.AidKit.heightStubImage)
+        }
+        
+        stubInfolabel.snp.makeConstraints {
+            $0.top.equalTo(stubImageView.snp.bottom).offset(AppLayout.AidKit.stubInfoLabelTopAnchor)
+            $0.leading.equalTo(layoutMarginsGuide.snp.leading)
+            $0.trailing.equalTo(layoutMarginsGuide.snp.trailing)
+        }
     }
     
 }

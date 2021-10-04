@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
-class CourseCell: UITableViewCell {
+/// Class contains UI elements for a cell
+final class CourseCell: UITableViewCell {
+    
     // MARK: - Private Properties
     
     private lazy var courseCellView: CourseCellView = {
@@ -26,7 +29,10 @@ class CourseCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureUI()
+        
+        setupView()
+        addSubviews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -42,48 +48,35 @@ class CourseCell: UITableViewCell {
     
     // MARK: - Private Methods
     
-    private func configureUI () {
+    private func setupView() {
         backgroundColor = AppColors.white
-        configureContentView()
-        configureProgressView()
-        configureMainView()
-    }
-    
-    private func configureContentView () {
         contentView.backgroundColor = AppColors.white
     }
     
-    private func configureProgressView () {
-        let safeArea = contentView.safeAreaLayoutGuide
+    private func addSubviews() {
         contentView.addSubview(progressView)
-        
-        NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(
-                equalTo: safeArea.topAnchor,
-                constant: AppLayout.AidKit.widthIndentBetweenCells + AppLayout.AidKit.heightVisiblePartOfProgressView
-            ),
-            progressView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            progressView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            progressView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
-        ])
+        contentView.addSubview(courseCellView)
     }
     
-    private func configureMainView () {
+    private func setupLayout() {
         let safeArea = contentView.safeAreaLayoutGuide
-        contentView.addSubview(courseCellView)
         
-        NSLayoutConstraint.activate([
-            courseCellView.topAnchor.constraint(
-                equalTo: safeArea.topAnchor,
-                constant: AppLayout.AidKit.widthIndentBetweenCells
-            ),
-            courseCellView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            courseCellView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            courseCellView.bottomAnchor.constraint(
-                equalTo: progressView.safeAreaLayoutGuide.bottomAnchor,
-                constant: -AppLayout.AidKit.heightVisiblePartOfProgressView
+        progressView.snp.makeConstraints {
+            $0.top.equalTo(safeArea.snp.top).offset(
+                AppLayout.AidKit.widthIndentBetweenCells + AppLayout.AidKit.heightVisiblePartOfProgressView
             )
-        ])
+            $0.leading.equalTo(safeArea.snp.leading)
+            $0.trailing.equalTo(safeArea.snp.trailing)
+            $0.bottom.equalTo(safeArea.snp.bottom)
+        }
+        
+        courseCellView.snp.makeConstraints {
+            $0.top.equalTo(safeArea.snp.top).offset(AppLayout.AidKit.widthIndentBetweenCells)
+            $0.leading.equalTo(safeArea.snp.leading)
+            $0.trailing.equalTo(safeArea.snp.trailing)
+            $0.bottom.equalTo(progressView.safeAreaLayoutGuide.snp.bottom)
+                .offset(-AppLayout.AidKit.heightVisiblePartOfProgressView)
+        }
     }
     
 }

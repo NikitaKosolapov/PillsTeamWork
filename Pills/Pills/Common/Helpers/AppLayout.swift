@@ -14,7 +14,7 @@ enum AppLayout {
     }
     
     static var halfWidthScreen: CGFloat {
-        return widthScreen/2
+        return widthScreen / 2
     }
     
     static var heightScreen: CGFloat {
@@ -46,6 +46,7 @@ enum AppLayout {
         }
 
         // MARK: - UITableViewCell
+        
         static let timeFont = AppLayout.Fonts.normalRegular
         static let timeLabelSize = CGSize(width: 54, height: 18)
         
@@ -100,9 +101,12 @@ enum AppLayout {
     
     enum AidKit {
         // MARK: - UIStackView
+        
         static var indentStackView: CGFloat = 16.0
+        static var topAnchorStackView: CGFloat = 19.0
+        static var mainStackViewSpacing: CGFloat = 5
         static var widthStackView: CGFloat {
-            return AppLayout.widthScreen - (indentStackView*2)
+            return AppLayout.widthScreen - (indentStackView * 2)
         }
         static var leadingStackView: CGFloat {
             return indentStackView
@@ -112,9 +116,11 @@ enum AppLayout {
         }
         
         // MARK: - UISegmentControl
+        
         static let heightSegmentControl: CGFloat = 37.0
         
         // MARK: - UITableViewCell
+        
         static let pillImageSize = CGSize(width: 25, height: 25)
         static let pillImageContainerSize = CGSize(width: 36, height: 36)
         static let pillImageContainerRadius: CGFloat = 18
@@ -123,7 +129,13 @@ enum AppLayout {
         static let topCourseCellView: CGFloat = 20.0
         static let bottomCourseCellView: CGFloat = -topCourseCellView
         
+        // MARK: - CoursesCellView
+        
+        static let durationAndDaysStackViewSpacing: CGFloat = 10
+        static let mainCoursesCellStackViewSpacing: CGFloat = 10
+        
         // MARK: - UITableView
+        
         static let tableEstimatedRowHeight: CGFloat = 10
         static let tableContentInset = UIEdgeInsets(top: 10.0, left: 0, bottom: 10, right: 0)
         static var widthProgressiveView: CGFloat {
@@ -133,28 +145,31 @@ enum AppLayout {
         static let heightVisiblePartOfProgressView: CGFloat = 6.0
         
         // MARK: - UIStubView
+        
         static var indentImageFromTop: CGFloat {
-            return AppLayout.heightScreen/10.0
+            return AppLayout.heightScreen / 10.0
         }
         static var widthStubImage: CGFloat {
-            return widthStackView/2
+            return widthStackView / 2
         }
         static var heightStubImage: CGFloat {
-            return widthStackView/2
+            return widthStackView / 2
         }
         static var leadingStubImage: CGFloat {
-            return (widthStackView - widthStubImage)/2.0
+            return (widthStackView - widthStubImage) / 2.0
         }
+        static var stubInfoLabelTopAnchor: CGFloat = 15.0
         
         // MARK: - UIAddButton
+        
         static let heightAddButton: CGFloat = 52.0
         static let indentFromBottomAddButton: CGFloat = 14
     }
 
     enum Alert {
         static let indentView: CGFloat = 36
-        static let widthView: CGFloat = widthScreen - indentView*2
-        static let leadingView: CGFloat = (AppLayout.widthScreen - widthView)/2
+        static let widthView: CGFloat = widthScreen - indentView * 2
+        static let leadingView: CGFloat = (AppLayout.widthScreen - widthView) / 2
         static let heightView: CGFloat = 181.0
         static let topView: CGFloat = 0.25 * AppLayout.heightScreen
         static let widthButton: CGFloat = 122

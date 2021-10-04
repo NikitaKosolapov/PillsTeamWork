@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import SnapKit
 
+/// Class contains UI elements for CourseCellView
 final class CourseCellView: UIView {
     
     // MARK: - Private Properties
@@ -54,18 +56,17 @@ final class CourseCellView: UIView {
         return label
     }()
     
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var durationAndDaysStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [durationOfCourseLabel, countPassedDaysLabel])
         stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        stackView.spacing = 10
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
+        stackView.spacing = AppLayout.AidKit.durationAndDaysStackViewSpacing
         return stackView
     }()
     
     private lazy var verticalStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [pillNameLabel, durationAndDaysStackView])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .fill
@@ -73,12 +74,13 @@ final class CourseCellView: UIView {
         return stackView
     }()
     
-    private lazy var durationAndDaysStackView: UIStackView = {
-        let stackView = UIStackView()
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [pillTypeImageContainer, verticalStackView])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .fill
-        stackView.spacing = 10
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = AppLayout.AidKit.mainCoursesCellStackViewSpacing
         return stackView
     }()
     
@@ -86,7 +88,10 @@ final class CourseCellView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        
+        setupView()
+        addSubviews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -95,14 +100,14 @@ final class CourseCellView: UIView {
     
     // MARK: - Public Methods
     
-    func configure(with model: CourseViewModel) {
+    public func configure(with model: CourseViewModel) {
         pillImage.image = model.imagePill
         pillNameLabel.text = model.namePill
         durationOfCourseLabel.text = model.durationOfCourseString
         countPassedDaysLabel.text = model.countPassedDaysString
     }
     
-    func resetView() {
+    public func resetView() {
         pillImage.image = nil
         pillNameLabel.text = nil
         durationOfCourseLabel.text = nil
@@ -111,62 +116,36 @@ final class CourseCellView: UIView {
     
     // MARK: - Private Methods
     
-    private func configureUI() {
+    private func setupView() {
         backgroundColor = AppColors.lightGray
         layer.cornerRadius = 10
-        configureStackView()
-        configureVerticalStackView()
-        configureDurationAndDaysStackView()
     }
     
-    private func configureStackView () {
+    private func addSubviews() {
+        addSubview(mainStackView)
         pillTypeImageContainer.addSubview(pillImage)
-        stackView.addArrangedSubviews(views: pillTypeImageContainer, verticalStackView)
-        addSubview(stackView)
-        let safeArea = safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([
-            pillImage.widthAnchor.constraint(equalToConstant: AppLayout.AidKit.pillImageSize.width),
-            pillImage.heightAnchor.constraint(equalToConstant: AppLayout.AidKit.pillImageSize.height),
-            pillImage.centerXAnchor.constraint(equalTo: pillTypeImageContainer.centerXAnchor),
-            pillImage.centerYAnchor.constraint(equalTo: pillTypeImageContainer.centerYAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            pillTypeImageContainer.widthAnchor.constraint(
-                equalToConstant: AppLayout.AidKit.pillImageContainerSize.width
-            ),
-            pillTypeImageContainer.heightAnchor.constraint(
-                equalToConstant: AppLayout.AidKit.pillImageContainerSize.height
-            )
-        ])
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(
-                equalTo: safeArea.topAnchor,
-                constant: AppLayout.AidKit.topCourseCellView
-            ),
-            stackView.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor,
-                constant: AppLayout.AidKit.leadingCourseCellView
-            ),
-            stackView.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor,
-                constant: AppLayout.AidKit.trailingCourseCellView
-            ),
-            stackView.bottomAnchor.constraint(
-                equalTo: safeArea.bottomAnchor,
-                constant: AppLayout.AidKit.bottomCourseCellView
-            )
-        ])
     }
     
-    private func configureVerticalStackView () {
-        verticalStackView.addArrangedSubviews(views: pillNameLabel, durationAndDaysStackView)
-    }
-    
-    private func configureDurationAndDaysStackView () {
-        durationAndDaysStackView.addArrangedSubviews(views: durationOfCourseLabel, countPassedDaysLabel)
+    private func setupLayout() {
+        
+        pillImage.snp.makeConstraints {
+            $0.width.equalTo(AppLayout.AidKit.pillImageSize.width)
+            $0.height.equalTo(AppLayout.AidKit.pillImageSize.height)
+            $0.centerX.equalTo(pillTypeImageContainer.snp.centerX)
+            $0.centerY.equalTo(pillTypeImageContainer.snp.centerY)
+        }
+        
+        pillTypeImageContainer.snp.makeConstraints {
+            $0.width.equalTo(AppLayout.AidKit.pillImageContainerSize.width)
+            $0.height.equalTo(AppLayout.AidKit.pillImageContainerSize.height)
+        }
+        
+        mainStackView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(AppLayout.AidKit.topCourseCellView)
+            $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(AppLayout.AidKit.leadingCourseCellView)
+            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(AppLayout.AidKit.trailingCourseCellView)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(AppLayout.AidKit.bottomCourseCellView)
+        }
     }
     
 }

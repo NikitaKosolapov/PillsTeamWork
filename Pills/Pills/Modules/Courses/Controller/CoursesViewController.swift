@@ -7,10 +7,13 @@
 
 import UIKit
 
-class CoursesViewController: BaseViewController<CoursesView> {
+final class CoursesViewController: BaseViewController<CoursesView> {
     
-    // MARK: - Public properties
+    // MARK: - Public Properties
+    
     var typeOfCourse: TypeOfCourse = .current
+    var switcher = false
+    
     var coursesCurrent: [Course]? = [] {
         didSet {
             if typeOfCourse == .current {
@@ -18,6 +21,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
             }
         }
     }
+    
     var coursesPassed: [Course]? = [] {
         didSet {
             if typeOfCourse == .passed {
@@ -25,14 +29,15 @@ class CoursesViewController: BaseViewController<CoursesView> {
             }
         }
     }
+    
     var courses: [Course]? = [] {
         didSet {
-            rootView.tableView.reloadData()
+            rootView.coursesTableView.reloadData()
         }
     }
-    var switcher = false
-
-    // MARK: - Initialisation
+    
+    // MARK: - Initializers
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -41,7 +46,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycles
+    // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +59,7 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     // MARK: - ConfigureUI
+    
     private func configure () {
         configureMocData()
         configNavigationBar()
@@ -77,16 +83,17 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     private func configureTableView () {
-        rootView.tableView.register(CourseCell.self)
-        rootView.tableView.delegate = self
-        rootView.tableView.dataSource = self
+        rootView.coursesTableView.register(CourseCell.self)
+        rootView.coursesTableView.delegate = self
+        rootView.coursesTableView.dataSource = self
     }
     
     private func configureAddButton () {
         rootView.addButton.addTarget(self, action: #selector(addButtonTouchUpInside), for: .touchUpInside)
     }
     
-    // MARK: - Private functions
+    // MARK: - Private Methods
+    
     private func setTypeOfCourse() {
         switch rootView.segmentedControl.selectedSegmentIndex {
         case 0:
@@ -108,16 +115,17 @@ class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     private func showStubView() {
-        rootView.tableView.isHidden = true
-        rootView.stubView.isHidden = false
+        rootView.coursesTableView.isHidden = true
+        rootView.coursesStubView.isHidden = false
     }
     
     private func showTableView() {
-        rootView.tableView.isHidden = false
-        rootView.stubView.isHidden = true
+        rootView.coursesTableView.isHidden = false
+        rootView.coursesStubView.isHidden = true
     }
     
-    // MARK: Actions
+    // MARK: - Actions
+    
     @objc private func changeTypeCourses() {
         setTypeOfCourse()
         setSourceOfCourses()
@@ -138,7 +146,9 @@ class CoursesViewController: BaseViewController<CoursesView> {
         }
     }
 }
+
 // MARK: - UICollectionViewDataSource
+
 extension CoursesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -148,8 +158,8 @@ extension CoursesViewController: UITableViewDataSource {
         guard let count = courses?.count,
               let empty = courses?.isEmpty,
               empty == false else {
-            showStubView()
-            return 0 }
+                  showStubView()
+                  return 0 }
         showTableView()
         return count
     }
@@ -166,5 +176,6 @@ extension CoursesViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
+
 extension CoursesViewController: UITableViewDelegate {
 }
