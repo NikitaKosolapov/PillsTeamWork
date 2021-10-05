@@ -103,7 +103,8 @@ enum AppLayout {
         // MARK: - UIStackView
         
         static var indentStackView: CGFloat = 16.0
-        static var topAnchorStackView: CGFloat = 19.0
+        static var topInsetStackView: CGFloat = 19.0
+        static var bottomInsetStackView: CGFloat = topInsetStackView
         static var mainStackViewSpacing: CGFloat = 5
         static var widthStackView: CGFloat {
             return AppLayout.widthScreen - (indentStackView * 2)
@@ -121,13 +122,11 @@ enum AppLayout {
         
         // MARK: - UITableViewCell
         
-        static let pillImageSize = CGSize(width: 25, height: 25)
-        static let pillImageContainerSize = CGSize(width: 36, height: 36)
+        static let pillImageSize: CGFloat = 25
+        static let pillImageContainerSize: CGFloat = 36
         static let pillImageContainerRadius: CGFloat = 18
         static let leadingCourseCellView: CGFloat = 14.0
-        static let trailingCourseCellView: CGFloat = -leadingCourseCellView
         static let topCourseCellView: CGFloat = 20.0
-        static let bottomCourseCellView: CGFloat = -topCourseCellView
         
         // MARK: - CoursesCellView
         
@@ -152,9 +151,7 @@ enum AppLayout {
         static var widthStubImage: CGFloat {
             return widthStackView / 2
         }
-        static var heightStubImage: CGFloat {
-            return widthStackView / 2
-        }
+       
         static var leadingStubImage: CGFloat {
             return (widthStackView - widthStubImage) / 2.0
         }

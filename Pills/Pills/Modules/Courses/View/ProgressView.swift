@@ -70,13 +70,9 @@ final class ProgressView: UIView {
     }
     
     private func setupLayout() {
-        layoutMargins = UIEdgeInsets.zero
-        let marginsGuide = layoutMarginsGuide
         
         progressView.snp.makeConstraints {
-            $0.top.equalTo(marginsGuide.snp.top)
-            $0.leading.equalTo(marginsGuide.snp.leading)
-            $0.bottom.equalTo(marginsGuide.snp.bottom)
+            $0.top.leading.bottom.equalToSuperview()
         }
     }
     

@@ -129,22 +129,17 @@ final class CourseCellView: UIView {
     private func setupLayout() {
         
         pillImage.snp.makeConstraints {
-            $0.width.equalTo(AppLayout.AidKit.pillImageSize.width)
-            $0.height.equalTo(AppLayout.AidKit.pillImageSize.height)
-            $0.centerX.equalTo(pillTypeImageContainer.snp.centerX)
-            $0.centerY.equalTo(pillTypeImageContainer.snp.centerY)
+            $0.size.equalTo(AppLayout.AidKit.pillImageSize)
+            $0.centerX.centerY.equalToSuperview()
         }
         
         pillTypeImageContainer.snp.makeConstraints {
-            $0.width.equalTo(AppLayout.AidKit.pillImageContainerSize.width)
-            $0.height.equalTo(AppLayout.AidKit.pillImageContainerSize.height)
+            $0.size.equalTo(AppLayout.AidKit.pillImageContainerSize)
         }
         
         mainStackView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(AppLayout.AidKit.topCourseCellView)
-            $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(AppLayout.AidKit.leadingCourseCellView)
-            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(AppLayout.AidKit.trailingCourseCellView)
-            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(AppLayout.AidKit.bottomCourseCellView)
+            $0.top.bottom.equalToSuperview().inset(AppLayout.AidKit.topCourseCellView)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.AidKit.leadingCourseCellView)
         }
     }
     

@@ -18,7 +18,7 @@ final class StubCourseView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = AppImages.AidKit.stubImage
         imageView.backgroundColor = AppColors.lightBlueSapphire
-        imageView.layer.cornerRadius = AppLayout.AidKit.heightStubImage / 2
+        imageView.layer.cornerRadius = AppLayout.AidKit.widthStubImage / 2
         return imageView
     }()
     
@@ -61,16 +61,14 @@ final class StubCourseView: UIView {
     private func setupLayout() {
         
         stubImageView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(AppLayout.AidKit.indentImageFromTop)
-            $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(AppLayout.AidKit.leadingStubImage)
-            $0.width.equalTo(AppLayout.AidKit.widthStubImage)
-            $0.height.equalTo(AppLayout.AidKit.heightStubImage)
+            $0.top.equalToSuperview().inset(AppLayout.AidKit.indentImageFromTop)
+            $0.leading.equalToSuperview().inset(AppLayout.AidKit.leadingStubImage)
+            $0.width.height.equalTo(AppLayout.AidKit.widthStubImage)
         }
         
         stubInfolabel.snp.makeConstraints {
             $0.top.equalTo(stubImageView.snp.bottom).offset(AppLayout.AidKit.stubInfoLabelTopAnchor)
-            $0.leading.equalTo(layoutMarginsGuide.snp.leading)
-            $0.trailing.equalTo(layoutMarginsGuide.snp.trailing)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     

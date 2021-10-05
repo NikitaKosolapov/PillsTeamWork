@@ -124,10 +124,9 @@ final class CoursesView: UIView {
         }
         
         mainStackView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(AppLayout.AidKit.topAnchorStackView)
-            $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(AppLayout.AidKit.leadingStackView)
-            $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(AppLayout.AidKit.trailingStackView)
-            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-AppLayout.AidKit.indentFromBottomAddButton)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).inset(AppLayout.AidKit.topInsetStackView)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(AppLayout.AidKit.bottomInsetStackView)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.AidKit.leadingCourseCellView)
         }
     }
     
