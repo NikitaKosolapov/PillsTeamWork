@@ -44,6 +44,9 @@ enum Text {
     static let periodExpired = "periodExpired".localized()
     static let till = "till".localized()
     static let save = "save".localized()
+    static let singleDoseByNumber = "100"
+    static let mg = "mg".localized()
+    static let beforeMeal = "beforeMeal".localized()
 
     enum DatePickerButtons {
         static let done = "done".localized()

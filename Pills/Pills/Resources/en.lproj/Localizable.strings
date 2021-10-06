@@ -40,6 +40,8 @@
 "justAddAnOrder" = "Just add an order";
 "periodExpired" = "Period already expired";
 "save" = "Save";
+"mg" = "mg.";
+"beforeMeal" = "Before meals";
 
 "week" = "1 week";
 "month" = "1 month";

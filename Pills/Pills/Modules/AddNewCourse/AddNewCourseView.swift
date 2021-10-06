@@ -12,7 +12,7 @@ fileprivate final class VStackViewFabric {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 5
+        stackView.spacing = 8
         return stackView
     }
 }
@@ -124,7 +124,7 @@ final class AddNewCourseView: UIView {
     // MARK: - Dose Input
     internal lazy var doseInput =
     CustomTextFieldBuilder()
-        .withPlaceholder(Text.dosePlaceholder)
+        .withPlaceholder(Text.singleDoseByNumber)
         .withType(.numeric)
         .withTextAlignment(.center)
         .withMaxLength(AppLayout.AddCourse.doseFieldMaxLength)
@@ -136,7 +136,7 @@ final class AddNewCourseView: UIView {
     // MARK: - Dose Unit
     internal lazy var doseUnitInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
-            .withPlaceholder(Text.unit)
+            .withPlaceholder(Text.mg)
             .withSimplePicker(options: []) { [weak self] option in
                 self?.delegate?.onDoseUnitChanged(Text.Unit.init(rawValue: option) ?? .pill)
                 return true
@@ -216,22 +216,24 @@ final class AddNewCourseView: UIView {
                 self?.delegate?.onMealDependencyChanged(Text.Usage.init(rawValue: option) ?? .noMatter)
                 return true
             }
+            .withPlaceholder(Text.beforeMeal)
             .build()
-        textField.placeholder = Text.instruction
 		textField.addNewCourseDelegate = self
         return textField
     }()
     
     // MARK: - Note Input
     internal lazy var noteInput: UITextView = {
-        let textField = UITextView()
-        textField.isEditable = true
-        textField.font = AppLayout.Fonts.normalRegular
-        textField.backgroundColor = AppColors.whiteAnthracite
-        textField.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
-        textField.delegate = self
+        let textView = UITextView()
+        textView.isEditable = true
+        textView.font = AppLayout.Fonts.normalRegular
+        textView.backgroundColor = AppColors.whiteAnthracite
+        textView.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
+        textView.textColor = AppColors.placeholderGray
+        textView.text = "Особенности приёма лекарства"
+        textView.delegate = self
         // onCommentChanged
-        return textField
+        return textView
     }()
     
     let scrollView: UIScrollView = {
@@ -271,7 +273,7 @@ final class AddNewCourseView: UIView {
     lazy var doseUnitLabel = FieldHeaderFabric.generate(header: Text.unit)
     lazy var stackDoseUnit = VStackViewFabric.generate([doseUnitLabel, doseUnitInput])
     
-    lazy var doseLabel = FieldHeaderFabric.generate(header: Text.dose)
+    lazy var doseLabel = FieldHeaderFabric.generate(header: Text.dosePlaceholder)
     lazy var stackDose = VStackViewFabric.generate([doseLabel, doseInput])
     lazy var stackDoseAndUnit = HStackViewFabric.generate([stackDose, stackDoseUnit])
     
@@ -407,7 +409,70 @@ final class AddNewCourseView: UIView {
             typeImage.heightAnchor
                 .constraint(equalToConstant: AppLayout.Journal.pillImageSize),
             
-            doneButton.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
+            doneButton.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton),
+            
+            pillNameInput.leadingAnchor.constraint(equalTo: stackPillName.leadingAnchor, constant: 0),
+            pillNameInput.trailingAnchor.constraint(equalTo: stackPillName.trailingAnchor, constant: 0),
+            pillNameInput.bottomAnchor.constraint(equalTo: stackPillName.bottomAnchor, constant: 0),
+            pillNameLabel.leadingAnchor.constraint(equalTo: stackPillName.leadingAnchor, constant: 11),
+            pillNameLabel.trailingAnchor.constraint(equalTo: stackPillName.trailingAnchor, constant: 0),
+            pillNameLabel.topAnchor.constraint(equalTo: stackPillName.topAnchor, constant: 0),
+            
+            pillTypeNameLabel.leadingAnchor.constraint(equalTo: stackTypeName.leadingAnchor, constant: 11),
+            pillTypeNameLabel.topAnchor.constraint(equalTo: stackTypeName.topAnchor, constant: 0),
+            pillTypeNameLabel.trailingAnchor.constraint(equalTo: stackTypeName.trailingAnchor, constant: 0),
+            pillTypeName.leadingAnchor.constraint(equalTo: stackTypeName.leadingAnchor, constant: 0),
+            pillTypeName.trailingAnchor.constraint(equalTo: stackTypeName.trailingAnchor, constant: 0),
+            pillTypeName.bottomAnchor.constraint(equalTo: stackTypeName.bottomAnchor, constant: 0),
+            
+            doseUnitLabel.leadingAnchor.constraint(equalTo: stackDoseUnit.leadingAnchor, constant: 11),
+            doseUnitLabel.topAnchor.constraint(equalTo: stackDoseUnit.topAnchor, constant: 0),
+            doseUnitLabel.trailingAnchor.constraint(equalTo: stackDoseUnit.trailingAnchor, constant: 0),
+            doseUnitInput.leadingAnchor.constraint(equalTo: stackDoseUnit.leadingAnchor, constant: 0),
+            doseUnitInput.trailingAnchor.constraint(equalTo: stackDoseUnit.trailingAnchor, constant: 0),
+            doseUnitInput.bottomAnchor.constraint(equalTo: stackDoseUnit.bottomAnchor, constant: 0),
+            
+            doseLabel.leadingAnchor.constraint(equalTo: stackDose.leadingAnchor, constant: 11),
+            doseLabel.topAnchor.constraint(equalTo: stackDose.topAnchor, constant: 0),
+            doseLabel.trailingAnchor.constraint(equalTo: stackDose.trailingAnchor, constant: 0),
+            doseInput.leadingAnchor.constraint(equalTo: stackDose.leadingAnchor, constant: 0),
+            doseInput.trailingAnchor.constraint(equalTo: stackDose.trailingAnchor, constant: 0),
+            doseInput.bottomAnchor.constraint(equalTo: stackDose.bottomAnchor, constant: 0),
+            
+            startLabel.leadingAnchor.constraint(equalTo: stackStart.leadingAnchor, constant: 11),
+            startLabel.topAnchor.constraint(equalTo: stackStart.topAnchor, constant: 0),
+            startLabel.trailingAnchor.constraint(equalTo: stackStart.trailingAnchor, constant: 0),
+            startInput.leadingAnchor.constraint(equalTo: stackStart.leadingAnchor, constant: 0),
+            startInput.trailingAnchor.constraint(equalTo: stackStart.trailingAnchor, constant: 0),
+            startInput.bottomAnchor.constraint(equalTo: stackStart.bottomAnchor, constant: 0),
+            
+            timeLabel.leadingAnchor.constraint(equalTo: stackTime.leadingAnchor, constant: 11),
+            timeLabel.topAnchor.constraint(equalTo: stackTime.topAnchor, constant: 0),
+            timeLabel.trailingAnchor.constraint(equalTo: stackTime.trailingAnchor, constant: 0),
+            timeInput.leadingAnchor.constraint(equalTo: stackTime.leadingAnchor, constant: 0),
+            timeInput.trailingAnchor.constraint(equalTo: stackTime.trailingAnchor, constant: 0),
+            timeInput.bottomAnchor.constraint(equalTo: stackTime.bottomAnchor, constant: 0),
+            
+            takePeriodLabel.leadingAnchor.constraint(equalTo: stackTakePeriod.leadingAnchor, constant: 11),
+            takePeriodLabel.topAnchor.constraint(equalTo: stackTakePeriod.topAnchor, constant: 0),
+            takePeriodLabel.trailingAnchor.constraint(equalTo: stackTakePeriod.trailingAnchor, constant: 0),
+            takePeriodInput.leadingAnchor.constraint(equalTo: stackTakePeriod.leadingAnchor, constant: 0),
+            takePeriodInput.trailingAnchor.constraint(equalTo: stackTakePeriod.trailingAnchor, constant: 0),
+            takePeriodInput.bottomAnchor.constraint(equalTo: stackTakePeriod.bottomAnchor, constant: 0),
+            
+            mealDependencyLabel.leadingAnchor.constraint(equalTo: stackMealDependency.leadingAnchor, constant: 11),
+            mealDependencyLabel.topAnchor.constraint(equalTo: stackMealDependency.topAnchor, constant: 0),
+            mealDependencyLabel.trailingAnchor.constraint(equalTo: stackMealDependency.trailingAnchor, constant: 0),
+            mealDependencyInput.leadingAnchor.constraint(equalTo: stackMealDependency.leadingAnchor, constant: 0),
+            mealDependencyInput.trailingAnchor.constraint(equalTo: stackMealDependency.trailingAnchor, constant: 0),
+            mealDependencyInput.bottomAnchor.constraint(equalTo: stackMealDependency.bottomAnchor, constant: 0),
+            
+            noteLabel.leadingAnchor.constraint(equalTo: stackNote.leadingAnchor, constant: 11),
+            noteLabel.topAnchor.constraint(equalTo: stackNote.topAnchor, constant: 0),
+            noteLabel.trailingAnchor.constraint(equalTo: stackNote.trailingAnchor, constant: 0),
+            noteInput.leadingAnchor.constraint(equalTo: stackNote.leadingAnchor, constant: 0),
+            noteInput.trailingAnchor.constraint(equalTo: stackNote.trailingAnchor, constant: 0),
+            noteInput.bottomAnchor.constraint(equalTo: stackNote.bottomAnchor, constant: 0)
         ])
     }
     
@@ -501,10 +566,20 @@ extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
 		activeView = nil
         delegate?.onCommentChanged(textView.text)
+        
+        if textView.text.isEmpty {
+            textView.text = "Особенности приёма лекарства"
+            textView.textColor = AppColors.placeholderGray
+        }
     }
 	func textViewDidBeginEditing(_ textView: UITextView) {
 		activeView = textView
 		setScrollViewOffset(for: activeView!)
+        
+        if textView.textColor == AppColors.placeholderGray {
+            textView.text = nil
+            textView.textColor = AppColors.black
+        }
 	}
 }
 

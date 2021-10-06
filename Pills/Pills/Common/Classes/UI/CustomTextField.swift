@@ -45,6 +45,9 @@ class CustomTextFieldBuilder {
     
     func withPlaceholder(_ placeholder: String) -> CustomTextFieldBuilder {
         builtObject.placeholder = placeholder
+        builtObject.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor : AppColors.placeholderGray])
         return self
     }
 

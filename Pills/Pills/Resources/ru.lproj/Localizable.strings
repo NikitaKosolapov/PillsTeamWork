@@ -7,7 +7,7 @@
 */
 
 // MARK: - Add a new pill
-"tablets" = "таблетки";
+"tablets" = "таблетка";
 "capsules" = "капсулы";
 "drops" = "капли";
 "procedure" = "процедура";
@@ -18,9 +18,9 @@
 "suspension" = "раствор";
 
 "addNewPill" = "Добавить лекарство";
-"newPill" = "Новое лекарство";
+"newPill" = "Новый курс";
 "name" = "Наименование лекарства";
-"namePlaceholder" = "Аспирин 100 мг";
+"namePlaceholder" = "Аспирин 100 мг.";
 "dose" = "Дозировка";
 "dosePlaceholder" = "Разовая доза";
 "pillType" = "Вид";
@@ -32,7 +32,7 @@
 "singleDose" = "Однократно";
 "unit" = "Ед. изм.";
 "instruction" = "Приём лекарства";
-"notes" = "Заметки";
+"notes" = "Заметка";
 "time" = "Время";
 "add" = "Добавить";
 "of" = "по";
@@ -40,6 +40,8 @@
 "justAddAnOrder" = "Нужно просто добавить";
 "periodExpired" = "Период истёк";
 "save" = "Сохранить";
+"mg" = "мг.";
+"beforeMeal" = "До еды";
 
 "week" = "1 неделю";
 "month" = "1 месяц";
@@ -52,7 +54,7 @@
 "cancel" = "Отмена";
 "till" = "до";
 
-"beforeMeals" = "Перед едой";
+"beforeMeals" = "До еды";
 "whileEating" = "Во время еды";
 "afterMeals" = "После еды";
 "noMatter" = "Не важно";
