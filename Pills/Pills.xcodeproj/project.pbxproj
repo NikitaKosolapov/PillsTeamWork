@@ -315,14 +315,14 @@
 			path = UIKitCalendar;
 			sourceTree = "<group>";
 		};
-		A3FBD9ED26A926BB00B8BE0E /* Calendar */ = {
+		A3FBD9ED26A926BB00B8BE0E /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				FED9593726C421AE00E9B6C3 /* Models */,
-				FED9593926C421C700E9B6C3 /* View */,
 				FED9593826C421BA00E9B6C3 /* Controller */,
+				FED9593926C421C700E9B6C3 /* View */,
+				FED9593726C421AE00E9B6C3 /* Models */,
 			);
-			path = Calendar;
+			path = Journal;
 			sourceTree = "<group>";
 		};
 		A86DB93C26C54BD000AE866A /* Rate */ = {
@@ -353,9 +353,9 @@
 		A870AFE826A9A31E00624579 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				A870AFE926A9A31E00624579 /* Models */,
 				A870AFEB26A9A31E00624579 /* Controller */,
 				A870AFED26A9A31E00624579 /* View */,
+				A870AFE926A9A31E00624579 /* Models */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -363,6 +363,7 @@
 		A870AFE926A9A31E00624579 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A870AFF026A9A31E00624579 /* CourseViewModel.swift */,
 				A870AFEA26A9A31E00624579 /* Course.swift */,
 				A869AC9726B9C95A002019B0 /* CourseMock.swift */,
 			);
@@ -381,11 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				A870AFEE26A9A31E00624579 /* CoursesView.swift */,
-				A802CBC626B68A55004E7365 /* StubCourseView.swift */,
 				A870AFEF26A9A31E00624579 /* CourseCell.swift */,
-				A802CBCE26B68A9E004E7365 /* CourseCellView.swift */,
-				A802CBD326B68AAE004E7365 /* ProgressView.swift */,
-				A870AFF026A9A31E00624579 /* CourseViewModel.swift */,
+				FAEFC1F6270E0AE20068720D /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,6 +421,25 @@
 				FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FAEFC1F6270E0AE20068720D /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A802CBD326B68AAE004E7365 /* ProgressView.swift */,
+				A802CBCE26B68A9E004E7365 /* CourseCellView.swift */,
+				A802CBC626B68A55004E7365 /* StubCourseView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		FAEFC1F7270E0B620068720D /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A35BE20026C83C6400AA1942 /* CalendarCell.swift */,
+				FE2899D226CC3C7500B145FB /* JournalTableView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		FE79E3A4269CC09A00DACD24 = {
@@ -513,7 +530,7 @@
 				A86DB93C26C54BD000AE866A /* Rate */,
 				FECB1A6A26BAE5D300136DF0 /* AddNewCourse */,
 				A870AFE826A9A31E00624579 /* Courses */,
-				A3FBD9ED26A926BB00B8BE0E /* Calendar */,
+				A3FBD9ED26A926BB00B8BE0E /* Journal */,
 				FE79E3FB269CCCE100DACD24 /* Intro */,
 				FE79E3F4269CCABF00DACD24 /* Profile */,
 				FE79E3F5269CCAD000DACD24 /* TabBar */,
@@ -702,10 +719,9 @@
 		FED9593926C421C700E9B6C3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FE2899D226CC3C7500B145FB /* JournalTableView.swift */,
-				FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */,
 				FED9593A26C4253F00E9B6C3 /* JournalView.swift */,
-				A35BE20026C83C6400AA1942 /* CalendarCell.swift */,
+				FE2899CD26CC3C6F00B145FB /* JournalTableViewCell.swift */,
+				FAEFC1F7270E0B620068720D /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";

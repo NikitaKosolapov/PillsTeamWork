@@ -403,9 +403,9 @@ final class AddNewCourseView: UIView {
             typeImage.centerYAnchor
                 .constraint(equalTo: typeImageHolder.centerYAnchor),
             typeImage.widthAnchor
-                .constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
+                .constraint(equalToConstant: AppLayout.Journal.pillImageSize),
             typeImage.heightAnchor
-                .constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
+                .constraint(equalToConstant: AppLayout.Journal.pillImageSize),
             
             doneButton.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
         ])

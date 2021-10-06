@@ -25,9 +25,14 @@ enum AppLayout {
     enum Journal {
         static let heightAddButton: CGFloat = 52
         static let pillNameFont = AppLayout.Fonts.normalSemibold
-        static let paddingLeft: CGFloat = 16
-        static let paddingRight: CGFloat = 16
+        static let paddingRight: CGFloat = 14
         static let paddingBottom: CGFloat = 14
+        static let minusViewWidth: CGFloat = 36
+        static let minusViewHeight: CGFloat = 5
+        static let minusViewPaddingTop: CGFloat = 6
+        static let addButtonPaddingTop: CGFloat = 6
+        static let addButtonPaddingBottom: CGFloat = 19
+        static let stackViewTableViewAndButtonPaddingTop: CGFloat = 28
 
         enum Calendar {
             static let paddingLeft: CGFloat = 10
@@ -43,6 +48,7 @@ enum AppLayout {
         enum Stub {
             static let paddingTop: CGFloat = 30
             static let spacing: CGFloat = 16
+            static let manImageContainerHeight: CGFloat = 169
         }
 
         // MARK: - UITableViewCell
@@ -59,8 +65,8 @@ enum AppLayout {
         static let cellPaddingBottom: CGFloat = 18
         static let cellHorizontalSpacing: CGFloat = 8
         
-        static let pillImageSize = CGSize(width: 25, height: 25)
-        static let pillImageContainerSize = CGSize(width: 36, height: 36)
+        static let pillImageSize: CGFloat = 25
+        static let pillImageContainerSize: CGFloat = 36
         static let pillImageContainerRadius: CGFloat = 18
         
         static let defaultStackViewSpacing: CGFloat = 10

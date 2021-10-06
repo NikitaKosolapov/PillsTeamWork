@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import UIKit
 
 final class JournalTableViewCell: UITableViewCell {
     
     // MARK: - Private Properties
-
+    
     private var acceptedType: AcceptedType?
     
     private let dateFormatter: DateFormatter = {
@@ -26,7 +27,7 @@ final class JournalTableViewCell: UITableViewCell {
         numFormatter.numberStyle = .decimal
         return numFormatter
     }()
-
+    
     private lazy var majorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -175,6 +176,7 @@ final class JournalTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupView()
         addSubviews()
     }
@@ -223,60 +225,39 @@ final class JournalTableViewCell: UITableViewCell {
     override func updateConstraints() {
         super.updateConstraints()
         
-        NSLayoutConstraint.activate([
-            majorView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            majorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            majorView.widthAnchor.constraint(equalToConstant: contentView.frame.width),
-            majorView.heightAnchor.constraint(
-                equalToConstant: contentView.frame.height - AppLayout.Journal.cellVerticalSpacing
-            ),
-            
-            stackView.topAnchor.constraint(
-                equalTo: majorView.topAnchor,
-                constant: AppLayout.Journal.cellPaddingTop
-            ),
-            stackView.leadingAnchor.constraint(
-                equalTo: majorView.leadingAnchor,
-                constant: AppLayout.Journal.cellHorizontalSpacing
-            ),
-            stackView.trailingAnchor.constraint(
-                equalTo: majorView.trailingAnchor,
-                constant: -AppLayout.Journal.cellHorizontalSpacing
-            ),
-            stackView.bottomAnchor.constraint(
-                equalTo: majorView.bottomAnchor,
-                constant: -AppLayout.Journal.cellPaddingBottom
-            ),
-            
-            pillTypeImageContainer.widthAnchor.constraint(
-                equalToConstant: AppLayout.Journal.pillImageContainerSize.width
-            ),
-            pillTypeImageContainer.heightAnchor.constraint(
-                equalToConstant: AppLayout.Journal.pillImageContainerSize.height
-            ),
-            
-            pillTypeImage.topAnchor.constraint(
-                equalTo: pillTypeImageContainer.topAnchor,
-                constant: (
-                    AppLayout.Journal.pillImageContainerSize.height -
-                        AppLayout.Journal.pillImageSize.height
-                ) / 2
-            ),
-            pillTypeImage.leadingAnchor.constraint(
-                equalTo: pillTypeImageContainer.leadingAnchor,
-                constant: (
-                    AppLayout.Journal.pillImageContainerSize.width -
-                        AppLayout.Journal.pillImageSize.width
-                ) / 2
-            ),
-            pillTypeImage.widthAnchor.constraint(equalToConstant: AppLayout.Journal.pillImageSize.width),
-            pillTypeImage.heightAnchor.constraint(equalToConstant: AppLayout.Journal.pillImageSize.height),
-            
-            timeLabel.widthAnchor.constraint(equalToConstant: AppLayout.Journal.timeLabelSize.width),
-            timeLabel.heightAnchor.constraint(equalToConstant: AppLayout.Journal.timeLabelSize.height)
-        ])
+        majorView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(contentView.frame.width)
+            $0.height.equalTo(contentView.frame.height - AppLayout.Journal.cellVerticalSpacing)
+        }
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(majorView.snp.top).offset(AppLayout.Journal.cellPaddingTop)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.cellHorizontalSpacing)
+            $0.bottom.equalTo(majorView.snp.bottom).offset(-AppLayout.Journal.cellPaddingBottom)
+        }
+        
+        pillTypeImageContainer.snp.makeConstraints {
+            $0.size.equalTo(AppLayout.Journal.pillImageContainerSize)
+        }
+        
+        pillTypeImage.snp.makeConstraints {
+            $0.top.equalTo(pillTypeImageContainer.snp.top).offset((
+                AppLayout.Journal.pillImageContainerSize - AppLayout.Journal.pillImageSize) / 2
+            )
+            $0.leading.equalTo(pillTypeImageContainer.snp.leading).offset((
+                AppLayout.Journal.pillImageContainerSize - AppLayout.Journal.pillImageSize) / 2
+            )
+            $0.size.equalTo(AppLayout.Journal.pillImageSize)
+        }
+        
+        timeLabel.snp.makeConstraints {
+            $0.width.equalTo(AppLayout.Journal.timeLabelSize.width)
+            $0.height.equalTo(AppLayout.Journal.timeLabelSize.height)
+        }
     }
-
+    
     // MARK: - Private Methods
     
     private func setupView() {
@@ -292,13 +273,14 @@ final class JournalTableViewCell: UITableViewCell {
         majorView.addSubview(stackView)
         pillTypeImageContainer.addSubview(pillTypeImage)
     }
-
+    
     // MARK: - Public Methods
+    
     func configure(model: Event) {
         journalTime = model.time
         journalEntry = model.pill
         acceptedType = model.pill.schedule.first?.acceptedType
-
+        
         switch acceptedType {
         case .used:
             majorView.backgroundColor = AppColors.lightBlueSapphire

@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import SnapKit
 
 protocol JournalEventsDelegate: AnyObject {
     func addNewPill()
@@ -18,6 +19,14 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     // MARK: - Public Properties
     
     weak var delegate: JournalEventsDelegate?
+    
+    public var journalTableView: JournalTableView = {
+        let view = JournalTableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.white
+        view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
+        return view
+    }()
     
     // MARK: - Private Properties
     
@@ -65,18 +74,10 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         return button
     }()
     
-    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
+    private lazy var scopeGesture: UIPanGestureRecognizer = {
         let panGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)))
         panGesture.delegate = self
         return panGesture
-    }()
-    
-    public var journalTableView: JournalTableView = {
-        let view = JournalTableView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.white
-        view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
-        return view
     }()
     
     private var emptyTableStub: UIView = {
@@ -149,20 +150,20 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         "2021-08-25"
     ]
     
-    // MARK: - Override Methods
+    // MARK: - Life Cycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
         manImageContainer.layer.cornerRadius = manImageContainer.frame.width / 2
         handlePan()
     }
-
+    
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let shouldBegin = journalTableView.contentOffset.y <= -journalTableView.contentInset.top
-
+        
         if shouldBegin {
             let velocity = scopeGesture.velocity(in: self)
-
+            
             switch calendar.scope {
             case .month:
                 return velocity.y < 0
@@ -177,7 +178,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // swiftlint:disable function_body_length
     override func updateConstraints() {
-        backgroundColor = AppColors.white
         super.updateConstraints()
         calendarHeighConstraint = NSLayoutConstraint(
             item: calendar,
@@ -189,81 +189,57 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
             constant: 300
         )
         
-        NSLayoutConstraint.activate([
-            calendarHeighConstraint,
-            calendar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            calendar.leadingAnchor.constraint(
-                equalTo: self.leadingAnchor,
-                constant: AppLayout.Journal.Calendar.paddingLeft
-            ),
-            calendar.trailingAnchor.constraint(
-                equalTo: self.trailingAnchor,
-                constant: -AppLayout.Journal.Calendar.paddingRight
-            ),
-            
-            rounderСornersView.topAnchor.constraint(equalTo: calendar.bottomAnchor),
-            rounderСornersView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            rounderСornersView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            rounderСornersView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
-            minusView.topAnchor.constraint(equalTo: rounderСornersView.topAnchor, constant: 6),
-            minusView.centerXAnchor.constraint(equalTo: rounderСornersView.centerXAnchor),
-            minusView.widthAnchor.constraint(equalToConstant: 36),
-            minusView.heightAnchor.constraint(equalToConstant: 5),
-            
-            stackViewTableViewAndButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 28),
-            stackViewTableViewAndButton.leadingAnchor.constraint(
-                equalTo: self.leadingAnchor,
-                constant: AppLayout.Journal.paddingLeft
-            ),
-            stackViewTableViewAndButton.trailingAnchor.constraint(
-                equalTo: self.trailingAnchor,
-                constant: -AppLayout.Journal.paddingRight
-            ),
-
-            addButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: AppLayout.Journal.paddingLeft),
-            addButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -AppLayout.Journal.paddingLeft),
-            addButton.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton),
-            addButton.topAnchor.constraint(equalTo: stackViewTableViewAndButton.bottomAnchor, constant: 6),
-            addButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -6),
-            
-            manImageContainer.topAnchor.constraint(
-                equalTo: emptyTableStub.topAnchor,
-                constant: AppLayout.Journal.Stub.paddingTop
-            ),
-            manImageContainer.centerXAnchor.constraint(equalTo: emptyTableStub.centerXAnchor),
-            manImageContainer.widthAnchor.constraint(equalTo: emptyTableStub.widthAnchor, multiplier: 0.5),
-            manImageContainer.heightAnchor.constraint(equalTo: emptyTableStub.widthAnchor, multiplier: 0.5),
-            
-            manImageView.widthAnchor.constraint(equalTo: manImageContainer.widthAnchor),
-            manImageView.heightAnchor.constraint(equalTo: manImageContainer.heightAnchor),
-            
-            manHintTitleLabel.topAnchor.constraint(
-                equalTo: manImageContainer.bottomAnchor,
-                constant: AppLayout.Journal.Stub.spacing
-            ),
-            manHintTitleLabel.leadingAnchor.constraint(
-                equalTo: emptyTableStub.leadingAnchor,
-                constant: AppLayout.Journal.Stub.spacing
-            ),
-            manHintTitleLabel.trailingAnchor.constraint(
-                equalTo: emptyTableStub.trailingAnchor,
-                constant: -AppLayout.Journal.Stub.spacing
-            ),
-            
-            manHintSubtitleLabel.topAnchor.constraint(
-                equalTo: manHintTitleLabel.bottomAnchor,
-                constant: AppLayout.Journal.Stub.spacing
-            ),
-            manHintSubtitleLabel.leadingAnchor.constraint(
-                equalTo: emptyTableStub.leadingAnchor,
-                constant: AppLayout.Journal.Stub.spacing
-            ),
-            manHintSubtitleLabel.trailingAnchor.constraint(
-                equalTo: emptyTableStub.trailingAnchor,
-                constant: -AppLayout.Journal.Stub.spacing
-            )
-        ])
+        NSLayoutConstraint.activate([calendarHeighConstraint])
+        calendar.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.Calendar.paddingLeft)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top)
+        }
+        
+        rounderСornersView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.top.equalTo(calendar.snp.bottom)
+        }
+        
+        minusView.snp.makeConstraints {
+            $0.width.equalTo(AppLayout.Journal.minusViewWidth)
+            $0.height.equalTo(AppLayout.Journal.minusViewHeight)
+            $0.centerX.equalTo(rounderСornersView.snp.centerX)
+            $0.top.equalTo(rounderСornersView.snp.top).offset(AppLayout.Journal.minusViewPaddingTop)
+        }
+        
+        stackViewTableViewAndButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.paddingRight)
+            $0.top.equalTo(calendar.snp.bottom).offset(AppLayout.Journal.stackViewTableViewAndButtonPaddingTop)
+        }
+        
+        addButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.paddingRight)
+            $0.height.equalTo(AppLayout.Journal.heightAddButton)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(AppLayout.Journal.addButtonPaddingBottom)
+            $0.top.equalTo(stackViewTableViewAndButton.snp.bottom).offset(AppLayout.Journal.addButtonPaddingTop)
+        }
+        
+        manImageContainer.snp.makeConstraints {
+            $0.top.equalTo(emptyTableStub.snp.top).offset(AppLayout.Journal.Stub.paddingTop)
+            $0.centerX.equalTo(emptyTableStub.snp.centerX)
+            $0.width.height.equalTo(AppLayout.AidKit.widthStubImage)
+        }
+        
+        manImageView.snp.makeConstraints {
+            $0.width.height.equalTo(manImageContainer.snp.width)
+        }
+        
+        manHintTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(manImageContainer.snp.bottom).offset(AppLayout.Journal.Stub.spacing)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.Stub.spacing)
+        }
+        
+        manHintSubtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(manHintTitleLabel.snp.bottom).offset(AppLayout.Journal.Stub.spacing)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.Stub.spacing)
+        }
+        
     }
     
     // MARK: - Public Methods
@@ -283,14 +259,14 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     func handlePan() {
         let translations = scopeGesture.translation(in: self)
-
+        
         if translations.y <= -AppLayout.Journal.Calendar.headerLabelHeight {
             enabledScope()
         } else if translations.y >= AppLayout.Journal.Calendar.headerLabelHeight {
             enabledScope()
         }
     }
-
+    
     func configure(tableDataSource: UITableViewDataSource) {
         addGestureRecognizer(scopeGesture)
         journalTableView.panGestureRecognizer.require(toFail: scopeGesture)
@@ -306,6 +282,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         journalTableView.dataSource = tableDataSource
         
         addSubviews()
+        setupView()
         
         // TODO: make visible when table has no data
         // - when mock data will be replaced with real one
@@ -370,6 +347,10 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         calendar.appearance.headerTitleColor = AppColors.black
     }
     
+    private func setupView() {
+        backgroundColor = AppColors.white
+    }
+    
     private func addSubviews() {
         addSubview(calendar)
         addSubview(rounderСornersView)
@@ -384,12 +365,15 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         emptyTableStub.addSubview(manHintSubtitleLabel)
         manImageContainer.addSubview(manImageView)
     }
+    
 }
+
+// MARK: - FSCalendarDelegate, FSCalendarDataSource
 
 extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeighConstraint.constant = bounds.height
-
+        
         layoutIfNeeded()
     }
     
@@ -402,5 +386,4 @@ extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
         let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
         return cell
     }
-    
 }
