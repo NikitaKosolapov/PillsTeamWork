@@ -43,6 +43,7 @@ enum AppLayout {
             static let arrowButtonTrailing: CGFloat = 32
             static let arrowButtonLeading: CGFloat = -arrowButtonTrailing
             static let headerLabelHeight: CGFloat = 183
+            static let calendarHeight: CGFloat = 300
         }
 
         enum Stub {
@@ -68,6 +69,7 @@ enum AppLayout {
         static let pillImageSize: CGFloat = 25
         static let pillImageContainerSize: CGFloat = 36
         static let pillImageContainerRadius: CGFloat = 18
+        static let pillTypeImagePaddingTop: CGFloat = 5
         
         static let defaultStackViewSpacing: CGFloat = 10
         

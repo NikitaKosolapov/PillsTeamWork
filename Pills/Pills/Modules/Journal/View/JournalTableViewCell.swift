@@ -226,14 +226,13 @@ final class JournalTableViewCell: UITableViewCell {
         super.updateConstraints()
         
         majorView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
+            $0.top.leading.equalToSuperview()
             $0.width.equalTo(contentView.frame.width)
             $0.height.equalTo(contentView.frame.height - AppLayout.Journal.cellVerticalSpacing)
         }
         
         stackView.snp.makeConstraints {
-            $0.top.equalTo(majorView.snp.top).offset(AppLayout.Journal.cellPaddingTop)
+            $0.top.equalToSuperview().offset(AppLayout.Journal.cellPaddingTop)
             $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.cellHorizontalSpacing)
             $0.bottom.equalTo(majorView.snp.bottom).offset(-AppLayout.Journal.cellPaddingBottom)
         }
@@ -243,18 +242,13 @@ final class JournalTableViewCell: UITableViewCell {
         }
         
         pillTypeImage.snp.makeConstraints {
-            $0.top.equalTo(pillTypeImageContainer.snp.top).offset((
-                AppLayout.Journal.pillImageContainerSize - AppLayout.Journal.pillImageSize) / 2
-            )
-            $0.leading.equalTo(pillTypeImageContainer.snp.leading).offset((
-                AppLayout.Journal.pillImageContainerSize - AppLayout.Journal.pillImageSize) / 2
-            )
+            $0.top.equalToSuperview().inset(AppLayout.Journal.pillTypeImagePaddingTop)
+            $0.leading.equalToSuperview().inset(AppLayout.Journal.pillTypeImagePaddingTop)
             $0.size.equalTo(AppLayout.Journal.pillImageSize)
         }
         
         timeLabel.snp.makeConstraints {
-            $0.width.equalTo(AppLayout.Journal.timeLabelSize.width)
-            $0.height.equalTo(AppLayout.Journal.timeLabelSize.height)
+            $0.width.height.equalTo(AppLayout.Journal.timeLabelSize)
         }
     }
     

@@ -30,8 +30,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Private Properties
     
-    private var calendarHeighConstraint: NSLayoutConstraint!
-    
     private var calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
@@ -179,25 +177,15 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     // swiftlint:disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
-        calendarHeighConstraint = NSLayoutConstraint(
-            item: calendar,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 300
-        )
-        
-        NSLayoutConstraint.activate([calendarHeighConstraint])
+
         calendar.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.Calendar.paddingLeft)
             $0.top.equalTo(safeAreaLayoutGuide.snp.top)
+            $0.height.equalTo(AppLayout.Journal.Calendar.calendarHeight)
         }
         
         rounderСornersView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalTo(calendar.snp.bottom)
         }
         
@@ -221,13 +209,13 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         }
         
         manImageContainer.snp.makeConstraints {
-            $0.top.equalTo(emptyTableStub.snp.top).offset(AppLayout.Journal.Stub.paddingTop)
+            $0.top.equalToSuperview().inset(AppLayout.Journal.Stub.paddingTop)
             $0.centerX.equalTo(emptyTableStub.snp.centerX)
-            $0.width.height.equalTo(AppLayout.AidKit.widthStubImage)
+            $0.size.equalTo(AppLayout.AidKit.widthStubImage)
         }
         
         manImageView.snp.makeConstraints {
-            $0.width.height.equalTo(manImageContainer.snp.width)
+            $0.size.equalToSuperview()
         }
         
         manHintTitleLabel.snp.makeConstraints {
@@ -372,7 +360,9 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
 
 extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        calendarHeighConstraint.constant = bounds.height
+        calendar.snp.updateConstraints {
+                $0.height.equalTo(bounds.height)
+        }
         
         layoutIfNeeded()
     }
