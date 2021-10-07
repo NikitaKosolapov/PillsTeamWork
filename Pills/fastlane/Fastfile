@@ -17,7 +17,7 @@ app_identifier = "gb.pillsTime"
 username = "kosolapovnikitav@gmail.com"
 
 default_platform(:ios)
-  lane :testflight_lane do
+  lane :project do
 
     # sing code
     cert
@@ -37,7 +37,7 @@ default_platform(:ios)
 
     # increment build number
     version = get_version_number(
-                     xcodeproj: "Piils.xcodeproj", 
+                     xcodeproj: "Pills.xcodeproj", 
                      target: "Pills"
               )
 
