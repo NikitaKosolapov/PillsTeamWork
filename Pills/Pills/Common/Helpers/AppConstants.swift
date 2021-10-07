@@ -6,15 +6,11 @@
 //
 
 import Foundation
-// TUTORIAL:
-//   add a constants.
-// USAGE:
-// let feedbackEmail: String = AppConstant.Emails.feedback
 
 enum AppConstant {
     
     enum Emails {
-        static let feedback = "feedback_pills@g-mail.ru"
+        static let feedback = "pillsfeedback@gmail.com"
     }
     
     enum Urls {

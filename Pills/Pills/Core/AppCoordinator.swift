@@ -17,10 +17,10 @@ final class AppCoordinator {
     
     func instantiateInitialViewController() {
         makeWindowVisible()
-        // TODO: do setup of credentials storage here when ready
-        let isOnboardingShowed = true // TODO: put in user defaults storage service when ready
+        //TODO: do setup of credentials storage here when ready
+        let isOnboardingShowed = true //TODO: put in user defaults storage service when ready
         if !isOnboardingShowed {
-            // TODO: put your onboarding viewController when ready
+            //TODO: put your onboarding viewController when ready
             let viewController = DevelopmentBuilder.build()
             app.window?.rootViewController = viewController
         } else {

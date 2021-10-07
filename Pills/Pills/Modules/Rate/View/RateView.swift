@@ -126,23 +126,23 @@ final class RateView: AlertView {
 
     // MARK: - Private Methods
     
-    @objc internal override func agreeButtonTouchUpInside() {
+    @objc override func agreeButtonTouchUpInside() {
         rateViewDelegate?.provideFeedbackButtonTouchUpInside()
     }
     
-    @objc internal override func denyButtonTouchUpInside() {
+    @objc override func denyButtonTouchUpInside() {
         rateViewDelegate?.noThanksButtonTouchUpInside()
     }
     
-    @objc internal func badSmileButtonTouchUpInside() {
+    @objc func badSmileButtonTouchUpInside() {
         rateViewDelegate?.badSmileButtonTouchUpInside()
     }
     
-    @objc internal func normSmileButtonTouchUpInside() {
+    @objc func normSmileButtonTouchUpInside() {
         rateViewDelegate?.normSmileButtonTouchUpInside()
     }
     
-    @objc internal func bestSmileButtonTouchUpInside() {
+    @objc func bestSmileButtonTouchUpInside() {
         rateViewDelegate?.bestSmileButtonTouchUpInside()
     }
 

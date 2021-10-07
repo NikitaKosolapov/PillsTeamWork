@@ -12,12 +12,7 @@ final class AddButton: UIButton {
     
     override var isEnabled: Bool {
         willSet {
-            super.isEnabled = newValue
-            //  Для чего этот код? В темной теме бэкграунд кнопки Save отображается некорректно из-за alpha = 0.5
-            //            backgroundColor =
-            //                AppColors.lightBlueAddButtonBG.withAlphaComponent(
-            //                    newValue ? 1 : 0.5
-            //                )
+            backgroundColor = AppColors.blue.withAlphaComponent(newValue ? 1 : 0.5)
         }
     }
     

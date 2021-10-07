@@ -43,7 +43,9 @@ class NotificationService {
         }
     }
     
-    private func createNotificationContent(title: String, body: String, identifier: String) -> UNMutableNotificationContent {
+    private func createNotificationContent(title: String,
+                                           body: String,
+                                           identifier: String) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body

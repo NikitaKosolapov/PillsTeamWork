@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1171C015270F38BB0047D1AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1171C014270F38BB0047D1AF /* GoogleService-Info.plist */; };
+		1171C018270F45E70047D1AF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C017270F45E70047D1AF /* UIView.swift */; };
+		1171C01A270F48EC0047D1AF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C019270F48EC0047D1AF /* UIViewController.swift */; };
+		1171C01C270F511D0047D1AF /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C01B270F511D0047D1AF /* UIScreen.swift */; };
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
 		11B0B77C26FF4F7900BD86BF /* DeletePillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */; };
 		11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */; };
@@ -24,9 +27,7 @@
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
 		84C440B426D7E31200860F77 /* SettingsViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C440B326D7E31200860F77 /* SettingsViewTableCell.swift */; };
 		97EA0644FC5F4575B53D6A5D /* Pods_Pills.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A1C60DA19FBA817FCF4D1 /* Pods_Pills.framework */; };
-		A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A305168C26C3AED000EAD8F3 /* UIView.swift */; };
 		A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20026C83C6400AA1942 /* CalendarCell.swift */; };
-		A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35BE20326C94C1700AA1942 /* CalendarFont.swift */; };
 		A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBC626B68A55004E7365 /* StubCourseView.swift */; };
 		A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBCE26B68A9E004E7365 /* CourseCellView.swift */; };
 		A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A802CBD326B68AAE004E7365 /* ProgressView.swift */; };
@@ -39,7 +40,6 @@
 		A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB94B26C54C3D00AE866A /* CollectionView.swift */; };
 		A86DB95626C54C5300AE866A /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95526C54C5300AE866A /* StackView.swift */; };
 		A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86DB95A26C54D6200AE866A /* AutoReusable.swift */; };
-		A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */; };
 		A870AFF226A9A31E00624579 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEA26A9A31E00624579 /* Course.swift */; };
 		A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEC26A9A31E00624579 /* CoursesViewController.swift */; };
 		A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFEE26A9A31E00624579 /* CoursesView.swift */; };
@@ -113,6 +113,9 @@
 
 /* Begin PBXFileReference section */
 		1171C014270F38BB0047D1AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1171C017270F45E70047D1AF /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = ../../../../../../../../UIView.swift; sourceTree = "<group>"; };
+		1171C019270F48EC0047D1AF /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		1171C01B270F511D0047D1AF /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillViewController.swift; sourceTree = "<group>"; };
 		11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillView.swift; sourceTree = "<group>"; };
@@ -132,10 +135,8 @@
 		849AE5C226A9CF5400262D12 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84C440B326D7E31200860F77 /* SettingsViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewTableCell.swift; sourceTree = "<group>"; };
 		8FC09C85E8224273E7B5DED4 /* Pods-Pills.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills.release.xcconfig"; path = "Target Support Files/Pods-Pills/Pods-Pills.release.xcconfig"; sourceTree = "<group>"; };
-		A305168C26C3AED000EAD8F3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A3432096ADB6872D9AB54AC4 /* Pods-PillsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.debug.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A35BE20026C83C6400AA1942 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		A35BE20326C94C1700AA1942 /* CalendarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFont.swift; sourceTree = "<group>"; };
 		A802CBC626B68A55004E7365 /* StubCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCourseView.swift; sourceTree = "<group>"; };
 		A802CBCE26B68A9E004E7365 /* CourseCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
 		A802CBD326B68AAE004E7365 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -148,7 +149,6 @@
 		A86DB94B26C54C3D00AE866A /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		A86DB95526C54C5300AE866A /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		A86DB95A26C54D6200AE866A /* AutoReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoReusable.swift; sourceTree = "<group>"; };
-		A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorFactory.swift; sourceTree = "<group>"; };
 		A870AFEA26A9A31E00624579 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		A870AFEC26A9A31E00624579 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		A870AFEE26A9A31E00624579 /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
@@ -308,7 +308,6 @@
 		A35BE20226C94C1700AA1942 /* UIKitCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				A35BE20326C94C1700AA1942 /* CalendarFont.swift */,
 			);
 			path = UIKitCalendar;
 			sourceTree = "<group>";
@@ -465,7 +464,6 @@
 		FE79E3AF269CC09A00DACD24 /* Pills */ = {
 			isa = PBXGroup;
 			children = (
-				FE79E3F3269CCA0D00DACD24 /* Factories */,
 				FEB957AC26A96FB80093BA8D /* Core */,
 				FE79E3E9269CC83100DACD24 /* Application */,
 				FE79E3EA269CC88200DACD24 /* Common */,
@@ -601,8 +599,8 @@
 		FE79E3F2269CC99D00DACD24 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1171C017270F45E70047D1AF /* UIView.swift */,
 				A35BE20226C94C1700AA1942 /* UIKitCalendar */,
-				A305168C26C3AED000EAD8F3 /* UIView.swift */,
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
@@ -615,16 +613,10 @@
 				FED959AD26C9808D00E9B6C3 /* Int.swift */,
 				E1EC06AF26F774550045AAB1 /* UIImage.swift */,
 				11B0B77E26FF926500BD86BF /* Bool.swift */,
+				1171C019270F48EC0047D1AF /* UIViewController.swift */,
+				1171C01B270F511D0047D1AF /* UIScreen.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		FE79E3F3269CCA0D00DACD24 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				A870AFE026A9A2DD00624579 /* SeparatorFactory.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		FE79E3F4269CCABF00DACD24 /* Profile */ = {
@@ -1036,7 +1028,6 @@
 			files = (
 				A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */,
 				A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */,
-				A35BE20526C94C1700AA1942 /* CalendarFont.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
 				A8E594E626D976FD006F414A /* TextField.swift in Sources */,
 				FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */,
@@ -1064,21 +1055,21 @@
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,
 				553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */,
 				A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */,
-				A305168D26C3AED000EAD8F3 /* UIView.swift in Sources */,
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */,
+				1171C01C270F511D0047D1AF /* UIScreen.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
 				11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */,
 				A86DB94726C54C3600AE866A /* TableView.swift in Sources */,
 				A81ECCF826C6D61E0039DE67 /* Button.swift in Sources */,
 				A35BE20126C83C6400AA1942 /* CalendarCell.swift in Sources */,
-				A870AFE126A9A2DD00624579 /* SeparatorFactory.swift in Sources */,
 				A8329E6926C69A8600AD6A11 /* Label.swift in Sources */,
 				FA9D870226F1114500408604 /* MedicineDescriptionVC.swift in Sources */,
 				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
+				1171C01A270F48EC0047D1AF /* UIViewController.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
 				A8E594DF26D976D5006F414A /* ReceiveFreqPillsView.swift in Sources */,
 				FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */,
@@ -1100,6 +1091,7 @@
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
 				FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */,
 				11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */,
+				1171C018270F45E70047D1AF /* UIView.swift in Sources */,
 				FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */,
 				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,
 				FA9D87E226F6416400408604 /* Event.swift in Sources */,

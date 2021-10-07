@@ -58,7 +58,7 @@ protocol AddNewCourseDelegate: AnyObject {
 }
 
 protocol AddNewCourceTextFieldDelegate: AnyObject {
-	func textFieldStartEditing(_ textField: UITextField)
+    func textFieldStartEditing(_ textField: UITextField)
 }
 
 /// Data Source
@@ -81,7 +81,7 @@ final class AddNewCourseView: UIView {
     }
     
     // MARK: - Pill Name Input
-    internal lazy var pillNameInput = CustomTextFieldBuilder()
+    lazy var pillNameInput = CustomTextFieldBuilder()
         .withPlaceholder(Text.namePlaceholder)
         .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
         .withEndEditProcessor { [weak self] text in
@@ -90,7 +90,7 @@ final class AddNewCourseView: UIView {
         .build()
     
     // MARK: - Type Input
-    internal lazy var typeImageHolder: UIView = {
+    lazy var typeImageHolder: UIView = {
         let holder = UIView()
         holder.translatesAutoresizingMaskIntoConstraints = false
         holder.backgroundColor = AppColors.whiteAnthracite
@@ -98,7 +98,7 @@ final class AddNewCourseView: UIView {
         return holder
     }()
     
-    internal lazy var typeImage: UIImageView = {
+    lazy var typeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -106,8 +106,8 @@ final class AddNewCourseView: UIView {
         return imageView
     }()
     
-    internal lazy var pillTypeName: CustomTextField =
-    CustomTextFieldBuilder()
+    lazy var pillTypeName: CustomTextField =
+        CustomTextFieldBuilder()
         .withPlaceholder(Text.Pills.tablets.rawValue.localized())
         .withTextAlignment(.center)
         .withSimplePicker(options: []) { [weak self] (option) in
@@ -122,8 +122,8 @@ final class AddNewCourseView: UIView {
         .build()
     
     // MARK: - Dose Input
-    internal lazy var doseInput =
-    CustomTextFieldBuilder()
+    lazy var doseInput =
+        CustomTextFieldBuilder()
         .withPlaceholder(Text.singleDoseByNumber)
         .withType(.numeric)
         .withTextAlignment(.center)
@@ -134,7 +134,7 @@ final class AddNewCourseView: UIView {
         .build()
     
     // MARK: - Dose Unit
-    internal lazy var doseUnitInput: CustomTextField = {
+    lazy var doseUnitInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withPlaceholder(Text.mg)
             .withSimplePicker(options: []) { [weak self] option in
@@ -144,12 +144,12 @@ final class AddNewCourseView: UIView {
             .withTextAlignment(.center)
             .build()
         textField.isUserInteractionEnabled = false
-		textField.addNewCourseDelegate = self
+        textField.addNewCourseDelegate = self
         return textField
     }()
     
     // MARK: - Frequency Input
-    internal lazy var frequencyInput: CustomTextField = {
+    lazy var frequencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(
                 options: Frequency.all(), { [weak self] (option) in
@@ -161,15 +161,15 @@ final class AddNewCourseView: UIView {
                 })
             .withPlaceholder(Text.takingFrequency)
             .build()
-		textField.addNewCourseDelegate = self
+        textField.addNewCourseDelegate = self
         return textField
     }()
     
     let receiveFreqStackView = ReceiveFreqPillsView()
     
     // MARK: - Start Date Input
-    internal lazy var startInput =
-    CustomTextFieldBuilder()
+    lazy var startInput =
+        CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
         .withImage(AppImages.Tools.calendar)
         .withDatePicker(.date , { [weak self] date in
@@ -179,8 +179,8 @@ final class AddNewCourseView: UIView {
         .build()
     
     // MARK: - Start Time Input
-    internal lazy var timeInput =
-    CustomTextFieldBuilder()
+    lazy var timeInput =
+        CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
         .withDatePicker(.time , { [weak self] time in
             self?.delegate?.onStartTimeChanged(time)
@@ -189,8 +189,8 @@ final class AddNewCourseView: UIView {
         .build()
     
     // MARK: - Period Input
-    internal lazy var takePeriodInput =
-    CustomTextFieldBuilder()
+    lazy var takePeriodInput =
+        CustomTextFieldBuilder()
         .withPlaceholder(Text.takePeriodPlaceholder)
         .withType(.numeric)
         .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
@@ -200,8 +200,8 @@ final class AddNewCourseView: UIView {
         .clearOnFocus()
         .build()
     
-    internal lazy var takePeriodDatePickerInput
-    = CustomTextFieldBuilder()
+    lazy var takePeriodDatePickerInput
+        = CustomTextFieldBuilder()
         .withImage(AppImages.Tools.calendar)
         .withDatePicker(.date) { [weak self] tillDate in
             self?.delegate?.onTakePeriodTill(tillDate)
@@ -210,7 +210,7 @@ final class AddNewCourseView: UIView {
         .build()
     
     // MARK: - Meal Dependency Input
-    internal lazy var mealDependencyInput: CustomTextField = {
+    lazy var mealDependencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: []) { [weak self] option in
                 self?.delegate?.onMealDependencyChanged(Text.Usage.init(rawValue: option) ?? .noMatter)
@@ -218,12 +218,12 @@ final class AddNewCourseView: UIView {
             }
             .withPlaceholder(Text.beforeMeal)
             .build()
-		textField.addNewCourseDelegate = self
+        textField.addNewCourseDelegate = self
         return textField
     }()
     
     // MARK: - Note Input
-    internal lazy var noteInput: UITextView = {
+    lazy var noteInput: UITextView = {
         let textView = UITextView()
         textView.isEditable = true
         textView.font = AppLayout.Fonts.normalRegular
@@ -245,7 +245,7 @@ final class AddNewCourseView: UIView {
     
     // MARK: - Continue Button
     
-    internal lazy var doneButton: AddButton = {
+    lazy var doneButton: AddButton = {
         let button = AddButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Text.save, for: .normal)
@@ -254,6 +254,7 @@ final class AddNewCourseView: UIView {
             action: #selector(doneButtonPressed),
             for: .touchUpInside
         )
+        button.isEnabled = false
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
         ])
@@ -316,7 +317,7 @@ final class AddNewCourseView: UIView {
         return stack
     }()
     
-    internal lazy var majorStackView: UIStackView = {
+    lazy var majorStackView: UIStackView = {
         let stackView = VStackViewFabric.generate([
             scrollView,
             doneButton
@@ -324,9 +325,9 @@ final class AddNewCourseView: UIView {
         stackView.spacing = AppLayout.AddCourse.horizontalSpacing
         return stackView
     }()
-    internal var majorStackViewBottomAnchor: NSLayoutConstraint?
-	var activeView: UIView?
-	var keyboardHeight: CGFloat = 0.0
+    var majorStackViewBottomAnchor: NSLayoutConstraint?
+    var activeView: UIView?
+    var keyboardHeight: CGFloat = 0.0
 
     // MARK: - Constraints
     // swiftlint:disable function_body_length
@@ -336,8 +337,8 @@ final class AddNewCourseView: UIView {
         if majorStackViewBottomAnchor == nil {
             majorStackViewBottomAnchor = majorStackView.bottomAnchor
                 .constraint(
-                    equalTo: safeAreaLayoutGuide.bottomAnchor,
-                    constant: -AppLayout.AddCourse.horizontalSpacing
+                    equalTo: bottomAnchor,
+                    constant: -UIScreen.main.safeAreaBottom
                 )
         }
         
@@ -497,7 +498,7 @@ final class AddNewCourseView: UIView {
             majorStackViewBottomAnchor?.isActive = false
             majorStackViewBottomAnchor = majorStackView.bottomAnchor
                 .constraint(
-                    equalTo: self.bottomAnchor,
+                    equalTo: bottomAnchor,
                     constant: -keyboardHeight - AppLayout.AddCourse.horizontalSpacing
                 )
             majorStackViewBottomAnchor?.isActive = true
@@ -508,8 +509,8 @@ final class AddNewCourseView: UIView {
         majorStackViewBottomAnchor?.isActive = false
         majorStackViewBottomAnchor = majorStackView.bottomAnchor
             .constraint(
-                equalTo: safeAreaLayoutGuide.bottomAnchor,
-                constant: -AppLayout.AddCourse.horizontalSpacing
+                equalTo: bottomAnchor,
+                constant: -UIScreen.main.safeAreaBottom
             )
         majorStackViewBottomAnchor?.isActive = true
     }
@@ -528,37 +529,37 @@ final class AddNewCourseView: UIView {
             height: stackNote.frame.maxY
         )
     }
-	func addEventToHideKeyboard() {
-		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
-		formStackView.addGestureRecognizer(tapGesture)
-		majorStackView.addGestureRecognizer(tapGesture)
-		self.addGestureRecognizer(tapGesture)
-	}
-	
-	func setScrollViewOffset(for textField: UIView) {
-		let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
-		let visibleContent = self.frame.height - coveringContent
-		var contentOffset = CGPoint(x: 0, y: 0)
-		
-		let middleOfVisibleArea = visibleContent / 2
-		let middleOfField = textField.convert(textField.bounds, to: self).midY
-		
-		if middleOfField <= middleOfVisibleArea {
-			contentOffset = CGPoint(x: 0, y: 0)
-		} else {
-			contentOffset =  CGPoint(x: 0, y: middleOfField - middleOfVisibleArea)
-			var actualContentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y + contentOffset.y)
-			if actualContentOffset.y > visibleContent {
-				actualContentOffset = CGPoint(x: 0, y: visibleContent)
-			}
-			scrollView.setContentOffset(actualContentOffset, animated: true)
-		}
-	}
+    func addEventToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
+        formStackView.addGestureRecognizer(tapGesture)
+        majorStackView.addGestureRecognizer(tapGesture)
+        self.addGestureRecognizer(tapGesture)
+    }
+
+    func setScrollViewOffset(for textField: UIView) {
+        let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
+        let visibleContent = self.frame.height - coveringContent
+        var contentOffset = CGPoint(x: 0, y: 0)
+
+        let middleOfVisibleArea = visibleContent / 2
+        let middleOfField = textField.convert(textField.bounds, to: self).midY
+
+        if middleOfField <= middleOfVisibleArea {
+            contentOffset = CGPoint(x: 0, y: 0)
+        } else {
+            contentOffset =  CGPoint(x: 0, y: middleOfField - middleOfVisibleArea)
+            var actualContentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y + contentOffset.y)
+            if actualContentOffset.y > visibleContent {
+                actualContentOffset = CGPoint(x: 0, y: visibleContent)
+            }
+            scrollView.setContentOffset(actualContentOffset, animated: true)
+        }
+    }
 }
 
 extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
-		activeView = nil
+        activeView = nil
         delegate?.onCommentChanged(textView.text)
         
         if textView.text.isEmpty {
@@ -566,20 +567,20 @@ extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
             textView.textColor = AppColors.placeholderGray
         }
     }
-	func textViewDidBeginEditing(_ textView: UITextView) {
-		activeView = textView
-		setScrollViewOffset(for: activeView!)
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        activeView = textView
+        setScrollViewOffset(for: activeView!)
         
         if textView.textColor == AppColors.placeholderGray {
             textView.text = nil
             textView.textColor = AppColors.black
         }
-	}
+    }
 }
 
 extension AddNewCourseView: AddNewCourceTextFieldDelegate {
-	func textFieldStartEditing(_ textField: UITextField) {
-		activeView = textField
-		setScrollViewOffset(for: activeView!)
-	}
+    func textFieldStartEditing(_ textField: UITextField) {
+        activeView = textField
+        setScrollViewOffset(for: activeView!)
+    }
 }
