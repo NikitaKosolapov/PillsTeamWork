@@ -296,11 +296,6 @@ final class AddNewCourseView: UIView {
     lazy var noteLabel = FieldHeaderFabric.generate(header: Text.notes)
     lazy var stackNote = VStackViewFabric.generate([noteLabel, noteInput])
     
-    lazy var stackTakePeriodWithDropDown = HStackViewFabric.generate(
-        [stackTakePeriod, stackTakeDatePickerPeriod],
-        .fill,
-        spacing: -AppLayout.CustomTextField.cornerRadius * 2)
-    
     @objc func doneButtonPressed() {
         delegate?.onSubmit()
     }
@@ -314,7 +309,6 @@ final class AddNewCourseView: UIView {
             frequencyInput,
             receiveFreqStackView,
             stackStartAndWhen,
-            stackTakePeriodWithDropDown,
             stackMealDependency,
             stackNote
         ])
