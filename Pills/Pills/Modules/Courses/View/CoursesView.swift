@@ -71,9 +71,6 @@ final class CoursesView: UIView {
     }()
     
     // MARK: - Private Properties
-    
-    private var separatorFactory = SeparatorFactory()
-    
     private lazy var mainStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [
             segmentedControl,

@@ -24,12 +24,18 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setTabBarHidden(true)
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = AppColors.lightBlueSapphire
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = "\(Text.newPill)"
         navigationController?.navigationItem.largeTitleDisplayMode = .never
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setTabBarHidden(false)
     }
 
     func onValidate(_ valid: Bool) {

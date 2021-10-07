@@ -20,20 +20,20 @@ class RateViewController: BaseViewController<RateView> {
 extension RateViewController: RateViewDelegate {
     
     // MARK: - Actions
-    internal func badSmileButtonTouchUpInside() {
+    func badSmileButtonTouchUpInside() {
     }
     
-    internal func normSmileButtonTouchUpInside() {
+    func normSmileButtonTouchUpInside() {
     }
     
-    internal func bestSmileButtonTouchUpInside() {
+    func bestSmileButtonTouchUpInside() {
     }
     
-    internal func provideFeedbackButtonTouchUpInside() {
+    func provideFeedbackButtonTouchUpInside() {
         dismiss(animated: false)
     }
     
-    @objc internal func noThanksButtonTouchUpInside() {
+    @objc  func noThanksButtonTouchUpInside() {
         self.dismiss(animated: false) {
         }
     }

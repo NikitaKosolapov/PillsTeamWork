@@ -187,33 +187,40 @@ final class JournalTableViewCell: UITableViewCell {
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        let theme = traitCollection.userInterfaceStyle
-        
-        switch theme {
-        case .unspecified:
-            print("None")
+
+        switch traitCollection.userInterfaceStyle {
         case .light:
-            switch acceptedType {
-            case .used:
-                majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
-            case .unused:
-                majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
-            case .undefined:
-                majorView.backgroundColor = highlighted ? AppColors.highlightedGray : AppColors.lightGray
-            case .none:
-                break
-            }
+            setHighlightedLightMode(highlighted)
         case .dark:
-            switch acceptedType {
-            case .used:
-                majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
-            case .unused:
-                majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
-            case .undefined:
-                majorView.backgroundColor = highlighted ? AppColors.sapphireDark : AppColors.lightGray
-            case .none:
-                break
-            }
+            setHighlightedDarkMode(highlighted)
+        default:
+            break
+        }
+    }
+
+    func setHighlightedLightMode(_ highlighted: Bool) {
+        switch acceptedType {
+        case .used:
+            majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
+        case .unused:
+            majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
+        case .undefined:
+            majorView.backgroundColor = highlighted ? AppColors.highlightedGray : AppColors.lightGray
+        default:
+            break
+        }
+    }
+
+    func setHighlightedDarkMode(_ highlighted: Bool) {
+        switch acceptedType {
+        case .used:
+            majorView.backgroundColor = highlighted ? AppColors.highlighedBlue : AppColors.lightBlueSapphire
+        case .unused:
+            majorView.backgroundColor = highlighted ? AppColors.highlightedRed : AppColors.lightRed
+        case .undefined:
+            majorView.backgroundColor = highlighted ? AppColors.sapphireDark : AppColors.lightGray
+        default:
+            break
         }
     }
     

@@ -46,7 +46,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func addNotifications() {
-        let journalEntries: [RealmMedKitEntry] = [ // MOCK data to be removed once DB and business logic are both finalised
+        let journalEntries: [RealmMedKitEntry] = [
             JournalMock.shared.entryExample1,
             JournalMock.shared.entryExample2
         ]

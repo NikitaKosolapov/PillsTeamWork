@@ -174,7 +174,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         return shouldBegin
     }
     
-    // swiftlint:disable function_body_length
     override func updateConstraints() {
         super.updateConstraints()
 
@@ -322,8 +321,8 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         calendar.appearance.titleSelectionColor = AppColors.black
         calendar.appearance.eventDefaultColor = AppColors.semiBlack
         calendar.appearance.titleWeekendColor = AppColors.semiGrayOnly
-        calendar.appearance.titleFont = UIFont.SFPro17()
-        calendar.appearance.weekdayFont = UIFont.SFPro10()
+        calendar.appearance.titleFont = AppLayout.Fonts.normalRegular
+        calendar.appearance.weekdayFont = AppLayout.Fonts.verySmallRegular
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
     }
     

@@ -18,7 +18,7 @@ class CustomTextFieldBuilder {
     private let builtObject = CustomTextField()
     
     func withImage(_ image: UIImage? = AppImages.Tools.downArrow)
-        -> CustomTextFieldBuilder {
+    -> CustomTextFieldBuilder {
         builtObject.setImage(image: image ?? UIImage())
         return self
     }
@@ -80,7 +80,7 @@ class CustomTextFieldBuilder {
 
 // swiftlint:disable type_body_length
 class CustomTextField: UITextField {
-	weak var addNewCourseDelegate: AddNewCourceTextFieldDelegate?
+    weak var addNewCourseDelegate: AddNewCourceTextFieldDelegate?
     private var padding = UIEdgeInsets(
         top: AppLayout.CustomTextField.paddingTop,
         left: AppLayout.CustomTextField.paddingLeft,
@@ -91,19 +91,19 @@ class CustomTextField: UITextField {
 
     private var toolbar: UIToolbar?
 
-    internal var datePicker: UIDatePicker?
-    internal var onDatePicked: ((_ date: Date) -> Bool)?
+    var datePicker: UIDatePicker?
+    var onDatePicked: ((_ date: Date) -> Bool)?
 
-    internal var picker: UIPickerView?
+    var picker: UIPickerView?
     public var pickerOptions: [String] = []
-    internal var onPicked: ((_ option: String) -> Bool)?
+    var onPicked: ((_ option: String) -> Bool)?
     
-    internal var clearOnFocus = false
-    internal var isNumeric = false
-    internal var readOnly = false
-    internal var maxLength: Int = -1
+    var clearOnFocus = false
+    var isNumeric = false
+    var readOnly = false
+    var maxLength: Int = -1
     
-    internal var endEditProcessor: ((_ text: String) -> Void)?
+    var endEditProcessor: ((_ text: String) -> Void)?
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -229,7 +229,7 @@ class CustomTextField: UITextField {
                     equalTo: self.heightAnchor,
                     constant: -(
                         AppLayout.CustomTextField.paddingTop +
-                        AppLayout.CustomTextField.paddingBottom
+                            AppLayout.CustomTextField.paddingBottom
                     )
                 )
         ])

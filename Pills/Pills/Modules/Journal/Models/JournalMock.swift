@@ -17,12 +17,9 @@ final class JournalMock {
     static let shared = JournalMock()
 
     private init() {
-        let now = Date()
-
-        var startDate = now.addingTimeInterval(-3600 * 24 * 7)
+        var startDate = Date().addingTimeInterval(-3600 * 24 * 7)
         startDate = startDate.startOfDay
-
-        var endDate = now.addingTimeInterval(3600 * 24 * 7)
+        var endDate = Date().addingTimeInterval(3600 * 24 * 7)
         endDate = endDate.endOfDay
 
         let schedule = List<RealmTimePoint>()
@@ -35,15 +32,12 @@ final class JournalMock {
                     acceptedType: .undefined
                 )
             )
-            // move to 8 hours forward
             scheduleTime.addTimeInterval(3600 * 8)
         }
 
-        // external
         var pillType = PillType.tablets
         let unitIndex = Int.random(in: 0..<Text.Unit.allCases.count)
 
-        // usage
         entryExample1 = RealmMedKitEntry(
             name: "Aspirin",
             pillType: .tablets,
@@ -72,8 +66,6 @@ final class JournalMock {
             note:
             "Проглатывать, запивая водой, нельзя принимать одновременно с другими лекарствами, особенно с антибиотиком",
             schedule: schedule
-            // concentration: 100,
-            // concentrationUnit: .mg,
         )
     }
 }

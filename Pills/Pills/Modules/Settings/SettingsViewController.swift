@@ -10,7 +10,7 @@ import MessageUI
 import DeviceKit
 
 final class SettingsViewController: UITableViewController {
-        
+
     enum SettingsSections : String {
         case about
         case writeSupport
@@ -151,9 +151,9 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         }
     }
     
-    internal func mailComposeController(_ controller: MFMailComposeViewController,
-                                        didFinishWith result: MFMailComposeResult,
-                                        error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
         print(error?.localizedDescription ?? "No error")
         controller.dismiss(animated: true)
     }

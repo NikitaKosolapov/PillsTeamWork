@@ -14,7 +14,6 @@ protocol MedicineDescriptionViewDelegate: AnyObject {
 
 /// Class provides UI elements for MedicineDescriptionVC
 final class MedicineDescriptionView: UIView {
-    
     // MARK: - Public Properties
     
     weak var medicineDescriptionDelegate: MedicineDescriptionViewDelegate?
@@ -213,16 +212,13 @@ final class MedicineDescriptionView: UIView {
     }
     
     // MARK: - Private Methods
-    
+
     private func dateToText(time: Date) -> String {
         return dateFormatter.string(from: time)
     }
     
     private func addButtonAction() {
-        [
-            acceptButton,
-            skipButton
-        ].forEach {
+        [acceptButton, skipButton].forEach {
             $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         }
     }
