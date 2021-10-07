@@ -12,7 +12,7 @@ fileprivate final class VStackViewFabric {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = AppLayout.AddCourse.vStackViewSpacing
         return stackView
     }
 }
@@ -230,7 +230,7 @@ final class AddNewCourseView: UIView {
         textView.backgroundColor = AppColors.whiteAnthracite
         textView.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         textView.textColor = AppColors.placeholderGray
-        textView.text = "Особенности приёма лекарства"
+        textView.text = Text.featuresOfTaking
         textView.delegate = self
         // onCommentChanged
         return textView
@@ -568,7 +568,7 @@ extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
         delegate?.onCommentChanged(textView.text)
         
         if textView.text.isEmpty {
-            textView.text = "Особенности приёма лекарства"
+            textView.text = Text.featuresOfTaking
             textView.textColor = AppColors.placeholderGray
         }
     }

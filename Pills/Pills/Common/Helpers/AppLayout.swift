@@ -247,6 +247,7 @@ enum AppLayout {
 
         static let spaceTextFieldsXDaysAndYDays: CGFloat = 16
         static let spaceTextFieldAndLabelForXDaysAndYDays: CGFloat = 8
+        static let vStackViewSpacing: CGFloat = 8
     }
     
     enum Settings {

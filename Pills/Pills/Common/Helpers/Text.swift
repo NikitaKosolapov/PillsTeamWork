@@ -47,6 +47,7 @@ enum Text {
     static let singleDoseByNumber = "100"
     static let mg = "mg".localized()
     static let beforeMeal = "beforeMeal".localized()
+    static let featuresOfTaking = "featuresOfTaking".localized()
 
     enum DatePickerButtons {
         static let done = "done".localized()
