@@ -7,6 +7,7 @@
 
 import UIKit
 import DropDown
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         configure()
         DropDown.startListeningToKeyboard()
+        FirebaseApp.configure()
         return true
     }
     

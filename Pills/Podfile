@@ -10,6 +10,8 @@ target 'Pills' do
   pod 'DropDown', '2.3.13'
   pod 'DeviceKit', '4.4.0'
   pod 'SnapKit', '5.0.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 
   # Pods for Pills
 

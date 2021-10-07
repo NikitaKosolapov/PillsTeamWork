@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1171C015270F38BB0047D1AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1171C014270F38BB0047D1AF /* GoogleService-Info.plist */; };
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
 		11B0B77C26FF4F7900BD86BF /* DeletePillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */; };
 		11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */; };
@@ -113,6 +114,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1171C014270F38BB0047D1AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		11B0B77926FF4F7900BD86BF /* DeletePillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillViewController.swift; sourceTree = "<group>"; };
 		11B0B77B26FF4F7900BD86BF /* DeletePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePillView.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 		FE79E3E9269CC83100DACD24 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				1171C014270F38BB0047D1AF /* GoogleService-Info.plist */,
 				FE79E3BE269CC09D00DACD24 /* Info.plist */,
 				FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */,
 			);
@@ -751,6 +754,7 @@
 				FE79E3AA269CC09A00DACD24 /* Frameworks */,
 				FE79E3AB269CC09A00DACD24 /* Resources */,
 				C1AA81CB1F6D92460399F6FC /* [CP] Embed Pods Frameworks */,
+				1171C016270F3AC10047D1AF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -850,6 +854,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */,
+				1171C015270F38BB0047D1AF /* GoogleService-Info.plist in Resources */,
 				FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */,
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
@@ -919,6 +924,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		1171C016270F3AC10047D1AF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		487EB6F48669530420A09E92 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1273,6 +1297,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RTLGBYJM5X;
 				INFOPLIST_FILE = Pills/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
