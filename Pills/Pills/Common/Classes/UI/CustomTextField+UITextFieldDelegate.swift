@@ -12,10 +12,6 @@ extension CustomTextField: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if datePicker != nil { return true }
         if picker != nil { return true }
-        if let dropDown = dropDown {
-            dropDown.show()
-            return false
-        }
         if readOnly { return false }
         if clearOnFocus {
             text = ""

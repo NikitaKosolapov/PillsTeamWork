@@ -6,10 +6,6 @@
 //
 
 import UIKit
-import DropDown
-
-/// Type for the DropDown item
-public typealias DropDownItem = (UIImage?, String)
 
 class CustomTextFieldBuilder {
     
@@ -20,11 +16,6 @@ class CustomTextFieldBuilder {
     }
 
     private let builtObject = CustomTextField()
-    
-    func dropDown(width: CGFloat? = nil) -> CustomTextFieldBuilder {
-        builtObject.setDropDownMode(width: width)
-        return self
-    }
     
     func withImage(_ image: UIImage? = AppImages.Tools.downArrow)
         -> CustomTextFieldBuilder {
@@ -50,24 +41,11 @@ class CustomTextFieldBuilder {
             attributes: [NSAttributedString.Key.foregroundColor : AppColors.placeholderGray])
         return self
     }
-
-    func withDropDownProcessor(
-        _ processor: @escaping (_ items: [DropDownItem], _ index: Int) -> Bool
-    ) -> CustomTextFieldBuilder {
-        builtObject.dropDownProcessor = processor
-        return self
-    }
     
     func withEndEditProcessor(
         _ processor: @escaping (_ value: String) -> Void
     ) -> CustomTextFieldBuilder {
         builtObject.endEditProcessor = processor
-        return self
-    }
-    
-    // input - ordered list of tuples
-    func withItems(_ items: [DropDownItem]) -> CustomTextFieldBuilder {
-        builtObject.items = items
         return self
     }
     
@@ -119,27 +97,12 @@ class CustomTextField: UITextField {
     internal var picker: UIPickerView?
     public var pickerOptions: [String] = []
     internal var onPicked: ((_ option: String) -> Bool)?
-
-    private var isDropDownMode: Bool = false
-    internal var dropDown: DropDown?
-    
-    public var items: [DropDownItem] = [] {
-        didSet {
-            dropDown?.dataSource = items.map { $1 }
-            if !items.isEmpty {
-                dropDown?.selectRow(0)
-                dropDownSelectItem(index: 0, itemText: items[0].1)
-            }
-        }
-    }
     
     internal var clearOnFocus = false
     internal var isNumeric = false
     internal var readOnly = false
     internal var maxLength: Int = -1
     
-    internal var dropDownProcessor:
-        ((_ items: [DropDownItem], _ index: Int) -> Bool)?
     internal var endEditProcessor: ((_ text: String) -> Void)?
 
     static let dateFormatter: DateFormatter = {
@@ -154,7 +117,6 @@ class CustomTextField: UITextField {
         return formatter
     }()
 
-    public var isDropDown: Bool { isDropDownMode }
     public var date: Date? {
         get {
             guard let datePicker = datePicker else {return nil}
@@ -208,38 +170,6 @@ class CustomTextField: UITextField {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         fatalError("init(coder: NSCode) is not implemented!")
-    }
-    
-    private func dropDownSelectItem(index: Int, itemText: String) {
-        if let processor = self.dropDownProcessor {
-            if !processor(self.items, index) {return}
-        }
-        let item = self.items[index]
-        if let image = item.0 {
-            if self.customOptionImage != nil {
-                self.customOptionImage?.image = image
-            } else {
-                self.customOptionImage = UIImageView(image: image)
-            }
-            self.text = ""
-        } else {
-            self.text = itemText
-            self.customOptionImage = nil
-        }
-    }
-    
-    fileprivate func setDropDownMode(width: CGFloat? = nil) {
-        isDropDownMode = true
-        dropDown = DropDown()
-        dropDown?.anchorView = self
-        customizeDropDown()
-        if let width = width {
-            dropDown?.width = width
-        }
-        dropDown?.selectionAction = { [weak self] (index: Int, itemText: String) in
-            guard let self = self else {return}
-            self.dropDownSelectItem(index: index, itemText: itemText)
-        }
     }
     
     private func setupPadding() {
@@ -447,37 +377,5 @@ class CustomTextField: UITextField {
             return CGRect()
         }
         return super.caretRect(for: position)
-    }
-}
-
-extension CustomTextField {
-    func customizeDropDown() {
-        guard let dropDown = dropDown else {return}
-
-        let appearance = DropDown.appearance()
-
-        appearance.cellHeight = AppLayout.CustomTextField.standardHeight
-        appearance.backgroundColor = AppColors.white
-        appearance.selectionBackgroundColor = AppColors.lightBlue
-        appearance.cornerRadius = AppLayout.CustomTextField.cornerRadius
-        appearance.animationduration = 0.25
-        appearance.textColor = AppColors.black
-
-        if #available(iOS 11.0, *) {
-            appearance.setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
-        }
-        
-        dropDown.cellNib = UINib(nibName: "CustomDropDownCell", bundle: nil)
-        dropDown.customCellConfiguration = { [weak self] (index: Index, _: String, cell: DropDownCell) -> Void in
-            guard let self = self else {return}
-            guard let cell = cell as? CustomDropDownCell else { return }
-            
-            // Setup your custom UI components
-            if let image = self.items[index].0 {
-                cell.cellImage.image = image
-            } else {
-                cell.optionLabel.text = self.items[index].1
-            }
-        }
     }
 }

@@ -229,10 +229,8 @@ enum AppLayout {
         static let periodFieldMaxLength = 5
         static let textFieldsXDaysAndYDays = 2
 
-        static let doseTypeDropDownWidth: CGFloat = 67
         static let typeInputWidth: CGFloat = 92
         static let doseUnitInputWidth: CGFloat = 106
-        static let periodDropDownWidth: CGFloat = 120
 
         static let horizontalSpacing: CGFloat = 16
         static let noteInputHeight: CGFloat = 200

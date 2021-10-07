@@ -90,8 +90,6 @@
 		FECB1A6C26BAE69400136DF0 /* AddNewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */; };
 		FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9593A26C4253F00E9B6C3 /* JournalView.swift */; };
 		FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */; };
-		FED9599626C59CF300E9B6C3 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */; };
-		FED9599B26C59D0800E9B6C3 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */; };
 		FED959AE26C9808E00E9B6C3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED959AD26C9808D00E9B6C3 /* Int.swift */; };
 		FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */; };
 /* End PBXBuildFile section */
@@ -210,8 +208,6 @@
 		FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCourseViewController.swift; sourceTree = "<group>"; };
 		FED9593A26C4253F00E9B6C3 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCell.xib; sourceTree = "<group>"; };
-		FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCell.swift; sourceTree = "<group>"; };
 		FED959AD26C9808D00E9B6C3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCourseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -733,8 +729,6 @@
 			isa = PBXGroup;
 			children = (
 				FED9597B26C5882B00E9B6C3 /* CustomTextField.swift */,
-				FED9599526C59CF300E9B6C3 /* CustomDropDownCell.xib */,
-				FED9599A26C59D0800E9B6C3 /* CustomDropDownCell.swift */,
 				FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */,
 				FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */,
 			);
@@ -859,7 +853,6 @@
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
 				FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */,
-				FED9599626C59CF300E9B6C3 /* CustomDropDownCell.xib in Resources */,
 				FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1089,7 +1082,6 @@
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
 				A8E594DF26D976D5006F414A /* ReceiveFreqPillsView.swift in Sources */,
 				FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */,
-				FED9599B26C59D0800E9B6C3 /* CustomDropDownCell.swift in Sources */,
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,
 				FED959AE26C9808E00E9B6C3 /* Int.swift in Sources */,
