@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1062109020697-h8o7hch3bgip24vkf3sq8licb78uvrk2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1062109020697-h8o7hch3bgip24vkf3sq8licb78uvrk2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDCl_wUer9yyWuQhaMx_c4h9CAexT7BKFA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1062109020697</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>gb.pillsTime</string>
+	<key>PROJECT_ID</key>
+	<string>gb-pillstime</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gb-pillstime.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1062109020697:ios:a2c0f36961b8a004066088</string>
+</dict>
+</plist>

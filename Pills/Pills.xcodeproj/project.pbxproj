@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1171C015270F38BB0047D1AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1171C014270F38BB0047D1AF /* GoogleService-Info.plist */; };
-		1171C018270F45E70047D1AF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C017270F45E70047D1AF /* UIView.swift */; };
+		1132CCB32710C24B00337486 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1132CCB22710C24B00337486 /* GoogleService-Info.plist */; };
+		1132CCB52710C25600337486 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132CCB42710C25600337486 /* UIView.swift */; };
 		1171C01A270F48EC0047D1AF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C019270F48EC0047D1AF /* UIViewController.swift */; };
 		1171C01C270F511D0047D1AF /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C01B270F511D0047D1AF /* UIScreen.swift */; };
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
@@ -112,8 +112,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1171C014270F38BB0047D1AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1171C017270F45E70047D1AF /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = ../../../../../../../../UIView.swift; sourceTree = "<group>"; };
+		1132CCB22710C24B00337486 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1132CCB42710C25600337486 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		1171C019270F48EC0047D1AF /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		1171C01B270F511D0047D1AF /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -305,13 +305,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		A35BE20226C94C1700AA1942 /* UIKitCalendar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIKitCalendar;
-			sourceTree = "<group>";
-		};
 		A3FBD9ED26A926BB00B8BE0E /* Journal */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,7 +491,7 @@
 		FE79E3E9269CC83100DACD24 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				1171C014270F38BB0047D1AF /* GoogleService-Info.plist */,
+				1132CCB22710C24B00337486 /* GoogleService-Info.plist */,
 				FE79E3BE269CC09D00DACD24 /* Info.plist */,
 				FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */,
 			);
@@ -599,8 +592,7 @@
 		FE79E3F2269CC99D00DACD24 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1171C017270F45E70047D1AF /* UIView.swift */,
-				A35BE20226C94C1700AA1942 /* UIKitCalendar */,
+				1132CCB42710C25600337486 /* UIView.swift */,
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
@@ -840,7 +832,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */,
-				1171C015270F38BB0047D1AF /* GoogleService-Info.plist in Resources */,
+				1132CCB32710C24B00337486 /* GoogleService-Info.plist in Resources */,
 				FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */,
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
@@ -1036,6 +1028,7 @@
 				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
+				1132CCB52710C25600337486 /* UIView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				11B0B77F26FF926500BD86BF /* Bool.swift in Sources */,
@@ -1091,7 +1084,6 @@
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
 				FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */,
 				11B0B77D26FF4F7900BD86BF /* DeletePillView.swift in Sources */,
-				1171C018270F45E70047D1AF /* UIView.swift in Sources */,
 				FED9593B26C4253F00E9B6C3 /* JournalView.swift in Sources */,
 				A802CBD426B68AAE004E7365 /* ProgressView.swift in Sources */,
 				FA9D87E226F6416400408604 /* Event.swift in Sources */,
