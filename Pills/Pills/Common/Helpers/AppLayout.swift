@@ -33,6 +33,7 @@ enum AppLayout {
         static let addButtonPaddingTop: CGFloat = 6
         static let addButtonPaddingBottom: CGFloat = 19
         static let stackViewTableViewAndButtonPaddingTop: CGFloat = 28
+        static let pillNameLabelPaddingLeft: CGFloat = 11
 
         enum Calendar {
             static let paddingLeft: CGFloat = 10

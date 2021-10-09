@@ -378,14 +378,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A8E594DB26D976D5006F414A /* Views */ = {
+		A8E594DB26D976D5006F414A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
 				A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */,
 				A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */,
 				A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */,
 			);
-			path = Views;
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		FA477CAF2711E72300F8968B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA477CB02711E73100F8968B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */,
+				A8E594DB26D976D5006F414A /* Subviews */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FA9D86FE26F110F700408604 /* MedicineDescription */ = {
@@ -674,9 +691,8 @@
 		FECB1A6A26BAE5D300136DF0 /* AddNewCourse */ = {
 			isa = PBXGroup;
 			children = (
-				FECB1A6B26BAE69400136DF0 /* AddNewCourseViewController.swift */,
-				FED959B226CAD78A00E9B6C3 /* AddNewCourseView.swift */,
-				A8E594DB26D976D5006F414A /* Views */,
+				FA477CAF2711E72300F8968B /* Controller */,
+				FA477CB02711E73100F8968B /* View */,
 				FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */,
 			);
 			path = AddNewCourse;
