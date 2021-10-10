@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import UIKit
 
 final class JournalTableViewCell: UITableViewCell {
     

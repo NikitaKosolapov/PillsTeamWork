@@ -11,25 +11,16 @@ import SnapKit
 
 protocol JournalEventsDelegate: AnyObject {
     func addNewPill()
+    func filterEventsByDate(date: Date)
 }
 
 // swiftlint:disable type_body_length
 final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Public Properties
-    
     weak var delegate: JournalEventsDelegate?
-    
-    public var journalTableView: JournalTableView = {
-        let view = JournalTableView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = AppColors.white
-        view.layer.cornerRadius = AppLayout.Journal.cellCornerRadius
-        return view
-    }()
-    
+    var arrayOfEvents = [Date]()
     // MARK: - Private Properties
-    
     private var calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +67,13 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         let panGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)))
         panGesture.delegate = self
         return panGesture
+    }()
+    
+    var journalTableView: JournalTableView = {
+        let view = JournalTableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = AppColors.white
+        return view
     }()
     
     private var emptyTableStub: UIView = {
@@ -140,15 +138,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         stackView.spacing = 8
         return stackView
     }()
-    
-    private lazy var testDatesWithEvent = [
-        "2021-08-03",
-        "2021-08-06",
-        "2021-08-12",
-        "2021-08-25"
-    ]
-    
-    // MARK: - Life Cycle
+    // MARK: - Override Methods
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -231,19 +221,10 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Public Methods
     
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let dateString = dateFormatter.string(from: date)
-        if self.testDatesWithEvent.contains(dateString) {
-            return 1
-        }
-        return 0
+    func setCurrentDate(date: Date) {
+        calendar.currentPage = Date()
     }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        let point = touch.location(in: self)
-        return !calendar.frame.contains(point)
-    }
-    
+
     func handlePan() {
         let translations = scopeGesture.translation(in: self)
         
@@ -324,6 +305,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         calendar.appearance.titleFont = AppLayout.Fonts.normalRegular
         calendar.appearance.weekdayFont = AppLayout.Fonts.verySmallRegular
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.appearance.titleWeekendColor = AppColors.black
     }
     
     private func selectDay() {
@@ -352,27 +334,36 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         emptyTableStub.addSubview(manHintSubtitleLabel)
         manImageContainer.addSubview(manImageView)
     }
-    
 }
 
 // MARK: - FSCalendarDelegate, FSCalendarDataSource
 
 extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        print(arrayOfEvents)
+        if arrayOfEvents.contains(date) {
+            return 1
+        }
+        return 0
+    }
+    
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendar.snp.updateConstraints {
                 $0.height.equalTo(bounds.height)
         }
-        
         layoutIfNeeded()
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        calendar.setScope(.week, animated: true)
         selectDay()
+        delegate?.filterEventsByDate(date: date)
+        calendar.collectionView.reloadItems(at: calendar.collectionView.indexPathsForVisibleItems)
     }
     
-    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-        let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
-        return cell
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell,
+                  for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        cell.eventIndicator.color = AppColors.semiGrayOnly
+        cell.eventIndicator.isHidden = false
     }
 }

@@ -10,7 +10,8 @@ import UIKit
 final class JournalViewController: BaseViewController<JournalView> {
     
     fileprivate var eventsToShow: [Event] = []
-    
+    fileprivate var filteredEvents: [Event] = []
+        
     // MARK: - MOCK DATA
     var journalEntries: [RealmMedKitEntry] = [
         JournalMock.shared.entryExample1,
@@ -22,10 +23,9 @@ final class JournalViewController: BaseViewController<JournalView> {
     }
     
     func prepareDataForDay(_ forDate: Date = Date()) {
-        let selectedDate = forDate.startOfDay
         eventsToShow = []
         for entry in journalEntries {
-            for event in entry.schedule where event.time.startOfDay == selectedDate {
+            for event in entry.schedule {
                 eventsToShow.append(Event(time: event.time, pill: entry))
             }
         }
@@ -33,7 +33,7 @@ final class JournalViewController: BaseViewController<JournalView> {
             return event1.time < event2.time ? true : false
         }
     }
-
+    
     // ---------------------------------------------------------
     // MARK: - Controller logic
     override func viewWillAppear(_ animated: Bool) {
@@ -41,19 +41,21 @@ final class JournalViewController: BaseViewController<JournalView> {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
+        getDates(from: filteredEvents)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //TODO: После реализации сохранения модели в БД
-        //        journalEntries = RealmService.shared.get(RealmMedKitEntry.self)
+        // он должен вызываться в viewWillAppear  journalEntries = RealmService.shared.get(RealmMedKitEntry.self)
         prepareDataForDay(Date())
         rootView.delegate = self
         rootView.configure(tableDataSource: self)
         rootView.journalTableView.dataSource = self
         rootView.journalTableView.delegate = self
+        filterEventsByDate(date: Date().startOfDay)
     }
-
+    
     @objc func addNewCourseButtonAction(sender: UIButton!) {
         let addNewCourseViewController = AddNewCourseViewController()
         addNewCourseViewController.modalPresentationStyle = .pageSheet
@@ -64,6 +66,12 @@ final class JournalViewController: BaseViewController<JournalView> {
 // MARK: - JournalEventsDelegate
 
 extension JournalViewController: JournalEventsDelegate {
+    
+    func filterEventsByDate(date: Date) {
+        filteredEvents = eventsToShow.filter { $0.time == date }
+        rootView.journalTableView.reloadData()
+    }
+    
     func addNewPill() {
         let addNewCourseViewController = AddNewCourseViewController()
         self.navigationController?.pushViewController(addNewCourseViewController, animated: true)
@@ -73,16 +81,22 @@ extension JournalViewController: JournalEventsDelegate {
 // MARK: - UITableViewDataSource
 
 extension JournalViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventsToShow.count
+        return filteredEvents.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "JournalCell",
-            for: indexPath
-        ) as? JournalTableViewCell else { return UITableViewCell() }
-        cell.configure(model: eventsToShow[indexPath.row])
+        
+        guard let cell =
+                tableView.dequeueReusableCell(
+                    withIdentifier: "JournalCell",
+                    for: indexPath
+                ) as? JournalTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        cell.configure(model: filteredEvents[indexPath.row])
         return cell
     }
     
@@ -109,5 +123,11 @@ extension JournalViewController: UITableViewDelegate {
 extension JournalViewController: MedicineDescriptionVCDelegate {
     func update(index: IndexPath) {
         rootView.journalTableView.reloadRows(at: [index], with: .automatic)
+    }
+}
+
+extension JournalViewController {
+    func getDates(from events: [Event]) {
+        eventsToShow.forEach { rootView.arrayOfEvents.append($0.time) }
     }
 }

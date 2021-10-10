@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1132CCB32710C24B00337486 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1132CCB22710C24B00337486 /* GoogleService-Info.plist */; };
-		1132CCB52710C25600337486 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132CCB42710C25600337486 /* UIView.swift */; };
 		1171C01A270F48EC0047D1AF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C019270F48EC0047D1AF /* UIViewController.swift */; };
 		1171C01C270F511D0047D1AF /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171C01B270F511D0047D1AF /* UIScreen.swift */; };
 		11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0B76C26FF4D5700BD86BF /* AlertView.swift */; };
@@ -51,6 +49,8 @@
 		A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */; };
 		A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */; };
 		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
+		E1544C5D2710C1ED00648E42 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1544C5C2710C1ED00648E42 /* UIView.swift */; };
+		E1544C5F2710C78E00648E42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1544C5E2710C78E00648E42 /* GoogleService-Info.plist */; };
 		E1EC06B026F774550045AAB1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC06AF26F774550045AAB1 /* UIImage.swift */; };
 		FA9D870226F1114500408604 /* MedicineDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870126F1114500408604 /* MedicineDescriptionVC.swift */; };
 		FA9D870A26F111AF00408604 /* MedicineDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */; };
@@ -112,8 +112,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1132CCB22710C24B00337486 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1132CCB42710C25600337486 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		1171C019270F48EC0047D1AF /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		1171C01B270F511D0047D1AF /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		11B0B76C26FF4D5700BD86BF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -160,6 +158,8 @@
 		A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysCycleStackView.swift; sourceTree = "<group>"; };
 		A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertainDaysStackView.swift; sourceTree = "<group>"; };
 		A8E594E526D976FD006F414A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		E1544C5C2710C1ED00648E42 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		E1544C5E2710C78E00648E42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E1EC06AF26F774550045AAB1 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		F02E28BF080770F5D9757D6A /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -491,7 +491,7 @@
 		FE79E3E9269CC83100DACD24 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				1132CCB22710C24B00337486 /* GoogleService-Info.plist */,
+				E1544C5E2710C78E00648E42 /* GoogleService-Info.plist */,
 				FE79E3BE269CC09D00DACD24 /* Info.plist */,
 				FE79E3B0269CC09A00DACD24 /* AppDelegate.swift */,
 			);
@@ -592,7 +592,7 @@
 		FE79E3F2269CC99D00DACD24 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1132CCB42710C25600337486 /* UIView.swift */,
+				E1544C5C2710C1ED00648E42 /* UIView.swift */,
 				FEB9580526AAF0D30093BA8D /* Date.swift */,
 				FE79E44026A31E7B00DACD24 /* UIColor */,
 				FE79E42D26A3182100DACD24 /* String */,
@@ -832,12 +832,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FECB19D826B1D6CF00136DF0 /* SFCompactDisplay-Regular.otf in Resources */,
-				1132CCB32710C24B00337486 /* GoogleService-Info.plist in Resources */,
 				FE79E3BD269CC09D00DACD24 /* LaunchScreen.storyboard in Resources */,
 				FE79E44F26A35F3900DACD24 /* Colors.xcassets in Resources */,
 				FE79E41B26A3165600DACD24 /* Localizable.strings in Resources */,
 				FECB19DC26B1D6D200136DF0 /* SFCompactDisplay-Semibold.otf in Resources */,
 				FE79E3BA269CC09D00DACD24 /* Assets.xcassets in Resources */,
+				E1544C5F2710C78E00648E42 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,7 +1028,7 @@
 				A86DB95626C54C5300AE866A /* StackView.swift in Sources */,
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
-				1132CCB52710C25600337486 /* UIView.swift in Sources */,
+				E1544C5D2710C1ED00648E42 /* UIView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				11B0B77F26FF926500BD86BF /* Bool.swift in Sources */,
