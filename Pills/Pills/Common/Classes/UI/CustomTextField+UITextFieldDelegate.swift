@@ -52,6 +52,6 @@ extension CustomTextField: UITextFieldDelegate {
         endEditing(true)
     }
 	func textFieldDidBeginEditing(_ textField: UITextField) {
-		addNewCourceTextFieldDelegate?.textFieldStartEditing(textField)
+        addNewCourseDelegate?.textFieldStartEditing(textField)
 	}
 }

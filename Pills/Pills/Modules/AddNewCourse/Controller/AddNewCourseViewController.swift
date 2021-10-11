@@ -43,7 +43,7 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     }
 }
 
-extension AddNewCourseViewController: AddNewCourseDataSource {
+extension AddNewCourseViewController: AddNewCourseDataSourceProtocol {
     func pillTypeOptions() -> [String] {
         return PillType.allCases.map {$0.rawValue}
     }

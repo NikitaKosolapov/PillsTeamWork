@@ -80,7 +80,7 @@ class CustomTextFieldBuilder {
 
 // swiftlint:disable type_body_length
 class CustomTextField: UITextField {
-	weak var addNewCourceTextFieldDelegate: AddNewCourceTextFieldDelegate?
+    weak var addNewCourseDelegate: AddNewCourseTextFieldDelegate?
     
     private var padding = UIEdgeInsets(
         top: AppLayout.CustomTextField.paddingTop,
