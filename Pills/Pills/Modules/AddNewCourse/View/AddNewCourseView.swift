@@ -23,6 +23,8 @@ final class AddNewCourseView: UIView {
 
     // MARK: - Private Properties
     
+    private let receiveFreqStackView = ReceiveFreqPillsView()
+    
     // stackPillName
     private lazy var pillNameLabel = LabelFabric.generateLabelWith(text: Text.name)
     
@@ -108,7 +110,7 @@ final class AddNewCourseView: UIView {
     
     private lazy var doseInputStackView = HorizontalStackViewFabric.generate([doseInput, doseUnitInput])
     
-    // MARK: - Frequency Input
+    // frequencyInput TextField
     lazy var frequencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(
@@ -124,12 +126,16 @@ final class AddNewCourseView: UIView {
         textField.addNewCourseDelegate = self
         return textField
     }()
-    
-    let receiveFreqStackView = ReceiveFreqPillsView()
+
     var certainDays: [String] = []
     var daysButtons: [UIButton] = []
+
+    // timeLabelStackView
+    private lazy var startTimeLabel = LabelFabric.generateLabelWith(text: Text.startFrom)
+    private lazy var timeLabel = LabelFabric.generateLabelWith(text: Text.takeAtTime)
+    private lazy var timeLabelStackView = HorizontalStackViewFabric.generate([startTimeLabel, timeLabel])
     
-    // MARK: - Start Date Input
+    // startTimeInputStackView
     lazy var startInput = CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
         .withImage(AppImages.Tools.calendar)
@@ -139,7 +145,6 @@ final class AddNewCourseView: UIView {
         })
         .build()
     
-    // MARK: - Start Time Input
     lazy var timeInput = CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
         .withDatePicker(.time , { [weak self] time in
@@ -147,7 +152,7 @@ final class AddNewCourseView: UIView {
             return true
         })
         .build()
-    
+
     // MARK: - Period Input
     lazy var takePeriodInput = CustomTextFieldBuilder()
         .withPlaceholder(Text.takePeriodPlaceholder)
@@ -170,6 +175,11 @@ final class AddNewCourseView: UIView {
     var datesPeriod: [Date] = []
     var periodWeekDays: [String] = []
     // MARK: - Meal Dependency Input
+    private lazy var startTimeInputStackView = HorizontalStackViewFabric.generate([startInput, timeInput])
+    
+    // takeMedicineStackView
+    private lazy var takeMedicineLabel = LabelFabric.generateLabelWith(text: Text.instruction)
+
     lazy var mealDependencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: []) { [weak self] option in
@@ -183,7 +193,11 @@ final class AddNewCourseView: UIView {
         return textField
     }()
     
-    // MARK: - Note Input
+    private lazy var takeMedicineStackView = VerticalStackViewFabric.generate([takeMedicineLabel, mealDependencyInput])
+    
+    // noteStackView
+    private lazy var noteLabel = LabelFabric.generateLabelWith(text: Text.notes)
+    
     lazy var noteInput: UITextView = {
         let textView = UITextView()
         textView.isEditable = true
@@ -197,52 +211,23 @@ final class AddNewCourseView: UIView {
         return textView
     }()
     
+    private lazy var noteStackView = VerticalStackViewFabric.generate([noteLabel, noteInput])
+    
+    // saveButton
+    lazy var saveButton: AddButton = {
+        let button = AddButton()
+        button.setTitle(Text.save, for: .normal)
+        button.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }()
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = AppColors.lightBlueBlack
         return scrollView
     }()
-    
-    // MARK: - Continue Button
-    
-    lazy var doneButton: AddButton = {
-        let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(Text.save, for: .normal)
-        button.addTarget(
-            self,
-            action: #selector(doneButtonPressed),
-            for: .touchUpInside
-        )
-        button.isEnabled = false
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: AppLayout.Journal.heightAddButton)
-        ])
-        return button
-    }()
-    
-    lazy var stackDose = VerticalStackViewFabric.generate([doseLabel, doseInput])
-    lazy var startLabel = FieldHeaderFabric.generate(header: Text.startFrom)
-    lazy var stackStart = VerticalStackViewFabric.generate([startLabel, startInput])
-    lazy var timeLabel = FieldHeaderFabric.generate(header: Text.takeAtTime)
-    lazy var stackTime = VerticalStackViewFabric.generate([timeLabel, timeInput])
-    lazy var stackStartAndWhen = HorizontalStackViewFabric.generate([stackStart, stackTime])
-    lazy var takePeriodDatePickerLabel = FieldHeaderFabric.generate()
-    lazy var stackTakeDatePickerPeriod = VerticalStackViewFabric.generate([
-        takePeriodDatePickerLabel,
-        takePeriodDatePickerInput
-    ])
-    lazy var takePeriodLabel = FieldHeaderFabric.generate(header: Text.takePeriod)
-    lazy var stackTakePeriod = VerticalStackViewFabric.generate([takePeriodLabel, takePeriodInput])
-    lazy var mealDependencyLabel = FieldHeaderFabric.generate(header: Text.instruction)
-    lazy var stackMealDependency = VerticalStackViewFabric.generate([mealDependencyLabel, mealDependencyInput])
-    lazy var noteLabel = FieldHeaderFabric.generate(header: Text.notes)
-    lazy var stackNote = VerticalStackViewFabric.generate([noteLabel, noteInput])
-
-    @objc func doneButtonPressed() {
-        delegate?.onSubmit()
-    }
     
     // MARK: - Major Stack View
     lazy var formStackView: UIStackView = {
@@ -261,7 +246,7 @@ final class AddNewCourseView: UIView {
     }()
     
     lazy var majorStackView: UIStackView = {
-        let stackView = VerticalStackViewFabric.generate([scrollView, doneButton])
+        let stackView = VerticalStackViewFabric.generate([scrollView])
         stackView.spacing = AppLayout.AddCourse.horizontalSpacing
         return stackView
     }()
@@ -282,6 +267,12 @@ final class AddNewCourseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Actions
+    
+    @objc func doneButtonPressed() {
+        delegate?.onSubmit()
+    }
+    
     // MARK: - Private Methods
     
     private func setupView() {
@@ -295,6 +286,12 @@ final class AddNewCourseView: UIView {
         addSubview(typeLabelAndStackTypeNameAndImage)
         addSubview(doseLabelStackView)
         addSubview(doseInputStackView)
+        addSubview(frequencyInput)
+        addSubview(timeLabelStackView)
+        addSubview(startTimeInputStackView)
+        addSubview(takeMedicineStackView)
+        addSubview(noteStackView)
+        addSubview(saveButton)
     }
     
     private func setupLayout() {
@@ -334,7 +331,55 @@ final class AddNewCourseView: UIView {
         doseInputStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(doseLabelStackView.snp.bottom).offset(8)
+            $0.top.equalTo(doseLabelStackView.snp.bottom).offset(AppLayout.AddCourse.vStackViewSpacing)
+        }
+        
+        // frequencyInput TextField
+        frequencyInput.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
+            $0.top.equalTo(doseInputStackView.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
+        }
+        
+        // timeLabelStackView
+        timeLabelStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
+            $0.top.equalTo(frequencyInput.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
+        }
+        
+        // startTimeInputStackView
+        startTimeInputStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
+            $0.top.equalTo(timeLabelStackView.snp.bottom).offset(AppLayout.AddCourse.vStackViewSpacing)
+        }
+        
+        // takeMedicineStackView
+        takeMedicineStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
+            $0.top.equalTo(startTimeInputStackView.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
+        }
+        
+        // noteStackView
+        noteInput.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(AppLayout.AddCourse.noteInputHeight)
+        }
+        
+        noteStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
+            $0.top.equalTo(takeMedicineStackView.snp.bottom).offset(AppLayout.AddCourse.vStackViewSpacing)
+        }
+        
+        // saveButton
+        saveButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
+            $0.height.equalTo(AppLayout.Journal.heightAddButton)
+            $0.top.equalTo(noteStackView.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
         }
     }
     
@@ -384,7 +429,7 @@ final class AddNewCourseView: UIView {
         super.layoutSubviews()
         scrollView.contentSize = CGSize(
             width: scrollView.contentSize.width,
-            height: stackNote.frame.maxY
+            height: noteStackView.frame.maxY
         )
     }
     
@@ -396,7 +441,7 @@ final class AddNewCourseView: UIView {
     }
     
     func setScrollViewOffset(for textField: UIView) {
-        let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
+        let coveringContent = keyboardHeight + saveButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
         let visibleContent = self.frame.height - coveringContent
         var contentOffset = CGPoint(x: 0, y: 0)
         
@@ -446,7 +491,7 @@ final class AddNewCourseView: UIView {
             }
             
             func setScrollViewOffset(for textField: UIView) {
-                let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
+                let coveringContent = keyboardHeight + 2 * AppLayout.AddCourse.horizontalSpacing
                 let visibleContent = self.frame.height - coveringContent
                 var contentOffset = CGPoint(x: 0, y: 0)
                 

@@ -94,6 +94,6 @@ extension AddNewCourseView {
     }
     /// Set submit button state
     public func setDoneButtonEnabled(_ enabled: Bool) {
-        doneButton.isEnabled = enabled
+        saveButton.isEnabled = enabled
     }
 }
