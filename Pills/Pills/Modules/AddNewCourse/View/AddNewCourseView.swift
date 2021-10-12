@@ -15,9 +15,9 @@ final class AddNewCourseView: UIView {
     public weak var delegate: AddNewCourseDelegate?
     public weak var dataSource: AddNewCourseDataSourceProtocol? {
         willSet {
-            pillTypeName.pickerOptions = newValue?.pillTypeOptions() ?? []
-            frequencyInput.pickerOptions = newValue?.frequencyOptions() ?? []
-            mealDependencyInput.pickerOptions = newValue?.mealOptions() ?? []
+            pillTypeNameTF.pickerOptions = newValue?.pillTypeOptions() ?? []
+            frequencyTF.pickerOptions = newValue?.frequencyOptions() ?? []
+            mealDependencyTF.pickerOptions = newValue?.mealOptions() ?? []
         }
     }
 
@@ -28,7 +28,7 @@ final class AddNewCourseView: UIView {
     // stackPillName
     private lazy var pillNameLabel = LabelFabric.generateLabelWith(text: Text.name)
     
-    public lazy var pillNameInput = CustomTextFieldBuilder()
+    public lazy var pillNameTF = CustomTextFieldBuilder()
         .withPlaceholder(Text.namePlaceholder)
         .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
         .withEndEditProcessor { [weak self] text in
@@ -36,12 +36,12 @@ final class AddNewCourseView: UIView {
         }
         .build()
     
-    private lazy var stackPillName = VerticalStackViewFabric.generate([pillNameLabel, pillNameInput])
+    private lazy var stackPillName = VerticalStackViewFabric.generate([pillNameLabel, pillNameTF])
     
     // typeLabelAndStackTypeNameAndImage
     private lazy var pillTypeNameLabel = LabelFabric.generateLabelWith(text: Text.pillType)
-
-    lazy var pillTypeName: CustomTextField = CustomTextFieldBuilder()
+    
+    lazy var pillTypeNameTF: CustomTextField = CustomTextFieldBuilder()
         .withPlaceholder(Text.Pills.tablets.rawValue.localized())
         .withTextAlignment(.center)
         .withSimplePicker(options: []) { [weak self] (option) in
@@ -72,7 +72,7 @@ final class AddNewCourseView: UIView {
         return imageView
     }()
     
-    private lazy var stackTypeNameAndImage = HorizontalStackViewFabric.generate([pillTypeName, typeImageHolder])
+    private lazy var stackTypeNameAndImage = HorizontalStackViewFabric.generate([pillTypeNameTF, typeImageHolder])
     private lazy var typeLabelAndStackTypeNameAndImage = VerticalStackViewFabric.generate([
         pillTypeNameLabel,
         stackTypeNameAndImage
@@ -84,7 +84,7 @@ final class AddNewCourseView: UIView {
     private lazy var doseLabelStackView = HorizontalStackViewFabric.generate([doseLabel, doseUnitLabel])
     
     // doseInputStackView
-    lazy var doseInput = CustomTextFieldBuilder()
+    lazy var doseInputTF = CustomTextFieldBuilder()
         .withPlaceholder(Text.singleDoseByNumber)
         .withType(.numeric)
         .withTextAlignment(.center)
@@ -94,7 +94,7 @@ final class AddNewCourseView: UIView {
         }
         .build()
     
-    lazy var doseUnitInput: CustomTextField = {
+    lazy var doseUnitTF: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withPlaceholder(Text.mg)
             .withSimplePicker(options: []) { [weak self] option in
@@ -108,19 +108,18 @@ final class AddNewCourseView: UIView {
         return textField
     }()
     
-    private lazy var doseInputStackView = HorizontalStackViewFabric.generate([doseInput, doseUnitInput])
+    private lazy var doseInputStackView = HorizontalStackViewFabric.generate([doseInputTF, doseUnitTF])
     
-    // frequencyInput TextField
-    lazy var frequencyInput: CustomTextField = {
+    // frequencyTF
+    lazy var frequencyTF: CustomTextField = {
         let textField = CustomTextFieldBuilder()
-            .withSimplePicker(
-                options: Frequency.all(), { [weak self] (option) in
-                    guard let self = self else {return false}
-                    let freq = Frequency.init(rawValue: option) ?? .daysOfTheWeek
-                    self.receiveFreqStackView.showView(with: freq)
-                    self.delegate?.onPillFreqTypeChanged(freq)
-                    return true
-                })
+            .withSimplePicker(options: Frequency.all(), { [weak self] (option) in
+                guard let self = self else {return false}
+                let freq = Frequency.init(rawValue: option) ?? .daysOfTheWeek
+                self.receiveFreqStackView.showView(with: freq)
+                self.delegate?.onPillFreqTypeChanged(freq)
+                return true
+            })
             .withPlaceholder(Text.takingFrequency)
             .build()
         textField.addNewCourseDelegate = self
@@ -136,7 +135,7 @@ final class AddNewCourseView: UIView {
     private lazy var timeLabelStackView = HorizontalStackViewFabric.generate([startTimeLabel, timeLabel])
     
     // startTimeInputStackView
-    lazy var startInput = CustomTextFieldBuilder()
+    lazy var startTF = CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
         .withImage(AppImages.Tools.calendar)
         .withDatePicker(.date , { [weak self] date in
@@ -145,7 +144,7 @@ final class AddNewCourseView: UIView {
         })
         .build()
     
-    lazy var timeInput = CustomTextFieldBuilder()
+    lazy var timeTF = CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
         .withDatePicker(.time , { [weak self] time in
             self?.delegate?.onStartTimeChanged(time)
@@ -153,34 +152,15 @@ final class AddNewCourseView: UIView {
         })
         .build()
 
-    // MARK: - Period Input
-    lazy var takePeriodInput = CustomTextFieldBuilder()
-        .withPlaceholder(Text.takePeriodPlaceholder)
-        .withType(.numeric)
-        .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
-        .withEndEditProcessor { [weak self] text in
-            self?.delegate?.onTakePeriodChanged(Int.init(text) ?? 1)
-        }
-        .clearOnFocus()
-        .build()
-
-    lazy var takePeriodDatePickerInput = CustomTextFieldBuilder()
-        .withImage(AppImages.Tools.calendar)
-        .withDatePicker(.date) { [weak self] tillDate in
-            self?.delegate?.onTakePeriodTill(tillDate)
-            return false
-        }
-        .build()
-    
     var datesPeriod: [Date] = []
     var periodWeekDays: [String] = []
-    // MARK: - Meal Dependency Input
-    private lazy var startTimeInputStackView = HorizontalStackViewFabric.generate([startInput, timeInput])
+
+    private lazy var startTimeInputStackView = HorizontalStackViewFabric.generate([startTF, timeTF])
     
     // takeMedicineStackView
     private lazy var takeMedicineLabel = LabelFabric.generateLabelWith(text: Text.instruction)
-
-    lazy var mealDependencyInput: CustomTextField = {
+    
+    lazy var mealDependencyTF: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: []) { [weak self] option in
                 self?.delegate?.onMealDependencyChanged(Text.Usage.init(rawValue: option) ?? .noMatter)
@@ -193,7 +173,7 @@ final class AddNewCourseView: UIView {
         return textField
     }()
     
-    private lazy var takeMedicineStackView = VerticalStackViewFabric.generate([takeMedicineLabel, mealDependencyInput])
+    private lazy var takeMedicineStackView = VerticalStackViewFabric.generate([takeMedicineLabel, mealDependencyTF])
     
     // noteStackView
     private lazy var noteLabel = LabelFabric.generateLabelWith(text: Text.notes)
@@ -221,32 +201,59 @@ final class AddNewCourseView: UIView {
         button.isEnabled = false
         return button
     }()
-    
+
+    // scrollView
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = AppColors.lightBlueBlack
         return scrollView
     }()
-    
-    // MARK: - Major Stack View
-    lazy var formStackView: UIStackView = {
-        let stack = VerticalStackViewFabric.generate([
-            // stackPillName,
-            // stackTypeImageAndTypeName,
-            // stackDoseAndUnit,
-            // frequencyInput,
-            // receiveFreqStackView,
-            // stackStartAndWhen,
-            // stackMealDependency,
-            // stackNote
-        ])
-        stack.spacing = AppLayout.AddCourse.horizontalSpacing
-        return stack
+
+    // containerView is a subView of scrollView and contains all UI elements
+    private lazy var containerView: UIView = {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = AppColors.lightBlueBlack
+        return containerView
     }()
     
+    // mainStackView
+    private lazy var mainStackView = VerticalStackViewFabric.generate([
+        stackPillName,
+        typeLabelAndStackTypeNameAndImage,
+        doseLabelStackView,
+        doseInputStackView,
+        frequencyTF,
+        timeLabelStackView,
+        startTimeInputStackView,
+        takeMedicineStackView,
+        noteStackView,
+        saveButton
+    ])
+    
+    // takePeriodInput
+    lazy var takePeriodInput = CustomTextFieldBuilder()
+        .withPlaceholder(Text.takePeriodPlaceholder)
+        .withType(.numeric)
+        .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
+        .withEndEditProcessor { [weak self] text in
+            self?.delegate?.onTakePeriodChanged(Int.init(text) ?? 1)
+        }
+        .clearOnFocus()
+        .build()
+    
+    // takePeriodDatePickerInput
+    lazy var takePeriodDatePickerInput = CustomTextFieldBuilder()
+        .withImage(AppImages.Tools.calendar)
+        .withDatePicker(.date) { [weak self] tillDate in
+            self?.delegate?.onTakePeriodTill(tillDate)
+            return false
+        }
+        .build()
+
     lazy var majorStackView: UIStackView = {
-        let stackView = VerticalStackViewFabric.generate([scrollView])
+        let stackView = VerticalStackViewFabric.generate([])
         stackView.spacing = AppLayout.AddCourse.horizontalSpacing
         return stackView
     }()
@@ -280,106 +287,42 @@ final class AddNewCourseView: UIView {
     }
     
     private func addSubviews() {
-        addSubview(stackPillName)
-        addSubview(stackTypeNameAndImage)
+        addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        containerView.addSubview(mainStackView)
         typeImageHolder.addSubview(typeImage)
-        addSubview(typeLabelAndStackTypeNameAndImage)
-        addSubview(doseLabelStackView)
-        addSubview(doseInputStackView)
-        addSubview(frequencyInput)
-        addSubview(timeLabelStackView)
-        addSubview(startTimeInputStackView)
-        addSubview(takeMedicineStackView)
-        addSubview(noteStackView)
-        addSubview(saveButton)
     }
     
     private func setupLayout() {
-        // stackPillName layout
-        stackPillName.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top)
+        // scrollView layout
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
-        pillNameLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-        }
-
-        pillNameInput.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+        // containerView layout
+        containerView.snp.makeConstraints {
+            $0.edges.width.equalToSuperview()
         }
         
-        // typeLabelAndStackTypeNameAndImage layout
+        // typeImage layout
         typeImage.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
         
-        typeLabelAndStackTypeNameAndImage.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(stackPillName.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
-        }
-        
-        // doseLabelStackView
-        doseLabelStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(typeLabelAndStackTypeNameAndImage.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
-        }
-        
-        // doseInputStackView
-        doseInputStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(doseLabelStackView.snp.bottom).offset(AppLayout.AddCourse.vStackViewSpacing)
-        }
-        
-        // frequencyInput TextField
-        frequencyInput.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(doseInputStackView.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
-        }
-        
-        // timeLabelStackView
-        timeLabelStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(frequencyInput.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
-        }
-        
-        // startTimeInputStackView
-        startTimeInputStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(timeLabelStackView.snp.bottom).offset(AppLayout.AddCourse.vStackViewSpacing)
-        }
-        
-        // takeMedicineStackView
-        takeMedicineStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(startTimeInputStackView.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
-        }
-        
-        // noteStackView
+        // noteInput height
         noteInput.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(AppLayout.AddCourse.noteInputHeight)
         }
         
-        noteStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.top.equalTo(takeMedicineStackView.snp.bottom).offset(AppLayout.AddCourse.vStackViewSpacing)
+        // saveButton height
+        saveButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.Journal.heightAddButton)
         }
         
-        // saveButton
-        saveButton.snp.makeConstraints {
+        // mainStackView layout
+        mainStackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
-            $0.height.equalTo(AppLayout.Journal.heightAddButton)
-            $0.top.equalTo(noteStackView.snp.bottom).offset(AppLayout.AddCourse.horizontalSpacing)
+            $0.top.bottom.equalToSuperview()
         }
     }
     
@@ -402,40 +345,27 @@ final class AddNewCourseView: UIView {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height
-            
             majorStackViewBottomAnchor?.isActive = false
-            majorStackViewBottomAnchor = majorStackView.bottomAnchor
-                .constraint(
-                    equalTo: bottomAnchor,
-                    constant: -keyboardHeight - AppLayout.AddCourse.horizontalSpacing
-                )
+            majorStackViewBottomAnchor = majorStackView.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -keyboardHeight - AppLayout.AddCourse.horizontalSpacing
+            )
             majorStackViewBottomAnchor?.isActive = true
         }
     }
     
     @objc func keyboardWillHide(notification:NSNotification) {
         majorStackViewBottomAnchor?.isActive = false
-        majorStackViewBottomAnchor = majorStackView.bottomAnchor
-            .constraint(
-                equalTo: bottomAnchor,
-                constant: -UIScreen.main.safeAreaBottom
-            )
-        majorStackViewBottomAnchor?.isActive = true
-    }
-    
-    // MARK: - Private Methods
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        scrollView.contentSize = CGSize(
-            width: scrollView.contentSize.width,
-            height: noteStackView.frame.maxY
+        majorStackViewBottomAnchor = majorStackView.bottomAnchor.constraint(
+            equalTo: bottomAnchor,
+            constant: -UIScreen.main.safeAreaBottom
         )
+        majorStackViewBottomAnchor?.isActive = true
     }
     
     func addEventToHideKeyboard() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
-        formStackView.addGestureRecognizer(tapGesture)
+        mainStackView.addGestureRecognizer(tapGesture)
         majorStackView.addGestureRecognizer(tapGesture)
         self.addGestureRecognizer(tapGesture)
     }
@@ -444,10 +374,8 @@ final class AddNewCourseView: UIView {
         let coveringContent = keyboardHeight + saveButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
         let visibleContent = self.frame.height - coveringContent
         var contentOffset = CGPoint(x: 0, y: 0)
-        
         let middleOfVisibleArea = visibleContent / 2
         let middleOfField = textField.convert(textField.bounds, to: self).midY
-        
         if middleOfField <= middleOfVisibleArea {
             contentOffset = CGPoint(x: 0, y: 0)
         } else {
@@ -515,7 +443,6 @@ extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         activeView = nil
         delegate?.onCommentChanged(textView.text)
-        
         if textView.text.isEmpty {
             textView.text = Text.featuresOfTaking
             textView.textColor = AppColors.placeholderGray
@@ -524,7 +451,6 @@ extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeView = textView
         setScrollViewOffset(for: activeView!)
-        
         if textView.textColor == AppColors.placeholderGray {
             textView.text = nil
             textView.textColor = AppColors.black

@@ -12,40 +12,40 @@ import UIKit
 extension AddNewCourseView {
     /// Set pill name
     public func setPillName(_ name: String) {
-        pillNameInput.text = name
+        pillNameTF.text = name
     }
     /// Set pill type
     public func setPillType(_ type: PillType) {
-        pillTypeName.text = type.rawValue.localized()
+        pillTypeNameTF.text = type.rawValue.localized()
         typeImage.image = type.image()
     }
     /// Set pill dose
     public func setPillDose(_ dose: Double) {
-        doseInput.text = "\(dose)"
+        doseInputTF.text = "\(dose)"
     }
     /// Set dose unit
     public func setDoseUnit(_ unit: Text.Unit) {
-        doseUnitInput.isUserInteractionEnabled = true
-        doseUnitInput.text = unit.rawValue.localized()
+        doseUnitTF.isUserInteractionEnabled = true
+        doseUnitTF.text = unit.rawValue.localized()
     }
     /// Set dose unit selector options
     public func setDoseUnitOptions(_ units: [String]) {
-        doseUnitInput.pickerOptions = units
+        doseUnitTF.pickerOptions = units
     }
     /// Set taking frequency
     public func setTakeFreq(_ freq: Frequency) {
-        frequencyInput.text = freq.rawValue.localized()
+        frequencyTF.text = freq.rawValue.localized()
     }
     /// Set course start date
     public func setStartDate(_ date: Date) {
-        startInput.text = CustomTextField.dateFormatter.string(from: date)
+        startTF.text = CustomTextField.dateFormatter.string(from: date)
         if let tillDate = takePeriodDatePickerInput.date {
             updateTakePeriodText(fromDate: date, tillDate: tillDate)
         }
     }
     /// Set course start time
     public func setStartTime(_ time: Date) {
-        timeInput.text = CustomTextField.timeFormatter.string(from: time)
+        timeTF.text = CustomTextField.timeFormatter.string(from: time)
     }
     /// Set taking period
     public func setTakePeriod(_ days: Int, fromDate: Date) {
@@ -86,7 +86,7 @@ extension AddNewCourseView {
     }
     /// Set taking meal dependency
     public func setMealDependency(_ mealDependency: Text.Period) {
-        mealDependencyInput.text = mealDependency.rawValue.localized()
+        mealDependencyTF.text = mealDependency.rawValue.localized()
     }
     /// Set comment
     public func setComment(_ note: String) {
