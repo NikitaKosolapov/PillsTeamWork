@@ -11,7 +11,7 @@ final class JournalViewController: BaseViewController<JournalView> {
     
     fileprivate var eventsToShow: [Event] = []
     fileprivate var filteredEvents: [Event] = []
-        
+            
     // MARK: - MOCK DATA
     var journalEntries: [RealmMedKitEntry] = [
         JournalMock.shared.entryExample1,
@@ -39,8 +39,7 @@ final class JournalViewController: BaseViewController<JournalView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationItem.backBarButtonItem = UIBarButtonItem(
-            title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
+        setBarButton()
         getDates(from: filteredEvents)
     }
     
@@ -129,5 +128,27 @@ extension JournalViewController: MedicineDescriptionVCDelegate {
 extension JournalViewController {
     func getDates(from events: [Event]) {
         eventsToShow.forEach { rootView.arrayOfEvents.append($0.time) }
+    }
+    
+    func setBarButton() {
+        let attributes = [NSAttributedString.Key.font : AppLayout.Fonts.normalRegular as Any]
+        if #available(iOS 15.0, *) {
+            let navigationAppearance = UINavigationBarAppearance()
+            navigationAppearance.configureWithDefaultBackground()
+            let buttonAppearance = UIBarButtonItemAppearance()
+            buttonAppearance.normal.titleTextAttributes = attributes
+            buttonAppearance.highlighted.titleTextAttributes = attributes
+            navigationAppearance.buttonAppearance = buttonAppearance
+
+            let appearance = UINavigationBar.appearance()
+            appearance.standardAppearance = navigationAppearance
+            appearance.scrollEdgeAppearance = navigationAppearance
+        } else {
+            let appearance = UIBarButtonItem.appearance()
+            appearance.setTitleTextAttributes(attributes, for: .normal)
+            appearance.setTitleTextAttributes(attributes, for: .highlighted)
+        }
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "\(Text.Tabs.journal)", style: .plain, target: nil, action: nil)
     }
 }
