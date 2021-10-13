@@ -19,10 +19,7 @@ extension CustomTextField: UITextFieldDelegate {
         return true
     }
 
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String
     ) -> Bool {
         if datePicker != nil { return false }
         if picker != nil { return false }
@@ -55,6 +52,6 @@ extension CustomTextField: UITextFieldDelegate {
         endEditing(true)
     }
 	func textFieldDidBeginEditing(_ textField: UITextField) {
-		addNewCourseDelegate?.textFieldStartEditing(textField)
+		addNewCourceTextFieldDelegate?.textFieldStartEditing(textField)
 	}
 }

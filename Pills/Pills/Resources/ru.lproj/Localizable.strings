@@ -60,10 +60,10 @@
 "afterMeals" = "После еды";
 "noMatter" = "Не важно";
 
-"someDaysInAWeek" = "Определенные дни недели";
-"severalTimesInADay" = "Ежедневно, Х раз в день";
-"everyNHoursInADay" = "Ежедневно, каждые Х часов";
-"everyNDaysAfterMDays" = "Х дней приёма через Y";
+"daysOfTheWeek" = "Определенные дни недели";
+"dailyXTimes" = "Ежедневно, Х раз в день";
+"dailyEveryXHour" = "Ежедневно, каждые Х часов";
+"daysCycle" = "Х дней приёма через Y";
 
 "pill" = "таблетка";
 "piece" = "штука";

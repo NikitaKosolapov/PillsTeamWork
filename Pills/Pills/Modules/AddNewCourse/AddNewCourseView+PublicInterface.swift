@@ -63,7 +63,15 @@ extension AddNewCourseView {
         let calendar = Calendar.current
         let dateStart = calendar.startOfDay(for: fromDate)
         let dateEnd = calendar.startOfDay(for: tillDate)
+        
+        let datesBetween = Date.dates(from: fromDate, to: tillDate)
 
+        datesPeriod = datesBetween
+        
+        disableWrongButtons(for: daysButtons, on: datesPeriod)
+        
+        createScheduleDays(from: certainDays, from: datesPeriod)
+        
         guard let days =
             calendar.dateComponents(
                 [Calendar.Component.day],

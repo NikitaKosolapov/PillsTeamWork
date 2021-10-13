@@ -8,7 +8,7 @@
 import UIKit
 
 enum ReceiveFreqPills {
-    case daysOfTheWeek([Int])
+    case daysOfTheWeek([Date])
     case dailyXTimes(Int)
     case dailyEveryXHour(Int)
     case daysCycle((Int,Int))
@@ -16,6 +16,7 @@ enum ReceiveFreqPills {
 
 protocol ReceiveFreqPillsDelegate: AnyObject {
     func frequencyDidChange() -> ReceiveFreqPills
+    func certainDaysDidChange(on days: [String])
 }
 
 class ReceiveFreqPillsView: UIStackView {
@@ -24,7 +25,7 @@ class ReceiveFreqPillsView: UIStackView {
     weak var delegate: ReceiveFreqPillsDelegate?
     
     // MARK: - Subviews
-    private let certainDaysStackView: CertainDaysStackView = {
+     let certainDaysStackView: CertainDaysStackView = {
         let certainDaysStackView = CertainDaysStackView()
         certainDaysStackView.isHidden = true
         return certainDaysStackView
@@ -61,6 +62,7 @@ class ReceiveFreqPillsView: UIStackView {
     private func configureUI() {
         configureStackView()
         configureEveryDayXTimesADayTextField()
+        certainDaysStackView.delegate = self
     }
     
     private func configureStackView() {
@@ -102,7 +104,8 @@ class ReceiveFreqPillsView: UIStackView {
     func getDataFreqOfTakingPills(with frequency: Frequency) -> ReceiveFreqPills? {
         switch frequency {
         case .daysOfTheWeek:
-            return .daysOfTheWeek(getCertainDays())
+            let mock: [Date] = []
+            return .daysOfTheWeek(mock)
         case .dailyXTimes:
             return .dailyXTimes(dailyXTimes())
         case .dailyEveryXHour:
@@ -113,7 +116,7 @@ class ReceiveFreqPillsView: UIStackView {
     }
     
     // MARK: - Private functions
-    private func getCertainDays() -> [Int] {
+    private func getCertainDays() -> [String] {
         return certainDaysStackView.getCertainDays()
     }
     
@@ -123,5 +126,11 @@ class ReceiveFreqPillsView: UIStackView {
     
     private func getDaysCycle() -> (Int, Int) {
         return daysCycleStackView.getXDaysAndYDays()
+    }
+}
+
+extension ReceiveFreqPillsView: CertainDaysStackViewDelegate {
+    func certainDaysDidChange(on days: [String]) {
+        delegate?.certainDaysDidChange(on: days)
     }
 }

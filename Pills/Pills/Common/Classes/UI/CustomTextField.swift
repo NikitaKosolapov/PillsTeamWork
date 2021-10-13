@@ -80,7 +80,8 @@ class CustomTextFieldBuilder {
 
 // swiftlint:disable type_body_length
 class CustomTextField: UITextField {
-    weak var addNewCourseDelegate: AddNewCourceTextFieldDelegate?
+	weak var addNewCourceTextFieldDelegate: AddNewCourceTextFieldDelegate?
+    
     private var padding = UIEdgeInsets(
         top: AppLayout.CustomTextField.paddingTop,
         left: AppLayout.CustomTextField.paddingLeft,
@@ -108,6 +109,12 @@ class CustomTextField: UITextField {
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yy"
+        return formatter
+    }()
+    
+    static let dateOfWeekFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEEEE"
         return formatter
     }()
 

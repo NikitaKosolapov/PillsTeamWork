@@ -46,5 +46,6 @@ final class AppImages {
     enum AddCourse {
         static let check = UIImage(named: "check")
         static let noCheck = UIImage(named: "noCheck")
+        static let notEnable = UIImage(named: "notEnable")
     }
 }

@@ -69,6 +69,7 @@ protocol AddNewCourseDataSource: AnyObject {
 }
 
 // swiftlint:disable type_body_length
+// swiftlint:disable file_length
 final class AddNewCourseView: UIView {
     
     public weak var delegate: AddNewCourseDelegate?
@@ -81,14 +82,18 @@ final class AddNewCourseView: UIView {
     }
     
     // MARK: - Pill Name Input
-    lazy var pillNameInput = CustomTextFieldBuilder()
-        .withPlaceholder(Text.namePlaceholder)
-        .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
-        .withEndEditProcessor { [weak self] text in
-            self?.delegate?.onPillNameChanged(text)
-        }
-        .build()
-    
+    internal lazy var pillNameInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.namePlaceholder)
+            .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
+            .withEndEditProcessor { [weak self] text in
+                self?.delegate?.onPillNameChanged(text)
+            }
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
+
     // MARK: - Type Input
     lazy var typeImageHolder: UIView = {
         let holder = UIView()
@@ -105,34 +110,40 @@ final class AddNewCourseView: UIView {
         imageView.image = PillType.tablets.image()
         return imageView
     }()
-    
-    lazy var pillTypeName: CustomTextField =
-        CustomTextFieldBuilder()
-        .withPlaceholder(Text.Pills.tablets.rawValue.localized())
-        .withTextAlignment(.center)
-        .withSimplePicker(options: []) { [weak self] (option) in
-            
-            guard let self = self else {return true}
-            let type = PillType.init(rawValue: option) ?? .tablets
-            
-            self.setPillType(type)
-            self.delegate?.onPillTypeChanged(type)
-            return true
-        }
-        .build()
+
+    internal lazy var pillTypeName: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.Pills.tablets.rawValue.localized())
+            .withTextAlignment(.center)
+            .withSimplePicker(options: []) { [weak self] (option) in
+                
+                guard let self = self else {return true}
+                let type = PillType.init(rawValue: option) ?? .tablets
+                
+                self.setPillType(type)
+                self.delegate?.onPillTypeChanged(type)
+                return true
+            }
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
     
     // MARK: - Dose Input
-    lazy var doseInput =
-        CustomTextFieldBuilder()
-        .withPlaceholder(Text.singleDoseByNumber)
-        .withType(.numeric)
-        .withTextAlignment(.center)
-        .withMaxLength(AppLayout.AddCourse.doseFieldMaxLength)
-        .withEndEditProcessor { [weak self] text in
-            self?.delegate?.onPillDoseChanged(Double.init(text) ?? 0.0)
-        }
-        .build()
-    
+    internal lazy var doseInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.dosePlaceholder)
+            .withType(.numeric)
+            .withTextAlignment(.center)
+            .withMaxLength(AppLayout.AddCourse.doseFieldMaxLength)
+            .withEndEditProcessor { [weak self] text in
+                self?.delegate?.onPillDoseChanged(Double.init(text) ?? 0.0)
+            }
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
+
     // MARK: - Dose Unit
     lazy var doseUnitInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
@@ -144,7 +155,7 @@ final class AddNewCourseView: UIView {
             .withTextAlignment(.center)
             .build()
         textField.isUserInteractionEnabled = false
-        textField.addNewCourseDelegate = self
+		textField.addNewCourceTextFieldDelegate = self
         return textField
     }()
     
@@ -161,54 +172,70 @@ final class AddNewCourseView: UIView {
                 })
             .withPlaceholder(Text.takingFrequency)
             .build()
-        textField.addNewCourseDelegate = self
+		textField.addNewCourceTextFieldDelegate = self
         return textField
     }()
     
     let receiveFreqStackView = ReceiveFreqPillsView()
+    var certainDays: [String] = []
+    var daysButtons: [UIButton] = []
     
     // MARK: - Start Date Input
-    lazy var startInput =
-        CustomTextFieldBuilder()
-        .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
-        .withImage(AppImages.Tools.calendar)
-        .withDatePicker(.date , { [weak self] date in
-            self?.delegate?.onStartDateChanged(date)
-            return true
-        })
-        .build()
-    
+    internal lazy var startInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
+            .withImage(AppImages.Tools.calendar)
+            .withDatePicker(.date , { [weak self] date in
+                self?.delegate?.onStartDateChanged(date)
+                return true
+            })
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
+
     // MARK: - Start Time Input
-    lazy var timeInput =
-        CustomTextFieldBuilder()
-        .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
-        .withDatePicker(.time , { [weak self] time in
-            self?.delegate?.onStartTimeChanged(time)
-            return true
-        })
-        .build()
-    
+    internal lazy var timeInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
+            .withDatePicker(.time , { [weak self] time in
+                self?.delegate?.onStartTimeChanged(time)
+                return true
+            })
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
+        
     // MARK: - Period Input
-    lazy var takePeriodInput =
-        CustomTextFieldBuilder()
-        .withPlaceholder(Text.takePeriodPlaceholder)
-        .withType(.numeric)
-        .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
-        .withEndEditProcessor { [weak self] text in
-            self?.delegate?.onTakePeriodChanged(Int.init(text) ?? 1)
-        }
-        .clearOnFocus()
-        .build()
+    internal lazy var takePeriodInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.takePeriodPlaceholder)
+            .withType(.numeric)
+            .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
+            .withEndEditProcessor { [weak self] text in
+                self?.delegate?.onTakePeriodChanged(Int.init(text) ?? 1)
+            }
+            .clearOnFocus()
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
+        
+    internal lazy var takePeriodDatePickerInput: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withImage(AppImages.Tools.calendar)
+            .withDatePicker(.date) { [weak self] tillDate in
+                self?.delegate?.onTakePeriodTill(tillDate)
+                return false
+            }
+            .build()
+        textField.addNewCourceTextFieldDelegate = self
+        return textField
+    }()
     
-    lazy var takePeriodDatePickerInput
-        = CustomTextFieldBuilder()
-        .withImage(AppImages.Tools.calendar)
-        .withDatePicker(.date) { [weak self] tillDate in
-            self?.delegate?.onTakePeriodTill(tillDate)
-            return false
-        }
-        .build()
-    
+    var datesPeriod: [Date] = []
+    var periodWeekDays: [String] = []
     // MARK: - Meal Dependency Input
     lazy var mealDependencyInput: CustomTextField = {
         let textField = CustomTextFieldBuilder()
@@ -218,7 +245,8 @@ final class AddNewCourseView: UIView {
             }
             .withPlaceholder(Text.beforeMeal)
             .build()
-        textField.addNewCourseDelegate = self
+        textField.placeholder = Text.instruction
+		textField.addNewCourceTextFieldDelegate = self
         return textField
     }()
     
@@ -296,6 +324,11 @@ final class AddNewCourseView: UIView {
     
     lazy var noteLabel = FieldHeaderFabric.generate(header: Text.notes)
     lazy var stackNote = VStackViewFabric.generate([noteLabel, noteInput])
+
+    lazy var stackTakePeriodWithDropDown = HStackViewFabric.generate(
+        [stackTakePeriod, stackTakeDatePickerPeriod],
+        .fill,
+        spacing: -AppLayout.CustomTextField.cornerRadius * 2)
     
     @objc func doneButtonPressed() {
         delegate?.onSubmit()
@@ -310,6 +343,7 @@ final class AddNewCourseView: UIView {
             frequencyInput,
             receiveFreqStackView,
             stackStartAndWhen,
+            stackTakePeriodWithDropDown,
             stackMealDependency,
             stackNote
         ])
@@ -325,9 +359,10 @@ final class AddNewCourseView: UIView {
         stackView.spacing = AppLayout.AddCourse.horizontalSpacing
         return stackView
     }()
-    var majorStackViewBottomAnchor: NSLayoutConstraint?
-    var activeView: UIView?
-    var keyboardHeight: CGFloat = 0.0
+
+    internal var majorStackViewBottomAnchor: NSLayoutConstraint?
+	var activeView: UIView?
+	var keyboardHeight: CGFloat = 0.0
 
     // MARK: - Constraints
     // swiftlint:disable function_body_length
@@ -488,6 +523,7 @@ final class AddNewCourseView: UIView {
                 selector: #selector(keyboardWillHide),
                 name: UIResponder.keyboardWillHideNotification,
                 object: nil)
+        receiveFreqStackView.delegate = self
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -529,30 +565,70 @@ final class AddNewCourseView: UIView {
             height: stackNote.frame.maxY
         )
     }
-    func addEventToHideKeyboard() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
-        formStackView.addGestureRecognizer(tapGesture)
-        majorStackView.addGestureRecognizer(tapGesture)
-        self.addGestureRecognizer(tapGesture)
+
+	func addEventToHideKeyboard() {
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
+		formStackView.addGestureRecognizer(tapGesture)
+		majorStackView.addGestureRecognizer(tapGesture)
+		self.addGestureRecognizer(tapGesture)
+	}
+	
+	func setScrollViewOffset(for textField: UIView) {
+		let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
+		let visibleContent = self.frame.height - coveringContent
+		var contentOffset = CGPoint(x: 0, y: 0)
+		
+		let middleOfVisibleArea = visibleContent / 2
+		let middleOfField = textField.convert(textField.bounds, to: self).midY
+		
+		if middleOfField <= middleOfVisibleArea {
+			contentOffset = CGPoint(x: 0, y: 0)
+		} else {
+			contentOffset =  CGPoint(x: 0, y: middleOfField - middleOfVisibleArea)
+			var actualContentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y + contentOffset.y)
+			if actualContentOffset.y > visibleContent {
+				actualContentOffset = CGPoint(x: 0, y: visibleContent)
+			}
+			scrollView.setContentOffset(actualContentOffset, animated: true)
+		}
+	}
+    
+    func createScheduleDays(from certainDays: [String], from period: [Date]) {
+        guard !certainDays.isEmpty && !period.isEmpty else { return }
+        
+        let scheduleDates = period
+            .filter { certainDays.contains(CustomTextField.dateOfWeekFormatter.string(from: $0)) }
+            .sorted()        
+        delegate?.onFrequencyDateChanged(ReceiveFreqPills.daysOfTheWeek(scheduleDates))
     }
-
-    func setScrollViewOffset(for textField: UIView) {
-        let coveringContent = keyboardHeight + doneButton.frame.height + 2 * AppLayout.AddCourse.horizontalSpacing
-        let visibleContent = self.frame.height - coveringContent
-        var contentOffset = CGPoint(x: 0, y: 0)
-
-        let middleOfVisibleArea = visibleContent / 2
-        let middleOfField = textField.convert(textField.bounds, to: self).midY
-
-        if middleOfField <= middleOfVisibleArea {
-            contentOffset = CGPoint(x: 0, y: 0)
-        } else {
-            contentOffset =  CGPoint(x: 0, y: middleOfField - middleOfVisibleArea)
-            var actualContentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y + contentOffset.y)
-            if actualContentOffset.y > visibleContent {
-                actualContentOffset = CGPoint(x: 0, y: visibleContent)
+    
+    func disableWrongButtons(for buttons: [UIButton], on dates: [Date]) {
+        
+        if dates.count < Text.DaysOfAWeek.allCases.count {
+            periodWeekDays = []
+            
+            for day in dates {
+                periodWeekDays.append(CustomTextField.dateOfWeekFormatter.string(from: day))
             }
-            scrollView.setContentOffset(actualContentOffset, animated: true)
+            
+            let weekDays = Text.DaysOfAWeek.all()
+            for (index, weekDay) in weekDays.enumerated() {
+                if !periodWeekDays.contains(weekDay) {
+                    receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index].isSelected = false
+                    receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index]
+                        .setImage(AppImages.AddCourse.notEnable, for: .normal)
+                    receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index].isEnabled = false
+                } else {
+                    receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index]
+                        .setImage(AppImages.AddCourse.noCheck, for: .normal)
+                    receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index].isEnabled = true
+                }
+            }
+        } else {
+            receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray.forEach { button in
+                button.setImage(AppImages.AddCourse.noCheck, for: .normal)
+                button.isEnabled = true
+            }
         }
     }
 }
@@ -582,5 +658,17 @@ extension AddNewCourseView: AddNewCourceTextFieldDelegate {
     func textFieldStartEditing(_ textField: UITextField) {
         activeView = textField
         setScrollViewOffset(for: activeView!)
+    }
+}
+
+extension AddNewCourseView: ReceiveFreqPillsDelegate {
+    func frequencyDidChange() -> ReceiveFreqPills {
+        let mock: [Date] = []
+        return ReceiveFreqPills.daysOfTheWeek(mock)
+    }
+    
+    func certainDaysDidChange(on days: [String]) {
+        certainDays = days
+        createScheduleDays(from: certainDays, from: datesPeriod)
     }
 }

@@ -138,9 +138,15 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
     }
 
     func getSchedule(with frequency: ReceiveFreqPills) -> List<RealmTimePoint> {
+        let schedule = List<RealmTimePoint>()
         switch frequency {
         case .daysOfTheWeek(let days):
-            break
+            days.forEach { day in
+                let realmTimeObject = RealmTimePoint()
+                realmTimeObject.time = day
+                schedule.append(realmTimeObject)
+            }
+            return schedule
         case .dailyEveryXHour(let xHour):
             break
         case .dailyXTimes(let xTimes):

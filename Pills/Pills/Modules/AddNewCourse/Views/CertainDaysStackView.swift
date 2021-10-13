@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CertainDaysStackViewDelegate: AnyObject {
-    func certainDaysDidChange()
+    func certainDaysDidChange(on days: [String])
 }
 
 class CertainDaysStackView: UIStackView {
@@ -16,7 +16,7 @@ class CertainDaysStackView: UIStackView {
     
     // MARK: - Properties
     private let dayOfWeekArray: [String] = Text.DaysOfAWeek.all()
-    
+    var choosedDays: [UIButton] = []
     // MARK: - Subviews
     private lazy var dayOfWeekStackViewArray: [UIStackView] = {
         var stackViewArray: [UIStackView] = []
@@ -41,7 +41,7 @@ class CertainDaysStackView: UIStackView {
         return labelArray
     }()
     
-    private lazy var dayOfWeekButtonArray: [UIButton] = {
+     lazy var dayOfWeekButtonArray: [UIButton] = {
         var buttonArray: [UIButton] = []
         var tag = 1
         dayOfWeekArray.forEach { _ in
@@ -68,12 +68,10 @@ class CertainDaysStackView: UIStackView {
     }
     
     // MARK: - Public functions
-    func getCertainDays() -> [Int] {
-        var certainDays: [Int] = []
+    func getCertainDays() -> [String] {
+        var certainDays: [String] = []
+        certainDays = getNameOfWeekDays(for: dayOfWeekButtonArray)
 
-        dayOfWeekButtonArray.forEach { button in
-            certainDays.append(button.tag)
-        }
         return certainDays
     }
     
@@ -108,9 +106,21 @@ class CertainDaysStackView: UIStackView {
             ])
         }
     }
+    @discardableResult
+    private func getNameOfWeekDays(for pickedDays: [UIButton]) -> [String] {
+        let days = Text.DaysOfAWeek.all()
+        var scheduleDays: [String] = []
+        for index in days.indices where pickedDays[index].isSelected {
+            scheduleDays.append(days[index])
+        }
+        delegate?.certainDaysDidChange(on: scheduleDays)
+        return scheduleDays
+    }
     
     // MARK: - Actions
     @objc private func dayOfWeekButtonTouchUpInside(_ sender: UIButton) {
         sender.isSelected.toggle()
+        choosedDays = dayOfWeekButtonArray
+        getNameOfWeekDays(for: choosedDays)
     }
 }
