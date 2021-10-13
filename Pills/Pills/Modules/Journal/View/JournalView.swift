@@ -266,9 +266,9 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     private func configureFirstDayOfWeek() {
         if calendar.locale.identifier == "ru_US" {
-            calendar.firstWeekday = 2
-        } else {
             calendar.firstWeekday = 1
+        } else {
+            calendar.firstWeekday = 2
         }
     }
     
@@ -341,7 +341,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
 extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        print(arrayOfEvents)
         if arrayOfEvents.contains(date) {
             return 1
         }
