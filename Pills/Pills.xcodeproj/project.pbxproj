@@ -62,6 +62,7 @@
 		FA9D870226F1114500408604 /* MedicineDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870126F1114500408604 /* MedicineDescriptionVC.swift */; };
 		FA9D870A26F111AF00408604 /* MedicineDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */; };
 		FA9D87E226F6416400408604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D87E126F6416300408604 /* Event.swift */; };
+		FAA85ECC271757C300FBE360 /* ViewFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA85ECB271757C200FBE360 /* ViewFabric.swift */; };
 		FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */; };
 		FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */; };
 		FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */; };
@@ -180,6 +181,7 @@
 		FA9D870126F1114500408604 /* MedicineDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDescriptionVC.swift; sourceTree = "<group>"; };
 		FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDescriptionView.swift; sourceTree = "<group>"; };
 		FA9D87E126F6416300408604 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		FAA85ECB271757C200FBE360 /* ViewFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFabric.swift; sourceTree = "<group>"; };
 		FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCourseView+PublicInterface.swift"; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				FA653B6927149EAD0011573F /* HorizontalStackViewFabric.swift */,
 				FA653B6D2714A04E0011573F /* FieldHeaderFabric.swift */,
 				FA653B762714A5610011573F /* LabelFabric.swift */,
+				FAA85ECB271757C200FBE360 /* ViewFabric.swift */,
 			);
 			path = Fabric;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				A869AC9826B9C95A002019B0 /* CourseMock.swift in Sources */,
 				FA653B752714A1480011573F /* AddNewCourseDataSourceProtocol.swift in Sources */,
 				FED959B326CAD78A00E9B6C3 /* AddNewCourseView.swift in Sources */,
+				FAA85ECC271757C300FBE360 /* ViewFabric.swift in Sources */,
 				1171C01C270F511D0047D1AF /* UIScreen.swift in Sources */,
 				5511C6AF26AC29E4009CDA41 /* DevelopmentBuilder.swift in Sources */,
 				11B0B76E26FF4D5700BD86BF /* AlertView.swift in Sources */,

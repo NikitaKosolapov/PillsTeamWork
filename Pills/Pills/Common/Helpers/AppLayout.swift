@@ -236,6 +236,7 @@ enum AppLayout {
 
         static let horizontalSpacing: CGFloat = 16
         static let noteInputHeight: CGFloat = 200
+        static let insetViewSize: CGFloat = 11
         
         // Fields for receiving frequency
         static let heightTextField: CGFloat = 44
@@ -248,6 +249,7 @@ enum AppLayout {
         static let spaceTextFieldsXDaysAndYDays: CGFloat = 16
         static let spaceTextFieldAndLabelForXDaysAndYDays: CGFloat = 8
         static let vStackViewSpacing: CGFloat = 8
+        static let vMainStackViewSpacing: CGFloat = 16
     }
     
     enum Settings {

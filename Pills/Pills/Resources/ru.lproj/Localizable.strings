@@ -19,7 +19,7 @@
 
 "addNewPill" = "Добавить лекарство";
 "newPill" = "Новый курс";
-"name" = "Наименование лекарства";
+"name" = "Название лекарства";
 "namePlaceholder" = "Аспирин 100 мг.";
 "dose" = "Дозировка";
 "dosePlaceholder" = "Разовая доза";
@@ -42,7 +42,7 @@
 "save" = "Сохранить";
 "mg" = "мг.";
 "beforeMeal" = "До еды";
-"featuresOfTaking" = "Особенности приема лекарства";
+"featuresOfTaking" = "  Особенности приема лекарства";
 
 "week" = "1 неделю";
 "month" = "1 месяц";
@@ -55,6 +55,11 @@
 "cancel" = "Отмена";
 "till" = "до";
 
+"daysOfTheWeek" = "Определенные дни недели";
+"dailyXTimes" = "Ежедневно, Х раз в день";
+"dailyEveryXHour" = "Ежедневно, каждые Х часов";
+"daysCycle" = "Х дней приёма через Y";
+ 
 "beforeMeals" = "До еды";
 "whileEating" = "Во время еды";
 "afterMeals" = "После еды";
