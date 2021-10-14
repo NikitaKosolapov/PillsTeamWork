@@ -24,7 +24,8 @@
 "dose" = "Dose";
 "dosePlaceholder" = "Input dose here";
 "pillType" = "Type";
-"takingFrequency" = "Taking frequency";
+"takingFrequencyTitle" = "Taking frequency";
+"takingFrequency" = "Choose taking frequency";
 "startFrom" = "Start from";
 "takeAtTime" = "Take at";
 "takePeriod" = "Take in...";

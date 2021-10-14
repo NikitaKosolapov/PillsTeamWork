@@ -235,7 +235,7 @@ enum AppLayout {
         static let doseUnitInputWidth: CGFloat = 106
 
         static let horizontalSpacing: CGFloat = 16
-        static let noteInputHeight: CGFloat = 200
+        static let noteInputHeight: CGFloat = 44
         static let insetViewSize: CGFloat = 11
         
         // Fields for receiving frequency

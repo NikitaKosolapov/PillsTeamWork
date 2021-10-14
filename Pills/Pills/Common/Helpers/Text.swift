@@ -27,6 +27,7 @@ enum Text {
     static let dosePlaceholder = "dosePlaceholder".localized()
     static let pillType = "pillType".localized()
     static let singleDose = "singleDose".localized()
+    static let takingFrequencyTitle = "takingFrequencyTitle".localized()
     static let takingFrequency = "takingFrequency".localized()
     static let startFrom = "startFrom".localized()
     static let takeAtTime = "takeAtTime".localized()

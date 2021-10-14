@@ -24,7 +24,8 @@
 "dose" = "Дозировка";
 "dosePlaceholder" = "Разовая доза";
 "pillType" = "Вид";
-"takingFrequency" = "Частота приёма";
+"takingFrequencyTitle" = "Частота приема";
+"takingFrequency" = "Выберите частоту приема";
 "startFrom" = "Начало приёма";
 "takeAtTime" = "Время приёма";
 "takePeriod" = "Период приёма";
