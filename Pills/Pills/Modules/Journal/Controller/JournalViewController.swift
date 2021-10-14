@@ -109,7 +109,7 @@ extension JournalViewController: UITableViewDataSource {
 extension JournalViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let event = eventsToShow[indexPath.row]
+        let event = filteredEvents[indexPath.row]
         
         let destinationVC = MedicineDescriptionVC(index: indexPath, subscriber: self, event: event)
         destinationVC.modalPresentationStyle = .overCurrentContext

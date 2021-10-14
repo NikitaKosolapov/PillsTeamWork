@@ -76,9 +76,10 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         return view
     }()
     
-    private var emptyTableStub: UIView = {
+     var emptyTableStub: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         return view
     }()
     
@@ -254,7 +255,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
         
         // TODO: make visible when table has no data
         // - when mock data will be replaced with real one
-        emptyTableStub.isHidden = true
     }
     
     @objc func onDebugSwitchView(sender: UIButton!) {
@@ -358,6 +358,13 @@ extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
         selectDay()
         delegate?.filterEventsByDate(date: date)
         calendar.collectionView.reloadItems(at: calendar.collectionView.indexPathsForVisibleItems)
+        if journalTableView.visibleCells.isEmpty {
+            journalTableView.isHidden = true
+            emptyTableStub.isHidden = false
+        } else {
+            journalTableView.isHidden = false
+            emptyTableStub.isHidden = true
+        }
     }
     
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell,
