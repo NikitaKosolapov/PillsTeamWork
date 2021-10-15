@@ -606,14 +606,12 @@ final class AddNewCourseView: UIView {
         
         if dates.count < Text.DaysOfAWeek.allCases.count {
             periodWeekDays = []
-            
-            for day in dates {
-                periodWeekDays.append(CustomTextField.dateOfWeekFormatter.string(from: day))
-            }
-            
             let weekDays = Text.DaysOfAWeek.all()
+            
+            dates.forEach { periodWeekDays.append(CustomTextField.dateOfWeekFormatter.string(from: $0).lowercased()) }
+            
             for (index, weekDay) in weekDays.enumerated() {
-                if !periodWeekDays.contains(weekDay) {
+                if !periodWeekDays.contains(weekDay.lowercased()) {
                     receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index].isSelected = false
                     receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index]
                         .setImage(AppImages.AddCourse.notEnable, for: .normal)
