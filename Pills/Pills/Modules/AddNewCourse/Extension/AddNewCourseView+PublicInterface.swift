@@ -12,40 +12,40 @@ import UIKit
 extension AddNewCourseView {
     /// Set pill name
     public func setPillName(_ name: String) {
-        pillNameTF.text = name
+        pillNameTextField.text = name
     }
     /// Set pill type
     public func setPillType(_ type: PillType) {
-        pillTypeNameTF.text = type.rawValue.localized()
+        pillTypeNameTextField.text = type.rawValue.localized()
         typeImage.image = type.image()
     }
     /// Set pill dose
     public func setPillDose(_ dose: Double) {
-        doseInputTF.text = "\(dose)"
+        doseInputTextField.text = "\(dose)"
     }
     /// Set dose unit
     public func setDoseUnit(_ unit: Text.Unit) {
-        doseUnitTF.isUserInteractionEnabled = true
-        doseUnitTF.text = unit.rawValue.localized()
+        doseUnitTextField.isUserInteractionEnabled = true
+        doseUnitTextField.text = unit.rawValue.localized()
     }
     /// Set dose unit selector options
     public func setDoseUnitOptions(_ units: [String]) {
-        doseUnitTF.pickerOptions = units
+        doseUnitTextField.pickerOptions = units
     }
     /// Set taking frequency
     public func setTakeFreq(_ freq: Frequency) {
-        frequencyTF.text = freq.rawValue.localized()
+        frequencyTextField.text = freq.rawValue.localized()
     }
     /// Set course start date
     public func setStartDate(_ date: Date) {
-        startTF.text = CustomTextField.dateFormatter.string(from: date)
-        if let tillDate = takePeriodDatePickerInput.date {
+        startTextField.text = CustomTextField.dateFormatter.string(from: date)
+        if let tillDate = takePeriodDatePickerTextField.date {
             updateTakePeriodText(fromDate: date, tillDate: tillDate)
         }
     }
     /// Set course start time
     public func setStartTime(_ time: Date) {
-        timeTF.text = CustomTextField.timeFormatter.string(from: time)
+        timeTextField.text = CustomTextField.timeFormatter.string(from: time)
     }
     /// Set taking period
     public func setTakePeriod(_ days: Int, fromDate: Date) {
@@ -55,15 +55,15 @@ extension AddNewCourseView {
     /// Update take period field
     public func updateTakePeriodText(fromDate: Date, tillDate: Date) {
         if (tillDate <= fromDate) {
-            takePeriodInput.placeholder = Text.periodExpired
-            takePeriodInput.text = ""
+            takePeriodTextField.placeholder = Text.periodExpired
+            takePeriodTextField.text = ""
             return
         }
-
+        
         let calendar = Calendar.current
         let dateStart = calendar.startOfDay(for: fromDate)
         let dateEnd = calendar.startOfDay(for: tillDate)
-        
+
         let datesBetween = Date.dates(from: fromDate, to: tillDate)
 
         datesPeriod = datesBetween
@@ -78,15 +78,15 @@ extension AddNewCourseView {
                 from: dateStart,
                 to: dateEnd).day
         else {return}
-
+        
         let dateString = CustomTextField.dateFormatter.string(from: dateEnd)
-        takePeriodInput.text =
-            "\(days) \(days.days()), \(Text.till) \(dateString)"
-        takePeriodDatePickerInput.date = dateEnd
+        takePeriodTextField.text =
+        "\(days) \(days.days()), \(Text.till) \(dateString)"
+        takePeriodDatePickerTextField.date = dateEnd
     }
     /// Set taking meal dependency
     public func setMealDependency(_ mealDependency: Text.Period) {
-        mealDependencyTF.text = mealDependency.rawValue.localized()
+        mealDependencyTextField.text = mealDependency.rawValue.localized()
     }
     /// Set comment
     public func setComment(_ note: String) {

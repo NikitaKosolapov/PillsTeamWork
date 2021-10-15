@@ -1,5 +1,5 @@
 //
-//  FieldHeaderFabric.swift
+//  LabelFactory.swift
 //  Pills
 //
 //  Created by NIKOLAI BORISOV on 11.10.2021.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-final class FieldHeaderFabric {
+final class LabelFactory {
     
-    static func generate(header: String = "") -> UILabel {
+    static func generateLabelWith(text: String) -> UILabel {
         let view = UILabel()
-        view.text = header
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = text
         view.font = AppLayout.Fonts.smallRegular
         view.textAlignment = .left
         return view

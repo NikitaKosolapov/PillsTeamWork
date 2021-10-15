@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-// swiftlint:disable file_length
 // swiftlint:disable type_body_length
 
 final class AddNewCourseView: UIView {
@@ -18,14 +17,14 @@ final class AddNewCourseView: UIView {
     public weak var delegate: AddNewCourseDelegate?
     public weak var dataSource: AddNewCourseDataSourceProtocol? {
         willSet {
-            pillTypeNameTF.pickerOptions = newValue?.pillTypeOptions() ?? []
-            frequencyTF.pickerOptions = newValue?.frequencyOptions() ?? []
-            mealDependencyTF.pickerOptions = newValue?.mealOptions() ?? []
+            pillTypeNameTextField.pickerOptions = newValue?.pillTypeOptions() ?? []
+            frequencyTextField.pickerOptions = newValue?.frequencyOptions() ?? []
+            mealDependencyTextField.pickerOptions = newValue?.mealOptions() ?? []
         }
     }
     
-    // takePeriodInput is using in AddNewCourseView+PublicInterface
-    public lazy var takePeriodInput = CustomTextFieldBuilder()
+    // takePeriodTextField is using in AddNewCourseView+PublicInterface
+    public lazy var takePeriodTextField = CustomTextFieldBuilder()
         .withPlaceholder(Text.takePeriodPlaceholder)
         .withImage(AppImages.Tools.calendar)
         .withType(.numeric)
@@ -36,8 +35,8 @@ final class AddNewCourseView: UIView {
         .clearOnFocus()
         .build()
     
-    // takePeriodDatePickerInput is using in AddNewCourseView+PublicInterface
-    public lazy var takePeriodDatePickerInput = CustomTextFieldBuilder()
+    // takePeriodDatePickerTextField is using in AddNewCourseView+PublicInterface
+    public lazy var takePeriodDatePickerTextField = CustomTextFieldBuilder()
         .withImage(AppImages.Tools.calendar)
         .withDatePicker(.date) { [weak self] tillDate in
             self?.delegate?.onTakePeriodTill(tillDate)
@@ -52,15 +51,15 @@ final class AddNewCourseView: UIView {
     private var keyboardHeight: CGFloat = 0.0
     
     // stackPillName
-    private lazy var leftInsetNameView = ViewFabric.generateView()
-    private lazy var pillNameLabel = LabelFabric.generateLabelWith(text: Text.name)
-    private lazy var pillNameStackView = HorizontalStackViewFabric.generate(
+    private lazy var leftInsetNameView = ViewFactory.generateView()
+    private lazy var pillNameLabel = LabelFactory.generateLabelWith(text: Text.name)
+    private lazy var pillNameStackView = HorizontalStackViewFactory.generate(
         [leftInsetNameView, pillNameLabel],
         .fillProportionally,
         spacing: 0
     )
     
-    public lazy var pillNameTF = CustomTextFieldBuilder()
+    public lazy var pillNameTextField = CustomTextFieldBuilder()
         .withPlaceholder(Text.namePlaceholder)
         .withMaxLength(AppLayout.AddCourse.pillNameFieldMaxLength)
         .withEndEditProcessor { [weak self] text in
@@ -68,18 +67,18 @@ final class AddNewCourseView: UIView {
         }
         .build()
     
-    private lazy var stackPillName = VerticalStackViewFabric.generate([pillNameStackView, pillNameTF])
+    private lazy var stackPillName = VerticalStackViewFactory.generate([pillNameStackView, pillNameTextField])
     
     // typeLabelAndStackTypeNameAndImage
-    private lazy var leftInsetTypeView = ViewFabric.generateView()
-    private lazy var pillTypeNameLabel = LabelFabric.generateLabelWith(text: Text.pillType)
-    private lazy var pillTypeNameStackView = HorizontalStackViewFabric.generate(
+    private lazy var leftInsetTypeView = ViewFactory.generateView()
+    private lazy var pillTypeNameLabel = LabelFactory.generateLabelWith(text: Text.pillType)
+    private lazy var pillTypeNameStackView = HorizontalStackViewFactory.generate(
         [leftInsetTypeView, pillTypeNameLabel],
         .fillProportionally,
         spacing: 0
     )
     
-    lazy var pillTypeNameTF: CustomTextField = CustomTextFieldBuilder()
+    lazy var pillTypeNameTextField: CustomTextField = CustomTextFieldBuilder()
         .withPlaceholder(Text.Pills.tablets.rawValue.localized())
         .withTextAlignment(.center)
         .withSimplePicker(options: []) { [weak self] (option) in
@@ -110,32 +109,34 @@ final class AddNewCourseView: UIView {
         return imageView
     }()
     
-    private lazy var stackTypeNameAndImage = HorizontalStackViewFabric.generate([pillTypeNameTF, typeImageHolder])
-    private lazy var typeLabelAndStackTypeNameAndImage = VerticalStackViewFabric.generate([
+    private lazy var stackTypeNameAndImage = HorizontalStackViewFactory.generate(
+        [pillTypeNameTextField, typeImageHolder]
+    )
+    private lazy var typeLabelAndStackTypeNameAndImage = VerticalStackViewFactory.generate([
         pillTypeNameStackView,
         stackTypeNameAndImage
     ])
     
     // doseLabelStackView
-    private lazy var leftInsetDoseUnitView = ViewFabric.generateView()
-    private lazy var doseUnitLabel = LabelFabric.generateLabelWith(text: Text.unit)
-    private lazy var doseUnitAndViewStackView = HorizontalStackViewFabric.generate([
+    private lazy var leftInsetDoseUnitView = ViewFactory.generateView()
+    private lazy var doseUnitLabel = LabelFactory.generateLabelWith(text: Text.unit)
+    private lazy var doseUnitAndViewStackView = HorizontalStackViewFactory.generate([
         leftInsetDoseUnitView,
         doseUnitLabel
     ], .fillProportionally, spacing: 0)
-    private lazy var leftInsetDoseView = ViewFabric.generateView()
-    private lazy var doseLabel = LabelFabric.generateLabelWith(text: Text.dosePlaceholder)
-    private lazy var doseLabelAndViewStackView = HorizontalStackViewFabric.generate([
+    private lazy var leftInsetDoseView = ViewFactory.generateView()
+    private lazy var doseLabel = LabelFactory.generateLabelWith(text: Text.dosePlaceholder)
+    private lazy var doseLabelAndViewStackView = HorizontalStackViewFactory.generate([
         leftInsetDoseView,
         doseLabel
     ], .fillProportionally, spacing: 0)
-    private lazy var doseLabelStackView = HorizontalStackViewFabric.generate([
+    private lazy var doseLabelStackView = HorizontalStackViewFactory.generate([
         doseLabelAndViewStackView,
         doseUnitAndViewStackView
     ], .fillEqually, spacing: AppLayout.AddCourse.horizontalSpacing)
     
     // doseTFStackView
-    lazy var doseInputTF = CustomTextFieldBuilder()
+    lazy var doseInputTextField = CustomTextFieldBuilder()
         .withPlaceholder(Text.singleDoseByNumber)
         .withType(.numeric)
         .withTextAlignment(.center)
@@ -145,7 +146,7 @@ final class AddNewCourseView: UIView {
         }
         .build()
     
-    lazy var doseUnitTF: CustomTextField = {
+    lazy var doseUnitTextField: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withPlaceholder(Text.mg)
             .withSimplePicker(options: []) { [weak self] option in
@@ -159,36 +160,36 @@ final class AddNewCourseView: UIView {
         return textField
     }()
     
-    private lazy var doseInputStackView = HorizontalStackViewFabric.generate([doseInputTF, doseUnitTF])
+    private lazy var doseInputStackView = HorizontalStackViewFactory.generate([doseInputTextField, doseUnitTextField])
     
     // doseLabelStackView and doseTFStackView
-    private lazy var doseLabelAndDoseInputStackView = VerticalStackViewFabric.generate([
+    private lazy var doseLabelAndDoseInputStackView = VerticalStackViewFactory.generate([
         doseLabelStackView,
         doseInputStackView
     ])
     
     // takingDuration
-    private lazy var leftInsetTakingDurationView = ViewFabric.generateView()
-    private lazy var takingDurationLabel = LabelFabric.generateLabelWith(text: Text.takePeriod)
-    private lazy var takingDurationLabelStackView = HorizontalStackViewFabric.generate([
+    private lazy var leftInsetTakingDurationView = ViewFactory.generateView()
+    private lazy var takingDurationLabel = LabelFactory.generateLabelWith(text: Text.takePeriod)
+    private lazy var takingDurationLabelStackView = HorizontalStackViewFactory.generate([
         leftInsetTakingDurationView,
         takingDurationLabel
     ], .fillProportionally, spacing: 0)
     
-    private lazy var takingDurationLabelAndTFStackView = VerticalStackViewFabric.generate([
+    private lazy var takingDurationLabelAndTFStackView = VerticalStackViewFactory.generate([
         takingDurationLabelStackView,
-        takePeriodInput
+        takePeriodTextField
     ])
     
     // takingFrequencyLabelAndTFStackView
-    private lazy var leftInseFrequencyView = ViewFabric.generateView()
-    private lazy var takingFrequencyLabel = LabelFabric.generateLabelWith(text: Text.takingFrequencyTitle)
-    private lazy var takingFrequencyStackView = HorizontalStackViewFabric.generate([
+    private lazy var leftInseFrequencyView = ViewFactory.generateView()
+    private lazy var takingFrequencyLabel = LabelFactory.generateLabelWith(text: Text.takingFrequencyTitle)
+    private lazy var takingFrequencyStackView = HorizontalStackViewFactory.generate([
         leftInseFrequencyView,
         takingFrequencyLabel
     ], .fillProportionally, spacing: 0)
     
-    lazy var frequencyTF: CustomTextField = {
+    lazy var frequencyTextField: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: Frequency.all(), { [weak self] (option) in
                 guard let self = self else {return false}
@@ -202,35 +203,34 @@ final class AddNewCourseView: UIView {
         textField.addNewCourseDelegate = self
         return textField
     }()
-
     var certainDays: [String] = []
     var daysButtons: [UIButton] = []
-
-    private lazy var takingFrequencyLabelAndTFStackView = VerticalStackViewFabric.generate([
+    
+    private lazy var takingFrequencyLabelAndTFStackView = VerticalStackViewFactory.generate([
         takingFrequencyStackView,
-        frequencyTF
+        frequencyTextField
     ])
 
     // timeLabelStackView
-    private lazy var leftInsetStartTimeView = ViewFabric.generateView()
-    private lazy var startTimeLabel = LabelFabric.generateLabelWith(text: Text.startFrom)
-    private lazy var startTimeAndViewStackView = HorizontalStackViewFabric.generate([
+    private lazy var leftInsetStartTimeView = ViewFactory.generateView()
+    private lazy var startTimeLabel = LabelFactory.generateLabelWith(text: Text.startFrom)
+    private lazy var startTimeAndViewStackView = HorizontalStackViewFactory.generate([
         leftInsetStartTimeView,
         startTimeLabel
     ], .fillProportionally, spacing: 0)
-    private lazy var leftInsetTimeView = ViewFabric.generateView()
-    private lazy var timeLabel = LabelFabric.generateLabelWith(text: Text.takeAtTime)
-    private lazy var timeAndViewStackView = HorizontalStackViewFabric.generate([
+    private lazy var leftInsetTimeView = ViewFactory.generateView()
+    private lazy var timeLabel = LabelFactory.generateLabelWith(text: Text.takeAtTime)
+    private lazy var timeAndViewStackView = HorizontalStackViewFactory.generate([
         leftInsetTimeView,
         timeLabel
     ], .fillProportionally, spacing: 0)
-    private lazy var timeLabelStackView = HorizontalStackViewFabric.generate([
+    private lazy var timeLabelStackView = HorizontalStackViewFactory.generate([
         startTimeAndViewStackView,
         timeAndViewStackView
     ], .fillEqually, spacing: AppLayout.AddCourse.horizontalSpacing)
     
     // startTimeTFStackView
-    lazy var startTF = CustomTextFieldBuilder()
+    lazy var startTextField = CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
         .withImage(AppImages.Tools.calendar)
         .withDatePicker(.date , { [weak self] date in
@@ -239,7 +239,7 @@ final class AddNewCourseView: UIView {
         })
         .build()
     
-    lazy var timeTF = CustomTextFieldBuilder()
+    lazy var timeTextField = CustomTextFieldBuilder()
         .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
         .withDatePicker(.time , { [weak self] time in
             self?.delegate?.onStartTimeChanged(time)
@@ -249,25 +249,25 @@ final class AddNewCourseView: UIView {
 
     var datesPeriod: [Date] = []
     var periodWeekDays: [String] = []
-
-    private lazy var startTimeInputStackView = HorizontalStackViewFabric.generate([startTF, timeTF])
+    
+    private lazy var startTimeInputStackView = HorizontalStackViewFactory.generate([startTextField, timeTextField])
     
     // timeLabelStackView and startTimeInputStackView
-    private lazy var timeLabelAndStartTimeInputStackView = VerticalStackViewFabric.generate([
+    private lazy var timeLabelAndStartTimeInputStackView = VerticalStackViewFactory.generate([
         timeLabelStackView,
         startTimeInputStackView
     ])
     
     // takeMedicineStackView
-    private lazy var leftInsetTakeMedicineView = ViewFabric.generateView()
-    private lazy var takeMedicineLabel = LabelFabric.generateLabelWith(text: Text.instruction)
-    private lazy var takeMedicineLabelStackView = HorizontalStackViewFabric.generate(
+    private lazy var leftInsetTakeMedicineView = ViewFactory.generateView()
+    private lazy var takeMedicineLabel = LabelFactory.generateLabelWith(text: Text.instruction)
+    private lazy var takeMedicineLabelStackView = HorizontalStackViewFactory.generate(
         [leftInsetTakeMedicineView, takeMedicineLabel],
         .fillProportionally,
         spacing: 0
     )
     
-    lazy var mealDependencyTF: CustomTextField = {
+    lazy var mealDependencyTextField: CustomTextField = {
         let textField = CustomTextFieldBuilder()
             .withSimplePicker(options: []) { [weak self] option in
                 self?.delegate?.onMealDependencyChanged(Text.Usage.init(rawValue: option) ?? .noMatter)
@@ -280,14 +280,14 @@ final class AddNewCourseView: UIView {
         return textField
     }()
     
-    private lazy var takeMedicineStackView = VerticalStackViewFabric.generate(
-        [takeMedicineLabelStackView, mealDependencyTF]
+    private lazy var takeMedicineStackView = VerticalStackViewFactory.generate(
+        [takeMedicineLabelStackView, mealDependencyTextField]
     )
     
     // noteStackView
-    private lazy var leftInsetNoteView = ViewFabric.generateView()
-    private lazy var noteLabel = LabelFabric.generateLabelWith(text: Text.notes)
-    private lazy var noteLabelStackView = HorizontalStackViewFabric.generate(
+    private lazy var leftInsetNoteView = ViewFactory.generateView()
+    private lazy var noteLabel = LabelFactory.generateLabelWith(text: Text.notes)
+    private lazy var noteLabelStackView = HorizontalStackViewFactory.generate(
         [leftInsetNoteView, noteLabel],
         .fillProportionally,
         spacing: 0
@@ -305,9 +305,8 @@ final class AddNewCourseView: UIView {
         return textView
     }()
     
-    private lazy var noteStackView = VerticalStackViewFabric.generate([noteLabelStackView, noteInput])
+    private lazy var noteStackView = VerticalStackViewFactory.generate([noteLabelStackView, noteInput])
     
-    // saveButton
     lazy var saveButton: AddButton = {
         let button = AddButton()
         button.setTitle(Text.save, for: .normal)
@@ -315,8 +314,13 @@ final class AddNewCourseView: UIView {
         button.isEnabled = false
         return button
     }()
+    
+    private lazy var saveButtonContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColors.lightBlue
+        return view
+    }()
 
-    // scrollView
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -332,8 +336,7 @@ final class AddNewCourseView: UIView {
         return containerView
     }()
     
-    // mainStackView
-    private lazy var mainStackView = VerticalStackViewFabric.generate(
+    private lazy var mainStackView = VerticalStackViewFactory.generate(
         spacing: AppLayout.AddCourse.vMainStackViewSpacing,
         [
             stackPillName,
@@ -343,14 +346,9 @@ final class AddNewCourseView: UIView {
             takingDurationLabelAndTFStackView,
             takingFrequencyLabelAndTFStackView,
             takeMedicineStackView,
-            noteStackView
+            noteStackView,
+            saveButton
         ]
-    )
-    
-    // majorStackView
-    private lazy var majorStackView = VerticalStackViewFabric.generate(
-        spacing: AppLayout.AddCourse.horizontalSpacing,
-        [scrollView]
     )
     
     // MARK: - Initializers
@@ -380,47 +378,32 @@ final class AddNewCourseView: UIView {
     
     private func addSubviews() {
         addSubview(scrollView)
-        addSubview(majorStackView)
-        addSubview(saveButton)
         scrollView.addSubview(containerView)
         containerView.addSubview(mainStackView)
         typeImageHolder.addSubview(typeImage)
     }
     
     private func setupLayout() {
-        // majorStackView layout
-        majorStackView.snp.makeConstraints {
+        scrollView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
         }
         
-        // scrollView layout
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        // containerView layout
         containerView.snp.makeConstraints {
             $0.edges.width.equalToSuperview()
         }
         
-        // typeImage layout
         typeImage.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
         
-        // noteInput height
         noteInput.snp.makeConstraints {
             $0.height.equalTo(AppLayout.AddCourse.noteInputHeight)
         }
         
-        // saveButton layout
         saveButton.snp.makeConstraints {
             $0.height.equalTo(AppLayout.Journal.heightAddButton)
-            $0.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
         }
         
-        // mainStackView layout
         mainStackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
             $0.top.bottom.equalToSuperview()
@@ -448,20 +431,22 @@ final class AddNewCourseView: UIView {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height
-            majorStackView.snp.updateConstraints {
-                $0.bottom.equalTo(-keyboardHeight - AppLayout.AddCourse.horizontalSpacing)
+            scrollView.snp.updateConstraints {
+                $0.bottom.equalTo(-keyboardHeight)
             }
         }
     }
     
     @objc func keyboardWillHide(notification:NSNotification) {
-        majorStackView.snp.updateConstraints { $0.bottom.equalTo(-UIScreen.main.safeAreaBottom) }
+        scrollView.snp.updateConstraints {
+            $0.bottom.equalTo(UIScreen.main.safeAreaBottom)
+        }
     }
     
     func addEventToHideKeyboard() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
         mainStackView.addGestureRecognizer(tapGesture)
-        majorStackView.addGestureRecognizer(tapGesture)
+        scrollView.addGestureRecognizer(tapGesture)
         self.addGestureRecognizer(tapGesture)
     }
     
