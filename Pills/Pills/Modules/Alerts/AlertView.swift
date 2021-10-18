@@ -80,7 +80,7 @@ class AlertView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = AppLayout.Alert.spasingHorizontal
+        stackView.spacing = AppLayout.Alert.spacingHorizontal
         return stackView
     }()
     

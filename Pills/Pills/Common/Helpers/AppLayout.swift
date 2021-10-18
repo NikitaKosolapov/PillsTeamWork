@@ -176,13 +176,13 @@ enum AppLayout {
         static let topView: CGFloat = 0.25 * AppLayout.heightScreen
         static let widthButton: CGFloat = 122
         static let heightButton: CGFloat = 45
-        static let topStackView: CGFloat = 24
+        static let topStackView: CGFloat = 26
         static let leadingStackView: CGFloat = 16
-        static let leadingMainStackView: CGFloat = 16
+        static let leadingMainStackView: CGFloat = 17
         static let bottomStackView: CGFloat = 24
         static let cornerRadius: CGFloat = 10
         static let spacingVertical: CGFloat = 15
-        static let spasingHorizontal: CGFloat = 10
+        static let spacingHorizontal: CGFloat = 10
         
     }
     
