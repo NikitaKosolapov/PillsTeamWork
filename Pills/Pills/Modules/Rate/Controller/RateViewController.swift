@@ -7,9 +7,10 @@
 
 import UIKit
 
-class RateViewController: BaseViewController<RateView> {
+final class RateViewController: BaseViewController<RateView> {
     
-    // MARK: - Life cycle
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         rootView.rateViewDelegate = self
@@ -17,9 +18,11 @@ class RateViewController: BaseViewController<RateView> {
 }
 
 // MARK: - RateViewDelegate
+
 extension RateViewController: RateViewDelegate {
     
     // MARK: - Actions
+    
     func badSmileButtonTouchUpInside() {
     }
     

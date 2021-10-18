@@ -18,7 +18,6 @@ final class ProgressView: UIView {
     
     private lazy var progressView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.blue
         view.layer.cornerRadius = 10.0
         return view

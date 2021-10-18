@@ -5,6 +5,7 @@
 //  Created by Margarita Novokhatskaia on 15.09.2021.
 //
 
+import SnapKit
 import UIKit
 
 class AlertView: UIView {
@@ -14,15 +15,15 @@ class AlertView: UIView {
         case rate
         case addPill
     }
-
+    
+    // MARK: - Public Properties
+    
+    public var additionalField = UIView()
+    
     // MARK: - Private Properties
     
-    let alertViewContainer: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = AppLayout.Alert.cornerRadius
-        view.backgroundColor = AppColors.lightBlueSapphire
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let alertViewContainer: UIView = {
+        return UIView()
     }()
     
     private let titleLabel: UILabel = {
@@ -37,7 +38,6 @@ class AlertView: UIView {
     
     private let agreeButton: AddButton = {
         let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.blue,
             text: "Yes",
@@ -53,7 +53,6 @@ class AlertView: UIView {
     
     private let denyButton: AddButton = {
         let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.red,
             text: "No",
@@ -66,10 +65,9 @@ class AlertView: UIView {
         )
         return button
     }()
-
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, additionalField, horizontalButtonsStackView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
@@ -86,77 +84,76 @@ class AlertView: UIView {
         return stackView
     }()
     
-    var additionalField = UIView()
-    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        setupView()
+        addSubviews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func agreeButtonTouchUpInside() {
-    }
+    // MARK: - Actions
     
-    @objc func denyButtonTouchUpInside() {
-    }
+    @objc func agreeButtonTouchUpInside() {}
     
-    func configureText(title: String, agree: String, deny: String) {
+    @objc func denyButtonTouchUpInside() {}
+    
+    // MARK: - Public Methods
+    
+    public func configureText(title: String, agree: String, deny: String) {
         titleLabel.text = title
         agreeButton.setTitle(agree, for: .normal)
         denyButton.setTitle(deny, for: .normal)
     }
     
-    func configureHeight(height: CGFloat) {
+    public func configureHeight(height: CGFloat) {
         addSubview(alertViewContainer)
-        let safeArea = safeAreaLayoutGuide
-        NSLayoutConstraint.activate(
-            [alertViewContainer.topAnchor.constraint(equalTo: safeArea.topAnchor,
-                                                     constant: AppLayout.Alert.topView),
-             alertViewContainer.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                                         constant: AppLayout.Alert.leadingView),
-             alertViewContainer.widthAnchor.constraint( equalToConstant: AppLayout.Alert.widthView),
-             alertViewContainer.heightAnchor.constraint(equalToConstant: height)])
+        alertViewContainer.snp.makeConstraints {
+            $0.center.centerY.equalToSuperview()
+            $0.height.equalTo(height)
+            $0.leading.equalToSuperview().inset(AppLayout.Alert.leadingMainStackView)
+        }
     }
     
-    func configureView() {
+    public func configureView() {
         configureHeight(height: AppLayout.Alert.heightView)
     }
     
     // MARK: - Private Methods
     
-    private func configureUI() {
+    private func setupView() {
         isOpaque = false
         backgroundColor = AppColors.semiWhite
+        alertViewContainer.backgroundColor = AppColors.lightBlueSapphire
+        
+        alertViewContainer.layer.cornerCurve = .continuous
+        alertViewContainer.layer.cornerRadius = AppLayout.Alert.cornerRadius
+        
         configureView()
-        configureButtons()
-        configureStackView()
     }
     
-    private func configureButtons() {
-        NSLayoutConstraint.activate(
-            [agreeButton.widthAnchor.constraint(equalToConstant: AppLayout.Alert.widthButton),
-             agreeButton.heightAnchor.constraint(equalToConstant:
-                                                    AppLayout.Alert.heightButton),
-             denyButton.widthAnchor.constraint(equalToConstant: AppLayout.Alert.widthButton),
-             denyButton.heightAnchor.constraint(equalToConstant:
-                                                    AppLayout.Alert.heightButton)])
-    }
-    
-    private func configureStackView() {
+    private func addSubviews() {
         alertViewContainer.addSubview(stackView)
-        let safeArea = alertViewContainer.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: safeArea.topAnchor,
-                                                                    constant: AppLayout.Alert.topStackView),
-                                     stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
-                                                                        constant: AppLayout.Alert.leadingStackView),
-                                     stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
-                                                                         constant: AppLayout.Alert.trailingStackView),
-                                     stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
-                                                                       constant: AppLayout.Alert.bottomStackView)])
     }
+    
+    private func setupLayout() {
+        agreeButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.Alert.heightButton)
+        }
+        
+        denyButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.Alert.heightButton)
+        }
+        
+        stackView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(AppLayout.Alert.topStackView)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Alert.leadingStackView)
+        }
+    }
+    
 }

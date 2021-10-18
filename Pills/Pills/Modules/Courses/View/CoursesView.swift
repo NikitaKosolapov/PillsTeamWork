@@ -45,7 +45,6 @@ final class CoursesView: UIView {
     
     public let coursesTableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
@@ -57,14 +56,12 @@ final class CoursesView: UIView {
     
     public let coursesStubView: StubCourseView = {
         let view = StubCourseView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
     }()
     
     public let addButton: AddButton = {
         let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
         button.backgroundColor = AppColors.blue
         return button
@@ -78,7 +75,6 @@ final class CoursesView: UIView {
             coursesTableView,
             addButton
         ])
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.distribution = .fill
         view.alignment = .fill

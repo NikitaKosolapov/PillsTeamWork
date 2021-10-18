@@ -5,6 +5,7 @@
 //  Created by NIKOLAI BORISOV on 14.09.2021.
 //
 
+import SnapKit
 import UIKit
 
 protocol MedicineDescriptionViewDelegate: AnyObject {
@@ -14,23 +15,19 @@ protocol MedicineDescriptionViewDelegate: AnyObject {
 
 /// Class provides UI elements for MedicineDescriptionVC
 final class MedicineDescriptionView: UIView {
+    
     // MARK: - Public Properties
     
-    weak var medicineDescriptionDelegate: MedicineDescriptionViewDelegate?
+    public weak var medicineDescriptionDelegate: MedicineDescriptionViewDelegate?
     
     // MARK: - Private Properties
     
     private let windowView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = AppLayout.MedicineDescription.windowViewCornerRadius
-        view.backgroundColor = AppColors.lightBlueSapphire
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return UIView()
     }()
     
     private var pillImageContainer: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.whiteOnly
         view.layer.cornerRadius = AppLayout.MedicineDescription.pillImageContainerRadius
         return view
@@ -39,7 +36,6 @@ final class MedicineDescriptionView: UIView {
     private var pillTypeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -49,7 +45,6 @@ final class MedicineDescriptionView: UIView {
         label.textColor = AppColors.black
         label.font = AppLayout.MedicineDescription.pillNameFont
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -57,7 +52,6 @@ final class MedicineDescriptionView: UIView {
         let label = UILabel()
         label.textColor = AppColors.semiGrayFont
         label.font = AppLayout.MedicineDescription.pillsQuantityFont
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.numberOfLines = 1
         return label
@@ -67,7 +61,6 @@ final class MedicineDescriptionView: UIView {
         let label = UILabel()
         label.textColor = AppColors.semiGrayFont
         label.font = AppLayout.MedicineDescription.instructionFont
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         label.numberOfLines = 1
         return label
@@ -77,7 +70,6 @@ final class MedicineDescriptionView: UIView {
         let label = UILabel()
         label.textColor = AppColors.blackOnly
         label.font = AppLayout.MedicineDescription.timeFont
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.layer.backgroundColor = AppColors.whiteOnly.cgColor
         label.layer.cornerRadius = AppLayout.MedicineDescription.timeLabelCornerRadius
@@ -88,7 +80,6 @@ final class MedicineDescriptionView: UIView {
         let label = UILabel()
         label.textColor = AppColors.black
         label.font = AppLayout.MedicineDescription.pillInstructionFont
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -96,7 +87,6 @@ final class MedicineDescriptionView: UIView {
     
     private let acceptButton: AddButton = {
         let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.blue,
             text: Text.MedicineDescription.accept,
@@ -108,7 +98,6 @@ final class MedicineDescriptionView: UIView {
     
     private let skipButton: AddButton = {
         let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setButtonStyle(
             backgroundColor: AppColors.red,
             text: Text.MedicineDescription.skip,
@@ -120,7 +109,6 @@ final class MedicineDescriptionView: UIView {
     
     private lazy var horizontalButtonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [acceptButton, skipButton])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
@@ -130,7 +118,6 @@ final class MedicineDescriptionView: UIView {
     
     private lazy var stackViewNameAndTime: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [pillNameLabel, timeLabel])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
         stackView.spacing = AppLayout.MedicineDescription.defaultStackViewSpacing
@@ -140,7 +127,6 @@ final class MedicineDescriptionView: UIView {
     private lazy var stackViewQuantityAndUsage: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [pillsQuantityLabel, usageLabel])
         stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = AppLayout.MedicineDescription.defaultStackViewSpacing
         stackView.alignment = .leading
@@ -149,7 +135,6 @@ final class MedicineDescriptionView: UIView {
     
     private lazy var stackViewVertical: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackViewNameAndTime, stackViewQuantityAndUsage])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
         stackView.spacing = AppLayout.MedicineDescription.stackViewVerticalSpacing
@@ -159,7 +144,6 @@ final class MedicineDescriptionView: UIView {
     private lazy var stackViewHorizontal: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [pillImageContainer, stackViewVertical])
         stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.spacing = AppLayout.MedicineDescription.stackViewHorizontalSpacing
@@ -168,7 +152,6 @@ final class MedicineDescriptionView: UIView {
     
     private lazy var mainVerticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackViewHorizontal, noteLabel, horizontalButtonStackView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical
         stackView.spacing = AppLayout.MedicineDescription.mainVerticalStackViewSpacing
@@ -187,7 +170,7 @@ final class MedicineDescriptionView: UIView {
         super.init(frame: frame)
         setupView()
         addSubview()
-        setupConstraints()
+        setupLayout()
         addButtonAction()
     }
     
@@ -212,7 +195,7 @@ final class MedicineDescriptionView: UIView {
     }
     
     // MARK: - Private Methods
-
+    
     private func dateToText(time: Date) -> String {
         return dateFormatter.string(from: time)
     }
@@ -236,6 +219,10 @@ final class MedicineDescriptionView: UIView {
     
     private func setupView() {
         backgroundColor = AppColors.semiWhiteDarkTheme
+        windowView.backgroundColor = AppColors.lightBlueSapphire
+        
+        windowView.layer.cornerCurve = .continuous
+        windowView.layer.cornerRadius = AppLayout.MedicineDescription.windowViewCornerRadius
     }
     
     private func addSubview() {
@@ -246,65 +233,35 @@ final class MedicineDescriptionView: UIView {
         windowView.addSubview(mainVerticalStackView)
     }
     
-    private func setupConstraints() {
+    private func setupLayout() {
         
-        NSLayoutConstraint.activate([
-            mainVerticalStackView.leadingAnchor.constraint(
-                equalTo: windowView.leadingAnchor,
-                constant: AppLayout.MedicineDescription.windowViewLeading
-            ),
-            mainVerticalStackView.trailingAnchor.constraint(
-                equalTo: windowView.trailingAnchor,
-                constant: AppLayout.MedicineDescription.windowViewTrailing
-            ),
-            mainVerticalStackView.topAnchor.constraint(
-                equalTo: windowView.topAnchor,
-                constant: AppLayout.MedicineDescription.windowViewTopAnchor
-            ),
-            mainVerticalStackView.bottomAnchor.constraint(
-                equalTo: windowView.bottomAnchor,
-                constant: AppLayout.MedicineDescription.windowViewBottomAnchor
-            )
-        ])
+        mainVerticalStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(AppLayout.MedicineDescription.windowViewLeadingAndTopPadding)
+        }
+        pillImageContainer.snp.makeConstraints {
+            $0.size.equalTo(AppLayout.MedicineDescription.pillImageContainerWidthAndHeight)
+        }
         
-        NSLayoutConstraint.activate([
-            pillImageContainer.widthAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.stackViewHorizontalHeight
-            ),
-            pillImageContainer.heightAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.stackViewHorizontalHeight
-            )
-        ])
+        timeLabel.snp.makeConstraints {
+            $0.width.equalTo(AppLayout.MedicineDescription.timeLabelWidth)
+        }
         
-        NSLayoutConstraint.activate([
-            timeLabel.widthAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.timeLabelWidth
-            )
-        ])
+        windowView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(AppLayout.MedicineDescription.windowViewLeadingAndTopPadding)
+        }
         
-        NSLayoutConstraint.activate([
-            windowView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            windowView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            windowView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: AppLayout.MedicineDescription.windowViewLeading
-            )
-        ])
+        pillTypeImage.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
         
-        NSLayoutConstraint.activate([
-            pillTypeImage.centerXAnchor.constraint(equalTo: pillImageContainer.centerXAnchor),
-            pillTypeImage.centerYAnchor.constraint(equalTo: pillImageContainer.centerYAnchor)
-        ])
+        acceptButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.MedicineDescription.buttonStackViewHeight)
+        }
         
-        NSLayoutConstraint.activate([
-            acceptButton.heightAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.buttonStackViewHeight
-            ),
-            skipButton.heightAnchor.constraint(
-                equalToConstant: AppLayout.MedicineDescription.buttonStackViewHeight
-            )
-
-        ])
+        skipButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.MedicineDescription.buttonStackViewHeight)
+        }
     }
     
 }

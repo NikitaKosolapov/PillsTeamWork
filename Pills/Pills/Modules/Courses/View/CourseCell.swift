@@ -14,15 +14,11 @@ final class CourseCell: UITableViewCell {
     // MARK: - Private Properties
     
     private lazy var courseCellView: CourseCellView = {
-        let view = CourseCellView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return CourseCellView()
     }()
     
     private lazy var progressView: ProgressView = {
-        let view = ProgressView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return ProgressView()
     }()
     
     // MARK: - Initializers

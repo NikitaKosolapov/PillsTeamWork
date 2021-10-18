@@ -14,16 +14,17 @@ protocol JournalEventsDelegate: AnyObject {
     func filterEventsByDate(date: Date)
 }
 
-// swiftlint:disable type_body_length
 final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Public Properties
+    
     weak var delegate: JournalEventsDelegate?
     var arrayOfEvents = [Date]()
+    
     // MARK: - Private Properties
+    
     private var calendar: FSCalendar = {
         let calendar = FSCalendar()
-        calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.scope = .week
         calendar.clipsToBounds = true
         calendar.appearance.headerDateFormat = "LLLL yyyy"
@@ -38,7 +39,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     private var rounderСornersView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.shadowColor = AppColors.semiGrayOnly.cgColor
         view.layer.shadowOpacity = 1
         view.layer.shadowOffset = .zero
@@ -51,16 +51,13 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     private lazy var minusView: UIView =  {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.semiGrayOnly
         view.layer.cornerRadius = 2.5
         return view
     }()
     
     private let showHideButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        return UIButton()
     }()
     
     private lazy var scopeGesture: UIPanGestureRecognizer = {
@@ -71,35 +68,28 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     var journalTableView: JournalTableView = {
         let view = JournalTableView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.white
         return view
     }()
-    
-     var emptyTableStub: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
+
+    private var emptyTableStub: UIView = {
+        return UIView()
     }()
     
     private var manImageContainer: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.lightBlueSapphire
         return view
     }()
     
     private var manImageView: UIImageView = {
         let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "man")
         return view
     }()
     
     private var manHintTitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Text.takePillsInTime
         label.font = AppLayout.Fonts.bigSemibold
         label.textAlignment = .center
@@ -109,7 +99,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     private var manHintSubtitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Text.justAddAnOrder
         label.font = AppLayout.Fonts.normalRegular
         label.textAlignment = .center
@@ -119,7 +108,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     private lazy var addButton: AddButton = {
         let button = AddButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(AppColors.whiteOnly, for: .normal)
         // Add onDebugSwitchView instead callAddNewPill for debugging
         button.addTarget(self, action: #selector(callAddNewPill), for: .touchUpInside)
@@ -133,7 +121,6 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
                 journalTableView,
                 emptyTableStub
             ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.spacing = 8
@@ -167,7 +154,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     
     override func updateConstraints() {
         super.updateConstraints()
-
+        
         calendar.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(AppLayout.Journal.Calendar.paddingLeft)
             $0.top.equalTo(safeAreaLayoutGuide.snp.top)
@@ -225,7 +212,7 @@ final class JournalView: UIView, UIGestureRecognizerDelegate {
     func setCurrentDate(date: Date) {
         calendar.currentPage = Date()
     }
-
+    
     func handlePan() {
         let translations = scopeGesture.translation(in: self)
         
@@ -349,7 +336,7 @@ extension JournalView: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendar.snp.updateConstraints {
-                $0.height.equalTo(bounds.height)
+            $0.height.equalTo(bounds.height)
         }
         layoutIfNeeded()
     }

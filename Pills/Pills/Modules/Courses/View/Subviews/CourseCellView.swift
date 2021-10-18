@@ -15,7 +15,6 @@ final class CourseCellView: UIView {
     
     private lazy var pillImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
@@ -23,7 +22,6 @@ final class CourseCellView: UIView {
     
     private lazy var pillTypeImageContainer: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.whiteOnly
         view.layer.cornerRadius = AppLayout.AidKit.pillImageContainerRadius
         return view
@@ -76,7 +74,6 @@ final class CourseCellView: UIView {
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [pillTypeImageContainer, verticalStackView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center

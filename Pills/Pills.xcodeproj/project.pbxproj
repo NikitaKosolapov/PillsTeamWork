@@ -63,6 +63,7 @@
 		FA9D870A26F111AF00408604 /* MedicineDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */; };
 		FA9D87E226F6416400408604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D87E126F6416300408604 /* Event.swift */; };
 		FAA85ECC271757C300FBE360 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA85ECB271757C200FBE360 /* ViewFactory.swift */; };
+		FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE2361271DE823000011E2 /* RateStackViewFactory.swift */; };
 		FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */; };
 		FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */; };
 		FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */; };
@@ -182,6 +183,7 @@
 		FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDescriptionView.swift; sourceTree = "<group>"; };
 		FA9D87E126F6416300408604 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAA85ECB271757C200FBE360 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		FADE2361271DE823000011E2 /* RateStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateStackViewFactory.swift; sourceTree = "<group>"; };
 		FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCourseView+PublicInterface.swift"; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			children = (
 				A86DB93D26C54BD000AE866A /* Controller */,
 				A86DB93F26C54BD000AE866A /* View */,
+				FADE2360271DE77D000011E2 /* Factory */,
 			);
 			path = Rate;
 			sourceTree = "<group>";
@@ -474,6 +477,14 @@
 				FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FADE2360271DE77D000011E2 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				FADE2361271DE823000011E2 /* RateStackViewFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 		FAEFC1F6270E0AE20068720D /* Subviews */ = {
@@ -1107,6 +1118,7 @@
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,
 				FA653B772714A5610011573F /* LabelFactory.swift in Sources */,
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
+				FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */,
 				A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */,
 				84C440B426D7E31200860F77 /* SettingsViewTableCell.swift in Sources */,
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,

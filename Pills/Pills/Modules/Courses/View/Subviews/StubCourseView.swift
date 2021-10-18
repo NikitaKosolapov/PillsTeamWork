@@ -15,7 +15,6 @@ final class StubCourseView: UIView {
     
     private lazy var stubImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = AppImages.AidKit.stubImage
         imageView.backgroundColor = AppColors.lightBlueSapphire
         imageView.layer.cornerRadius = AppLayout.AidKit.widthStubImage / 2
@@ -24,7 +23,6 @@ final class StubCourseView: UIView {
     
     private lazy var stubInfolabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Text.AidKit.stubText
         label.textAlignment = .center
         label.numberOfLines = 0

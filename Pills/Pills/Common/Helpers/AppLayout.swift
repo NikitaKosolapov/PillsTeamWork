@@ -94,11 +94,7 @@ enum AppLayout {
         static let windowViewWidth: CGFloat = 288
         static let aspectRatio: CGFloat = 156 / 568
         static let topPadding: CGFloat = aspectRatio * UIScreen.main.bounds.height
-        static let windowViewLeading: CGFloat = 16
-        static let windowViewTrailing: CGFloat = -16
-        static let windowViewBottomAnchor: CGFloat = -16
-        static let windowViewTopAnchor: CGFloat = 16
-        static let stackViewHorizontalHeight: CGFloat = 36
+        static let windowViewLeadingAndTopPadding: CGFloat = 16
         static let pillImageContainerWidthAndHeight: CGFloat = 36
         static let timeLabelWidth: CGFloat = 54
         static let pillInstructionLabelTopAnchor: CGFloat = 14
@@ -182,11 +178,11 @@ enum AppLayout {
         static let heightButton: CGFloat = 45
         static let topStackView: CGFloat = 24
         static let leadingStackView: CGFloat = 16
-        static let trailingStackView: CGFloat = -leadingStackView
-        static let bottomStackView: CGFloat = -topStackView
+        static let leadingMainStackView: CGFloat = 16
+        static let bottomStackView: CGFloat = 24
         static let cornerRadius: CGFloat = 10
         static let spacingVertical: CGFloat = 15
-        static let spasingHorizontal: CGFloat = 16
+        static let spasingHorizontal: CGFloat = 10
         
     }
     
@@ -194,6 +190,7 @@ enum AppLayout {
         static let heightView: CGFloat = 213.0
         static let widthSmileImageView: CGFloat = 38
         static let heightSmileImageView: CGFloat = 38
+        static let verticalStackViewSpacing: CGFloat = 9
     }
     
     enum DeletePill {

@@ -5,6 +5,7 @@
 //  Created by Alexandr Evtodiy on 09.08.2021.
 //
 
+import SnapKit
 import UIKit
 
 protocol RateViewDelegate: AnyObject {
@@ -17,20 +18,14 @@ protocol RateViewDelegate: AnyObject {
 
 final class RateView: AlertView {
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        addBlur(style: .light, alpha: 0.7, cornerRadius: 0, zPosition: -1)
-    }
-    
     // MARK: - Public Properties
     
-    weak var rateViewDelegate: RateViewDelegate?
+    public weak var rateViewDelegate: RateViewDelegate?
     
     // MARK: - Private Properties
     
     private let badSmileButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(AppImages.Rate.badSmile, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(badSmileButtonTouchUpInside), for: .touchUpInside)
@@ -39,7 +34,6 @@ final class RateView: AlertView {
     
     private let normSmileButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(AppImages.Rate.normSmile, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(normSmileButtonTouchUpInside), for: .touchUpInside)
@@ -48,7 +42,6 @@ final class RateView: AlertView {
     
     private let bestSmileButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(AppImages.Rate.okSmile, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(bestSmileButtonTouchUpInside), for: .touchUpInside)
@@ -57,19 +50,13 @@ final class RateView: AlertView {
     
     private let badLabel: UILabel = {
         let label = UILabel()
-        label.centerStyleLabel(
-            font: AppLayout.Fonts.smallRegular,
-            text: Text.Rating.badRate
-        )
+        label.centerStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.Rating.badRate)
         return label
     }()
     
     private let normLabel: UILabel = {
         let label = UILabel()
-        label.centerStyleLabel(
-            font: AppLayout.Fonts.smallRegular,
-            text: Text.Rating.normRate
-        )
+        label.centerStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.Rating.normRate)
         return label
     }()
     
@@ -81,7 +68,11 @@ final class RateView: AlertView {
         )
         return label
     }()
-
+    
+    private lazy var badButtonLabelStackView = RateStackViewFactory.generate([badSmileButton, badLabel])
+    private lazy var normButtonLabelStackView = RateStackViewFactory.generate([normSmileButton, normLabel])
+    private lazy var bestButtonLabelStackView = RateStackViewFactory.generate([bestSmileButton, bestLabel])
+    
     private lazy var horizontalButtonsLabelsStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
@@ -97,34 +88,34 @@ final class RateView: AlertView {
         return stackView
     }()
     
-    private lazy var badButtonLabelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [badSmileButton, badLabel])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 9
-        return stackView
-    }()
+    // MARK: - Initializers
     
-    private lazy var normButtonLabelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [normSmileButton, normLabel])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 9
-        return stackView
-    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+        setupLayout()
+    }
     
-    private lazy var bestButtonLabelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [bestSmileButton, bestLabel])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 9
-        return stackView
-    }()
-
-    // MARK: - Private Methods
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        addBlur(style: .light, alpha: 0.7, cornerRadius: 0, zPosition: -1)
+    }
+    
+    override func configureView() {
+        configureHeight(height: AppLayout.Rate.heightView)
+        additionalField = horizontalButtonsLabelsStackView
+        configureText(title: Text.Rating.rateApp, agree: Text.Rating.provideFeedback, deny: Text.Rating.noThanks)
+    }
+    
+    // MARK: - Actions
     
     @objc override func agreeButtonTouchUpInside() {
         rateViewDelegate?.provideFeedbackButtonTouchUpInside()
@@ -145,23 +136,17 @@ final class RateView: AlertView {
     @objc func bestSmileButtonTouchUpInside() {
         rateViewDelegate?.bestSmileButtonTouchUpInside()
     }
-
-    private func configureButtons() {
-        NSLayoutConstraint.activate(
-            [badSmileButton.heightAnchor.constraint(equalToConstant:
-                                                        AppLayout.Rate.heightSmileImageView),
-             normSmileButton.heightAnchor.constraint(equalToConstant:
-                                                        AppLayout.Rate.heightSmileImageView),
-             bestSmileButton.heightAnchor.constraint(equalToConstant:
-                                                        AppLayout.Rate.heightSmileImageView)])
+    
+    // MARK: - Private Methods
+    
+    private func setupView() {
+        backgroundColor = AppColors.semiWhiteDarkTheme
     }
     
-    override func configureView() {
-        backgroundColor = AppColors.semiWhiteDarkTheme
-        configureHeight(height: AppLayout.Rate.heightView)
-        additionalField = horizontalButtonsLabelsStackView
-        configureButtons()
-        configureText(title: Text.Rating.rateApp, agree: Text.Rating.provideFeedback, deny: Text.Rating.noThanks)
+    private func setupLayout() {
+        badSmileButton.snp.makeConstraints { $0.height.equalTo(AppLayout.Rate.heightSmileImageView) }
+        normSmileButton.snp.makeConstraints { $0.height.equalTo(AppLayout.Rate.heightSmileImageView) }
+        bestSmileButton.snp.makeConstraints { $0.height.equalTo(AppLayout.Rate.heightSmileImageView) }
     }
-
+    
 }
