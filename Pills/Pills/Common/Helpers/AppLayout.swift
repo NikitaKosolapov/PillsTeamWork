@@ -249,9 +249,10 @@ enum AppLayout {
         static let spaceTextFieldsXDaysAndYDays: CGFloat = 16
         static let spaceTextFieldAndLabelForXDaysAndYDays: CGFloat = 8
         static let vStackViewSpacing: CGFloat = 8
-        static let majorStackViewPaddingBottom: CGFloat = 6
+        static let saveButtonPaddingTop: CGFloat = 6
         static let vMainStackViewSpacing: CGFloat = 16
         static let saveButtonPaddingBottom: CGFloat = 21
+        static let saveButtonContainerHeight: CGFloat = 79
     }
     
     enum Settings {

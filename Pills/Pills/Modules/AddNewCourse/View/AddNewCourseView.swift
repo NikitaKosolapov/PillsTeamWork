@@ -92,7 +92,6 @@ final class AddNewCourseView: UIView {
 
     lazy var typeImageHolder: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = AppColors.whiteAnthracite
         view.layer.cornerRadius = AppLayout.CustomTextField.cornerRadius
         return view
@@ -101,7 +100,6 @@ final class AddNewCourseView: UIView {
     lazy var typeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = PillType.tablets.image()
         imageView.snp.makeConstraints {
             $0.size.equalTo(AppLayout.AddCourse.pillImageSize)
@@ -323,7 +321,6 @@ final class AddNewCourseView: UIView {
 
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = AppColors.lightBlueBlack
         return scrollView
     }()
@@ -331,7 +328,6 @@ final class AddNewCourseView: UIView {
     // containerView is a subView of scrollView and contains all UI elements
     private lazy var containerView: UIView = {
         let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = AppColors.lightBlueBlack
         return containerView
     }()
@@ -346,8 +342,7 @@ final class AddNewCourseView: UIView {
             takingDurationLabelAndTFStackView,
             takingFrequencyLabelAndTFStackView,
             takeMedicineStackView,
-            noteStackView,
-            saveButton
+            noteStackView
         ]
     )
     
@@ -378,6 +373,8 @@ final class AddNewCourseView: UIView {
     
     private func addSubviews() {
         addSubview(scrollView)
+        addSubview(saveButtonContainerView)
+        saveButtonContainerView.addSubview(saveButton)
         scrollView.addSubview(containerView)
         containerView.addSubview(mainStackView)
         typeImageHolder.addSubview(typeImage)
@@ -402,6 +399,14 @@ final class AddNewCourseView: UIView {
         
         saveButton.snp.makeConstraints {
             $0.height.equalTo(AppLayout.Journal.heightAddButton)
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview().inset(AppLayout.AddCourse.saveButtonPaddingTop)
+        }
+        
+        saveButtonContainerView.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AddCourse.saveButtonContainerHeight)
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.AddCourse.horizontalSpacing)
         }
         
         mainStackView.snp.makeConstraints {

@@ -16,7 +16,6 @@ final class HorizontalStackViewFactory {
     ) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.distribution = distribution
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = spacing
         return stackView
