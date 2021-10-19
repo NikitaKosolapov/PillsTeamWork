@@ -382,7 +382,8 @@ final class AddNewCourseView: UIView {
     
     private func setupLayout() {
         scrollView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(AppLayout.AddCourse.saveButtonContainerHeight)
         }
         
         containerView.snp.makeConstraints {
@@ -437,14 +438,14 @@ final class AddNewCourseView: UIView {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height
             scrollView.snp.updateConstraints {
-                $0.bottom.equalTo(-keyboardHeight)
+                $0.bottom.equalToSuperview().inset(keyboardHeight)
             }
         }
     }
     
     @objc func keyboardWillHide(notification:NSNotification) {
         scrollView.snp.updateConstraints {
-            $0.bottom.equalTo(UIScreen.main.safeAreaBottom)
+            $0.bottom.equalToSuperview().inset(AppLayout.AddCourse.saveButtonContainerHeight)
         }
     }
     
