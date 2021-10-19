@@ -10,7 +10,7 @@ import MessageUI
 import DeviceKit
 
 final class SettingsViewController: UITableViewController {
-
+    
     enum SettingsSections : String {
         case about
         case writeSupport
@@ -37,52 +37,71 @@ final class SettingsViewController: UITableViewController {
         }
     }
     
-    let settings: [SettingsSections] = [.about, .writeSupport, .notification, .termsOfUsage, .privacyPolicy, .rate]
+    // MARK: - Public Properties
     
-    let idSettingsCell = "idSettingsCell"
+    public let settings: [SettingsSections] = [
+        .about,
+        .writeSupport,
+        .notification,
+        .termsOfUsage,
+        .privacyPolicy,
+        .rate
+    ]
+    public let idSettingsCell = "idSettingsCell"
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func openUrl(url : String) {
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    private func setupView() {
         title = Text.Tabs.settings
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(SettingsViewTableCell.self, forCellReuseIdentifier: idSettingsCell)
+        tableView.register(SettingsViewTableCell.self)
         
         tableView.backgroundColor = AppColors.white
         tableView.separatorStyle = .none
     }
-
-    // Return the number of sections
+    
+    // MARK: - UITableViewDelegate and DataSource
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // Return the number of rows for each section in your static table
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         settings.count
     }
     
-    // Return the row for the corresponding section and row
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idSettingsCell,
-                                                 for: indexPath) as! SettingsViewTableCell
-        let setting = settings[indexPath.row]
+        let cell = tableView.dequeueReusableCell(ofType: SettingsViewTableCell.self, for: indexPath)
         
+        let setting = settings[indexPath.row]
         cell.setName(name: setting.rawValue)
         
         switch setting {
         case .notification:
             cell.setButtonVisible(visible: false)
-            cell.setSwitcVisible(visible: true)
+            cell.setSwitchVisible(visible: true)
         default:
             cell.setButtonVisible(visible: true)
-            cell.setSwitcVisible(visible: false)
+            cell.setSwitchVisible(visible: false)
         }
-        
         return cell
     }
     
@@ -124,15 +143,9 @@ final class SettingsViewController: UITableViewController {
         }
     }
     
-    func openUrl(url : String) {
-        if let url = URL(string: url) {
-            UIApplication.shared.open(url)
-        }
-    }
-    
 }
 
-// MARK: - Send mail
+// MARK: - MFMailComposeViewControllerDelegate
 
 extension SettingsViewController: MFMailComposeViewControllerDelegate {
     
@@ -151,9 +164,11 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         }
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult,
-                               error: Error?) {
+    func mailComposeController(
+        _ controller: MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult,
+        error: Error?
+    ) {
         print(error?.localizedDescription ?? "No error")
         controller.dismiss(animated: true)
     }
@@ -168,7 +183,6 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         messageText += "<p>\(Text.Feedback.iOSVersion) \(systemVersion)</p>"
         messageText += "<p>\(Text.Feedback.deviceModel) \(deviceModel)</p>"
         messageText += "<p>\(Text.Feedback.appVersion) \(appVersion ?? "0.0")</p>"
-        
         return messageText
     }
     

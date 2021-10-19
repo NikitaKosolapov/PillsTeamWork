@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - AutoReusable
+
 protocol AutoReusable {
     static var autoReuseIdentifier: String { get }
 }

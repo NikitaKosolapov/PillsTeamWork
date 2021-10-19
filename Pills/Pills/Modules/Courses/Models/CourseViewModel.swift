@@ -36,6 +36,7 @@ final class CourseViewModelFactory {
             durationOfCourseString: dateStartOfCourse + " - " + dateEndOfCourse,
             countPassedDaysString:  String(countOfDaysPassed) + " " + Text.AidKit.from +
             " " + String(countOfCourseDays) + " " + Text.AidKit.days,
-            widthProgress: widthProgress)
+            widthProgress: widthProgress
+        )
     }
 }

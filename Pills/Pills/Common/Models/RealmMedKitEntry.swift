@@ -239,9 +239,9 @@ class RealmMedKitEntry: Object {
               startDate > Date.distantPast,
               takeAtTime > Date.distantPast,
               endDate > Date.distantPast,
-              singleDose > 0,
+              singleDose > 0
               // TODO: Добавить проверку на наличие расписания, когда будут готовы все методы
-              schedule.isEmpty.not
+//              schedule.isEmpty.not
         else {
             isValid = false
             return isValid

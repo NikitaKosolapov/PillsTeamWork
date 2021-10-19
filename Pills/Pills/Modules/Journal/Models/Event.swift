@@ -8,8 +8,13 @@
 import UIKit
 
 final class Event {
+    
+    // MARK: - Public Properties
+    
     let time: Date
     let pill: RealmMedKitEntry
+    
+    // MARK: - Initializers
     
     init(time: Date, pill: RealmMedKitEntry) {
         self.time = time

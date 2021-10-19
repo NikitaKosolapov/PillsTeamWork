@@ -5,22 +5,24 @@
 //  Created by GrRoman on 17.08.2021.
 //
 
+import SnapKit
 import UIKit
 
 protocol SettingsViewTableCellDelegate: AnyObject {
     func setColor(backgroundColor: UIColor)
     func setName(name: String)
     func setButtonVisible(visible: Bool)
-    func setSwitcVisible(visible: Bool)
+    func setSwitchVisible(visible: Bool)
 }
 
 class SettingsViewTableCell: UITableViewCell {
+    
+    // MARK: - Private Properties
     
     private let backgroundViewCell: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.lightGray
         view.layer.cornerRadius = AppLayout.Settings.cellCornerRadius
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -28,7 +30,6 @@ class SettingsViewTableCell: UITableViewCell {
         let label = UILabel()
         label.font = AppLayout.Fonts.normalRegular
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = AppColors.black
         return label
     }()
@@ -38,7 +39,6 @@ class SettingsViewTableCell: UITableViewCell {
         button.setBackgroundImage(UIImage(systemName: "chevron.forward"), for: .normal)
         button.tintColor = AppColors.semiGrayOnly
         button.isHidden = false
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -46,57 +46,66 @@ class SettingsViewTableCell: UITableViewCell {
         let switcher = UISwitch()
         switcher.isOn = true
         switcher.isHidden = false
-        switcher.translatesAutoresizingMaskIntoConstraints = false
         switcher.onTintColor = AppColors.greenBlue
+        switcher.addTarget(self, action: #selector(switchChange(paramTarget:)) , for: .valueChanged)
         return switcher
     }()
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .none
-        setConstraints()
-        
-        notificationsSwitch.addTarget(self, action: #selector(switchChange(paramTarget:)) , for: .valueChanged)
+        setupView()
+        addSubviews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Actions
+    
     @objc func switchChange(paramTarget: UISwitch) {
         debugPrint("Switch changed")
     }
     
-    func setConstraints() {
+    // MARK: - Private Methods
+    
+    private func setupView() {
+        selectionStyle = .none
+    }
+    
+    private func addSubviews() {
+        addSubview(backgroundViewCell)
+        addSubview(accessoryButton)
+        contentView.addSubview(notificationsSwitch)
+        addSubview(cellTitleLabel)
+    }
+    
+    private func setupLayout() {
         
-        self.addSubview(backgroundViewCell)
-        NSLayoutConstraint.activate([
-            backgroundViewCell.topAnchor.constraint(equalTo: self.topAnchor, constant: 6),
-            backgroundViewCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            backgroundViewCell.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            backgroundViewCell.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -6)
-        ])
+        backgroundViewCell.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(AppLayout.Settings.cellPaddingTopAndBottom)
+            $0.leading.trailing.equalToSuperview().inset(AppLayout.Settings.cellPaddingLeadingAndTrailing)
+        }
         
-        self.addSubview(accessoryButton)
-        NSLayoutConstraint.activate([
-            accessoryButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            accessoryButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -42)
-        ])
+        accessoryButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(AppLayout.Settings.accessoryButtonPaddingTrailing)
+        }
         
-        self.contentView.addSubview(notificationsSwitch)
-        NSLayoutConstraint.activate([
-            notificationsSwitch.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            notificationsSwitch.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -42)
-        ])
+        notificationsSwitch.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(AppLayout.Settings.notificationsSwitchPaddingTrailing)
+        }
         
-        self.addSubview(cellTitleLabel)
-        NSLayoutConstraint.activate([
-            cellTitleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            cellTitleLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 24),
-            cellTitleLabel.trailingAnchor.constraint(equalTo: notificationsSwitch.leadingAnchor, constant: -10)
-        ])
-        
+        cellTitleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(backgroundViewCell.snp.leading).offset(AppLayout.Settings.titleLabelPaddingLeading)
+            $0.trailing.equalTo(notificationsSwitch.snp.leading).offset(AppLayout.Settings.titleLabelPaddingTrailing)
+        }
     }
     
 }
@@ -108,7 +117,7 @@ extension SettingsViewTableCell: SettingsViewTableCellDelegate {
         accessoryButton.isHidden = !visible
     }
     
-    func setSwitcVisible(visible: Bool) {
+    func setSwitchVisible(visible: Bool) {
         notificationsSwitch.isHidden = !visible
     }
     

@@ -10,12 +10,16 @@ import RealmSwift
 
 // TODO: remove me completely when Realm DB is ready
 final class JournalMock {
-
+    
+    // MARK: - Public Properties
+    
     let entryExample1: RealmMedKitEntry
     let entryExample2: RealmMedKitEntry
 
     static let shared = JournalMock()
-
+    
+    // MARK: - Initializers
+    
     private init() {
         var startDate = Date().addingTimeInterval(-3600 * 24 * 7)
         startDate = startDate.startOfDay

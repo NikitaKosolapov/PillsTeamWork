@@ -14,7 +14,16 @@ enum TypeOfCourse {
 }
 
 class Course {
-    // MARK: Init
+    
+    // MARK: - Public Properties
+    
+    var imagePill: UIImage
+    var namePill: String
+    var dateStartOfCourse: Date
+    var dateEndOfCourse: Date
+    
+    // MARK: - Initializers
+    
     init(imagePill: UIImage, namePill: String, dateStartOfCourse: Date, dateEndOfCourse: Date) {
         self.imagePill = imagePill
         self.namePill = namePill
@@ -22,9 +31,4 @@ class Course {
         self.dateEndOfCourse = dateEndOfCourse
     }
     
-    // MARK: Properties
-    var imagePill: UIImage
-    var namePill: String
-    var dateStartOfCourse: Date
-    var dateEndOfCourse: Date
 }

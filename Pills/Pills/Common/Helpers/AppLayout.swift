@@ -33,7 +33,6 @@ enum AppLayout {
         static let addButtonPaddingTop: CGFloat = 6
         static let addButtonPaddingBottom: CGFloat = 19
         static let stackViewTableViewAndButtonPaddingTop: CGFloat = 28
-        static let pillNameLabelPaddingLeft: CGFloat = 11
 
         enum Calendar {
             static let paddingLeft: CGFloat = 10
@@ -46,13 +45,13 @@ enum AppLayout {
             static let headerLabelHeight: CGFloat = 183
             static let calendarHeight: CGFloat = 300
         }
-
+        
         enum Stub {
             static let paddingTop: CGFloat = 30
             static let spacing: CGFloat = 16
             static let manImageContainerHeight: CGFloat = 169
         }
-
+        
         // MARK: - UITableViewCell
         
         static let timeFont = AppLayout.Fonts.normalRegular
@@ -156,7 +155,7 @@ enum AppLayout {
         static var widthStubImage: CGFloat {
             return widthStackView / 2
         }
-       
+        
         static var leadingStubImage: CGFloat {
             return (widthStackView - widthStubImage) / 2.0
         }
@@ -167,7 +166,7 @@ enum AppLayout {
         static let heightAddButton: CGFloat = 52.0
         static let indentFromBottomAddButton: CGFloat = 14
     }
-
+    
     enum Alert {
         static let indentView: CGFloat = 36
         static let widthView: CGFloat = widthScreen - indentView * 2
@@ -197,20 +196,20 @@ enum AppLayout {
         static let heightView: CGFloat = 181.0
         static let labelHeight: CGFloat = 32
     }
-
+    
     enum Fonts {
         static let bigRegular = UIFont(name: "SFCompactDisplay-Regular", size: 20)
         static let bigSemibold = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
-
+        
         static let normalRegular = UIFont(name: "SFCompactDisplay-Regular", size: 17)
         static let normalSemibold = UIFont(name: "SFCompactDisplay-Semibold", size: 17)
-
+        
         static let smallRegular = UIFont(name: "SFCompactDisplay-Regular", size: 13)
         static let verySmallRegular = UIFont(name: "SFCompactDisplay-Regular", size: 10)
         
         static let rateButtonSmall = UIFont(name: "SFCompactDisplay-Semibold", size: 14)
     }
-
+    
     enum CustomTextField {
         static let paddingLeft: CGFloat = 12
         static let paddingRight: CGFloat = 12
@@ -219,8 +218,10 @@ enum AppLayout {
         
         static let standardHeight: CGFloat = 44
         static let cornerRadius: CGFloat = 10
+        static let textImagePaddingBottom: CGFloat = 3
+        static let textImagePaddingTop: CGFloat = 1
     }
-
+    
     enum AddCourse {
         static let pillNameFieldMaxLength = 50
         static let doseFieldMaxLength = 10
@@ -230,7 +231,7 @@ enum AppLayout {
 
         static let typeInputWidth: CGFloat = 92
         static let doseUnitInputWidth: CGFloat = 106
-
+        
         static let horizontalSpacing: CGFloat = 16
         static let noteInputHeight: CGFloat = 44
         static let insetViewSize: CGFloat = 11
@@ -243,7 +244,9 @@ enum AppLayout {
         static let spaceCheckButtonAndLabel: CGFloat = 4
         static let widthCheckOfDay: CGFloat = 21
         static let heightCheckOfDay: CGFloat = 21
-
+        static let spaceTextFieldsXDaysAndYDays: CGFloat = 16
+        static let spaceTextFieldAndLabelForXDaysAndYDays: CGFloat = 8
+        
         static let vStackViewSpacing: CGFloat = 8
         static let saveButtonPaddingTop: CGFloat = 6
         static let vMainStackViewSpacing: CGFloat = 16
@@ -254,5 +257,11 @@ enum AppLayout {
     enum Settings {
         static let cellHeight: CGFloat = 68
         static let cellCornerRadius: CGFloat = 10
+        static let cellPaddingTopAndBottom: CGFloat = 6
+        static let cellPaddingLeadingAndTrailing: CGFloat = 16
+        static let accessoryButtonPaddingTrailing: CGFloat = 42
+        static let notificationsSwitchPaddingTrailing: CGFloat = 42
+        static let titleLabelPaddingLeading: CGFloat = 24
+        static let titleLabelPaddingTrailing: CGFloat = 10
     }
 }

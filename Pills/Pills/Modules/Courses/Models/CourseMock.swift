@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 
 final class CourseMock {
-    // MARK: - Properties
+    
+    // MARK: - Public Properties
+    
     static let shared = CourseMock()
     var coursesCurrent: [Course]
     var coursesPassed: [Course]
     
-    // MARK: - Init
+    // MARK: - Initializers
+    
     private init() {
         
         let dateFormatter = DateFormatter()
