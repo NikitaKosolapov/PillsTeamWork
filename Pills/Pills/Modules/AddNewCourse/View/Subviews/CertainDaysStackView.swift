@@ -5,19 +5,26 @@
 //  Created by Alexandr Evtodiy on 24.08.2021.
 //
 
+import SnapKit
 import UIKit
 
 protocol CertainDaysStackViewDelegate: AnyObject {
     func certainDaysDidChange(on days: [String])
 }
 
-class CertainDaysStackView: UIStackView {
-    weak var delegate: CertainDaysStackViewDelegate?
+/// Class contains all days from Monday to Sunday
+final class CertainDaysStackView: UIStackView {
     
-    // MARK: - Properties
+    // MARK: - Public Properties
+    
+    public weak var delegate: CertainDaysStackViewDelegate?
+    
+    // MARK: - Private  Properties
+    
     private let dayOfWeekArray: [String] = Text.DaysOfAWeek.all()
     var choosedDays: [UIButton] = []
     // MARK: - Subviews
+    
     private lazy var dayOfWeekStackViewArray: [UIStackView] = {
         var stackViewArray: [UIStackView] = []
         for (index, day) in dayOfWeekArray.enumerated() {
@@ -57,30 +64,26 @@ class CertainDaysStackView: UIStackView {
         return buttonArray
     }()
     
-    // MARK: - Initialisation
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        
+        configureStackView()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Public functions
     func getCertainDays() -> [String] {
         var certainDays: [String] = []
         certainDays = getNameOfWeekDays(for: dayOfWeekButtonArray)
-
         return certainDays
     }
     
-    // MARK: - Private functions
-    private func configureUI() {
-        configureStackView()
-        configureButtons()
-        configureLabels()
-    }
+    // MARK: - Private Methods
     
     private func configureStackView() {
         axis = .horizontal
@@ -90,7 +93,7 @@ class CertainDaysStackView: UIStackView {
             addArrangedSubview(dayStackView)
         }
     }
-    
+
     private func configureButtons() {
         dayOfWeekButtonArray.forEach { (button) in
             NSLayoutConstraint.activate([

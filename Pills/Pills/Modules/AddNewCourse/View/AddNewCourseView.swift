@@ -46,7 +46,7 @@ final class AddNewCourseView: UIView {
 
     // MARK: - Private Properties
     
-    private let receiveFreqStackView = ReceiveFreqPillsView()
+    private let receiveFreqStackView = ReceiveFrequencyPillsView()
     private var activeView: UIView?
     private var keyboardHeight: CGFloat = 0.0
     
@@ -160,7 +160,7 @@ final class AddNewCourseView: UIView {
     
     private lazy var doseInputStackView = HorizontalStackViewFactory.generate([doseInputTextField, doseUnitTextField])
     
-    // doseLabelStackView and doseTFStackView
+    // doseLabelStackView and doseTextFieldStackView
     private lazy var doseLabelAndDoseInputStackView = VerticalStackViewFactory.generate([
         doseLabelStackView,
         doseInputStackView
@@ -174,7 +174,7 @@ final class AddNewCourseView: UIView {
         takingDurationLabel
     ], .fillProportionally, spacing: 0)
     
-    private lazy var takingDurationLabelAndTFStackView = VerticalStackViewFactory.generate([
+    private lazy var takingDurationLabelAndTextFieldStackView = VerticalStackViewFactory.generate([
         takingDurationLabelStackView,
         takePeriodTextField
     ])
@@ -339,8 +339,9 @@ final class AddNewCourseView: UIView {
             typeLabelAndStackTypeNameAndImage,
             doseLabelAndDoseInputStackView,
             timeLabelAndStartTimeInputStackView,
-            takingDurationLabelAndTFStackView,
+            takingDurationLabelAndTextFieldStackView,
             takingFrequencyLabelAndTFStackView,
+            receiveFreqStackView,
             takeMedicineStackView,
             noteStackView
         ]

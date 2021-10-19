@@ -241,13 +241,12 @@ enum AppLayout {
         // Fields for receiving frequency
         static let heightTextField: CGFloat = 44
         static let heightLabel: CGFloat = 16
+        static let daysCycleStackHeight: CGFloat = 68
         
         static let spaceCheckButtonAndLabel: CGFloat = 4
         static let widthCheckOfDay: CGFloat = 21
         static let heightCheckOfDay: CGFloat = 21
 
-        static let spaceTextFieldsXDaysAndYDays: CGFloat = 16
-        static let spaceTextFieldAndLabelForXDaysAndYDays: CGFloat = 8
         static let vStackViewSpacing: CGFloat = 8
         static let saveButtonPaddingTop: CGFloat = 6
         static let vMainStackViewSpacing: CGFloat = 16

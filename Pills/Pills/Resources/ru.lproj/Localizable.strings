@@ -44,6 +44,8 @@
 "mg" = "мг.";
 "beforeMeal" = "До еды";
 "featuresOfTaking" = "  Особенности приема лекарства";
+"xDays" = "X дней";
+"yDays" = "Y дней";
 
 "week" = "1 неделю";
 "month" = "1 месяц";

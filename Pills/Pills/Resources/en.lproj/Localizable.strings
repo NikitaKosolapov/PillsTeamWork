@@ -44,6 +44,8 @@
 "mg" = "mg.";
 "beforeMeal" = "Before meals";
 "featuresOfTaking" = "Features of taking medication";
+"xDays" = "X days";
+"yDays" = "Y days";
 
 "week" = "1 week";
 "month" = "1 month";

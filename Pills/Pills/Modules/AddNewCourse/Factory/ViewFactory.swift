@@ -14,7 +14,7 @@ final class ViewFactory {
         let view = UIView()
         view.backgroundColor = .clear
         view.snp.makeConstraints {
-            $0.height.width.equalTo(AppLayout.AddCourse.insetViewSize)
+            $0.width.equalTo(AppLayout.AddCourse.insetViewSize)
         }
         return view
     }

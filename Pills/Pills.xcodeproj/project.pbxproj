@@ -46,7 +46,7 @@
 		A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870AFF026A9A31E00624579 /* CourseViewModel.swift */; };
 		A870B00526A9D58E00624579 /* AppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A870B00426A9D58E00624579 /* AppLayout.swift */; };
 		A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C4DC26B079AF00BACC90 /* AddButton.swift */; };
-		A8E594DF26D976D5006F414A /* ReceiveFreqPillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */; };
+		A8E594DF26D976D5006F414A /* ReceiveFrequencyPillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DC26D976D5006F414A /* ReceiveFrequencyPillsView.swift */; };
 		A8E594E026D976D5006F414A /* DaysCycleStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */; };
 		A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */; };
 		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
@@ -162,7 +162,7 @@
 		A870AFF026A9A31E00624579 /* CourseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		A870B00426A9D58E00624579 /* AppLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayout.swift; sourceTree = "<group>"; };
 		A884C4DC26B079AF00BACC90 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFreqPillsView.swift; sourceTree = "<group>"; };
+		A8E594DC26D976D5006F414A /* ReceiveFrequencyPillsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveFrequencyPillsView.swift; sourceTree = "<group>"; };
 		A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysCycleStackView.swift; sourceTree = "<group>"; };
 		A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertainDaysStackView.swift; sourceTree = "<group>"; };
 		A8E594E526D976FD006F414A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 		A8E594DB26D976D5006F414A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				A8E594DC26D976D5006F414A /* ReceiveFreqPillsView.swift */,
+				A8E594DC26D976D5006F414A /* ReceiveFrequencyPillsView.swift */,
 				A8E594DD26D976D5006F414A /* DaysCycleStackView.swift */,
 				A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */,
 			);
@@ -1137,7 +1137,7 @@
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
 				1171C01A270F48EC0047D1AF /* UIViewController.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,
-				A8E594DF26D976D5006F414A /* ReceiveFreqPillsView.swift in Sources */,
+				A8E594DF26D976D5006F414A /* ReceiveFrequencyPillsView.swift in Sources */,
 				FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */,
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,

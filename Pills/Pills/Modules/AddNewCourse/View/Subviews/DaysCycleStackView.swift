@@ -5,6 +5,7 @@
 //  Created by Alexandr Evtodiy on 25.08.2021.
 //
 
+import SnapKit
 import UIKit
 
 protocol DaysCycleStackViewDelegate: AnyObject {
@@ -12,118 +13,118 @@ protocol DaysCycleStackViewDelegate: AnyObject {
 }
 
 final class DaysCycleStackView: UIStackView {
-    weak var delegate: DaysCycleStackViewDelegate?
     
-    // MARK: - Subviews
-    private lazy var xDaysStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [xDaysLabel, xDaysTextField])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = AppLayout.AddCourse.spaceTextFieldAndLabelForXDaysAndYDays
-        return stackView
-    }()
+    // MARK: - Public Properties
     
-    private lazy var yDaysStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [yDaysLabel, yDaysTextField])
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = AppLayout.AddCourse.spaceTextFieldAndLabelForXDaysAndYDays
-        return stackView
+    public weak var delegate: DaysCycleStackViewDelegate?
+    
+    // MARK: - Private Properties
+    
+    private let xDaysLabelInsetView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
     
     private let xDaysLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftStyleLabel(font: AppLayout.Fonts.smallRegular, text: "X дней")
+        label.leftStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.xDays)
         return label
     }()
     
+    private lazy var xDaysLabelStackView = HorizontalStackViewFactory.generate(
+        [xDaysLabelInsetView, xDaysLabel],
+        .fillProportionally,
+        spacing: 0
+    )
+    
     private let xDaysTextField: UITextField = {
         let textField = CustomTextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
-        textField.placeholder = Text.one
+        textField.placeholder = ""
         textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
         textField.isNumeric = true
         return textField
+    }()
+    
+    private lazy var xDaysStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [xDaysLabelStackView, xDaysTextField])
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = AppLayout.AddCourse.vStackViewSpacing
+        return stackView
+    }()
+    
+    private let yDaysLabelInsetView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
     
     private let yDaysLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftStyleLabel(font: AppLayout.Fonts.smallRegular, text: "Y дней")
+        label.leftStyleLabel(font: AppLayout.Fonts.smallRegular, text: Text.yDays)
         return label
     }()
     
+    private lazy var yDaysLabelStackView = HorizontalStackViewFactory.generate(
+        [yDaysLabelInsetView, yDaysLabel],
+        .fillProportionally,
+        spacing: 0
+    )
     private let yDaysTextField: UITextField = {
         let textField = CustomTextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
-        textField.placeholder = Text.one
+        textField.placeholder = ""
         textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
         textField.isNumeric = true
         return textField
     }()
     
-    // MARK: - Initialisation
+    private lazy var yDaysStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [yDaysLabelStackView, yDaysTextField])
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = AppLayout.AddCourse.vStackViewSpacing
+        return stackView
+    }()
+    
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        
+        configureStackView()
+        setupLayout()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private functions
-    private func configureUI() {
-        configureStackView()
-        configureXDaysLabel()
-        configureYDaysLabel()
-        configureXDaysTextField()
-        configureYDaysTextField()
-    }
+    // MARK: - Public Methods
     
-    private func configureStackView() {
-        axis = .horizontal
-        distribution = .fillEqually
-        alignment = .fill
-        spacing = AppLayout.AddCourse.spaceTextFieldsXDaysAndYDays
-        addArrangedSubviews(views: xDaysStackView, yDaysStackView)
-    }
-    
-    private func configureXDaysLabel() {
-        NSLayoutConstraint.activate([
-            xDaysLabel.heightAnchor.constraint(equalToConstant: AppLayout.AddCourse.heightLabel)
-        ])
-    }
-    
-    private func configureYDaysLabel() {
-        NSLayoutConstraint.activate([
-            yDaysLabel.heightAnchor.constraint(equalToConstant: AppLayout.AddCourse.heightLabel)
-        ])
-    }
-    
-    private func configureXDaysTextField() {
-        NSLayoutConstraint.activate([
-            xDaysTextField.heightAnchor.constraint(equalToConstant: AppLayout.AddCourse.heightTextField)
-        ])
-    }
-    
-    private func configureYDaysTextField() {
-        NSLayoutConstraint.activate([
-            yDaysTextField.heightAnchor.constraint(equalToConstant: AppLayout.AddCourse.heightTextField)
-        ])
-    }
-    
-    // MARK: - Public functions
-    func getXDaysAndYDays() -> (Int, Int) {
+    public func getXDaysAndYDays() -> (Int, Int) {
         guard let xText = xDaysTextField.text,
-              let yText = yDaysTextField.text else {
+              let yText = yDaysTextField.text
+        else {
             return (0, 0)
         }
         return (Int(xText) ?? 0, Int(yText) ?? 0)
     }
+    
+    // MARK: - Private Methods
+    
+    private func configureStackView() {
+        addArrangedSubviews(views: xDaysStackView, yDaysStackView)
+        axis = .horizontal
+        distribution = .fillEqually
+        spacing = AppLayout.AddCourse.horizontalSpacing
+    }
+    
+    private func setupLayout() {
+        xDaysLabelInsetView.snp.makeConstraints { $0.width.equalTo(AppLayout.AddCourse.insetViewSize) }
+        yDaysLabelInsetView.snp.makeConstraints { $0.width.equalTo(AppLayout.AddCourse.insetViewSize) }
+    }
+    
 }

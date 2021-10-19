@@ -5,6 +5,7 @@
 //  Created by Alexandr Evtodiy on 24.08.2021.
 //
 
+import SnapKit
 import UIKit
 
 enum ReceiveFreqPills {
@@ -19,11 +20,16 @@ protocol ReceiveFreqPillsDelegate: AnyObject {
     func certainDaysDidChange(on days: [String])
 }
 
-class ReceiveFreqPillsView: UIStackView {
-    // MARK: - Properties
-    var frequency: Frequency?
-    weak var delegate: ReceiveFreqPillsDelegate?
+/// Class contains elements that show up when we tap on frequencyTextField
+final class ReceiveFrequencyPillsView: UIStackView {
     
+    // MARK: - Public Properties
+    
+    public var frequency: Frequency?
+    public weak var delegate: ReceiveFreqPillsDelegate?
+    
+    // MARK: - Private Properties
+
     // MARK: - Subviews
      let certainDaysStackView: CertainDaysStackView = {
         let certainDaysStackView = CertainDaysStackView()
@@ -33,7 +39,6 @@ class ReceiveFreqPillsView: UIStackView {
     
     private let dailyXTimesTextField: UITextField = {
         let textField = CustomTextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isHidden = true
         textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
         textField.placeholder = Text.one
@@ -48,16 +53,18 @@ class ReceiveFreqPillsView: UIStackView {
         return daysCycleStackView
     }()
     
-    // MARK: - Initialisation
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        
+        configureStackView()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Private properties
     private func configureUI() {
         configureStackView()
@@ -79,29 +86,33 @@ class ReceiveFreqPillsView: UIStackView {
     
     // MARK: - Public functions
     
-    func showView(with frequency: Frequency) {
+    public func showView(with frequency: Frequency) {
         self.frequency = frequency
         switch frequency {
         case .daysOfTheWeek:
             certainDaysStackView.isHidden = false
             dailyXTimesTextField.isHidden = true
             daysCycleStackView.isHidden = true
+            dailyXTimesTextField.snp.updateConstraints { $0.height.equalTo(AppLayout.AddCourse.heightTextField) }
         case .dailyXTimes:
             certainDaysStackView.isHidden = true
             dailyXTimesTextField.isHidden = false
             daysCycleStackView.isHidden = true
+            dailyXTimesTextField.snp.updateConstraints { $0.height.equalTo(AppLayout.AddCourse.heightTextField) }
         case .dailyEveryXHour:
             certainDaysStackView.isHidden = true
-            dailyXTimesTextField.isHidden = true
+            dailyXTimesTextField.isHidden = false
             daysCycleStackView.isHidden = true
+            dailyXTimesTextField.snp.updateConstraints { $0.height.equalTo(AppLayout.AddCourse.heightTextField) }
         case .daysCycle:
             certainDaysStackView.isHidden = true
             dailyXTimesTextField.isHidden = true
             daysCycleStackView.isHidden = false
+            dailyXTimesTextField.snp.updateConstraints { $0.height.equalTo(AppLayout.AddCourse.daysCycleStackHeight) }
         }
     }
     
-    func getDataFreqOfTakingPills(with frequency: Frequency) -> ReceiveFreqPills? {
+    public func getDataFrequencyOfTakingPills(with frequency: Frequency) -> ReceiveFreqPills? {
         switch frequency {
         case .daysOfTheWeek:
             let mock: [Date] = []
@@ -114,22 +125,23 @@ class ReceiveFreqPillsView: UIStackView {
             return .daysCycle(getDaysCycle())
         }
     }
-    
+
     // MARK: - Private functions
     private func getCertainDays() -> [String] {
         return certainDaysStackView.getCertainDays()
     }
     
     private func dailyXTimes() -> Int {
-        return Int(dailyXTimesTextField.text ?? "") ?? 0
+        Int(dailyXTimesTextField.text ?? "") ?? 0
     }
     
     private func getDaysCycle() -> (Int, Int) {
-        return daysCycleStackView.getXDaysAndYDays()
+        daysCycleStackView.getXDaysAndYDays()
     }
+    
 }
 
-extension ReceiveFreqPillsView: CertainDaysStackViewDelegate {
+extension ReceiveFrequencyPillsView: CertainDaysStackViewDelegate {
     func certainDaysDidChange(on days: [String]) {
         delegate?.certainDaysDidChange(on: days)
     }
