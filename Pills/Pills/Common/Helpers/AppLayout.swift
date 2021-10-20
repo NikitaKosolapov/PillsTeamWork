@@ -107,11 +107,12 @@ enum AppLayout {
         // MARK: - UIStackView
         
         static var indentStackView: CGFloat = 16.0
+        static var stackViewLeadingAndTrailingPadding: CGFloat = 28.0
         static var topInsetStackView: CGFloat = 19.0
         static var bottomInsetStackView: CGFloat = topInsetStackView
         static var mainStackViewSpacing: CGFloat = 5
         static var widthStackView: CGFloat {
-            return AppLayout.widthScreen - (indentStackView * 2)
+            return AppLayout.widthScreen - stackViewLeadingAndTrailingPadding
         }
         static var leadingStackView: CGFloat {
             return indentStackView
