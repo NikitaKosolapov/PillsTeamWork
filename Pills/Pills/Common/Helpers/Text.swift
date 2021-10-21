@@ -51,6 +51,16 @@ enum Text {
     static let featuresOfTaking = "featuresOfTaking".localized()
     static let xDays = "xDays".localized()
     static let yDays = "yDays".localized()
+    static let repeating = "repeat".localized()
+    static let delete = "delete".localized()
+    static let edit = "edit".localized()
+    static let complete = "complete".localized()
+    static let cancellation = "cancellation".localized()
+    static let deletePillDescription = "deletePillDescription".localized()
+    static let yes = "yes".localized()
+    static let no = "no".localized()
+    static let areYouSure = "areYouSure".localized()
+    static let editing = "editing".localized()
 
     enum DatePickerButtons {
         static let done = "done".localized()
@@ -216,4 +226,7 @@ enum Text {
     enum PushNotifications {
         static let itIsTimeToTakePill = "itIsTimeToTakePill".localized()
     }
+    
+    // MARK: - Tag for navigation bar
+    static let tagNavBar = "navBar"
 }

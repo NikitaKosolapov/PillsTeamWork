@@ -51,6 +51,8 @@
 		A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594DE26D976D5006F414A /* CertainDaysStackView.swift */; };
 		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
 		E1544C5F2710C78E00648E42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1544C5E2710C78E00648E42 /* GoogleService-Info.plist */; };
+		E1544C642720754800648E42 /* CompletePillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1544C632720754700648E42 /* CompletePillViewController.swift */; };
+		E1544C662720755D00648E42 /* CompletePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1544C652720755D00648E42 /* CompletePillView.swift */; };
 		E1EC06B026F774550045AAB1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC06AF26F774550045AAB1 /* UIImage.swift */; };
 		FA653B6827149C8B0011573F /* VerticalStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA653B6727149C8B0011573F /* VerticalStackViewFactory.swift */; };
 		FA653B6A27149EAD0011573F /* HorizontalStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA653B6927149EAD0011573F /* HorizontalStackViewFactory.swift */; };
@@ -170,6 +172,8 @@
 		A8E594E526D976FD006F414A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E1544C5C2710C1ED00648E42 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		E1544C5E2710C78E00648E42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E1544C632720754700648E42 /* CompletePillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletePillViewController.swift; sourceTree = "<group>"; };
+		E1544C652720755D00648E42 /* CompletePillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletePillView.swift; sourceTree = "<group>"; };
 		E1EC06AF26F774550045AAB1 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		F02E28BF080770F5D9757D6A /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,6 +460,31 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		E1544C602720750E00648E42 /* CompletePill */ = {
+			isa = PBXGroup;
+			children = (
+				E1544C622720752E00648E42 /* Controller */,
+				E1544C612720752900648E42 /* View */,
+			);
+			path = CompletePill;
+			sourceTree = "<group>";
+		};
+		E1544C612720752900648E42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1544C652720755D00648E42 /* CompletePillView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E1544C622720752E00648E42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1544C632720754700648E42 /* CompletePillViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		FA9D86FE26F110F700408604 /* MedicineDescription */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +619,7 @@
 		FE79E3EB269CC8A100DACD24 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E1544C602720750E00648E42 /* CompletePill */,
 				11B0B77726FF4F7900BD86BF /* DeletePill */,
 				11B0B76A26FF4D5700BD86BF /* Alerts */,
 				FA9D86FE26F110F700408604 /* MedicineDescription */,
@@ -1123,12 +1153,14 @@
 				FE79E44226A31E9200DACD24 /* Hex.swift in Sources */,
 				FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */,
 				A86DB94C26C54C3E00AE866A /* CollectionView.swift in Sources */,
+				E1544C662720755D00648E42 /* CompletePillView.swift in Sources */,
 				84C440B426D7E31200860F77 /* SettingsViewTableCell.swift in Sources */,
 				A802CBCF26B68A9E004E7365 /* CourseCellView.swift in Sources */,
 				FE79E40626A2DF9800DACD24 /* AppImages.swift in Sources */,
 				FE79E3B1269CC09A00DACD24 /* AppDelegate.swift in Sources */,
 				11B0B77C26FF4F7900BD86BF /* DeletePillViewController.swift in Sources */,
 				FA653B712714A0E10011573F /* AddNewCourseDelegate.swift in Sources */,
+				E1544C642720754800648E42 /* CompletePillViewController.swift in Sources */,
 				FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */,
 				11EE2227272741010036F432 /* UIView.swift in Sources */,
 				FEB957B426A96FDF0093BA8D /* DevelopmentRouter.swift in Sources */,

@@ -1,25 +1,25 @@
 //
-//  DeletePillView.swift
+//  CompletePillView.swift
 //  Pills
 //
-//  Created by Margarita Novokhatskaia on 22.09.2021.
+//  Created by Mac on 20.10.2021.
 //
 
 import UIKit
 
-protocol DeletePillViewDelegate: AnyObject {
-    func deleteButtonTouchUpInside()
-    func cancelButtonTouchUpInside()
+protocol CompletePillViewDelegate: AnyObject {
+    func yesButtonTouchUpInside()
+    func noButtonTouchUpInside()
 }
 
-final class DeletePillView: AlertView {
+final class CompletePillView: AlertView {
+    
+    weak var completePillViewDelegate: CompletePillViewDelegate?
     
     override func layoutSubviews() {
         super.layoutSubviews()
         addBlur(style: .light, alpha: 0.7, cornerRadius: 0, zPosition: -1)
     }
-    
-    weak var deletePillViewDelegate: DeletePillViewDelegate?
     
     // MARK: - Private Properties
     
@@ -27,7 +27,7 @@ final class DeletePillView: AlertView {
         let label = UILabel()
         label.centerStyleLabel(
             font: AppLayout.Fonts.smallRegular,
-            text: Text.deletePillDescription
+            text: Text.areYouSure
         )
         return label
     }()
@@ -35,16 +35,16 @@ final class DeletePillView: AlertView {
     // MARK: - Private Methods
     
     override func agreeButtonTouchUpInside() {
-        deletePillViewDelegate?.cancelButtonTouchUpInside()
+        completePillViewDelegate?.yesButtonTouchUpInside()
     }
     
     override func denyButtonTouchUpInside() {
-        deletePillViewDelegate?.deleteButtonTouchUpInside()
+        completePillViewDelegate?.noButtonTouchUpInside()
     }
     
     override func configureView() {
         configureHeight(height: AppLayout.DeletePill.heightView)
         additionalField = descriptionLabel
-        configureText(title: Text.delete, agree: Text.cancellation, deny: Text.delete)
+        configureText(title: Text.complete, agree: Text.yes, deny: Text.no)
     }
 }

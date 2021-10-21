@@ -29,7 +29,7 @@ class AlertView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.centerStyleLabel(
-            font: AppLayout.Fonts.normalSemibold,
+            font: AppLayout.Fonts.bigSemibold,
             text: "Заголовок"
         )
         label.textColor = AppColors.black
@@ -41,7 +41,7 @@ class AlertView: UIView {
         button.setButtonStyle(
             backgroundColor: AppColors.blue,
             text: "Yes",
-            font: AppLayout.Fonts.rateButtonSmall
+            font: AppLayout.Fonts.normalRegular
         )
         button.addTarget(
             self,
@@ -56,7 +56,7 @@ class AlertView: UIView {
         button.setButtonStyle(
             backgroundColor: AppColors.red,
             text: "No",
-            font: AppLayout.Fonts.rateButtonSmall
+            font: AppLayout.Fonts.normalRegular
         )
         button.addTarget(
             self,

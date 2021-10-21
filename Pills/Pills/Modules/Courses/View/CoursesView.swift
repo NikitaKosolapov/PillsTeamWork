@@ -67,13 +67,45 @@ final class CoursesView: UIView {
         return button
     }()
     
+    public let repeatButton: AddButton = { // переделать объединенную кнопку в две разные
+        let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        return button
+    }()
+    
+    public let editButton: AddButton = {
+        let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        return button
+    }()
+    
+    public let deleteButton: AddButton = { // work
+        let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        return button
+    }()
+    
+    public let completeButton: AddButton = {
+        let button = AddButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        return button
+    }()
+    
     // MARK: - Private Properties
     private lazy var mainStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [
             segmentedControl,
             coursesStubView,
             coursesTableView,
-            addButton
+            addButton,
+            repeatButton,
+            deleteButton,
+            editButton,
+            completeButton
         ])
         view.axis = .vertical
         view.distribution = .fill
@@ -116,11 +148,26 @@ final class CoursesView: UIView {
             $0.height.equalTo(AppLayout.AidKit.heightAddButton)
         }
         
+        repeatButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AidKit.heightAddButton)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AidKit.heightAddButton)
+        }
+        
+        completeButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AidKit.heightAddButton)
+        }
+        
+        editButton.snp.makeConstraints {
+            $0.height.equalTo(AppLayout.AidKit.heightAddButton)
+        }
+        
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide.snp.top).inset(AppLayout.AidKit.topInsetStackView)
             $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(AppLayout.AidKit.bottomInsetStackView)
             $0.leading.trailing.equalToSuperview().inset(AppLayout.AidKit.leadingCourseCellView)
         }
     }
-    
 }

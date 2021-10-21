@@ -7,14 +7,22 @@
 
 import UIKit
 
+protocol DeleteCoursesByIndexPath: AnyObject {
+    func deleteRowAt()
+}
+
+protocol CompleteCoursesByIndexPath: AnyObject {
+    func completeRowAt()
+}
+
 final class CoursesViewController: BaseViewController<CoursesView> {
     
     // MARK: - Public Properties
-    
     var typeOfCourse: TypeOfCourse = .current
     var switcher = false
-    
-    var coursesCurrent: [Course]? = [] {
+    private var event: Event?
+    var indexRow = 0
+    var coursesCurrent: [Course] = [] {
         didSet {
             if typeOfCourse == .current {
                 setSourceOfCourses()
@@ -22,7 +30,7 @@ final class CoursesViewController: BaseViewController<CoursesView> {
         }
     }
     
-    var coursesPassed: [Course]? = [] {
+    var coursesPassed: [Course] = [] {
         didSet {
             if typeOfCourse == .passed {
                 setSourceOfCourses()
@@ -56,6 +64,7 @@ final class CoursesViewController: BaseViewController<CoursesView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         changeTypeCourses()
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     // MARK: - ConfigureUI
@@ -93,13 +102,14 @@ final class CoursesViewController: BaseViewController<CoursesView> {
     }
     
     // MARK: - Private Methods
-    
     private func setTypeOfCourse() {
         switch rootView.segmentedControl.selectedSegmentIndex {
         case 0:
             typeOfCourse = .current
+            disableAndEnableButtons()
         case 1:
             typeOfCourse = .passed
+            disableAndEnableButtons()
         default:
             break
         }
@@ -124,7 +134,83 @@ final class CoursesViewController: BaseViewController<CoursesView> {
         rootView.coursesStubView.isHidden = true
     }
     
+    private func disableAndEnableButtons() {
+        rootView.addButton.isHidden = false
+        rootView.repeatButton.isHidden = true
+        rootView.deleteButton.isHidden = true
+        rootView.editButton.isHidden = true
+        rootView.completeButton.isHidden = true
+    }
+    
+    private func configureOfButtonsFromSegmented() {
+        rootView.addButton.isHidden = true
+        
+        if typeOfCourse == .current {
+            
+            rootView.editButton.setButtonStyle(backgroundColor: AppColors.blue,
+                                               text: Text.edit, font: AppLayout.Fonts.normalSemibold)
+            rootView.editButton.setTitleColor(AppColors.whiteOnly, for: .normal)
+            rootView.editButton.isHidden = false
+            rootView.editButton.addTarget(self, action: #selector(showEditCourse), for: .touchUpInside)
+            
+            rootView.completeButton.setButtonStyle(backgroundColor: AppColors.red,
+                                                   text: Text.complete, font: AppLayout.Fonts.normalSemibold)
+            rootView.completeButton.setTitleColor(AppColors.whiteOnly, for: .normal)
+            rootView.completeButton.isHidden = false
+            rootView.completeButton.addTarget(self, action: #selector(completePillAlert), for: .touchUpInside)
+            
+        } else if typeOfCourse == .passed {
+            
+            rootView.repeatButton.setButtonStyle(backgroundColor: AppColors.blue,
+                                                 text: Text.repeating, font: AppLayout.Fonts.normalSemibold)
+            rootView.repeatButton.setTitleColor(AppColors.whiteOnly, for: .normal)
+            rootView.repeatButton.isHidden = false
+            rootView.repeatButton.addTarget(self, action: #selector(showAddNewCourse), for: .touchUpInside)
+            
+            rootView.deleteButton.setButtonStyle(backgroundColor: AppColors.red,
+                                                 text: Text.delete, font: AppLayout.Fonts.normalSemibold)
+            rootView.deleteButton.setTitleColor(AppColors.whiteOnly, for: .normal)
+            rootView.deleteButton.isHidden = false
+            rootView.deleteButton.addTarget(self, action: #selector(deletePillAlert), for: .touchUpInside)
+        }
+    }
+    
     // MARK: - Actions
+    
+    @objc private func showEditCourse(_ sender: UIButton) {
+        let addNewCourseViewControler = AddNewCourseViewController()
+        addNewCourseViewControler.tagOfNavBar = Text.tagNavBar
+        addNewCourseViewControler.rootView.setPillName(coursesCurrent[indexRow].namePill)
+        addNewCourseViewControler.rootView.setStartDate(coursesCurrent[indexRow].dateStartOfCourse)
+        addNewCourseViewControler.rootView.typeImage.image = coursesCurrent[indexRow].imagePill
+        self.navigationController?.pushViewController(addNewCourseViewControler, animated: true)
+        disableAndEnableButtons()
+    }
+    
+    @objc private func completePillAlert(_ sender: UIButton) {
+        let completePillViewController = CompletePillViewController()
+        completePillViewController.delegate = self
+        completePillViewController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(completePillViewController, animated: false)
+        disableAndEnableButtons()
+    }
+    
+    @objc private func deletePillAlert(_ sender: UIButton) {
+        let deletePillViewController = DeletePillViewController()
+        deletePillViewController.delegate = self
+        deletePillViewController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(deletePillViewController, animated: false)
+        disableAndEnableButtons()
+    }
+    
+    @objc private func showAddNewCourse(_ sender: UIButton) {
+        let addNewCourseViewController = AddNewCourseViewController()
+        addNewCourseViewController.rootView.setPillName(coursesPassed[indexRow].namePill)
+        addNewCourseViewController.rootView.setStartDate(coursesPassed[indexRow].dateStartOfCourse)
+        addNewCourseViewController.rootView.typeImage.image = coursesPassed[indexRow].imagePill
+        self.navigationController?.pushViewController(addNewCourseViewController, animated: true)
+        disableAndEnableButtons()
+    }
     
     @objc private func changeTypeCourses() {
         setTypeOfCourse()
@@ -158,8 +244,8 @@ extension CoursesViewController: UITableViewDataSource {
         guard let count = courses?.count,
               let empty = courses?.isEmpty,
               empty == false else {
-                  showStubView()
-                  return 0 }
+            showStubView()
+            return 0 }
         showTableView()
         return count
     }
@@ -178,4 +264,29 @@ extension CoursesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension CoursesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CourseCell
+        cell.courseCellView.layer.borderWidth = 1
+        cell.courseCellView.layer.borderColor = AppColors.blue.cgColor
+        indexRow = indexPath.row
+        configureOfButtonsFromSegmented()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CourseCell
+        cell.courseCellView.layer.borderColor = UIColor.clear.cgColor
+    }
+}
+
+extension CoursesViewController: DeleteCoursesByIndexPath, CompleteCoursesByIndexPath {
+    func completeRowAt() {
+        coursesPassed.append(coursesCurrent[indexRow])
+        coursesCurrent.remove(at: indexRow)
+        rootView.coursesTableView.reloadData()
+    }
+    
+    func deleteRowAt() {
+        coursesPassed.remove(at: indexRow)
+        rootView.coursesTableView.reloadData()
+    }
 }

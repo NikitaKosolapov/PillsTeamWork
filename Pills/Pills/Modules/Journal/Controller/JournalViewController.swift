@@ -46,7 +46,7 @@ final class JournalViewController: BaseViewController<JournalView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO: После реализации сохранения модели в БД
+        // TODO: После реализации сохранения модели в БД
         // он должен вызываться в viewWillAppear  journalEntries = RealmService.shared.get(RealmMedKitEntry.self)
         prepareDataForDay(Date())
         rootView.delegate = self

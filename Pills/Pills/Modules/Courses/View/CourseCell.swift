@@ -10,10 +10,9 @@ import SnapKit
 
 /// Class contains UI elements for a cell
 final class CourseCell: UITableViewCell {
-    
     // MARK: - Private Properties
-    
-    private lazy var courseCellView: CourseCellView = {
+
+    lazy var courseCellView: CourseCellView = {
         return CourseCellView()
     }()
     

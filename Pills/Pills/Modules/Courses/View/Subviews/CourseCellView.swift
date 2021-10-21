@@ -102,6 +102,7 @@ final class CourseCellView: UIView {
         pillNameLabel.text = model.namePill
         durationOfCourseLabel.text = model.durationOfCourseString
         countPassedDaysLabel.text = model.countPassedDaysString
+        self.layer.borderColor = UIColor.clear.cgColor
     }
     
     public func resetView() {

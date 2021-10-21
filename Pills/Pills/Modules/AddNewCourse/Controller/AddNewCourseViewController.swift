@@ -13,7 +13,8 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     private var startDate = Date()
     private let newCourse = RealmMedKitEntry()
     private let realm = RealmService.shared
-
+    
+    var tagOfNavBar = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         rootView.dataSource = self
@@ -29,7 +30,11 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
         navigationController?.navigationBar.barTintColor = AppColors.lightBlueSapphire
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.topItem?.title = "\(Text.newPill)"
+        if tagOfNavBar == Text.tagNavBar {
+            navigationController?.navigationBar.topItem?.title = Text.editing
+        } else {
+            navigationController?.navigationBar.topItem?.title = Text.newPill
+        }
         navigationController?.navigationItem.largeTitleDisplayMode = .never
     }
 

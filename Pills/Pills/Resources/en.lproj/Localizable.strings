@@ -46,6 +46,16 @@
 "featuresOfTaking" = "Features of taking medication";
 "xDays" = "X days";
 "yDays" = "Y days";
+"repeat" = "Repeat";
+"delete" = "Delete";
+"edit" = "Edit";
+"complete" = "Complete";
+"cancellation" = "Cancel";
+"deletePillDescription" = "Once deleted, the course cannot be restored.";
+"yes" = "Yes";
+"no" = "No";
+"areYouSure" = "Are you sure you want to complete the course?";
+"editing" = "Editing";
 
 "week" = "1 week";
 "month" = "1 month";

@@ -10,7 +10,7 @@ import UIKit
 final class JournalTableViewCell: UITableViewCell {
     
     // MARK: - Private Properties
-    
+
     private var acceptedType: AcceptedType?
     
     private let dateFormatter: DateFormatter = {

@@ -21,12 +21,17 @@ final class AddButton: UIButton {
             if titleLabel?.text == "No, thanks" ||
                 titleLabel?.text == "Нет, спасибо" ||
                 titleLabel?.text == "Skip" ||
-                titleLabel?.text == "Пропустить" {
+                titleLabel?.text == "Пропустить" ||
+                titleLabel?.text == "Удалить" ||
+                titleLabel?.text == "Delete" ||
+                titleLabel?.text == "Завершить" ||
+                titleLabel?.text == "Complete" ||
+                titleLabel?.text == "Нет" ||
+                titleLabel?.text == "No" {
                 backgroundColor = isHighlighted ? AppColors.selectedRed : AppColors.red
             } else {
                 backgroundColor = isHighlighted ? AppColors.selectedBlue : AppColors.blue
             }
-            
         }
     }
     
@@ -45,7 +50,6 @@ final class AddButton: UIButton {
     
     private func configureUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = AppColors.blue
         layer.cornerRadius = 10
         setTitle(Text.add, for: .normal)
         setTitleColor(AppColors.whiteOnly, for: .normal)

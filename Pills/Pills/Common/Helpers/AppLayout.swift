@@ -182,7 +182,7 @@ enum AppLayout {
         static let bottomStackView: CGFloat = 24
         static let cornerRadius: CGFloat = 10
         static let spacingVertical: CGFloat = 15
-        static let spacingHorizontal: CGFloat = 10
+        static let spacingHorizontal: CGFloat = 12
         
     }
     
