@@ -37,7 +37,7 @@ class SettingsViewTableCell: UITableViewCell {
     private let accessoryButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "chevron.forward"), for: .normal)
-        button.tintColor = AppColors.semiGrayOnly
+        button.tintColor = AppColors.grayWhite
         button.isHidden = false
         return button
     }()
@@ -46,8 +46,8 @@ class SettingsViewTableCell: UITableViewCell {
         let switcher = UISwitch()
         switcher.isOn = true
         switcher.isHidden = false
-        switcher.onTintColor = AppColors.greenBlue
-        switcher.addTarget(self, action: #selector(switchChange(paramTarget:)) , for: .valueChanged)
+        switcher.translatesAutoresizingMaskIntoConstraints = false
+        switcher.onTintColor = AppColors.blue
         return switcher
     }()
     
@@ -55,10 +55,15 @@ class SettingsViewTableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         setupView()
         addSubviews()
         setupLayout()
+
+        backgroundColor = AppColors.white
+        self.selectionStyle = .none
+        
+        notificationsSwitch.addTarget(self, action: #selector(switchChange(paramTarget:)) , for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {

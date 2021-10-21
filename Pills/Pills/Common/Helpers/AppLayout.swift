@@ -199,6 +199,8 @@ enum AppLayout {
     }
     
     enum Fonts {
+        static let xxLargeSemibold = UIFont(name: "SFCompactDisplay-Semibold", size: 26)
+        static let xLargeSemibold = UIFont(name: "SFCompactDisplay-Semibold", size: 22)
         static let bigRegular = UIFont(name: "SFCompactDisplay-Regular", size: 20)
         static let bigSemibold = UIFont(name: "SFCompactDisplay-Semibold", size: 20)
         

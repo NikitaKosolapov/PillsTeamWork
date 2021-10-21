@@ -64,6 +64,7 @@
 		FA9D87E226F6416400408604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D87E126F6416300408604 /* Event.swift */; };
 		FAA85ECC271757C300FBE360 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA85ECB271757C200FBE360 /* ViewFactory.swift */; };
 		FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE2361271DE823000011E2 /* RateStackViewFactory.swift */; };
+		FAAC84CD2721E88D0045B55C /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */; };
 		FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */; };
 		FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */; };
 		FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */; };
@@ -184,6 +185,7 @@
 		FA9D87E126F6416300408604 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAA85ECB271757C200FBE360 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		FADE2361271DE823000011E2 /* RateStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateStackViewFactory.swift; sourceTree = "<group>"; };
+		FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCourseView+PublicInterface.swift"; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				11B0B77E26FF926500BD86BF /* Bool.swift */,
 				1171C019270F48EC0047D1AF /* UIViewController.swift */,
 				1171C01B270F511D0047D1AF /* UIScreen.swift */,
+				FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1146,6 +1149,7 @@
 				5511C6A426AC246B009CDA41 /* UIView+Constraints.swift in Sources */,
 				FEB957B526A96FDF0093BA8D /* DevelopmentViewController.swift in Sources */,
 				A870AFF226A9A31E00624579 /* Course.swift in Sources */,
+				FAAC84CD2721E88D0045B55C /* UIDevice+Extension.swift in Sources */,
 				FEB957BA26A96FEB0093BA8D /* MainTabBarMaker.swift in Sources */,
 				1171C01A270F48EC0047D1AF /* UIViewController.swift in Sources */,
 				FEB957AE26A96FCE0093BA8D /* BaseRouter.swift in Sources */,

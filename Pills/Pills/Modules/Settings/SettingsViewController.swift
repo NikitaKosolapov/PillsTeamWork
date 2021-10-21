@@ -48,12 +48,11 @@ final class SettingsViewController: UITableViewController {
         .rate
     ]
     public let idSettingsCell = "idSettingsCell"
-    
-    // MARK: - Life Cycle
+    private let currentDeviceSE = UIDevice.isSE
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
     }
     
@@ -69,6 +68,8 @@ final class SettingsViewController: UITableViewController {
         title = Text.Tabs.settings
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        setupNavBar()
+        setupTableViewInset()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -76,6 +77,21 @@ final class SettingsViewController: UITableViewController {
         
         tableView.backgroundColor = AppColors.white
         tableView.separatorStyle = .none
+        
+    }
+
+    private func setupNavBar() {
+        title = Text.Tabs.settings
+        let titleFontSEOnly = AppLayout.Fonts.xLargeSemibold ?? .systemFont(ofSize: 22)
+        let titleFontOtherModels = AppLayout.Fonts.xxLargeSemibold ?? .systemFont(ofSize: 26)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.font: currentDeviceSE ? titleFontSEOnly : titleFontOtherModels
+        ]
+    }
+    
+    private func setupTableViewInset() {
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
     }
     
     // MARK: - UITableViewDelegate and DataSource
