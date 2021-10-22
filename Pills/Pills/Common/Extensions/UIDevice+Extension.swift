@@ -71,15 +71,6 @@ extension UIDevice {
         }
     }
     
-    static var isSE: Bool {
-        switch UIDevice.screenType {
-        case .iPhoneSE:
-            return true
-        default:
-            return false
-        }
-    }
-    
 }
 
 // swiftlint:enable discouraged_direct_init

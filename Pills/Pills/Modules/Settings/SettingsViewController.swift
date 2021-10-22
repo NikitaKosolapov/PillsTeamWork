@@ -36,7 +36,7 @@ final class SettingsViewController: UITableViewController {
             }
         }
     }
-    
+
     // MARK: - Public Properties
     
     public let settings: [SettingsSections] = [
@@ -48,7 +48,7 @@ final class SettingsViewController: UITableViewController {
         .rate
     ]
     public let idSettingsCell = "idSettingsCell"
-    private let currentDeviceSE = UIDevice.isSE
+    private let currentDeviceSE = UIDevice.isSmallDevice
     
     override func viewDidLoad() {
         super.viewDidLoad()
