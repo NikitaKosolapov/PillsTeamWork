@@ -151,11 +151,18 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
                 realmTimeObject.time = day
                 schedule.append(realmTimeObject)
             }
+            print("скедуле из daysOfTheWeek \(schedule)")
             return schedule
         case .dailyEveryXHour(let xHour):
             break
         case .dailyXTimes(let xTimes):
-            break
+            xTimes.forEach { day in
+                let realmTimeObject = RealmTimePoint()
+                realmTimeObject.time = day
+                schedule.append(realmTimeObject)
+            }
+            print("скедуле из dailyXTimes \(schedule)")
+            return schedule
         case .daysCycle(let cycle):
             break
         default:

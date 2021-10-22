@@ -10,7 +10,7 @@ import UIKit
 
 enum ReceiveFreqPills {
     case daysOfTheWeek([Date])
-    case dailyXTimes(Int)
+    case dailyXTimes([Date])
     case dailyEveryXHour(Int)
     case daysCycle((Int,Int))
 }
@@ -18,6 +18,7 @@ enum ReceiveFreqPills {
 protocol ReceiveFreqPillsDelegate: AnyObject {
     func frequencyDidChange() -> ReceiveFreqPills
     func certainDaysDidChange(on days: [String])
+    func xDaysDidChange(on hour: String)
 }
 
 /// Class contains elements that show up when we tap on frequencyTextField
@@ -37,13 +38,15 @@ final class ReceiveFrequencyPillsView: UIStackView {
         return certainDaysStackView
     }()
     
-    private let dailyXTimesTextField: UITextField = {
+    let dailyXTimesTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.isHidden = true
         textField.centerStyleTextField(font: AppLayout.Fonts.normalRegular, text: "")
         textField.placeholder = Text.one
         textField.maxLength = AppLayout.AddCourse.textFieldsXDaysAndYDays
         textField.isNumeric = true
+        textField.keyboardType = .numberPad
+        textField.addTarget(self, action: #selector(xTimesDidChange(_:)), for: .editingDidEnd)
         return textField
     }()
     
@@ -84,6 +87,10 @@ final class ReceiveFrequencyPillsView: UIStackView {
         ])
     }
     
+    @objc private func xTimesDidChange(_ sender: UITextField) {
+        delegate?.xDaysDidChange(on: sender.text ?? "")
+    }
+    
     // MARK: - Public functions
     
     public func showView(with frequency: Frequency) {
@@ -118,7 +125,8 @@ final class ReceiveFrequencyPillsView: UIStackView {
             let mock: [Date] = []
             return .daysOfTheWeek(mock)
         case .dailyXTimes:
-            return .dailyXTimes(dailyXTimes())
+            let mock: [Date] = []
+            return .dailyXTimes(mock)
         case .dailyEveryXHour:
             return .dailyEveryXHour(dailyXTimes())
         case .daysCycle:

@@ -19,8 +19,7 @@ extension CustomTextField: UITextFieldDelegate {
         return true
     }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String
-    ) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if datePicker != nil { return false }
         if picker != nil { return false }
 

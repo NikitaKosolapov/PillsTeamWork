@@ -49,8 +49,13 @@ extension AddNewCourseView {
     }
     /// Set taking period
     public func setTakePeriod(_ days: Int, fromDate: Date) {
-        let date = Calendar.current.date(byAdding: .day, value: days, to: fromDate) ?? fromDate
-        updateTakePeriodText(fromDate: fromDate, tillDate: date)
+        if days == 0 {
+            let date = Calendar.current.date(byAdding: .day, value: days, to: fromDate) ?? fromDate
+            updateTakePeriodText(fromDate: fromDate, tillDate: date)
+        } else {
+            let date = Calendar.current.date(byAdding: .day, value: days - 1, to: fromDate) ?? fromDate
+            updateTakePeriodText(fromDate: fromDate, tillDate: date)
+        }
     }
     /// Update take period field
     public func updateTakePeriodText(fromDate: Date, tillDate: Date) {
@@ -65,20 +70,19 @@ extension AddNewCourseView {
         let dateEnd = calendar.startOfDay(for: tillDate)
 
         let datesBetween = Date.dates(from: fromDate, to: tillDate)
+        
+        var startAndEndDates: [Date] = []
+        startAndEndDates.append(fromDate)
+        startAndEndDates.append(tillDate)
 
         datesPeriod = datesBetween
-        
+                
         disableWrongButtons(for: daysButtons, on: datesPeriod)
         
         createScheduleDays(from: certainDays, from: datesPeriod)
-        
-        guard let days =
-            calendar.dateComponents(
-                [Calendar.Component.day],
-                from: dateStart,
-                to: dateEnd).day
-        else {return}
-        
+        createDailyEveryXHourDays(from: receiveFreqStackView.dailyXTimesTextField.text!, from: startAndEndDates)
+
+        let days = datesBetween.count
         let dateString = CustomTextField.dateFormatter.string(from: dateEnd)
         takePeriodTextField.text =
         "\(days) \(days.days()), \(Text.till) \(dateString)"

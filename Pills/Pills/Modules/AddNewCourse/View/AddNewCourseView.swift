@@ -46,7 +46,7 @@ final class AddNewCourseView: UIView {
 
     // MARK: - Private Properties
     
-    private let receiveFreqStackView = ReceiveFrequencyPillsView()
+    public let receiveFreqStackView = ReceiveFrequencyPillsView()
     private var activeView: UIView?
     private var keyboardHeight: CGFloat = 0.0
     
@@ -504,26 +504,25 @@ final class AddNewCourseView: UIView {
                     receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index].isEnabled = true
                 }
             }
-            
-            func setScrollViewOffset(for textField: UIView) {
-                let coveringContent = keyboardHeight + 2 * AppLayout.AddCourse.horizontalSpacing
-                let visibleContent = self.frame.height - coveringContent
-                var contentOffset = CGPoint(x: 0, y: 0)
-                
-                let middleOfVisibleArea = visibleContent / 2
-                let middleOfField = textField.convert(textField.bounds, to: self).midY
-                
-                if middleOfField <= middleOfVisibleArea {
-                    contentOffset = CGPoint(x: 0, y: 0)
-                } else {
-                    receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray.forEach { button in
-                        button.setImage(AppImages.AddCourse.noCheck, for: .normal)
-                        button.isEnabled = true
-                    }
-                }
-            }
         }
     }
+
+    func createDailyEveryXHourDays(from everyHour: String, from period: [Date]) {
+        guard !everyHour.isEmpty && !period.isEmpty else { return }
+
+        var temp: Date = period.first!
+        var scheduleDates: [Date] = [period.first!]
+        let calendar = Calendar.current
+
+        while temp <= period.last! {
+            temp = calendar.date(byAdding: .hour, value: Int(everyHour)!, to: temp) ?? Date()
+            if temp > period.last! { break }
+            scheduleDates.append(temp)
+        }
+
+        delegate?.onFrequencyDateChanged(ReceiveFreqPills.dailyXTimes(scheduleDates))
+    }
+
 }
 
 extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
@@ -553,6 +552,16 @@ extension AddNewCourseView: AddNewCourseTextFieldDelegate {
 }
 
 extension AddNewCourseView: ReceiveFreqPillsDelegate {
+    func xDaysDidChange(on hour: String) {
+        var xHour = hour
+        if Int(xHour) ?? 1 > 24 {
+            receiveFreqStackView.dailyXTimesTextField.text = "24"
+            xHour = "24"
+        }
+        createDailyEveryXHourDays(from: xHour, from: datesPeriod)
+    }
+
+
     func frequencyDidChange() -> ReceiveFreqPills {
         let mock: [Date] = []
         return ReceiveFreqPills.daysOfTheWeek(mock)
