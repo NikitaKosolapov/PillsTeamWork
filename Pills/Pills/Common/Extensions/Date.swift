@@ -22,11 +22,13 @@ extension Date {
         var dates: [Date] = []
         var date = fromDate
         
-        while CustomTextField.dateFormatter.string(from: date) <= CustomTextField.dateFormatter.string(from: toDate) {
+        while CustomTextField.dateFormatter.string(from: date) != CustomTextField.dateFormatter.string(from: toDate) {
             dates.append(date)
             guard  let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else { break }
             date = newDate
         }
+        let lastDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        dates.append(lastDate!)
         return dates
     }
 }
