@@ -16,7 +16,7 @@ final class CourseCell: UITableViewCell {
         return CourseCellView()
     }()
     
-    private lazy var progressView: ProgressView = {
+    lazy var progressView: ProgressView = {
         return ProgressView()
     }()
     
@@ -39,6 +39,7 @@ final class CourseCell: UITableViewCell {
     func configure(with model: CourseViewModel) {
         courseCellView.configure(with: model)
         progressView.configure(with: model)
+        progressView.layer.borderColor = UIColor.clear.cgColor
     }
     
     // MARK: - Private Methods

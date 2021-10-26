@@ -48,6 +48,7 @@ final class CoursesView: UIView {
         tableView.estimatedRowHeight = AppLayout.AidKit.tableEstimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+        tableView.separatorColor = UIColor.clear
         tableView.contentInset = UIEdgeInsets.zero
         tableView.backgroundColor = AppColors.white
         tableView.isHidden = false

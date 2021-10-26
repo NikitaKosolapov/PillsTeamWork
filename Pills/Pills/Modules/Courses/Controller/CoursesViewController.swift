@@ -266,15 +266,25 @@ extension CoursesViewController: UITableViewDataSource {
 extension CoursesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CourseCell
-        cell.courseCellView.layer.borderWidth = 1
-        cell.courseCellView.layer.borderColor = AppColors.blue.cgColor
-        indexRow = indexPath.row
-        configureOfButtonsFromSegmented()
+        
+        if cell.courseCellView.layer.borderColor == AppColors.blue.cgColor {
+            cell.courseCellView.layer.borderColor = UIColor.clear.cgColor
+            cell.progressView.layer.borderColor = UIColor.clear.cgColor
+            disableAndEnableButtons()
+        } else {
+            cell.progressView.layer.borderWidth = 1
+            cell.progressView.layer.borderColor = AppColors.blue.cgColor
+            cell.courseCellView.layer.borderWidth = 1
+            cell.courseCellView.layer.borderColor = AppColors.blue.cgColor
+            indexRow = indexPath.row
+            configureOfButtonsFromSegmented()
+        }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CourseCell
         cell.courseCellView.layer.borderColor = UIColor.clear.cgColor
+        cell.progressView.layer.borderColor = UIColor.clear.cgColor
     }
 }
 
