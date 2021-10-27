@@ -69,7 +69,6 @@ final class ProgressView: UIView {
     }
     
     private func setupLayout() {
-        
         progressView.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview()
         }

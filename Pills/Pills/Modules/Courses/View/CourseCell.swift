@@ -39,7 +39,7 @@ final class CourseCell: UITableViewCell {
     func configure(with model: CourseViewModel) {
         courseCellView.configure(with: model)
         progressView.configure(with: model)
-        progressView.layer.borderColor = UIColor.clear.cgColor
+        self.selectionStyle = .none
     }
     
     // MARK: - Private Methods
