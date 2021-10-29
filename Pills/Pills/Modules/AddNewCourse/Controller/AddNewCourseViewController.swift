@@ -132,9 +132,12 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
     }
     
     func onSubmit() {
-        realm.create(newCourse) {
-            self.navigationController?.popViewController(animated: true)
-        }
+        let destinationVC = SaveCourseViewController()
+        destinationVC.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(destinationVC, animated: false, completion: nil)
+        //        realm.create(newCourse) {
+        //            self.navigationController?.popViewController(animated: true)
+        //        }
     }
 
     func getSchedule(with frequency: ReceiveFreqPills) -> List<RealmTimePoint> {

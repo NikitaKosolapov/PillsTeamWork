@@ -216,4 +216,9 @@ enum Text {
     enum PushNotifications {
         static let itIsTimeToTakePill = "itIsTimeToTakePill".localized()
     }
+    
+    // MARK: - SaveCourse
+    enum SaveCourse {
+        static let ok = "ok".localized()
+    }
 }

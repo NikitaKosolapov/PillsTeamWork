@@ -52,6 +52,8 @@
 		A8E594E626D976FD006F414A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E594E526D976FD006F414A /* TextField.swift */; };
 		E1544C5F2710C78E00648E42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1544C5E2710C78E00648E42 /* GoogleService-Info.plist */; };
 		E1EC06B026F774550045AAB1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC06AF26F774550045AAB1 /* UIImage.swift */; };
+		FA4E176B272B256F00FF79F6 /* SaveCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E176A272B256E00FF79F6 /* SaveCourseViewController.swift */; };
+		FA4E176D272B25F500FF79F6 /* SaveCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E176C272B25F500FF79F6 /* SaveCourseView.swift */; };
 		FA653B6827149C8B0011573F /* VerticalStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA653B6727149C8B0011573F /* VerticalStackViewFactory.swift */; };
 		FA653B6A27149EAD0011573F /* HorizontalStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA653B6927149EAD0011573F /* HorizontalStackViewFactory.swift */; };
 		FA653B6E2714A04E0011573F /* FieldHeaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA653B6D2714A04E0011573F /* FieldHeaderFactory.swift */; };
@@ -63,8 +65,8 @@
 		FA9D870A26F111AF00408604 /* MedicineDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */; };
 		FA9D87E226F6416400408604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D87E126F6416300408604 /* Event.swift */; };
 		FAA85ECC271757C300FBE360 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA85ECB271757C200FBE360 /* ViewFactory.swift */; };
-		FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE2361271DE823000011E2 /* RateStackViewFactory.swift */; };
 		FAAC84CD2721E88D0045B55C /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */; };
+		FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE2361271DE823000011E2 /* RateStackViewFactory.swift */; };
 		FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */; };
 		FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */; };
 		FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */; };
@@ -173,6 +175,8 @@
 		E1EC06AF26F774550045AAB1 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		F02E28BF080770F5D9757D6A /* Pods-Pills-PillsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pills-PillsUITests.release.xcconfig"; path = "Target Support Files/Pods-Pills-PillsUITests/Pods-Pills-PillsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F9BF7661179A49974BAFA9A5 /* Pods_PillsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA4E176A272B256E00FF79F6 /* SaveCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCourseViewController.swift; sourceTree = "<group>"; };
+		FA4E176C272B25F500FF79F6 /* SaveCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCourseView.swift; sourceTree = "<group>"; };
 		FA653B6727149C8B0011573F /* VerticalStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackViewFactory.swift; sourceTree = "<group>"; };
 		FA653B6927149EAD0011573F /* HorizontalStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalStackViewFactory.swift; sourceTree = "<group>"; };
 		FA653B6D2714A04E0011573F /* FieldHeaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldHeaderFactory.swift; sourceTree = "<group>"; };
@@ -184,8 +188,8 @@
 		FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDescriptionView.swift; sourceTree = "<group>"; };
 		FA9D87E126F6416300408604 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAA85ECB271757C200FBE360 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
-		FADE2361271DE823000011E2 /* RateStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateStackViewFactory.swift; sourceTree = "<group>"; };
 		FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		FADE2361271DE823000011E2 /* RateStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateStackViewFactory.swift; sourceTree = "<group>"; };
 		FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCourseView+PublicInterface.swift"; sourceTree = "<group>"; };
@@ -426,6 +430,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FA4E1767272B252600FF79F6 /* SaveCourse */ = {
+			isa = PBXGroup;
+			children = (
+				FA4E1768272B253300FF79F6 /* Controller */,
+				FA4E1769272B253900FF79F6 /* View */,
+			);
+			path = SaveCourse;
+			sourceTree = "<group>";
+		};
+		FA4E1768272B253300FF79F6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA4E176A272B256E00FF79F6 /* SaveCourseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA4E1769272B253900FF79F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA4E176C272B25F500FF79F6 /* SaveCourseView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA653B6B27149FE30011573F /* Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +619,7 @@
 		FE79E3EB269CC8A100DACD24 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FA4E1767272B252600FF79F6 /* SaveCourse */,
 				11B0B77726FF4F7900BD86BF /* DeletePill */,
 				11B0B76A26FF4D5700BD86BF /* Alerts */,
 				FA9D86FE26F110F700408604 /* MedicineDescription */,
@@ -1108,7 +1138,6 @@
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				FA653B6A27149EAD0011573F /* HorizontalStackViewFactory.swift in Sources */,
-				1132CCB52710C25600337486 /* UIView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				FA653B6E2714A04E0011573F /* FieldHeaderFactory.swift in Sources */,
@@ -1156,6 +1185,7 @@
 				A8E594DF26D976D5006F414A /* ReceiveFrequencyPillsView.swift in Sources */,
 				FED9597C26C5882B00E9B6C3 /* CustomTextField.swift in Sources */,
 				A870AFF426A9A31E00624579 /* CoursesView.swift in Sources */,
+				FA4E176D272B25F500FF79F6 /* SaveCourseView.swift in Sources */,
 				A870AFF526A9A31E00624579 /* CourseCell.swift in Sources */,
 				FED959AE26C9808E00E9B6C3 /* Int.swift in Sources */,
 				FE79E43C26A31C4900DACD24 /* AppColors.swift in Sources */,
@@ -1169,6 +1199,7 @@
 				FE2899C926CC3C6200B145FB /* JournalMock.swift in Sources */,
 				A870B00526A9D58E00624579 /* AppLayout.swift in Sources */,
 				A86DB94126C54BD000AE866A /* RateViewController.swift in Sources */,
+				FA4E176B272B256F00FF79F6 /* SaveCourseViewController.swift in Sources */,
 				FE79E42626A3180200DACD24 /* Localized.swift in Sources */,
 				A870AFF326A9A31E00624579 /* CoursesViewController.swift in Sources */,
 				FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */,

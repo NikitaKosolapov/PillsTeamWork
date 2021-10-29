@@ -21,7 +21,8 @@ final class AddButton: UIButton {
             if titleLabel?.text == "No, thanks" ||
                 titleLabel?.text == "Нет, спасибо" ||
                 titleLabel?.text == "Skip" ||
-                titleLabel?.text == "Пропустить" {
+                titleLabel?.text == "Пропустить" ||
+                titleLabel?.text == "Ok" {
                 backgroundColor = isHighlighted ? AppColors.selectedRed : AppColors.red
             } else {
                 backgroundColor = isHighlighted ? AppColors.selectedBlue : AppColors.blue

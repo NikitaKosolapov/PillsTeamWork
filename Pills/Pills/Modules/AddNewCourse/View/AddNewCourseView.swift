@@ -309,7 +309,7 @@ final class AddNewCourseView: UIView {
         let button = AddButton()
         button.setTitle(Text.save, for: .normal)
         button.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
-        button.isEnabled = false
+        button.isEnabled = true
         return button
     }()
     
@@ -364,6 +364,7 @@ final class AddNewCourseView: UIView {
     
     @objc func doneButtonPressed() {
         delegate?.onSubmit()
+        print("Save!")
     }
     
     // MARK: - Private Methods

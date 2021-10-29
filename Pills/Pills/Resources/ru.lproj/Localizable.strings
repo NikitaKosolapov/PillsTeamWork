@@ -156,3 +156,7 @@
 
 "accept" = "Принять";
 "skip" = "Пропустить";
+
+// MARK: - SaveCourse
+
+"ok" = "Ok";
