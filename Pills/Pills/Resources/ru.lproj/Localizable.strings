@@ -131,7 +131,6 @@
 "days" = "дней";
 
 // MARK: - Settings
-"aboutApp" = "О приложении";
 "writeSupport" = "Написать разработчикам";
 "notification" = "Уведомления";
 "appearance" = "Внешний вид";

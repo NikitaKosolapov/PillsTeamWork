@@ -180,7 +180,6 @@ enum Text {
 
     // MARK: - Settings
     enum Settings {
-        static let aboutApp = "aboutApp".localized()
         static let writeSupport = "writeSupport".localized()
         static let notification = "notification".localized()
         static let appearance = "appearance".localized()

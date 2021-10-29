@@ -12,7 +12,6 @@ import DeviceKit
 final class SettingsViewController: UITableViewController {
     
     enum SettingsSections : String {
-        case about
         case writeSupport
         case notification
         case termsOfUsage
@@ -21,8 +20,6 @@ final class SettingsViewController: UITableViewController {
         
         var rawValue: String {
             switch self {
-            case .about:
-                return Text.Settings.aboutApp
             case .writeSupport:
                 return Text.Settings.writeSupport
             case .notification:
@@ -40,7 +37,6 @@ final class SettingsViewController: UITableViewController {
     // MARK: - Public Properties
     
     public let settings: [SettingsSections] = [
-        .about,
         .writeSupport,
         .notification,
         .termsOfUsage,
@@ -142,8 +138,6 @@ final class SettingsViewController: UITableViewController {
         let setting = settings[indexPath.row]
         
         switch setting {
-        case .about:
-            debugPrint("About tapped")
         case .writeSupport:
             sendEmail()
         case .notification:
