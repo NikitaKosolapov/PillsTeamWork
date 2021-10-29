@@ -48,6 +48,11 @@ final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
 }
 
 extension MedicineDescriptionVC: MedicineDescriptionViewDelegate {
+    
+    func onMedicineDescriptionViewTapped() {
+        dismiss(animated: false)
+    }
+    
     func acceptButtonTapped() {
         realm.update {
             event?.pill.schedule.first?.acceptedType = .used

@@ -10,9 +10,10 @@ import UIKit
 protocol DeletePillViewDelegate: AnyObject {
     func deleteButtonTouchUpInside()
     func cancelButtonTouchUpInside()
+    func onDeletePillViewTapped()
 }
 
-final class DeletePillView: AlertView {
+final class DeletePillView: AlertView, UIGestureRecognizerDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -31,8 +32,37 @@ final class DeletePillView: AlertView {
         )
         return label
     }()
-
+    
+    // MARK: - Initializers
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addTapGestureOnView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Private Methods
+    
+    private func setupGestureRecognizer() -> UITapGestureRecognizer {
+        let gestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(onViewWithTapGestureTapped)
+        )
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }
+    
+    @objc private func onViewWithTapGestureTapped(sender: UITapGestureRecognizer) {
+        deletePillViewDelegate?.onDeletePillViewTapped()
+    }
+    
+    private func addTapGestureOnView() {
+        self.addGestureRecognizer(setupGestureRecognizer())
+    }
     
     override func agreeButtonTouchUpInside() {
         deletePillViewDelegate?.cancelButtonTouchUpInside()

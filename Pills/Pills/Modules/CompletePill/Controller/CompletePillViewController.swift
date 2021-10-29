@@ -10,15 +10,23 @@ import UIKit
 class CompletePillViewController: BaseViewController<CompletePillView> {
     
     weak var delegate: CompleteCoursesByIndexPath?
-
+    
     // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         rootView.completePillViewDelegate = self
     }
 }
 
+// MARK: - CompletePillViewDelegate
+
 extension CompletePillViewController: CompletePillViewDelegate {
+    
+    func onCompletePillViewTapped() {
+        dismiss(animated: false, completion: nil)
+    }
     
     func yesButtonTouchUpInside() {
         delegate?.completeRowAt()

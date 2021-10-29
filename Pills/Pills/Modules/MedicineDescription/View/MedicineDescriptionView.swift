@@ -11,10 +11,11 @@ import UIKit
 protocol MedicineDescriptionViewDelegate: AnyObject {
     func acceptButtonTapped()
     func skipButtonTapped()
+    func onMedicineDescriptionViewTapped()
 }
 
 /// Class provides UI elements for MedicineDescriptionVC
-final class MedicineDescriptionView: UIView {
+final class MedicineDescriptionView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Public Properties
     
@@ -168,10 +169,12 @@ final class MedicineDescriptionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupView()
         addSubview()
         setupLayout()
         addButtonAction()
+        addTapGestureOnView()
     }
     
     required init?(coder: NSCoder) {
@@ -195,6 +198,24 @@ final class MedicineDescriptionView: UIView {
     }
     
     // MARK: - Private Methods
+    
+    private func setupGestureRecognizer() -> UITapGestureRecognizer {
+        let gestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(onViewWithTapGestureTapped)
+        )
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }
+    
+    @objc private func onViewWithTapGestureTapped(sender: UITapGestureRecognizer) {
+        medicineDescriptionDelegate?.onMedicineDescriptionViewTapped()
+    }
+    
+    private func addTapGestureOnView() {
+        self.addGestureRecognizer(setupGestureRecognizer())
+    }
+    
     
     private func dateToText(time: Date) -> String {
         return dateFormatter.string(from: time)

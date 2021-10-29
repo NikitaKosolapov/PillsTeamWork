@@ -13,13 +13,20 @@ class DeletePillViewController: BaseViewController<DeletePillView> {
     weak var delegate: DeleteCoursesByIndexPath?
     
     // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         rootView.deletePillViewDelegate = self
     }
 }
 
+// MARK: - DeletePillViewDelegate
+
 extension DeletePillViewController: DeletePillViewDelegate {
+    
+    func onDeletePillViewTapped() {
+        dismiss(animated: false, completion: nil)
+    }
     
     func deleteButtonTouchUpInside() {
         delegate?.deleteRowAt()

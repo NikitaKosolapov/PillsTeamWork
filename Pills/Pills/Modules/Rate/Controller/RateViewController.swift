@@ -23,6 +23,11 @@ extension RateViewController: RateViewDelegate {
     
     // MARK: - Actions
     
+    func onRateViewTapped() {
+          dismiss(animated: false)
+      }
+
+    
     func badSmileButtonTouchUpInside() {
     }
     

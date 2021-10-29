@@ -14,9 +14,10 @@ protocol RateViewDelegate: AnyObject {
     func bestSmileButtonTouchUpInside()
     func provideFeedbackButtonTouchUpInside()
     func noThanksButtonTouchUpInside()
+    func onRateViewTapped()
 }
 
-final class RateView: AlertView {
+final class RateView: AlertView, UIGestureRecognizerDelegate {
     
     // MARK: - Public Properties
     
@@ -95,6 +96,7 @@ final class RateView: AlertView {
         
         setupView()
         setupLayout()
+        addTapGestureOnView()
     }
     
     required init?(coder: NSCoder) {
@@ -138,6 +140,23 @@ final class RateView: AlertView {
     }
     
     // MARK: - Private Methods
+    
+    private func setupGestureRecognizer() -> UITapGestureRecognizer {
+        let gestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(onViewWithTapGestureTapped)
+        )
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }
+    
+    @objc private func onViewWithTapGestureTapped(sender: UITapGestureRecognizer) {
+        rateViewDelegate?.onRateViewTapped()
+    }
+    
+    private func addTapGestureOnView() {
+        self.addGestureRecognizer(setupGestureRecognizer())
+    }
     
     private func setupView() {
         backgroundColor = AppColors.semiWhiteDarkTheme
