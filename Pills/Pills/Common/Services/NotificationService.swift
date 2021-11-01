@@ -13,6 +13,8 @@ class NotificationService {
     
     var isNotificationGranted: Bool = false
     
+    // MARK: - Public Methods
+    
     func registerForNotifications() {
         notificationCenter.getNotificationSettings { (notificationSettings) in
             switch notificationSettings.authorizationStatus {
@@ -32,6 +34,38 @@ class NotificationService {
             }
         }
     }
+    
+    func addNotificationModel(notificationModel: NotificationModel,
+                              completion: @escaping (Error?) -> Void) {
+        let content = createNotificationContent(title: notificationModel.title,
+                                                body: notificationModel.body,
+                                                identifier: notificationModel.identifier)
+        let trigger = createNotificationTrigger(date: notificationModel.date)
+        self.createAndRegisterNotificationRequest(with: notificationModel.identifier,
+                                                  content: content,
+                                                  trigger: trigger,
+                                                  completion: completion)
+        
+    }
+    
+    func getAllNotifications() {
+        notificationCenter.getPendingNotificationRequests { notific in
+            print("‼️‼️‼️ This is notifications \(notific)")
+            print("This amount \(notific.count)")
+        }
+    }
+    
+    func removeAllNotifications() {
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
+    
+    func removeNotification(for pill: String) {
+//         TODO: use this - notificationCenter.removePendingNotificationRequests(withIdentifiers: [String]),
+//         for remove notifications of object when it's removing
+        
+    }
+    
+    // MARK: - Private Methods
     
     private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> Void) {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
@@ -55,13 +89,15 @@ class NotificationService {
         return content
     }
     
-    private func createNotificationTrigger(date: Date, isNeedRepeat: Bool = true) -> UNCalendarNotificationTrigger {
+    private func createNotificationTrigger(date: Date, isNeedRepeat: Bool = false) -> UNCalendarNotificationTrigger {
         // Configure the recurring date.
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
         
-        let componentsForTime = Calendar.current.dateComponents([.hour, .minute], from: date)
-        dateComponents.hour = componentsForTime.hour  // 14:00 hours
+        let componentsForTime = Calendar.current.dateComponents([.month, .day, .hour, .minute], from: date)
+        dateComponents.month = componentsForTime.month
+        dateComponents.day = componentsForTime.day
+        dateComponents.hour = componentsForTime.hour
         dateComponents.minute = componentsForTime.minute
         
         // Create the trigger as a repeating event.
@@ -78,18 +114,5 @@ class NotificationService {
         let request = UNNotificationRequest(identifier: identifier,
                                             content: content, trigger: trigger)
         notificationCenter.add(request, withCompletionHandler: completion)
-    }
-    
-    func addNotificationModel(notificationModel: NotificationModel,
-                              completion: @escaping (Error?) -> Void) {
-        let content = createNotificationContent(title: notificationModel.title,
-                                                body: notificationModel.body,
-                                                identifier: notificationModel.identifier)
-        let trigger = createNotificationTrigger(date: notificationModel.date)
-        self.createAndRegisterNotificationRequest(with: notificationModel.identifier,
-                                                  content: content,
-                                                  trigger: trigger,
-                                                  completion: completion)
-        
     }
 }

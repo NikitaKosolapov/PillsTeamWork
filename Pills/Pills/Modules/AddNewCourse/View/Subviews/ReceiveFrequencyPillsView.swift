@@ -79,6 +79,7 @@ final class ReceiveFrequencyPillsView: UIStackView {
         addArrangedSubviews(views: certainDaysStackView,
                             dailyXTimesTextField,
                             daysCycleStackView)
+        certainDaysStackView.delegate = self
     }
     
     private func configureEveryDayXTimesADayTextField() {

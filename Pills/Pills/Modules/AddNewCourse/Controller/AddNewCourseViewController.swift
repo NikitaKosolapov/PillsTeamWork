@@ -13,6 +13,7 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     private var startDate = Date()
     private let newCourse = RealmMedKitEntry()
     private let realm = RealmService.shared
+    let notificationService = NotificationService()
     
     var tagOfNavBar = ""
     override func viewDidLoad() {
@@ -137,6 +138,7 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
     }
     
     func onSubmit() {
+        addNotifications(from: newCourse)
         realm.create(newCourse) {
             self.navigationController?.popViewController(animated: true)
         }
@@ -151,7 +153,6 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
                 realmTimeObject.time = day
                 schedule.append(realmTimeObject)
             }
-            print("скедуле из daysOfTheWeek \(schedule)")
             return schedule
         case .dailyEveryXHour(let xHour):
             break
@@ -161,7 +162,6 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
                 realmTimeObject.time = day
                 schedule.append(realmTimeObject)
             }
-            print("скедуле из dailyXTimes \(schedule)")
             return schedule
         case .daysCycle(let cycle):
             break
@@ -170,5 +170,18 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
         }
 
         return List<RealmTimePoint>()
+    }
+    
+    func addNotifications(from course: RealmMedKitEntry) {
+        course.schedule.forEach { date in
+            let model = NotificationModel(identifier: ("\(course.entryID) + \(UUID().uuidString)"),
+                                          title: Text.PushNotifications.itIsTimeToTakePill,
+                                          subTitile: "",
+                                          body: course.name,
+                                          date: date.time,
+                                          isRepeating: true)
+            notificationService.addNotificationModel(notificationModel: model) { _ in
+            }
+        }
     }
 }

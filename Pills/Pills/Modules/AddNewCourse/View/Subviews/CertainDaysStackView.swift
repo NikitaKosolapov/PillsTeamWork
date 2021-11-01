@@ -23,6 +23,7 @@ final class CertainDaysStackView: UIStackView {
     
     private let dayOfWeekArray: [String] = Text.DaysOfAWeek.all()
     var choosedDays: [UIButton] = []
+    
     // MARK: - Subviews
     
     private lazy var dayOfWeekStackViewArray: [UIStackView] = {

@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 // swiftlint:disable type_body_length
+// swiftlint:disable file_length
 
 final class AddNewCourseView: UIView {
     
@@ -24,25 +25,40 @@ final class AddNewCourseView: UIView {
     }
     
     // takePeriodTextField is using in AddNewCourseView+PublicInterface
-    public lazy var takePeriodTextField = CustomTextFieldBuilder()
-        .withPlaceholder(Text.takePeriodPlaceholder)
-        .withImage(AppImages.Tools.calendar)
-        .withType(.numeric)
-        .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
-        .withEndEditProcessor { [weak self] text in
-            self?.delegate?.onTakePeriodChanged(Int.init(text) ?? 1)
-        }
-        .clearOnFocus()
-        .build()
+
+    public lazy var takePeriodTextField: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.takePeriodPlaceholder)
+            .withImage(AppImages.Tools.calendar)
+            .withType(.numeric)
+            .withMaxLength(AppLayout.AddCourse.periodFieldMaxLength)
+            .withEndEditProcessor { [weak self] text in
+                self?.delegate?.onTakePeriodChanged(Int.init(text) ?? 1)
+            }
+            .clearOnFocus()
+            .build()
+        textField.keyboardType = .numberPad
+        textField.addNewCourseDelegate = self
+        return textField
+    }()
     
     // takePeriodDatePickerTextField is using in AddNewCourseView+PublicInterface
-    public lazy var takePeriodDatePickerTextField = CustomTextFieldBuilder()
-        .withImage(AppImages.Tools.calendar)
-        .withDatePicker(.date) { [weak self] tillDate in
-            self?.delegate?.onTakePeriodTill(tillDate)
-            return false
-        }
-        .build()
+    public lazy var takePeriodDatePickerTextField: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withImage(AppImages.Tools.calendar)
+            .withDatePicker(.date) { [weak self] tillDate in
+                self?.delegate?.onTakePeriodTill(tillDate)
+                return false
+            }
+            .build()
+        textField.addNewCourseDelegate = self
+        return textField
+    }()
+    
+    var certainDays: [String] = []
+    var daysButtons: [UIButton] = []
+    var datesPeriod: [Date] = []
+    var periodWeekDays: [String] = []
 
     // MARK: - Private Properties
     
@@ -78,17 +94,21 @@ final class AddNewCourseView: UIView {
         spacing: 0
     )
     
-    lazy var pillTypeNameTextField: CustomTextField = CustomTextFieldBuilder()
-        .withPlaceholder(Text.Pills.tablets.rawValue.localized())
-        .withTextAlignment(.center)
-        .withSimplePicker(options: []) { [weak self] (option) in
-            guard let self = self else {return true}
-            let type = PillType.init(rawValue: option) ?? .tablets
-            self.setPillType(type)
-            self.delegate?.onPillTypeChanged(type)
-            return true
-        }
-        .build()
+    lazy var pillTypeNameTextField: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.Pills.tablets.rawValue.localized())
+            .withTextAlignment(.center)
+            .withSimplePicker(options: []) { [weak self] (option) in
+                guard let self = self else {return true}
+                let type = PillType.init(rawValue: option) ?? .tablets
+                self.setPillType(type)
+                self.delegate?.onPillTypeChanged(type)
+                return true
+            }
+            .build()
+        textField.addNewCourseDelegate = self
+        return textField
+    }()
 
     lazy var typeImageHolder: UIView = {
         let view = UIView()
@@ -134,15 +154,20 @@ final class AddNewCourseView: UIView {
     ], .fillEqually, spacing: AppLayout.AddCourse.horizontalSpacing)
     
     // doseTFStackView
-    lazy var doseInputTextField = CustomTextFieldBuilder()
-        .withPlaceholder(Text.singleDoseByNumber)
-        .withType(.numeric)
-        .withTextAlignment(.center)
-        .withMaxLength(AppLayout.AddCourse.doseFieldMaxLength)
-        .withEndEditProcessor { [weak self] text in
-            self?.delegate?.onPillDoseChanged(Double.init(text) ?? 0.0)
-        }
-        .build()
+    lazy var doseInputTextField: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(Text.singleDoseByNumber)
+            .withType(.numeric)
+            .withTextAlignment(.center)
+            .withMaxLength(AppLayout.AddCourse.doseFieldMaxLength)
+            .withEndEditProcessor { [weak self] text in
+                self?.delegate?.onPillDoseChanged(Double.init(text) ?? 0.0)
+            }
+            .build()
+        textField.keyboardType = .numberPad
+        textField.addNewCourseDelegate = self
+        return textField
+    }()
     
     lazy var doseUnitTextField: CustomTextField = {
         let textField = CustomTextFieldBuilder()
@@ -201,8 +226,6 @@ final class AddNewCourseView: UIView {
         textField.addNewCourseDelegate = self
         return textField
     }()
-    var certainDays: [String] = []
-    var daysButtons: [UIButton] = []
     
     private lazy var takingFrequencyLabelAndTFStackView = VerticalStackViewFactory.generate([
         takingFrequencyStackView,
@@ -228,25 +251,30 @@ final class AddNewCourseView: UIView {
     ], .fillEqually, spacing: AppLayout.AddCourse.horizontalSpacing)
     
     // startTimeTFStackView
-    lazy var startTextField = CustomTextFieldBuilder()
-        .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
-        .withImage(AppImages.Tools.calendar)
-        .withDatePicker(.date , { [weak self] date in
-            self?.delegate?.onStartDateChanged(date)
-            return true
-        })
-        .build()
+    lazy var startTextField: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(CustomTextField.dateFormatter.string(from: Date()))
+            .withImage(AppImages.Tools.calendar)
+            .withDatePicker(.date , { [weak self] date in
+                self?.delegate?.onStartDateChanged(date)
+                return true
+            })
+            .build()
+        textField.addNewCourseDelegate = self
+        return textField
+    }()
     
-    lazy var timeTextField = CustomTextFieldBuilder()
-        .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
-        .withDatePicker(.time , { [weak self] time in
-            self?.delegate?.onStartTimeChanged(time)
-            return true
-        })
-        .build()
-
-    var datesPeriod: [Date] = []
-    var periodWeekDays: [String] = []
+    lazy var timeTextField: CustomTextField = {
+        let textField = CustomTextFieldBuilder()
+            .withPlaceholder(CustomTextField.timeFormatter.string(from: Date()))
+            .withDatePicker(.time , { [weak self] time in
+                self?.delegate?.onStartTimeChanged(time)
+                return true
+            })
+            .build()
+        textField.addNewCourseDelegate = self
+        return textField
+    }()
     
     private lazy var startTimeInputStackView = HorizontalStackViewFactory.generate([startTextField, timeTextField])
     
@@ -432,6 +460,7 @@ final class AddNewCourseView: UIView {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+        receiveFreqStackView.delegate = self
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -476,7 +505,7 @@ final class AddNewCourseView: UIView {
     }
     
     func createScheduleDays(from certainDays: [String], from period: [Date]) {
-        guard !certainDays.isEmpty && !period.isEmpty else { return }
+        guard !period.isEmpty else { return }
         
         let scheduleDates = period
             .filter { certainDays.contains(CustomTextField.dateOfWeekFormatter.string(from: $0)) }
@@ -504,6 +533,11 @@ final class AddNewCourseView: UIView {
                     receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray[index].isEnabled = true
                 }
             }
+        } else {
+            receiveFreqStackView.certainDaysStackView.dayOfWeekButtonArray.forEach { button in
+                button.setImage(AppImages.AddCourse.noCheck, for: .normal)
+                button.isEnabled = true
+            }
         }
     }
 
@@ -522,7 +556,6 @@ final class AddNewCourseView: UIView {
 
         delegate?.onFrequencyDateChanged(ReceiveFreqPills.dailyXTimes(scheduleDates))
     }
-
 }
 
 extension AddNewCourseView: UITextViewDelegate, UITextFieldDelegate {
@@ -560,7 +593,6 @@ extension AddNewCourseView: ReceiveFreqPillsDelegate {
         }
         createDailyEveryXHourDays(from: xHour, from: datesPeriod)
     }
-
 
     func frequencyDidChange() -> ReceiveFreqPills {
         let mock: [Date] = []

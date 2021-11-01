@@ -27,8 +27,7 @@ extension Date {
             guard  let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else { break }
             date = newDate
         }
-        let lastDate = Calendar.current.date(byAdding: .day, value: 1, to: date)
-        dates.append(lastDate!)
+        dates.append(date)
         return dates
     }
 }
