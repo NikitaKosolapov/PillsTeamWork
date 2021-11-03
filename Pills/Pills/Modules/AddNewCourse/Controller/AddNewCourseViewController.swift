@@ -14,6 +14,9 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
     private let newCourse = RealmMedKitEntry()
     private let realm = RealmService.shared
     
+    private var countOfCreatedCourses = UserDefaults.standard
+                                            .integer(forKey: UserDefaultsKeys.addNewCourseCompletedCount)
+    
     var tagOfNavBar = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +48,13 @@ class AddNewCourseViewController: BaseViewController<AddNewCourseView> {
 
     func onValidate(_ valid: Bool) {
         rootView.setDoneButtonEnabled(valid)
+    }
+    
+    private func askForRequest() {
+        countOfCreatedCourses += 1
+        UserDefaults.standard.set(countOfCreatedCourses, forKey: UserDefaultsKeys.addNewCourseCompletedCount)
+        
+        ReviewRequest.requestReview(count: countOfCreatedCourses, by: .addPill)
     }
 }
 
@@ -137,6 +147,7 @@ extension AddNewCourseViewController: AddNewCourseDelegate {
     }
     
     func onSubmit() {
+        askForRequest()
         realm.create(newCourse) {
             self.navigationController?.popViewController(animated: true)
         }

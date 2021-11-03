@@ -21,6 +21,8 @@
 		553A359526C02D59006FFA6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A359426C02D59006FFA6F /* NotificationModel.swift */; };
 		555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */; };
 		556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A4FF126C0134F00249B49 /* BaseViewController.swift */; };
+		602417A12732E55B00B23E1C /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602417A02732E55B00B23E1C /* UserDefaultsKeys.swift */; };
+		602CD6E22730543400D34EAC /* ReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602CD6E12730543400D34EAC /* ReviewRequest.swift */; };
 		6C90F3A9D23430BFAC418825 /* Pods_Pills_PillsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA129D021F9E8300DC954A7 /* Pods_Pills_PillsUITests.framework */; };
 		8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423A9F526BB3510008F64AA /* AppConstants.swift */; };
 		849AE5C326A9CF5400262D12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849AE5C226A9CF5400262D12 /* SettingsViewController.swift */; };
@@ -65,8 +67,8 @@
 		FA9D870A26F111AF00408604 /* MedicineDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */; };
 		FA9D87E226F6416400408604 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D87E126F6416300408604 /* Event.swift */; };
 		FAA85ECC271757C300FBE360 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA85ECB271757C200FBE360 /* ViewFactory.swift */; };
-		FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE2361271DE823000011E2 /* RateStackViewFactory.swift */; };
 		FAAC84CD2721E88D0045B55C /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */; };
+		FADE2362271DE823000011E2 /* RateStackViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE2361271DE823000011E2 /* RateStackViewFactory.swift */; };
 		FE1406FB26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */; };
 		FE14070026DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */; };
 		FE14070526DC32C90062905C /* AddNewCourseView+PublicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */; };
@@ -139,6 +141,8 @@
 		553A359426C02D59006FFA6F /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		555E30BE26AC05E400F7EF0A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		556A4FF126C0134F00249B49 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		602417A02732E55B00B23E1C /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		602CD6E12730543400D34EAC /* ReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRequest.swift; sourceTree = "<group>"; };
 		818A1C60DA19FBA817FCF4D1 /* Pods_Pills.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pills.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8386280E237169135CA54BE9 /* Pods-PillsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillsTests.release.xcconfig"; path = "Target Support Files/Pods-PillsTests/Pods-PillsTests.release.xcconfig"; sourceTree = "<group>"; };
 		8423A9F526BB3510008F64AA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -188,8 +192,8 @@
 		FA9D870926F111AF00408604 /* MedicineDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDescriptionView.swift; sourceTree = "<group>"; };
 		FA9D87E126F6416300408604 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAA85ECB271757C200FBE360 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
-		FADE2361271DE823000011E2 /* RateStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateStackViewFactory.swift; sourceTree = "<group>"; };
 		FAAC84CC2721E88D0045B55C /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		FADE2361271DE823000011E2 /* RateStackViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateStackViewFactory.swift; sourceTree = "<group>"; };
 		FE1406FA26DC313E0062905C /* CustomTextField+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		FE1406FF26DC316C0062905C /* CustomTextField+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		FE14070426DC32C90062905C /* AddNewCourseView+PublicInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCourseView+PublicInterface.swift"; sourceTree = "<group>"; };
@@ -413,6 +417,31 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		E1544C602720750E00648E42 /* CompletePill */ = {
+			isa = PBXGroup;
+			children = (
+				E1544C622720752E00648E42 /* Controller */,
+				E1544C612720752900648E42 /* View */,
+			);
+			path = CompletePill;
+			sourceTree = "<group>";
+		};
+		E1544C612720752900648E42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1544C652720755D00648E42 /* CompletePillView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E1544C622720752E00648E42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1544C632720754700648E42 /* CompletePillViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		FA477CAF2711E72300F8968B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,31 +487,6 @@
 				FA653B742714A1480011573F /* AddNewCourseDataSourceProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		E1544C602720750E00648E42 /* CompletePill */ = {
-			isa = PBXGroup;
-			children = (
-				E1544C622720752E00648E42 /* Controller */,
-				E1544C612720752900648E42 /* View */,
-			);
-			path = CompletePill;
-			sourceTree = "<group>";
-		};
-		E1544C612720752900648E42 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E1544C652720755D00648E42 /* CompletePillView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E1544C622720752E00648E42 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E1544C632720754700648E42 /* CompletePillViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		FA9D86FE26F110F700408604 /* MedicineDescription */ = {
@@ -691,6 +695,8 @@
 				5511C6A326AC246B009CDA41 /* UIView+Constraints.swift */,
 				A884C4DC26B079AF00BACC90 /* AddButton.swift */,
 				8423A9F526BB3510008F64AA /* AppConstants.swift */,
+				602CD6E12730543400D34EAC /* ReviewRequest.swift */,
+				602417A02732E55B00B23E1C /* UserDefaultsKeys.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1129,6 +1135,7 @@
 				A870AFF626A9A31E00624579 /* CourseViewModel.swift in Sources */,
 				A86DB95B26C54D6200AE866A /* AutoReusable.swift in Sources */,
 				A802CBC726B68A55004E7365 /* StubCourseView.swift in Sources */,
+				602CD6E22730543400D34EAC /* ReviewRequest.swift in Sources */,
 				A8E594E626D976FD006F414A /* TextField.swift in Sources */,
 				FA653B732714A1220011573F /* AddNewCourseTextFieldDelegate.swift in Sources */,
 				FE2899CE26CC3C6F00B145FB /* JournalTableViewCell.swift in Sources */,
@@ -1138,7 +1145,6 @@
 				8423A9F626BB3510008F64AA /* AppConstants.swift in Sources */,
 				A86DB94226C54BD000AE866A /* RateView.swift in Sources */,
 				FA653B6A27149EAD0011573F /* HorizontalStackViewFactory.swift in Sources */,
-				1132CCB52710C25600337486 /* UIView.swift in Sources */,
 				556A4FF226C0134F00249B49 /* BaseViewController.swift in Sources */,
 				555E30BF26AC05E400F7EF0A /* AppCoordinator.swift in Sources */,
 				FA653B6E2714A04E0011573F /* FieldHeaderFactory.swift in Sources */,
@@ -1146,6 +1152,7 @@
 				FA653B6827149C8B0011573F /* VerticalStackViewFactory.swift in Sources */,
 				A8E594E126D976D5006F414A /* CertainDaysStackView.swift in Sources */,
 				FE2899D326CC3C7500B145FB /* JournalTableView.swift in Sources */,
+				602417A12732E55B00B23E1C /* UserDefaultsKeys.swift in Sources */,
 				A884C4DD26B079AF00BACC90 /* AddButton.swift in Sources */,
 				FE79E47D26A59DD600DACD24 /* RealmMedKitEntry.swift in Sources */,
 				FEB9580626AAF0D30093BA8D /* Date.swift in Sources */,

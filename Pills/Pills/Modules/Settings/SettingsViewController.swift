@@ -153,9 +153,10 @@ final class SettingsViewController: UITableViewController {
         case .privacyPolicy:
             openUrl(url: AppConstant.Urls.policy)
         case .rate:
-            let rateViewController = RateViewController()
-            rateViewController.modalPresentationStyle = .overCurrentContext
-            tabBarController?.present(rateViewController, animated: false)
+            ReviewRequest.requestReviewManually()
+//            let rateViewController = RateViewController()
+//            rateViewController.modalPresentationStyle = .overCurrentContext
+//            tabBarController?.present(rateViewController, animated: false)
         }
     }
     

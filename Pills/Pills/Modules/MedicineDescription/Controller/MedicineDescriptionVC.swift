@@ -21,6 +21,8 @@ final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
     private var event: Event?
     private var index: IndexPath
     
+    private var pillsTaken = UserDefaults.standard.integer(forKey: UserDefaultsKeys.pillCompletedCount)
+    
     // MARK: - Initializers
     
     init(
@@ -45,10 +47,19 @@ final class MedicineDescriptionVC: BaseViewController<MedicineDescriptionView> {
         super.viewDidLoad()
         rootView.medicineDescriptionDelegate = self
     }
+    
+    // MARK: - Private Methods
+    
+    private func askForRequest() {
+        pillsTaken += 1
+        UserDefaults.standard.set(pillsTaken, forKey: UserDefaultsKeys.pillCompletedCount)
+        ReviewRequest.requestReview(count: pillsTaken, by: .pillsTaken)
+    }
 }
 
 extension MedicineDescriptionVC: MedicineDescriptionViewDelegate {
     func acceptButtonTapped() {
+        askForRequest()
         realm.update {
             event?.pill.schedule.first?.acceptedType = .used
         }
